@@ -3,8 +3,8 @@ config_version=5
 
 [application]
 
-config/name="Emberwick"
-config/description="Hex lantern-light tactics prototype."
+config/name="Aether Sigil"
+config/description="12x12 isometric tactical monster-board game, driven by the Aether Sigil bible."
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -27,4 +27,4 @@ pointing/emulate_mouse_from_touch=true
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.0549, 0.0863, 0.1882, 1)
+environment/defaults/default_clear_color=Color(0.0431, 0.0706, 0.1255, 1)

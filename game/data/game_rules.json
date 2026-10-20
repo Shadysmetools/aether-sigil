@@ -1,0 +1,78 @@
+{
+  "_doc": [
+    "Aether Sigil rules tables. ONE file for every number and interpretation the bible does not define.",
+    "The bible (AETHER_SIGIL_MASTER_GAME_BIBLE.json) stays the source of truth for maps, rosters, monsters and dialogue; nothing here edits it.",
+    "Coordinates: a tile [x, y] in the bible means map_grid[y][x] (544 of 564 objective tiles agree with this reading; 465 with the transpose)."
+  ],
+  "damage": {
+    "_doc": "damage = max(1, attack - defense). Then x advantage_mult if the attacker's family beats the defender's, x disadvantage_mult if the defender's family beats the attacker's (floored, min 1). Light and Dark beat each other.",
+    "advantage_mult": 1.5,
+    "disadvantage_mult": 0.75
+  },
+  "element_chart": {
+    "_doc": "The bible and PDF define 12 element_families but no relationships, so this chart is original. Each family beats exactly 2 and is beaten by exactly 2 (balanced). Only Light<->Dark is mutual.",
+    "Water": ["Fire", "Earth"],
+    "Fire": ["Nature", "Ice"],
+    "Nature": ["Water", "Earth"],
+    "Earth": ["Lightning", "Fire"],
+    "Lightning": ["Water", "Wind"],
+    "Wind": ["Nature", "Tech"],
+    "Ice": ["Wind", "Space"],
+    "Tech": ["Ice", "Lightning"],
+    "Light": ["Dark", "Arcane"],
+    "Dark": ["Light", "Space"],
+    "Arcane": ["Tech", "Dark"],
+    "Space": ["Light", "Arcane"]
+  },
+  "terrain_bonus": {
+    "_doc": "A monster on a terrain tile matching its element_family gets +family_atk attack and +family_def defense ('terrain advantage zones'). 'mixed' gives every family +mixed_def defense. Elevation and stone bonuses below are terrain bonuses too, so 'Terrain bonuses are doubled' doubles all of them.",
+    "family_atk": 4,
+    "family_def": 4,
+    "mixed_def": 2
+  },
+  "tiles": {
+    "_doc": "Every tile type in the legend of all 120 maps, plus 'stone' (used on maps but missing from every legend). walkable=false blocks movement. move_cost is movement points to enter. raise is the drawn block height (0..1).",
+    "ground":        {"walkable": true,  "move_cost": 1},
+    "stone":         {"walkable": true,  "move_cost": 1, "def_bonus": 2, "raise": 0.35, "_doc": "Not in any legend (data finding). Treated as raised stone cover: +2 defense."},
+    "obstacle":      {"walkable": false, "raise": 0.8},
+    "bridge":        {"walkable": true,  "move_cost": 1, "_doc": "Crossable chokepoint: walkable, 1-wide by map design. AI styles value holding it."},
+    "capsule_node":  {"walkable": true,  "move_cost": 1, "_doc": "Deployment/recharge node. Captured by ending your turn on it. Owner may deploy onto it; owner's units starting a turn on it heal recharge_pct of max HP."},
+    "player_symbol": {"walkable": false, "symbol": 0},
+    "enemy_symbol":  {"walkable": false, "symbol": 1},
+    "player_spawn":  {"walkable": true,  "move_cost": 1, "spawn": 0},
+    "enemy_spawn":   {"walkable": true,  "move_cost": 1, "spawn": 1},
+    "relic":         {"walkable": true,  "move_cost": 1, "_doc": "Optional scoring objective. Secured by ending your turn on it; counts toward 'secure 3 relic nodes'."},
+    "warp_gate":     {"walkable": true,  "move_cost": 1, "_doc": "Teleport tile. Every map has at most ONE gate, so there is no gate-to-gate link (data finding). Gates are dormant unless the stage rule 'One random portal activates each round' activates one; an active gate sends a unit that ends its move on it to the mirrored tile (11-x, 11-y), or the nearest free walkable tile to it."},
+    "elevation":     {"walkable": true,  "move_cost": 2, "atk_bonus": 3, "range_bonus": 1, "raise": 0.6, "_doc": "High ground: +3 attack, +1 range, costs 2 to climb onto."},
+    "hazard":        {"walkable": true,  "move_cost": 1, "_doc": "A unit ending its owner's turn here takes hazard_damage_per_tier x tier, tier parsed from the stage's 'X hazard tier N' (1 if absent)."},
+    "forest":        {"walkable": true,  "move_cost": 1, "family": ["Nature"]},
+    "lava":          {"walkable": true,  "move_cost": 1, "family": ["Fire"]},
+    "water":         {"walkable": true,  "move_cost": 1, "family": ["Water"]},
+    "ice":           {"walkable": true,  "move_cost": 1, "family": ["Ice"]},
+    "metal":         {"walkable": true,  "move_cost": 1, "family": ["Tech"]},
+    "sky":           {"walkable": true,  "move_cost": 1, "family": ["Wind"]},
+    "shadow":        {"walkable": true,  "move_cost": 1, "family": ["Dark"]},
+    "ruins":         {"walkable": true,  "move_cost": 1, "family": ["Earth"]},
+    "space":         {"walkable": true,  "move_cost": 1, "family": ["Space"]},
+    "crystal":       {"walkable": true,  "move_cost": 1, "family": ["Earth", "Arcane"], "_doc": "The 'Crystal' element is in the Earth family; crystal also reads as arcane, so both match."},
+    "rift":          {"walkable": true,  "move_cost": 1, "family": ["Arcane"]},
+    "mixed":         {"walkable": true,  "move_cost": 1, "mixed": true}
+  },
+  "symbol": {"_doc": "Symbol HP/defense are not in the data. A Symbol blocks movement and is attacked like a unit with no element.", "hp": 120, "defense": 10},
+  "hazard_damage_per_tier": 8,
+  "recharge_pct": 20,
+  "ap": {"_doc": "Action points exist only for 'Capsules cost 1 AP to deploy'. Without that rule deploying is free.", "per_turn": 1, "cap": 3, "start": 1},
+  "relics_to_win": 3,
+  "special_rules": {
+    "_doc": "Rule table keyed by the exact special_rule text in the bible. Any text not listed here is reported as unimplemented by tests/test_data.gd.",
+    "Terrain bonuses are doubled": {"terrain_mult": 2},
+    "Movement after a knockout is +1": {"ko_move_bonus": 1, "_doc": "After a side KOs an enemy monster, all its monsters get +1 move for the rest of that turn and its next turn."},
+    "One random portal activates each round": {"random_portal": true},
+    "Capsules cost 1 AP to deploy": {"deploy_ap_cost": 1}
+  },
+  "starter_team": {
+    "_doc": "The player's starting 5. One per role (Guardian, Striker, Artillery, Scout, Support), five different families, chosen as the strongest Common/Uncommon of each role by hp/5 + 1.5*atk + def + 3*move + 3*range. In this data rarity does not predict stats (Commons average the same as every tier).",
+    "ids": ["MON-0033", "MON-0640", "MON-0077", "MON-0596", "MON-0099"]
+  },
+  "turn_cap_rounds": 60
+}
