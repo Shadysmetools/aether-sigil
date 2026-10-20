@@ -1,0 +1,1001 @@
+id,name,element,element_family,role,rarity,level_cap,hp,attack,defense,move,range,ability,ability_description,evolution_family
+MON-0001,Fangstaga,Mist,Water,Guardian,Common,31,97,19,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-001
+MON-0002,Jadescorpionis,Aether,Arcane,Controller,Uncommon,32,114,26,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-001
+MON-0003,Riftshardon,Lumen,Light,Support,Uncommon,33,131,33,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-001
+MON-0004,Titanwyrmix,Verdant,Nature,Scout,Rare,34,148,40,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-001
+MON-0005,Driftmantisar,Tide,Water,Artillery,Rare,35,165,47,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-001
+MON-0006,Bramblerayen,Storm,Wind,Assassin,Epic,36,182,15,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-002
+MON-0007,Frostcolossusor,Metal,Tech,Summoner,Epic,37,199,22,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-002
+MON-0008,Mirebeetleum,Umbral,Dark,Striker,Mythic,38,95,29,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-002
+MON-0009,Shardramyx,Frost,Ice,Guardian,Mythic,39,112,36,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-002
+MON-0010,Voltweaver,Gale,Wind,Controller,Legendary,40,129,43,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-002
+MON-0011,Feraldrakea,Crystal,Earth,Support,Common,41,146,50,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-003
+MON-0012,Coralgolemis,Magma,Fire,Scout,Common,42,163,18,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-003
+MON-0013,Gravgriffinon,Astral,Space,Artillery,Uncommon,43,180,25,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-003
+MON-0014,Obsidhopperix,Volt,Lightning,Assassin,Uncommon,44,197,32,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-003
+MON-0015,Spectraspritear,Terra,Earth,Summoner,Rare,45,93,39,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-003
+MON-0016,Zephyrwolfen,Ember,Fire,Striker,Rare,46,110,46,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-004
+MON-0017,Glintsauror,Mist,Water,Guardian,Epic,47,127,14,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-004
+MON-0018,Emberskimmerum,Aether,Arcane,Controller,Epic,48,144,21,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-004
+MON-0019,Ironserpentyx,Lumen,Light,Support,Mythic,49,161,28,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-004
+MON-0020,Quillphoenix,Verdant,Nature,Scout,Mythic,50,178,35,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-004
+MON-0021,Thornhounda,Tide,Water,Artillery,Legendary,30,195,42,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-005
+MON-0022,Bloomhornis,Storm,Wind,Assassin,Common,31,91,49,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-005
+MON-0023,Astraowlon,Metal,Tech,Summoner,Common,32,108,17,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-005
+MON-0024,Flarepantherix,Umbral,Dark,Striker,Uncommon,33,125,24,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-005
+MON-0025,Lumenspritear,Frost,Ice,Guardian,Uncommon,34,142,31,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-005
+MON-0026,Runetusken,Gale,Wind,Controller,Rare,35,159,38,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-006
+MON-0027,Vespertigeror,Crystal,Earth,Support,Rare,36,176,45,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-006
+MON-0028,Echoorbum,Magma,Fire,Scout,Epic,37,193,13,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-006
+MON-0029,Cinderlynxyx,Astral,Space,Artillery,Epic,38,89,20,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-006
+MON-0030,Glimstag,Volt,Lightning,Assassin,Mythic,39,106,27,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-006
+MON-0031,Novascorpiona,Terra,Earth,Summoner,Mythic,40,123,34,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-007
+MON-0032,Solarshardis,Ember,Fire,Striker,Legendary,41,140,41,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-007
+MON-0033,Wispwyrmon,Mist,Water,Guardian,Common,42,157,48,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-007
+MON-0034,Galemantisix,Aether,Arcane,Controller,Common,43,174,16,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-007
+MON-0035,Duskrayar,Lumen,Light,Support,Uncommon,44,191,23,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-007
+MON-0036,Hollowcolossusen,Verdant,Nature,Scout,Uncommon,45,87,30,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-008
+MON-0037,Pyrabeetleor,Tide,Water,Artillery,Rare,46,104,37,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-008
+MON-0038,Tempestramum,Storm,Wind,Assassin,Rare,47,121,44,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-008
+MON-0039,Blazeweaveryx,Metal,Tech,Summoner,Epic,48,138,12,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-008
+MON-0040,Astradrake,Umbral,Dark,Striker,Epic,49,155,19,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-008
+MON-0041,Flaregolema,Frost,Ice,Guardian,Mythic,50,172,26,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-009
+MON-0042,Lumengriffinis,Gale,Wind,Controller,Mythic,30,189,33,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-009
+MON-0043,Runehopperon,Crystal,Earth,Support,Legendary,31,85,40,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-009
+MON-0044,Vesperspriteix,Magma,Fire,Scout,Common,32,102,47,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-009
+MON-0045,Echowolfar,Astral,Space,Artillery,Common,33,119,15,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-009
+MON-0046,Cinderimpen,Volt,Lightning,Assassin,Uncommon,34,136,22,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-010
+MON-0047,Glimmonarchor,Terra,Earth,Summoner,Uncommon,35,153,29,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-010
+MON-0048,Novafoxum,Ember,Fire,Striker,Rare,36,170,36,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-010
+MON-0049,Solarhydrayx,Mist,Water,Guardian,Rare,37,187,43,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-010
+MON-0050,Wispfin,Aether,Arcane,Controller,Epic,38,83,50,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-010
+MON-0051,Galemotha,Lumen,Light,Support,Epic,39,100,18,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-011
+MON-0052,Duskowlis,Verdant,Nature,Scout,Mythic,40,117,25,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-011
+MON-0053,Hollowpantheron,Tide,Water,Artillery,Mythic,41,134,32,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-011
+MON-0054,Pyraspriteix,Storm,Wind,Assassin,Legendary,42,151,39,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-011
+MON-0055,Tempesttuskar,Metal,Tech,Summoner,Common,43,168,46,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-011
+MON-0056,Blazetigeren,Umbral,Dark,Striker,Common,44,185,14,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-012
+MON-0057,Aeroorbor,Frost,Ice,Guardian,Uncommon,45,81,21,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-012
+MON-0058,Fanglynxum,Gale,Wind,Controller,Uncommon,46,98,28,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-012
+MON-0059,Jadestagyx,Crystal,Earth,Support,Rare,47,115,35,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-012
+MON-0060,Riftscorpion,Magma,Fire,Scout,Rare,48,132,42,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-012
+MON-0061,Titansharda,Astral,Space,Artillery,Epic,49,149,49,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-013
+MON-0062,Driftwyrmis,Volt,Lightning,Assassin,Epic,50,166,17,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-013
+MON-0063,Bramblemantison,Terra,Earth,Summoner,Mythic,30,183,24,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-013
+MON-0064,Frostrayix,Ember,Fire,Striker,Mythic,31,200,31,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-013
+MON-0065,Mirecolossusar,Mist,Water,Guardian,Legendary,32,96,38,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-013
+MON-0066,Shardbeetleen,Aether,Arcane,Controller,Common,33,113,45,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-014
+MON-0067,Voltramor,Lumen,Light,Support,Common,34,130,13,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-014
+MON-0068,Feralweaverum,Verdant,Nature,Scout,Uncommon,35,147,20,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-014
+MON-0069,Coralhornyx,Tide,Water,Artillery,Uncommon,36,164,27,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-014
+MON-0070,Gravbat,Storm,Wind,Assassin,Rare,37,181,34,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-014
+MON-0071,Obsidharea,Metal,Tech,Summoner,Rare,38,198,41,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-015
+MON-0072,Spectrareaveris,Umbral,Dark,Striker,Epic,39,94,48,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-015
+MON-0073,Zephyrraptoron,Frost,Ice,Guardian,Epic,40,111,16,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-015
+MON-0074,Glintcrabix,Gale,Wind,Controller,Mythic,41,128,23,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-015
+MON-0075,Emberimpar,Crystal,Earth,Support,Mythic,42,145,30,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-015
+MON-0076,Ironmonarchen,Magma,Fire,Scout,Legendary,43,162,37,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-016
+MON-0077,Quillfoxor,Astral,Space,Artillery,Common,44,179,44,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-016
+MON-0078,Thornhydraum,Volt,Lightning,Assassin,Common,45,196,12,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-016
+MON-0079,Bloomfinyx,Terra,Earth,Summoner,Uncommon,46,92,19,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-016
+MON-0080,Bramblemoth,Ember,Fire,Striker,Uncommon,47,109,26,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-016
+MON-0081,Frostowla,Mist,Water,Guardian,Rare,48,126,33,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-017
+MON-0082,Mirepantheris,Aether,Arcane,Controller,Rare,49,143,40,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-017
+MON-0083,Shardspriteon,Lumen,Light,Support,Epic,50,160,47,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-017
+MON-0084,Volttuskix,Verdant,Nature,Scout,Epic,30,177,15,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-017
+MON-0085,Feraltigerar,Tide,Water,Artillery,Mythic,31,194,22,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-017
+MON-0086,Coralorben,Storm,Wind,Assassin,Mythic,32,90,29,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-018
+MON-0087,Gravlynxor,Metal,Tech,Summoner,Legendary,33,107,36,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-018
+MON-0088,Obsidstagum,Umbral,Dark,Striker,Common,34,124,43,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-018
+MON-0089,Spectrascorpionyx,Frost,Ice,Guardian,Common,35,141,50,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-018
+MON-0090,Zephyrshard,Gale,Wind,Controller,Uncommon,36,158,18,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-018
+MON-0091,Glintwyrma,Crystal,Earth,Support,Uncommon,37,175,25,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-019
+MON-0092,Emberwolfis,Magma,Fire,Scout,Rare,38,192,32,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-019
+MON-0093,Ironsauron,Astral,Space,Artillery,Rare,39,88,39,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-019
+MON-0094,Quillskimmerix,Volt,Lightning,Assassin,Epic,40,105,46,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-019
+MON-0095,Thornserpentar,Terra,Earth,Summoner,Epic,41,122,14,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-019
+MON-0096,Bloomphoenixen,Ember,Fire,Striker,Mythic,42,139,21,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-020
+MON-0097,Astrahoundor,Mist,Water,Guardian,Mythic,43,156,28,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-020
+MON-0098,Flarehornum,Aether,Arcane,Controller,Legendary,44,173,35,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-020
+MON-0099,Lumenbatyx,Lumen,Light,Support,Common,45,190,42,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-020
+MON-0100,Runehare,Verdant,Nature,Scout,Common,46,86,49,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-020
+MON-0101,Vesperreavera,Tide,Water,Artillery,Uncommon,47,103,17,11,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-021
+MON-0102,Echoraptoris,Storm,Wind,Assassin,Uncommon,48,120,24,16,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-021
+MON-0103,Cindercrabon,Metal,Tech,Summoner,Rare,49,137,31,21,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-021
+MON-0104,Glimimpix,Umbral,Dark,Striker,Rare,50,154,38,26,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-021
+MON-0105,Novamonarchar,Frost,Ice,Guardian,Epic,30,171,45,31,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-021
+MON-0106,Solarfoxen,Gale,Wind,Controller,Epic,31,188,13,36,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-022
+MON-0107,Wisphydraor,Crystal,Earth,Support,Mythic,32,84,20,41,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-022
+MON-0108,Galefinum,Magma,Fire,Scout,Mythic,33,101,27,10,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-022
+MON-0109,Duskmothyx,Astral,Space,Artillery,Legendary,34,118,34,15,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-022
+MON-0110,Hollowowl,Volt,Lightning,Assassin,Common,35,135,41,20,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-022
+MON-0111,Pyrapanthera,Terra,Earth,Summoner,Common,36,152,48,25,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-023
+MON-0112,Tempestspriteis,Ember,Fire,Striker,Uncommon,37,169,16,30,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-023
+MON-0113,Blazetuskon,Mist,Water,Guardian,Uncommon,38,186,23,35,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-023
+MON-0114,Aerotigerix,Aether,Arcane,Controller,Rare,39,82,30,40,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-023
+MON-0115,Fangweaverar,Lumen,Light,Support,Rare,40,99,37,45,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-023
+MON-0116,Jadedrakeen,Verdant,Nature,Scout,Epic,41,116,44,14,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-024
+MON-0117,Riftgolemor,Tide,Water,Artillery,Epic,42,133,12,19,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-024
+MON-0118,Titangriffinum,Storm,Wind,Assassin,Mythic,43,150,19,24,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-024
+MON-0119,Drifthopperyx,Metal,Tech,Summoner,Mythic,44,167,26,29,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-024
+MON-0120,Cindersprite,Umbral,Dark,Striker,Legendary,45,184,33,34,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-024
+MON-0121,Glimwolfa,Frost,Ice,Guardian,Common,46,80,40,39,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-025
+MON-0122,Novasauris,Gale,Wind,Controller,Common,47,97,47,44,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-025
+MON-0123,Solarskimmeron,Crystal,Earth,Support,Uncommon,48,114,15,13,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-025
+MON-0124,Wispserpentix,Magma,Fire,Scout,Uncommon,49,131,22,18,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-025
+MON-0125,Galephoenixar,Astral,Space,Artillery,Rare,50,148,29,23,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-025
+MON-0126,Duskhounden,Volt,Lightning,Assassin,Rare,30,165,36,28,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-026
+MON-0127,Hollowhornor,Terra,Earth,Summoner,Epic,31,182,43,33,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-026
+MON-0128,Pyrabatum,Ember,Fire,Striker,Epic,32,199,50,38,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-026
+MON-0129,Tempesthareyx,Mist,Water,Guardian,Mythic,33,95,18,43,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-026
+MON-0130,Blazereaver,Aether,Arcane,Controller,Mythic,34,112,25,12,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-026
+MON-0131,Aeroraptora,Lumen,Light,Support,Legendary,35,129,32,17,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-027
+MON-0132,Fangcrabis,Verdant,Nature,Scout,Common,36,146,39,22,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-027
+MON-0133,Jadeimpon,Tide,Water,Artillery,Common,37,163,46,27,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-027
+MON-0134,Riftmonarchix,Storm,Wind,Assassin,Uncommon,38,180,14,32,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-027
+MON-0135,Titanfoxar,Metal,Tech,Summoner,Uncommon,39,197,21,37,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-027
+MON-0136,Drifthydraen,Umbral,Dark,Striker,Rare,40,93,28,42,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-028
+MON-0137,Bramblefinor,Frost,Ice,Guardian,Rare,41,110,35,11,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-028
+MON-0138,Frostwyrmum,Gale,Wind,Controller,Epic,42,127,42,16,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-028
+MON-0139,Miremantisyx,Crystal,Earth,Support,Epic,43,144,49,21,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-028
+MON-0140,Shardray,Magma,Fire,Scout,Mythic,44,161,17,26,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-028
+MON-0141,Voltcolossusa,Astral,Space,Artillery,Mythic,45,178,24,31,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-029
+MON-0142,Feralbeetleis,Volt,Lightning,Assassin,Legendary,46,195,31,36,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-029
+MON-0143,Coralramon,Terra,Earth,Summoner,Common,47,91,38,41,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-029
+MON-0144,Gravweaverix,Ember,Fire,Striker,Common,48,108,45,10,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-029
+MON-0145,Obsiddrakear,Mist,Water,Guardian,Uncommon,49,125,13,15,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-029
+MON-0146,Spectragolemen,Aether,Arcane,Controller,Uncommon,50,142,20,20,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-030
+MON-0147,Zephyrgriffinor,Lumen,Light,Support,Rare,30,159,27,25,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-030
+MON-0148,Glinthopperum,Verdant,Nature,Scout,Rare,31,176,34,30,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-030
+MON-0149,Emberspriteyx,Tide,Water,Artillery,Epic,32,193,41,35,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-030
+MON-0150,Ironwolf,Storm,Wind,Assassin,Epic,33,89,48,40,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-030
+MON-0151,Quillsaura,Metal,Tech,Summoner,Mythic,34,106,16,45,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-031
+MON-0152,Thornskimmeris,Umbral,Dark,Striker,Mythic,35,123,23,14,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-031
+MON-0153,Bloomserpenton,Frost,Ice,Guardian,Legendary,36,140,30,19,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-031
+MON-0154,Astraphoenixix,Gale,Wind,Controller,Common,37,157,37,24,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-031
+MON-0155,Flarehoundar,Crystal,Earth,Support,Common,38,174,44,29,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-031
+MON-0156,Lumenhornen,Magma,Fire,Scout,Uncommon,39,191,12,34,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-032
+MON-0157,Runebator,Astral,Space,Artillery,Uncommon,40,87,19,39,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-032
+MON-0158,Vesperhareum,Volt,Lightning,Assassin,Rare,41,104,26,44,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-032
+MON-0159,Echoreaveryx,Terra,Earth,Summoner,Rare,42,121,33,13,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-032
+MON-0160,Coralraptor,Ember,Fire,Striker,Epic,43,138,40,18,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-032
+MON-0161,Gravtigera,Mist,Water,Guardian,Epic,44,155,47,23,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-033
+MON-0162,Obsidorbis,Aether,Arcane,Controller,Mythic,45,172,15,28,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-033
+MON-0163,Spectralynxon,Lumen,Light,Support,Mythic,46,189,22,33,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-033
+MON-0164,Zephyrstagix,Verdant,Nature,Scout,Legendary,47,85,29,38,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-033
+MON-0165,Glintscorpionar,Tide,Water,Artillery,Common,48,102,36,43,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-033
+MON-0166,Embersharden,Storm,Wind,Assassin,Common,49,119,43,12,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-034
+MON-0167,Ironwyrmor,Metal,Tech,Summoner,Uncommon,50,136,50,17,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-034
+MON-0168,Quillmantisum,Umbral,Dark,Striker,Uncommon,30,153,18,22,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-034
+MON-0169,Thornrayyx,Frost,Ice,Guardian,Rare,31,170,25,27,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-034
+MON-0170,Bloomcolossus,Gale,Wind,Controller,Rare,32,187,32,32,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-034
+MON-0171,Astrabeetlea,Crystal,Earth,Support,Epic,33,83,39,37,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-035
+MON-0172,Flareramis,Magma,Fire,Scout,Epic,34,100,46,42,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-035
+MON-0173,Lumenweaveron,Astral,Space,Artillery,Mythic,35,117,14,11,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-035
+MON-0174,Runedrakeix,Volt,Lightning,Assassin,Mythic,36,134,21,16,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-035
+MON-0175,Vespergolemar,Terra,Earth,Summoner,Legendary,37,151,28,21,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-035
+MON-0176,Echogriffinen,Ember,Fire,Striker,Common,38,168,35,26,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-036
+MON-0177,Cinderhopperor,Mist,Water,Guardian,Common,39,185,42,31,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-036
+MON-0178,Glimspriteum,Aether,Arcane,Controller,Uncommon,40,81,49,36,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-036
+MON-0179,Novawolfyx,Lumen,Light,Support,Uncommon,41,98,17,41,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-036
+MON-0180,Solarsaur,Verdant,Nature,Scout,Rare,42,115,24,10,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-036
+MON-0181,Wispskimmera,Tide,Water,Artillery,Rare,43,132,31,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-037
+MON-0182,Galeserpentis,Storm,Wind,Assassin,Epic,44,149,38,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-037
+MON-0183,Duskphoenixon,Metal,Tech,Summoner,Epic,45,166,45,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-037
+MON-0184,Hollowfinix,Umbral,Dark,Striker,Mythic,46,183,13,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-037
+MON-0185,Pyramothar,Frost,Ice,Guardian,Mythic,47,200,20,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-037
+MON-0186,Tempestowlen,Gale,Wind,Controller,Legendary,48,96,27,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-038
+MON-0187,Blazepantheror,Crystal,Earth,Support,Common,49,113,34,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-038
+MON-0188,Aerospriteum,Magma,Fire,Scout,Common,50,130,41,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-038
+MON-0189,Fangtuskyx,Astral,Space,Artillery,Uncommon,30,147,48,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-038
+MON-0190,Jadetiger,Volt,Lightning,Assassin,Uncommon,31,164,16,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-038
+MON-0191,Riftorba,Terra,Earth,Summoner,Rare,32,181,23,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-039
+MON-0192,Titanlynxis,Ember,Fire,Striker,Rare,33,198,30,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-039
+MON-0193,Driftstagon,Mist,Water,Guardian,Epic,34,94,37,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-039
+MON-0194,Bramblescorpionix,Aether,Arcane,Controller,Epic,35,111,44,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-039
+MON-0195,Frostshardar,Lumen,Light,Support,Mythic,36,128,12,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-039
+MON-0196,Mirewyrmen,Verdant,Nature,Scout,Mythic,37,145,19,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-040
+MON-0197,Shardmantisor,Tide,Water,Artillery,Legendary,38,162,26,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-040
+MON-0198,Voltrayum,Storm,Wind,Assassin,Common,39,179,33,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-040
+MON-0199,Feralcolossusyx,Metal,Tech,Summoner,Common,40,196,40,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-040
+MON-0200,Duskbeetle,Umbral,Dark,Striker,Uncommon,41,92,47,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-040
+MON-0201,Hollowrama,Frost,Ice,Guardian,Uncommon,42,109,15,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-041
+MON-0202,Pyraweaveris,Gale,Wind,Controller,Rare,43,126,22,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-041
+MON-0203,Tempestdrakeon,Crystal,Earth,Support,Rare,44,143,29,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-041
+MON-0204,Blazegolemix,Magma,Fire,Scout,Epic,45,160,36,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-041
+MON-0205,Aerogriffinar,Astral,Space,Artillery,Epic,46,177,43,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-041
+MON-0206,Fanghopperen,Volt,Lightning,Assassin,Mythic,47,194,50,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-042
+MON-0207,Jaderaptoror,Terra,Earth,Summoner,Mythic,48,90,18,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-042
+MON-0208,Riftcrabum,Ember,Fire,Striker,Legendary,49,107,25,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-042
+MON-0209,Titanimpyx,Mist,Water,Guardian,Common,50,124,32,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-042
+MON-0210,Driftmonarch,Aether,Arcane,Controller,Common,30,141,39,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-042
+MON-0211,Bramblefoxa,Lumen,Light,Support,Uncommon,31,158,46,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-043
+MON-0212,Frosthydrais,Verdant,Nature,Scout,Uncommon,32,175,14,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-043
+MON-0213,Mirefinon,Tide,Water,Artillery,Rare,33,192,21,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-043
+MON-0214,Shardmothix,Storm,Wind,Assassin,Rare,34,88,28,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-043
+MON-0215,Voltowlar,Metal,Tech,Summoner,Epic,35,105,35,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-043
+MON-0216,Feralpantheren,Umbral,Dark,Striker,Epic,36,122,42,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-044
+MON-0217,Coralspriteor,Frost,Ice,Guardian,Mythic,37,139,49,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-044
+MON-0218,Gravtuskum,Gale,Wind,Controller,Mythic,38,156,17,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-044
+MON-0219,Obsidtigeryx,Crystal,Earth,Support,Legendary,39,173,24,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-044
+MON-0220,Spectraorb,Magma,Fire,Scout,Common,40,190,31,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-044
+MON-0221,Zephyrlynxa,Astral,Space,Artillery,Common,41,86,38,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-045
+MON-0222,Glintstagis,Volt,Lightning,Assassin,Uncommon,42,103,45,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-045
+MON-0223,Emberscorpionon,Terra,Earth,Summoner,Uncommon,43,120,13,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-045
+MON-0224,Ironshardix,Ember,Fire,Striker,Rare,44,137,20,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-045
+MON-0225,Quillwyrmar,Mist,Water,Guardian,Rare,45,154,27,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-045
+MON-0226,Thornmantisen,Aether,Arcane,Controller,Epic,46,171,34,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-046
+MON-0227,Bloomrayor,Lumen,Light,Support,Epic,47,188,41,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-046
+MON-0228,Astracolossusum,Verdant,Nature,Scout,Mythic,48,84,48,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-046
+MON-0229,Flarebeetleyx,Tide,Water,Artillery,Mythic,49,101,16,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-046
+MON-0230,Lumenphoenix,Storm,Wind,Assassin,Legendary,50,118,23,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-046
+MON-0231,Runehounda,Metal,Tech,Summoner,Common,30,135,30,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-047
+MON-0232,Vesperhornis,Umbral,Dark,Striker,Common,31,152,37,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-047
+MON-0233,Echobaton,Frost,Ice,Guardian,Uncommon,32,169,44,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-047
+MON-0234,Cinderhareix,Gale,Wind,Controller,Uncommon,33,186,12,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-047
+MON-0235,Glimreaverar,Crystal,Earth,Support,Rare,34,82,19,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-047
+MON-0236,Novaraptoren,Magma,Fire,Scout,Rare,35,99,26,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-048
+MON-0237,Solarcrabor,Astral,Space,Artillery,Epic,36,116,33,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-048
+MON-0238,Wispimpum,Volt,Lightning,Assassin,Epic,37,133,40,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-048
+MON-0239,Galemonarchyx,Terra,Earth,Summoner,Mythic,38,150,47,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-048
+MON-0240,Emberfox,Ember,Fire,Striker,Mythic,39,167,15,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-048
+MON-0241,Ironhydraa,Mist,Water,Guardian,Legendary,40,184,22,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-049
+MON-0242,Quillfinis,Aether,Arcane,Controller,Common,41,80,29,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-049
+MON-0243,Thornmothon,Lumen,Light,Support,Common,42,97,36,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-049
+MON-0244,Bloomowlix,Verdant,Nature,Scout,Uncommon,43,114,43,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-049
+MON-0245,Astrapantherar,Tide,Water,Artillery,Uncommon,44,131,50,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-049
+MON-0246,Flarespriteen,Storm,Wind,Assassin,Rare,45,148,18,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-050
+MON-0247,Lumentuskor,Metal,Tech,Summoner,Rare,46,165,25,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-050
+MON-0248,Runetigerum,Umbral,Dark,Striker,Epic,47,182,32,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-050
+MON-0249,Vesperorbyx,Frost,Ice,Guardian,Epic,48,199,39,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-050
+MON-0250,Echolynx,Gale,Wind,Controller,Mythic,49,95,46,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-050
+MON-0251,Cinderstaga,Crystal,Earth,Support,Mythic,50,112,14,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-051
+MON-0252,Glimscorpionis,Magma,Fire,Scout,Legendary,30,129,21,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-051
+MON-0253,Novahopperon,Astral,Space,Artillery,Common,31,146,28,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-051
+MON-0254,Solarspriteix,Volt,Lightning,Assassin,Common,32,163,35,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-051
+MON-0255,Wispwolfar,Terra,Earth,Summoner,Uncommon,33,180,42,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-051
+MON-0256,Galesauren,Ember,Fire,Striker,Uncommon,34,197,49,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-052
+MON-0257,Duskskimmeror,Mist,Water,Guardian,Rare,35,93,17,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-052
+MON-0258,Hollowserpentum,Aether,Arcane,Controller,Rare,36,110,24,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-052
+MON-0259,Pyraphoenixyx,Lumen,Light,Support,Epic,37,127,31,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-052
+MON-0260,Tempesthound,Verdant,Nature,Scout,Epic,38,144,38,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-052
+MON-0261,Blazehorna,Tide,Water,Artillery,Mythic,39,161,45,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-053
+MON-0262,Aerobatis,Storm,Wind,Assassin,Mythic,40,178,13,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-053
+MON-0263,Fanghareon,Metal,Tech,Summoner,Legendary,41,195,20,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-053
+MON-0264,Jadereaverix,Umbral,Dark,Striker,Common,42,91,27,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-053
+MON-0265,Riftraptorar,Frost,Ice,Guardian,Common,43,108,34,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-053
+MON-0266,Titancraben,Gale,Wind,Controller,Uncommon,44,125,41,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-054
+MON-0267,Driftimpor,Crystal,Earth,Support,Uncommon,45,142,48,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-054
+MON-0268,Bramblemonarchum,Magma,Fire,Scout,Rare,46,159,16,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-054
+MON-0269,Frostfoxyx,Astral,Space,Artillery,Rare,47,176,23,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-054
+MON-0270,Mirehydra,Volt,Lightning,Assassin,Epic,48,193,30,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-054
+MON-0271,Shardfina,Terra,Earth,Summoner,Epic,49,89,37,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-055
+MON-0272,Voltmothis,Ember,Fire,Striker,Mythic,50,106,44,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-055
+MON-0273,Feralowlon,Mist,Water,Guardian,Mythic,30,123,12,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-055
+MON-0274,Coralpantherix,Aether,Arcane,Controller,Legendary,31,140,19,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-055
+MON-0275,Gravspritear,Lumen,Light,Support,Common,32,157,26,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-055
+MON-0276,Obsidbeetleen,Verdant,Nature,Scout,Common,33,174,33,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-056
+MON-0277,Spectraramor,Tide,Water,Artillery,Uncommon,34,191,40,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-056
+MON-0278,Zephyrweaverum,Storm,Wind,Assassin,Uncommon,35,87,47,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-056
+MON-0279,Glintdrakeyx,Metal,Tech,Summoner,Rare,36,104,15,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-056
+MON-0280,Fanggolem,Umbral,Dark,Striker,Rare,37,121,22,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-056
+MON-0281,Jadegriffina,Frost,Ice,Guardian,Epic,38,138,29,11,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-057
+MON-0282,Rifthopperis,Gale,Wind,Controller,Epic,39,155,36,16,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-057
+MON-0283,Titanspriteon,Crystal,Earth,Support,Mythic,40,172,43,21,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-057
+MON-0284,Driftwolfix,Magma,Fire,Scout,Mythic,41,189,50,26,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-057
+MON-0285,Bramblesaurar,Astral,Space,Artillery,Legendary,42,85,18,31,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-057
+MON-0286,Frostskimmeren,Volt,Lightning,Assassin,Common,43,102,25,36,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-058
+MON-0287,Mireserpentor,Terra,Earth,Summoner,Common,44,119,32,41,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-058
+MON-0288,Shardphoenixum,Ember,Fire,Striker,Uncommon,45,136,39,10,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-058
+MON-0289,Volthoundyx,Mist,Water,Guardian,Uncommon,46,153,46,15,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-058
+MON-0290,Feralhorn,Aether,Arcane,Controller,Rare,47,170,14,20,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-058
+MON-0291,Coralbata,Lumen,Light,Support,Rare,48,187,21,25,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-059
+MON-0292,Gravhareis,Verdant,Nature,Scout,Epic,49,83,28,30,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-059
+MON-0293,Obsidreaveron,Tide,Water,Artillery,Epic,50,100,35,35,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-059
+MON-0294,Spectraraptorix,Storm,Wind,Assassin,Mythic,30,117,42,40,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-059
+MON-0295,Zephyrcrabar,Metal,Tech,Summoner,Mythic,31,134,49,45,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-059
+MON-0296,Glintimpen,Umbral,Dark,Striker,Legendary,32,151,17,14,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-060
+MON-0297,Embermonarchor,Frost,Ice,Guardian,Common,33,168,24,19,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-060
+MON-0298,Ironfoxum,Gale,Wind,Controller,Common,34,185,31,24,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-060
+MON-0299,Quillscorpionyx,Crystal,Earth,Support,Uncommon,35,81,38,29,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-060
+MON-0300,Thornshard,Magma,Fire,Scout,Uncommon,36,98,45,34,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-060
+MON-0301,Bloomwyrma,Astral,Space,Artillery,Rare,37,115,13,39,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-061
+MON-0302,Astramantisis,Volt,Lightning,Assassin,Rare,38,132,20,44,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-061
+MON-0303,Flarerayon,Terra,Earth,Summoner,Epic,39,149,27,13,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-061
+MON-0304,Lumencolossusix,Ember,Fire,Striker,Epic,40,166,34,18,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-061
+MON-0305,Runebeetlear,Mist,Water,Guardian,Mythic,41,183,41,23,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-061
+MON-0306,Vesperramen,Aether,Arcane,Controller,Mythic,42,200,48,28,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-062
+MON-0307,Echoweaveror,Lumen,Light,Support,Legendary,43,96,16,33,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-062
+MON-0308,Cinderdrakeum,Verdant,Nature,Scout,Common,44,113,23,38,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-062
+MON-0309,Glimgolemyx,Tide,Water,Artillery,Common,45,130,30,43,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-062
+MON-0310,Novagriffin,Storm,Wind,Assassin,Uncommon,46,147,37,12,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-062
+MON-0311,Solarhoppera,Metal,Tech,Summoner,Uncommon,47,164,44,17,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-063
+MON-0312,Wispspriteis,Umbral,Dark,Striker,Rare,48,181,12,22,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-063
+MON-0313,Galewolfon,Frost,Ice,Guardian,Rare,49,198,19,27,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-063
+MON-0314,Dusksaurix,Gale,Wind,Controller,Epic,50,94,26,32,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-063
+MON-0315,Hollowskimmerar,Crystal,Earth,Support,Epic,30,111,33,37,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-063
+MON-0316,Pyraserpenten,Magma,Fire,Scout,Mythic,31,128,40,42,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-064
+MON-0317,Tempestphoenixor,Astral,Space,Artillery,Mythic,32,145,47,11,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-064
+MON-0318,Blazehoundum,Volt,Lightning,Assassin,Legendary,33,162,15,16,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-064
+MON-0319,Aerohornyx,Terra,Earth,Summoner,Common,34,179,22,21,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-064
+MON-0320,Flarebat,Ember,Fire,Striker,Common,35,196,29,26,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-064
+MON-0321,Lumenharea,Mist,Water,Guardian,Uncommon,36,92,36,31,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-065
+MON-0322,Runespriteis,Aether,Arcane,Controller,Uncommon,37,109,43,36,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-065
+MON-0323,Vespertuskon,Lumen,Light,Support,Rare,38,126,50,41,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-065
+MON-0324,Echotigerix,Verdant,Nature,Scout,Rare,39,143,18,10,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-065
+MON-0325,Cinderorbar,Tide,Water,Artillery,Epic,40,160,25,15,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-065
+MON-0326,Glimlynxen,Storm,Wind,Assassin,Epic,41,177,32,20,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-066
+MON-0327,Novastagor,Metal,Tech,Summoner,Mythic,42,194,39,25,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-066
+MON-0328,Solarscorpionum,Umbral,Dark,Striker,Mythic,43,90,46,30,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-066
+MON-0329,Wispshardyx,Frost,Ice,Guardian,Legendary,44,107,14,35,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-066
+MON-0330,Galewyrm,Gale,Wind,Controller,Common,45,124,21,40,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-066
+MON-0331,Duskmantisa,Crystal,Earth,Support,Common,46,141,28,45,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-067
+MON-0332,Hollowrayis,Magma,Fire,Scout,Uncommon,47,158,35,14,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-067
+MON-0333,Pyracolossuson,Astral,Space,Artillery,Uncommon,48,175,42,19,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-067
+MON-0334,Tempestbeetleix,Volt,Lightning,Assassin,Rare,49,192,49,24,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-067
+MON-0335,Blazeramar,Terra,Earth,Summoner,Rare,50,88,17,29,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-067
+MON-0336,Aeroweaveren,Ember,Fire,Striker,Epic,30,105,24,34,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-068
+MON-0337,Fangdrakeor,Mist,Water,Guardian,Epic,31,122,31,39,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-068
+MON-0338,Jadegolemum,Aether,Arcane,Controller,Mythic,32,139,38,44,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-068
+MON-0339,Riftgriffinyx,Lumen,Light,Support,Mythic,33,156,45,13,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-068
+MON-0340,Titanhopper,Verdant,Nature,Scout,Legendary,34,173,13,18,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-068
+MON-0341,Driftspritea,Tide,Water,Artillery,Common,35,190,20,23,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-069
+MON-0342,Bramblewolfis,Storm,Wind,Assassin,Common,36,86,27,28,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-069
+MON-0343,Frostsauron,Metal,Tech,Summoner,Uncommon,37,103,34,33,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-069
+MON-0344,Mireskimmerix,Umbral,Dark,Striker,Uncommon,38,120,41,38,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-069
+MON-0345,Shardfoxar,Frost,Ice,Guardian,Rare,39,137,48,43,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-069
+MON-0346,Volthydraen,Gale,Wind,Controller,Rare,40,154,16,12,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-070
+MON-0347,Feralfinor,Crystal,Earth,Support,Epic,41,171,23,17,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-070
+MON-0348,Coralmothum,Magma,Fire,Scout,Epic,42,188,30,22,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-070
+MON-0349,Gravowlyx,Astral,Space,Artillery,Mythic,43,84,37,27,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-070
+MON-0350,Obsidpanther,Volt,Lightning,Assassin,Mythic,44,101,44,32,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-070
+MON-0351,Spectraspritea,Terra,Earth,Summoner,Legendary,45,118,12,37,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-071
+MON-0352,Zephyrtuskis,Ember,Fire,Striker,Common,46,135,19,42,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-071
+MON-0353,Glinttigeron,Mist,Water,Guardian,Common,47,152,26,11,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-071
+MON-0354,Emberorbix,Aether,Arcane,Controller,Uncommon,48,169,33,16,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-071
+MON-0355,Ironlynxar,Lumen,Light,Support,Uncommon,49,186,40,21,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-071
+MON-0356,Quillstagen,Verdant,Nature,Scout,Rare,50,82,47,26,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-072
+MON-0357,Thornscorpionor,Tide,Water,Artillery,Rare,30,99,15,31,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-072
+MON-0358,Bloomshardum,Storm,Wind,Assassin,Epic,31,116,22,36,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-072
+MON-0359,Astrawyrmyx,Metal,Tech,Summoner,Epic,32,133,29,41,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-072
+MON-0360,Frostmantis,Umbral,Dark,Striker,Mythic,33,150,36,10,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-072
+MON-0361,Mireraya,Frost,Ice,Guardian,Mythic,34,167,43,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-073
+MON-0362,Shardcolossusis,Gale,Wind,Controller,Legendary,35,184,50,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-073
+MON-0363,Voltbeetleon,Crystal,Earth,Support,Common,36,80,18,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-073
+MON-0364,Feralramix,Magma,Fire,Scout,Common,37,97,25,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-073
+MON-0365,Coralweaverar,Astral,Space,Artillery,Uncommon,38,114,32,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-073
+MON-0366,Gravdrakeen,Volt,Lightning,Assassin,Uncommon,39,131,39,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-074
+MON-0367,Obsidgolemor,Terra,Earth,Summoner,Rare,40,148,46,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-074
+MON-0368,Spectrahareum,Ember,Fire,Striker,Rare,41,165,14,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-074
+MON-0369,Zephyrreaveryx,Mist,Water,Guardian,Epic,42,182,21,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-074
+MON-0370,Glintraptor,Aether,Arcane,Controller,Epic,43,199,28,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-074
+MON-0371,Embercraba,Lumen,Light,Support,Mythic,44,95,35,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-075
+MON-0372,Ironimpis,Verdant,Nature,Scout,Mythic,45,112,42,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-075
+MON-0373,Quillmonarchon,Tide,Water,Artillery,Legendary,46,129,49,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-075
+MON-0374,Thornfoxix,Storm,Wind,Assassin,Common,47,146,17,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-075
+MON-0375,Bloomhydraar,Metal,Tech,Summoner,Common,48,163,24,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-075
+MON-0376,Astrafinen,Umbral,Dark,Striker,Uncommon,49,180,31,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-076
+MON-0377,Flaremothor,Frost,Ice,Guardian,Uncommon,50,197,38,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-076
+MON-0378,Lumenowlum,Gale,Wind,Controller,Rare,30,93,45,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-076
+MON-0379,Runepantheryx,Crystal,Earth,Support,Rare,31,110,13,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-076
+MON-0380,Vespersprite,Magma,Fire,Scout,Epic,32,127,20,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-076
+MON-0381,Echotuska,Astral,Space,Artillery,Epic,33,144,27,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-077
+MON-0382,Cindertigeris,Volt,Lightning,Assassin,Mythic,34,161,34,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-077
+MON-0383,Glimorbon,Terra,Earth,Summoner,Mythic,35,178,41,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-077
+MON-0384,Novalynxix,Ember,Fire,Striker,Legendary,36,195,48,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-077
+MON-0385,Solarstagar,Mist,Water,Guardian,Common,37,91,16,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-077
+MON-0386,Wispscorpionen,Aether,Arcane,Controller,Common,38,108,23,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-078
+MON-0387,Galeshardor,Lumen,Light,Support,Uncommon,39,125,30,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-078
+MON-0388,Duskwyrmum,Verdant,Nature,Scout,Uncommon,40,142,37,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-078
+MON-0389,Hollowmantisyx,Tide,Water,Artillery,Rare,41,159,44,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-078
+MON-0390,Pyraray,Storm,Wind,Assassin,Rare,42,176,12,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-078
+MON-0391,Tempestskimmera,Metal,Tech,Summoner,Epic,43,193,19,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-079
+MON-0392,Blazeserpentis,Umbral,Dark,Striker,Epic,44,89,26,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-079
+MON-0393,Aerophoenixon,Frost,Ice,Guardian,Mythic,45,106,33,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-079
+MON-0394,Fanghoundix,Gale,Wind,Controller,Mythic,46,123,40,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-079
+MON-0395,Jadehornar,Crystal,Earth,Support,Legendary,47,140,47,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-079
+MON-0396,Riftbaten,Magma,Fire,Scout,Common,48,157,15,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-080
+MON-0397,Titanhareor,Astral,Space,Artillery,Common,49,174,22,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-080
+MON-0398,Driftreaverum,Volt,Lightning,Assassin,Uncommon,50,191,29,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-080
+MON-0399,Brambleraptoryx,Terra,Earth,Summoner,Uncommon,30,87,36,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-080
+MON-0400,Glimcrab,Ember,Fire,Striker,Rare,31,104,43,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-080
+MON-0401,Novaimpa,Mist,Water,Guardian,Rare,32,121,50,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-081
+MON-0402,Solarmonarchis,Aether,Arcane,Controller,Epic,33,138,18,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-081
+MON-0403,Wispfoxon,Lumen,Light,Support,Epic,34,155,25,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-081
+MON-0404,Galehydraix,Verdant,Nature,Scout,Mythic,35,172,32,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-081
+MON-0405,Duskfinar,Tide,Water,Artillery,Mythic,36,189,39,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-081
+MON-0406,Hollowmothen,Storm,Wind,Assassin,Legendary,37,85,46,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-082
+MON-0407,Pyraowlor,Metal,Tech,Summoner,Common,38,102,14,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-082
+MON-0408,Tempestpantherum,Umbral,Dark,Striker,Common,39,119,21,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-082
+MON-0409,Blazespriteyx,Frost,Ice,Guardian,Uncommon,40,136,28,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-082
+MON-0410,Aerotusk,Gale,Wind,Controller,Uncommon,41,153,35,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-082
+MON-0411,Fangtigera,Crystal,Earth,Support,Rare,42,170,42,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-083
+MON-0412,Jadeorbis,Magma,Fire,Scout,Rare,43,187,49,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-083
+MON-0413,Riftlynxon,Astral,Space,Artillery,Epic,44,83,17,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-083
+MON-0414,Titangolemix,Volt,Lightning,Assassin,Epic,45,100,24,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-083
+MON-0415,Driftgriffinar,Terra,Earth,Summoner,Mythic,46,117,31,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-083
+MON-0416,Bramblehopperen,Ember,Fire,Striker,Mythic,47,134,38,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-084
+MON-0417,Frostspriteor,Mist,Water,Guardian,Legendary,48,151,45,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-084
+MON-0418,Mirewolfum,Aether,Arcane,Controller,Common,49,168,13,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-084
+MON-0419,Shardsauryx,Lumen,Light,Support,Common,50,185,20,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-084
+MON-0420,Voltskimmer,Verdant,Nature,Scout,Uncommon,30,81,27,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-084
+MON-0421,Feralserpenta,Tide,Water,Artillery,Uncommon,31,98,34,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-085
+MON-0422,Coralphoenixis,Storm,Wind,Assassin,Rare,32,115,41,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-085
+MON-0423,Gravhoundon,Metal,Tech,Summoner,Rare,33,132,48,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-085
+MON-0424,Obsidhornix,Umbral,Dark,Striker,Epic,34,149,16,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-085
+MON-0425,Spectrabatar,Frost,Ice,Guardian,Epic,35,166,23,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-085
+MON-0426,Zephyrhareen,Gale,Wind,Controller,Mythic,36,183,30,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-086
+MON-0427,Glintreaveror,Crystal,Earth,Support,Mythic,37,200,37,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-086
+MON-0428,Emberraptorum,Magma,Fire,Scout,Legendary,38,96,44,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-086
+MON-0429,Ironcrabyx,Astral,Space,Artillery,Common,39,113,12,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-086
+MON-0430,Quillimp,Volt,Lightning,Assassin,Common,40,130,19,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-086
+MON-0431,Thornmonarcha,Terra,Earth,Summoner,Uncommon,41,147,26,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-087
+MON-0432,Bloomfoxis,Ember,Fire,Striker,Uncommon,42,164,33,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-087
+MON-0433,Astrahydraon,Mist,Water,Guardian,Rare,43,181,40,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-087
+MON-0434,Flarefinix,Aether,Arcane,Controller,Rare,44,198,47,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-087
+MON-0435,Lumenmothar,Lumen,Light,Support,Epic,45,94,15,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-087
+MON-0436,Runeowlen,Verdant,Nature,Scout,Epic,46,111,22,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-088
+MON-0437,Vesperrayor,Tide,Water,Artillery,Mythic,47,128,29,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-088
+MON-0438,Echocolossusum,Storm,Wind,Assassin,Mythic,48,145,36,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-088
+MON-0439,Cinderbeetleyx,Metal,Tech,Summoner,Legendary,49,162,43,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-088
+MON-0440,Gravram,Umbral,Dark,Striker,Common,50,179,50,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-088
+MON-0441,Obsidweavera,Frost,Ice,Guardian,Common,30,196,18,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-089
+MON-0442,Spectradrakeis,Gale,Wind,Controller,Uncommon,31,92,25,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-089
+MON-0443,Zephyrgolemon,Crystal,Earth,Support,Uncommon,32,109,32,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-089
+MON-0444,Glintgriffinix,Magma,Fire,Scout,Rare,33,126,39,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-089
+MON-0445,Emberhopperar,Astral,Space,Artillery,Rare,34,143,46,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-089
+MON-0446,Ironspriteen,Volt,Lightning,Assassin,Epic,35,160,14,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-090
+MON-0447,Quillwolfor,Terra,Earth,Summoner,Epic,36,177,21,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-090
+MON-0448,Thornsaurum,Ember,Fire,Striker,Mythic,37,194,28,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-090
+MON-0449,Bloomskimmeryx,Mist,Water,Guardian,Mythic,38,90,35,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-090
+MON-0450,Astraserpent,Aether,Arcane,Controller,Legendary,39,107,42,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-090
+MON-0451,Flarephoenixa,Lumen,Light,Support,Common,40,124,49,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-091
+MON-0452,Lumenhoundis,Verdant,Nature,Scout,Common,41,141,17,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-091
+MON-0453,Runehornon,Tide,Water,Artillery,Uncommon,42,158,24,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-091
+MON-0454,Vesperbatix,Storm,Wind,Assassin,Uncommon,43,175,31,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-091
+MON-0455,Echoharear,Metal,Tech,Summoner,Rare,44,192,38,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-091
+MON-0456,Cinderreaveren,Umbral,Dark,Striker,Rare,45,88,45,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-092
+MON-0457,Glimraptoror,Frost,Ice,Guardian,Epic,46,105,13,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-092
+MON-0458,Novacrabum,Gale,Wind,Controller,Epic,47,122,20,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-092
+MON-0459,Solarimpyx,Crystal,Earth,Support,Mythic,48,139,27,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-092
+MON-0460,Wisplynx,Magma,Fire,Scout,Mythic,49,156,34,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-092
+MON-0461,Galestaga,Astral,Space,Artillery,Legendary,50,173,41,11,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-093
+MON-0462,Duskscorpionis,Volt,Lightning,Assassin,Common,30,190,48,16,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-093
+MON-0463,Hollowshardon,Terra,Earth,Summoner,Common,31,86,16,21,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-093
+MON-0464,Pyrawyrmix,Ember,Fire,Striker,Uncommon,32,103,23,26,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-093
+MON-0465,Tempestmantisar,Mist,Water,Guardian,Uncommon,33,120,30,31,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-093
+MON-0466,Blazerayen,Aether,Arcane,Controller,Rare,34,137,37,36,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-094
+MON-0467,Aerocolossusor,Lumen,Light,Support,Rare,35,154,44,41,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-094
+MON-0468,Fangbeetleum,Verdant,Nature,Scout,Epic,36,171,12,10,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-094
+MON-0469,Jaderamyx,Tide,Water,Artillery,Epic,37,188,19,15,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-094
+MON-0470,Riftweaver,Storm,Wind,Assassin,Mythic,38,84,26,20,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-094
+MON-0471,Titandrakea,Metal,Tech,Summoner,Mythic,39,101,33,25,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-095
+MON-0472,Driftgolemis,Umbral,Dark,Striker,Legendary,40,118,40,30,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-095
+MON-0473,Bramblegriffinon,Frost,Ice,Guardian,Common,41,135,47,35,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-095
+MON-0474,Frosthopperix,Gale,Wind,Controller,Common,42,152,15,40,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-095
+MON-0475,Mirespritear,Crystal,Earth,Support,Uncommon,43,169,22,45,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-095
+MON-0476,Shardwolfen,Magma,Fire,Scout,Uncommon,44,186,29,14,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-096
+MON-0477,Voltsauror,Astral,Space,Artillery,Rare,45,82,36,19,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-096
+MON-0478,Feralskimmerum,Volt,Lightning,Assassin,Rare,46,99,43,24,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-096
+MON-0479,Coralserpentyx,Terra,Earth,Summoner,Epic,47,116,50,29,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-096
+MON-0480,Hollowphoenix,Ember,Fire,Striker,Epic,48,133,18,34,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-096
+MON-0481,Pyrahounda,Mist,Water,Guardian,Mythic,49,150,25,39,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-097
+MON-0482,Tempesthornis,Aether,Arcane,Controller,Mythic,50,167,32,44,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-097
+MON-0483,Blazeowlon,Lumen,Light,Support,Legendary,30,184,39,13,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-097
+MON-0484,Aeropantherix,Verdant,Nature,Scout,Common,31,80,46,18,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-097
+MON-0485,Fangspritear,Tide,Water,Artillery,Common,32,97,14,23,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-097
+MON-0486,Jadetusken,Storm,Wind,Assassin,Uncommon,33,114,21,28,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-098
+MON-0487,Rifttigeror,Metal,Tech,Summoner,Uncommon,34,131,28,33,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-098
+MON-0488,Titanorbum,Umbral,Dark,Striker,Rare,35,148,35,38,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-098
+MON-0489,Driftlynxyx,Frost,Ice,Guardian,Rare,36,165,42,43,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-098
+MON-0490,Bramblestag,Gale,Wind,Controller,Epic,37,182,49,12,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-098
+MON-0491,Frostscorpiona,Crystal,Earth,Support,Epic,38,199,17,17,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-099
+MON-0492,Mireshardis,Magma,Fire,Scout,Mythic,39,95,24,22,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-099
+MON-0493,Shardwyrmon,Astral,Space,Artillery,Mythic,40,112,31,27,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-099
+MON-0494,Voltmantisix,Volt,Lightning,Assassin,Legendary,41,129,38,32,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-099
+MON-0495,Feralrayar,Terra,Earth,Summoner,Common,42,146,45,37,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-099
+MON-0496,Coralcolossusen,Ember,Fire,Striker,Common,43,163,13,42,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-100
+MON-0497,Gravbeetleor,Mist,Water,Guardian,Uncommon,44,180,20,11,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-100
+MON-0498,Obsidramum,Aether,Arcane,Controller,Uncommon,45,197,27,16,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-100
+MON-0499,Spectraweaveryx,Lumen,Light,Support,Rare,46,93,34,21,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-100
+MON-0500,Zephyrdrake,Verdant,Nature,Scout,Rare,47,110,41,26,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-100
+MON-0501,Glintgolema,Tide,Water,Artillery,Epic,48,127,48,31,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-101
+MON-0502,Embergriffinis,Storm,Wind,Assassin,Epic,49,144,16,36,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-101
+MON-0503,Ironhopperon,Metal,Tech,Summoner,Mythic,50,161,23,41,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-101
+MON-0504,Quillspriteix,Umbral,Dark,Striker,Mythic,30,178,30,10,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-101
+MON-0505,Thornwolfar,Frost,Ice,Guardian,Legendary,31,195,37,15,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-101
+MON-0506,Bloomimpen,Gale,Wind,Controller,Common,32,91,44,20,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-102
+MON-0507,Astramonarchor,Crystal,Earth,Support,Common,33,108,12,25,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-102
+MON-0508,Flarefoxum,Magma,Fire,Scout,Uncommon,34,125,19,30,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-102
+MON-0509,Lumenhydrayx,Astral,Space,Artillery,Uncommon,35,142,26,35,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-102
+MON-0510,Runefin,Volt,Lightning,Assassin,Rare,36,159,33,40,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-102
+MON-0511,Vespermotha,Terra,Earth,Summoner,Rare,37,176,40,45,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-103
+MON-0512,Echoowlis,Ember,Fire,Striker,Epic,38,193,47,14,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-103
+MON-0513,Cinderpantheron,Mist,Water,Guardian,Epic,39,89,15,19,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-103
+MON-0514,Glimspriteix,Aether,Arcane,Controller,Mythic,40,106,22,24,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-103
+MON-0515,Novatuskar,Lumen,Light,Support,Mythic,41,123,29,29,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-103
+MON-0516,Solartigeren,Verdant,Nature,Scout,Legendary,42,140,36,34,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-104
+MON-0517,Wisporbor,Tide,Water,Artillery,Common,43,157,43,39,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-104
+MON-0518,Galelynxum,Storm,Wind,Assassin,Common,44,174,50,44,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-104
+MON-0519,Duskstagyx,Metal,Tech,Summoner,Uncommon,45,191,18,13,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-104
+MON-0520,Ironscorpion,Umbral,Dark,Striker,Uncommon,46,87,25,18,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-104
+MON-0521,Quillsharda,Frost,Ice,Guardian,Rare,47,104,32,23,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-105
+MON-0522,Thornwyrmis,Gale,Wind,Controller,Rare,48,121,39,28,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-105
+MON-0523,Bloommantison,Crystal,Earth,Support,Epic,49,138,46,33,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-105
+MON-0524,Astrarayix,Magma,Fire,Scout,Epic,50,155,14,38,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-105
+MON-0525,Flarecolossusar,Astral,Space,Artillery,Mythic,30,172,21,43,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-105
+MON-0526,Lumenbeetleen,Volt,Lightning,Assassin,Mythic,31,189,28,12,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-106
+MON-0527,Runeramor,Terra,Earth,Summoner,Legendary,32,85,35,17,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-106
+MON-0528,Vesperweaverum,Ember,Fire,Striker,Common,33,102,42,22,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-106
+MON-0529,Echohornyx,Mist,Water,Guardian,Common,34,119,49,27,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-106
+MON-0530,Cinderbat,Aether,Arcane,Controller,Uncommon,35,136,17,32,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-106
+MON-0531,Glimharea,Lumen,Light,Support,Uncommon,36,153,24,37,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-107
+MON-0532,Novareaveris,Verdant,Nature,Scout,Rare,37,170,31,42,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-107
+MON-0533,Solarraptoron,Tide,Water,Artillery,Rare,38,187,38,11,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-107
+MON-0534,Wispcrabix,Storm,Wind,Assassin,Epic,39,83,45,16,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-107
+MON-0535,Galeimpar,Metal,Tech,Summoner,Epic,40,100,13,21,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-107
+MON-0536,Duskmonarchen,Umbral,Dark,Striker,Mythic,41,117,20,26,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-108
+MON-0537,Hollowfoxor,Frost,Ice,Guardian,Mythic,42,134,27,31,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-108
+MON-0538,Pyrahydraum,Gale,Wind,Controller,Legendary,43,151,34,36,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-108
+MON-0539,Tempestfinyx,Crystal,Earth,Support,Common,44,168,41,41,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-108
+MON-0540,Blazemoth,Magma,Fire,Scout,Common,45,185,48,10,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-108
+MON-0541,Aeroowla,Astral,Space,Artillery,Uncommon,46,81,16,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-109
+MON-0542,Fangpantheris,Volt,Lightning,Assassin,Uncommon,47,98,23,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-109
+MON-0543,Jadespriteon,Terra,Earth,Summoner,Rare,48,115,30,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-109
+MON-0544,Rifttuskix,Ember,Fire,Striker,Rare,49,132,37,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-109
+MON-0545,Titantigerar,Mist,Water,Guardian,Epic,50,149,44,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-109
+MON-0546,Driftorben,Aether,Arcane,Controller,Epic,30,166,12,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-110
+MON-0547,Bramblelynxor,Lumen,Light,Support,Mythic,31,183,19,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-110
+MON-0548,Froststagum,Verdant,Nature,Scout,Mythic,32,200,26,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-110
+MON-0549,Mirescorpionyx,Tide,Water,Artillery,Legendary,33,96,33,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-110
+MON-0550,Shardshard,Storm,Wind,Assassin,Common,34,113,40,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-110
+MON-0551,Voltwyrma,Metal,Tech,Summoner,Common,35,130,47,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-111
+MON-0552,Feralwolfis,Umbral,Dark,Striker,Uncommon,36,147,15,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-111
+MON-0553,Coralsauron,Frost,Ice,Guardian,Uncommon,37,164,22,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-111
+MON-0554,Gravskimmerix,Gale,Wind,Controller,Rare,38,181,29,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-111
+MON-0555,Obsidserpentar,Crystal,Earth,Support,Rare,39,198,36,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-111
+MON-0556,Spectraphoenixen,Magma,Fire,Scout,Epic,40,94,43,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-112
+MON-0557,Zephyrhoundor,Astral,Space,Artillery,Epic,41,111,50,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-112
+MON-0558,Glinthornum,Volt,Lightning,Assassin,Mythic,42,128,18,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-112
+MON-0559,Emberbatyx,Terra,Earth,Summoner,Mythic,43,145,25,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-112
+MON-0560,Jadehare,Ember,Fire,Striker,Legendary,44,162,32,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-112
+MON-0561,Riftreavera,Mist,Water,Guardian,Common,45,179,39,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-113
+MON-0562,Titanraptoris,Aether,Arcane,Controller,Common,46,196,46,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-113
+MON-0563,Driftcrabon,Lumen,Light,Support,Uncommon,47,92,14,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-113
+MON-0564,Brambleimpix,Verdant,Nature,Scout,Uncommon,48,109,21,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-113
+MON-0565,Frostmonarchar,Tide,Water,Artillery,Rare,49,126,28,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-113
+MON-0566,Mirefoxen,Storm,Wind,Assassin,Rare,50,143,35,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-114
+MON-0567,Shardhydraor,Metal,Tech,Summoner,Epic,30,160,42,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-114
+MON-0568,Voltfinum,Umbral,Dark,Striker,Epic,31,177,49,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-114
+MON-0569,Feralmothyx,Frost,Ice,Guardian,Mythic,32,194,17,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-114
+MON-0570,Coralowl,Gale,Wind,Controller,Mythic,33,90,24,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-114
+MON-0571,Gravpanthera,Crystal,Earth,Support,Legendary,34,107,31,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-115
+MON-0572,Obsidspriteis,Magma,Fire,Scout,Common,35,124,38,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-115
+MON-0573,Spectratuskon,Astral,Space,Artillery,Common,36,141,45,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-115
+MON-0574,Zephyrtigerix,Volt,Lightning,Assassin,Uncommon,37,158,13,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-115
+MON-0575,Glintweaverar,Terra,Earth,Summoner,Uncommon,38,175,20,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-115
+MON-0576,Emberdrakeen,Ember,Fire,Striker,Rare,39,192,27,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-116
+MON-0577,Irongolemor,Mist,Water,Guardian,Rare,40,88,34,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-116
+MON-0578,Quillgriffinum,Aether,Arcane,Controller,Epic,41,105,41,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-116
+MON-0579,Thornhopperyx,Lumen,Light,Support,Epic,42,122,48,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-116
+MON-0580,Bloomsprite,Verdant,Nature,Scout,Mythic,43,139,16,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-116
+MON-0581,Astrawolfa,Tide,Water,Artillery,Mythic,44,156,23,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-117
+MON-0582,Flaresauris,Storm,Wind,Assassin,Legendary,45,173,30,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-117
+MON-0583,Lumenskimmeron,Metal,Tech,Summoner,Common,46,190,37,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-117
+MON-0584,Runeserpentix,Umbral,Dark,Striker,Common,47,86,44,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-117
+MON-0585,Vesperphoenixar,Frost,Ice,Guardian,Uncommon,48,103,12,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-117
+MON-0586,Echohounden,Gale,Wind,Controller,Uncommon,49,120,19,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-118
+MON-0587,Cinderhornor,Crystal,Earth,Support,Rare,50,137,26,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-118
+MON-0588,Glimbatum,Magma,Fire,Scout,Rare,30,154,33,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-118
+MON-0589,Novahareyx,Astral,Space,Artillery,Epic,31,171,40,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-118
+MON-0590,Solarreaver,Volt,Lightning,Assassin,Epic,32,188,47,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-118
+MON-0591,Wispraptora,Terra,Earth,Summoner,Mythic,33,84,15,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-119
+MON-0592,Galecrabis,Ember,Fire,Striker,Mythic,34,101,22,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-119
+MON-0593,Duskimpon,Mist,Water,Guardian,Legendary,35,118,29,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-119
+MON-0594,Hollowmonarchix,Aether,Arcane,Controller,Common,36,135,36,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-119
+MON-0595,Pyrafoxar,Lumen,Light,Support,Common,37,152,43,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-119
+MON-0596,Tempesthydraen,Verdant,Nature,Scout,Uncommon,38,169,50,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-120
+MON-0597,Blazefinor,Tide,Water,Artillery,Uncommon,39,186,18,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-120
+MON-0598,Aerowyrmum,Storm,Wind,Assassin,Rare,40,82,25,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-120
+MON-0599,Fangmantisyx,Metal,Tech,Summoner,Rare,41,99,32,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-120
+MON-0600,Lumenray,Umbral,Dark,Striker,Epic,42,116,39,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-120
+MON-0601,Runecolossusa,Frost,Ice,Guardian,Epic,43,133,46,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-121
+MON-0602,Vesperbeetleis,Gale,Wind,Controller,Mythic,44,150,14,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-121
+MON-0603,Echoramon,Crystal,Earth,Support,Mythic,45,167,21,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-121
+MON-0604,Cinderweaverix,Magma,Fire,Scout,Legendary,46,184,28,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-121
+MON-0605,Glimdrakear,Astral,Space,Artillery,Common,47,80,35,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-121
+MON-0606,Novagolemen,Volt,Lightning,Assassin,Common,48,97,42,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-122
+MON-0607,Solargriffinor,Terra,Earth,Summoner,Uncommon,49,114,49,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-122
+MON-0608,Wisphopperum,Ember,Fire,Striker,Uncommon,50,131,17,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-122
+MON-0609,Galespriteyx,Mist,Water,Guardian,Rare,30,148,24,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-122
+MON-0610,Duskwolf,Aether,Arcane,Controller,Rare,31,165,31,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-122
+MON-0611,Hollowsaura,Lumen,Light,Support,Epic,32,182,38,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-123
+MON-0612,Pyraskimmeris,Verdant,Nature,Scout,Epic,33,199,45,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-123
+MON-0613,Tempestserpenton,Tide,Water,Artillery,Mythic,34,95,13,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-123
+MON-0614,Blazephoenixix,Storm,Wind,Assassin,Mythic,35,112,20,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-123
+MON-0615,Aerohoundar,Metal,Tech,Summoner,Legendary,36,129,27,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-123
+MON-0616,Fanghornen,Umbral,Dark,Striker,Common,37,146,34,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-124
+MON-0617,Jadebator,Frost,Ice,Guardian,Common,38,163,41,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-124
+MON-0618,Rifthareum,Gale,Wind,Controller,Uncommon,39,180,48,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-124
+MON-0619,Titanreaveryx,Crystal,Earth,Support,Uncommon,40,197,16,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-124
+MON-0620,Driftraptor,Magma,Fire,Scout,Rare,41,93,23,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-124
+MON-0621,Brambletigera,Astral,Space,Artillery,Rare,42,110,30,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-125
+MON-0622,Frostorbis,Volt,Lightning,Assassin,Epic,43,127,37,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-125
+MON-0623,Mirelynxon,Terra,Earth,Summoner,Epic,44,144,44,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-125
+MON-0624,Shardstagix,Ember,Fire,Striker,Mythic,45,161,12,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-125
+MON-0625,Voltscorpionar,Mist,Water,Guardian,Mythic,46,178,19,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-125
+MON-0626,Feralsharden,Aether,Arcane,Controller,Legendary,47,195,26,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-126
+MON-0627,Coralwyrmor,Lumen,Light,Support,Common,48,91,33,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-126
+MON-0628,Gravmantisum,Verdant,Nature,Scout,Common,49,108,40,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-126
+MON-0629,Obsidrayyx,Tide,Water,Artillery,Uncommon,50,125,47,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-126
+MON-0630,Spectracolossus,Storm,Wind,Assassin,Uncommon,30,142,15,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-126
+MON-0631,Zephyrbeetlea,Metal,Tech,Summoner,Rare,31,159,22,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-127
+MON-0632,Glintramis,Umbral,Dark,Striker,Rare,32,176,29,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-127
+MON-0633,Emberweaveron,Frost,Ice,Guardian,Epic,33,193,36,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-127
+MON-0634,Irondrakeix,Gale,Wind,Controller,Epic,34,89,43,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-127
+MON-0635,Quillgolemar,Crystal,Earth,Support,Mythic,35,106,50,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-127
+MON-0636,Thorngriffinen,Magma,Fire,Scout,Mythic,36,123,18,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-128
+MON-0637,Bloomhopperor,Astral,Space,Artillery,Legendary,37,140,25,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-128
+MON-0638,Astraspriteum,Volt,Lightning,Assassin,Common,38,157,32,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-128
+MON-0639,Flarewolfyx,Terra,Earth,Summoner,Common,39,174,39,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-128
+MON-0640,Miresaur,Ember,Fire,Striker,Uncommon,40,191,46,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-128
+MON-0641,Shardskimmera,Mist,Water,Guardian,Uncommon,41,87,14,11,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-129
+MON-0642,Voltserpentis,Aether,Arcane,Controller,Rare,42,104,21,16,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-129
+MON-0643,Feralphoenixon,Lumen,Light,Support,Rare,43,121,28,21,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-129
+MON-0644,Coralfinix,Verdant,Nature,Scout,Epic,44,138,35,26,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-129
+MON-0645,Gravmothar,Tide,Water,Artillery,Epic,45,155,42,31,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-129
+MON-0646,Obsidowlen,Storm,Wind,Assassin,Mythic,46,172,49,36,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-130
+MON-0647,Spectrapantheror,Metal,Tech,Summoner,Mythic,47,189,17,41,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-130
+MON-0648,Zephyrspriteum,Umbral,Dark,Striker,Legendary,48,85,24,10,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-130
+MON-0649,Glinttuskyx,Frost,Ice,Guardian,Common,49,102,31,15,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-130
+MON-0650,Embertiger,Gale,Wind,Controller,Common,50,119,38,20,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-130
+MON-0651,Ironorba,Crystal,Earth,Support,Uncommon,30,136,45,25,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-131
+MON-0652,Quilllynxis,Magma,Fire,Scout,Uncommon,31,153,13,30,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-131
+MON-0653,Thornstagon,Astral,Space,Artillery,Rare,32,170,20,35,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-131
+MON-0654,Bloomscorpionix,Volt,Lightning,Assassin,Rare,33,187,27,40,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-131
+MON-0655,Astrashardar,Terra,Earth,Summoner,Epic,34,83,34,45,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-131
+MON-0656,Flarewyrmen,Ember,Fire,Striker,Epic,35,100,41,14,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-132
+MON-0657,Lumenmantisor,Mist,Water,Guardian,Mythic,36,117,48,19,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-132
+MON-0658,Runerayum,Aether,Arcane,Controller,Mythic,37,134,16,24,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-132
+MON-0659,Vespercolossusyx,Lumen,Light,Support,Legendary,38,151,23,29,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-132
+MON-0660,Echobeetle,Verdant,Nature,Scout,Common,39,168,30,34,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-132
+MON-0661,Cinderrama,Tide,Water,Artillery,Common,40,185,37,39,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-133
+MON-0662,Glimweaveris,Storm,Wind,Assassin,Uncommon,41,81,44,44,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-133
+MON-0663,Novadrakeon,Metal,Tech,Summoner,Uncommon,42,98,12,13,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-133
+MON-0664,Solargolemix,Umbral,Dark,Striker,Rare,43,115,19,18,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-133
+MON-0665,Wispgriffinar,Frost,Ice,Guardian,Rare,44,132,26,23,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-133
+MON-0666,Galehopperen,Gale,Wind,Controller,Epic,45,149,33,28,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-134
+MON-0667,Duskraptoror,Crystal,Earth,Support,Epic,46,166,40,33,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-134
+MON-0668,Hollowcrabum,Magma,Fire,Scout,Mythic,47,183,47,38,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-134
+MON-0669,Pyraimpyx,Astral,Space,Artillery,Mythic,48,200,15,43,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-134
+MON-0670,Tempestmonarch,Volt,Lightning,Assassin,Legendary,49,96,22,12,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-134
+MON-0671,Blazefoxa,Terra,Earth,Summoner,Common,50,113,29,17,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-135
+MON-0672,Aerohydrais,Ember,Fire,Striker,Common,30,130,36,22,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-135
+MON-0673,Fangfinon,Mist,Water,Guardian,Uncommon,31,147,43,27,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-135
+MON-0674,Jademothix,Aether,Arcane,Controller,Uncommon,32,164,50,32,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-135
+MON-0675,Riftowlar,Lumen,Light,Support,Rare,33,181,18,37,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-135
+MON-0676,Titanpantheren,Verdant,Nature,Scout,Rare,34,198,25,42,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-136
+MON-0677,Driftspriteor,Tide,Water,Artillery,Epic,35,94,32,11,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-136
+MON-0678,Brambletuskum,Storm,Wind,Assassin,Epic,36,111,39,16,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-136
+MON-0679,Frosttigeryx,Metal,Tech,Summoner,Mythic,37,128,46,21,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-136
+MON-0680,Novaorb,Umbral,Dark,Striker,Mythic,38,145,14,26,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-136
+MON-0681,Solarlynxa,Frost,Ice,Guardian,Legendary,39,162,21,31,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-137
+MON-0682,Wispstagis,Gale,Wind,Controller,Common,40,179,28,36,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-137
+MON-0683,Galescorpionon,Crystal,Earth,Support,Common,41,196,35,41,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-137
+MON-0684,Duskshardix,Magma,Fire,Scout,Uncommon,42,92,42,10,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-137
+MON-0685,Hollowwyrmar,Astral,Space,Artillery,Uncommon,43,109,49,15,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-137
+MON-0686,Pyramantisen,Volt,Lightning,Assassin,Rare,44,126,17,20,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-138
+MON-0687,Tempestrayor,Terra,Earth,Summoner,Rare,45,143,24,25,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-138
+MON-0688,Blazecolossusum,Ember,Fire,Striker,Epic,46,160,31,30,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-138
+MON-0689,Aerobeetleyx,Mist,Water,Guardian,Epic,47,177,38,35,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-138
+MON-0690,Fangphoenix,Aether,Arcane,Controller,Mythic,48,194,45,40,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-138
+MON-0691,Jadehounda,Lumen,Light,Support,Mythic,49,90,13,45,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-139
+MON-0692,Rifthornis,Verdant,Nature,Scout,Legendary,50,107,20,14,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-139
+MON-0693,Titanbaton,Tide,Water,Artillery,Common,30,124,27,19,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-139
+MON-0694,Drifthareix,Storm,Wind,Assassin,Common,31,141,34,24,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-139
+MON-0695,Bramblereaverar,Metal,Tech,Summoner,Uncommon,32,158,41,29,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-139
+MON-0696,Frostraptoren,Umbral,Dark,Striker,Uncommon,33,175,48,34,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-140
+MON-0697,Mirecrabor,Frost,Ice,Guardian,Rare,34,192,16,39,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-140
+MON-0698,Shardimpum,Gale,Wind,Controller,Rare,35,88,23,44,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-140
+MON-0699,Voltmonarchyx,Crystal,Earth,Support,Epic,36,105,30,13,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-140
+MON-0700,Feralfox,Magma,Fire,Scout,Epic,37,122,37,18,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-140
+MON-0701,Coralhydraa,Astral,Space,Artillery,Mythic,38,139,44,23,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-141
+MON-0702,Gravfinis,Volt,Lightning,Assassin,Mythic,39,156,12,28,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-141
+MON-0703,Obsidmothon,Terra,Earth,Summoner,Legendary,40,173,19,33,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-141
+MON-0704,Spectraowlix,Ember,Fire,Striker,Common,41,190,26,38,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-141
+MON-0705,Zephyrpantherar,Mist,Water,Guardian,Common,42,86,33,43,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-141
+MON-0706,Glintspriteen,Aether,Arcane,Controller,Uncommon,43,103,40,12,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-142
+MON-0707,Embertuskor,Lumen,Light,Support,Uncommon,44,120,47,17,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-142
+MON-0708,Irontigerum,Verdant,Nature,Scout,Rare,45,137,15,22,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-142
+MON-0709,Quillorbyx,Tide,Water,Artillery,Rare,46,154,22,27,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-142
+MON-0710,Thornlynx,Storm,Wind,Assassin,Epic,47,171,29,32,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-142
+MON-0711,Bloomstaga,Metal,Tech,Summoner,Epic,48,188,36,37,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-143
+MON-0712,Astrascorpionis,Umbral,Dark,Striker,Mythic,49,84,43,42,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-143
+MON-0713,Flarehopperon,Frost,Ice,Guardian,Mythic,50,101,50,11,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-143
+MON-0714,Lumenspriteix,Gale,Wind,Controller,Legendary,30,118,18,16,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-143
+MON-0715,Runewolfar,Crystal,Earth,Support,Common,31,135,25,21,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-143
+MON-0716,Vespersauren,Magma,Fire,Scout,Common,32,152,32,26,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-144
+MON-0717,Echoskimmeror,Astral,Space,Artillery,Uncommon,33,169,39,31,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-144
+MON-0718,Cinderserpentum,Volt,Lightning,Assassin,Uncommon,34,186,46,36,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-144
+MON-0719,Glimphoenixyx,Terra,Earth,Summoner,Rare,35,82,14,41,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-144
+MON-0720,Obsidhound,Ember,Fire,Striker,Rare,36,99,21,10,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-144
+MON-0721,Spectrahorna,Mist,Water,Guardian,Epic,37,116,28,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-145
+MON-0722,Zephyrbatis,Aether,Arcane,Controller,Epic,38,133,35,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-145
+MON-0723,Glinthareon,Lumen,Light,Support,Mythic,39,150,42,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-145
+MON-0724,Emberreaverix,Verdant,Nature,Scout,Mythic,40,167,49,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-145
+MON-0725,Ironraptorar,Tide,Water,Artillery,Legendary,41,184,17,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-145
+MON-0726,Quillcraben,Storm,Wind,Assassin,Common,42,80,24,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-146
+MON-0727,Thornimpor,Metal,Tech,Summoner,Common,43,97,31,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-146
+MON-0728,Bloommonarchum,Umbral,Dark,Striker,Uncommon,44,114,38,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-146
+MON-0729,Astrafoxyx,Frost,Ice,Guardian,Uncommon,45,131,45,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-146
+MON-0730,Flarehydra,Gale,Wind,Controller,Rare,46,148,13,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-146
+MON-0731,Lumenfina,Crystal,Earth,Support,Rare,47,165,20,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-147
+MON-0732,Runemothis,Magma,Fire,Scout,Epic,48,182,27,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-147
+MON-0733,Vesperowlon,Astral,Space,Artillery,Epic,49,199,34,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-147
+MON-0734,Echopantherix,Volt,Lightning,Assassin,Mythic,50,95,41,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-147
+MON-0735,Cinderspritear,Terra,Earth,Summoner,Mythic,30,112,48,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-147
+MON-0736,Glimbeetleen,Ember,Fire,Striker,Legendary,31,129,16,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-148
+MON-0737,Novaramor,Mist,Water,Guardian,Common,32,146,23,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-148
+MON-0738,Solarweaverum,Aether,Arcane,Controller,Common,33,163,30,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-148
+MON-0739,Wispdrakeyx,Lumen,Light,Support,Uncommon,34,180,37,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-148
+MON-0740,Galegolem,Verdant,Nature,Scout,Uncommon,35,197,44,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-148
+MON-0741,Duskgriffina,Tide,Water,Artillery,Rare,36,93,12,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-149
+MON-0742,Hollowhopperis,Storm,Wind,Assassin,Rare,37,110,19,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-149
+MON-0743,Pyraspriteon,Metal,Tech,Summoner,Epic,38,127,26,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-149
+MON-0744,Tempestwolfix,Umbral,Dark,Striker,Epic,39,144,33,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-149
+MON-0745,Blazesaurar,Frost,Ice,Guardian,Mythic,40,161,40,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-149
+MON-0746,Aeroskimmeren,Gale,Wind,Controller,Mythic,41,178,47,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-150
+MON-0747,Fangserpentor,Crystal,Earth,Support,Legendary,42,195,15,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-150
+MON-0748,Jadephoenixum,Magma,Fire,Scout,Common,43,91,22,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-150
+MON-0749,Rifthoundyx,Astral,Space,Artillery,Common,44,108,29,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-150
+MON-0750,Titanhorn,Volt,Lightning,Assassin,Uncommon,45,125,36,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-150
+MON-0751,Driftbata,Terra,Earth,Summoner,Uncommon,46,142,43,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-151
+MON-0752,Bramblehareis,Ember,Fire,Striker,Rare,47,159,50,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-151
+MON-0753,Frostreaveron,Mist,Water,Guardian,Rare,48,176,18,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-151
+MON-0754,Mireraptorix,Aether,Arcane,Controller,Epic,49,193,25,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-151
+MON-0755,Shardcrabar,Lumen,Light,Support,Epic,50,89,32,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-151
+MON-0756,Voltimpen,Verdant,Nature,Scout,Mythic,30,106,39,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-152
+MON-0757,Feralmonarchor,Tide,Water,Artillery,Mythic,31,123,46,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-152
+MON-0758,Coralfoxum,Storm,Wind,Assassin,Legendary,32,140,14,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-152
+MON-0759,Gravscorpionyx,Metal,Tech,Summoner,Common,33,157,21,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-152
+MON-0760,Pyrashard,Umbral,Dark,Striker,Common,34,174,28,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-152
+MON-0761,Tempestwyrma,Frost,Ice,Guardian,Uncommon,35,191,35,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-153
+MON-0762,Blazemantisis,Gale,Wind,Controller,Uncommon,36,87,42,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-153
+MON-0763,Aerorayon,Crystal,Earth,Support,Rare,37,104,49,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-153
+MON-0764,Fangcolossusix,Magma,Fire,Scout,Rare,38,121,17,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-153
+MON-0765,Jadebeetlear,Astral,Space,Artillery,Epic,39,138,24,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-153
+MON-0766,Riftramen,Volt,Lightning,Assassin,Epic,40,155,31,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-154
+MON-0767,Titanweaveror,Terra,Earth,Summoner,Mythic,41,172,38,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-154
+MON-0768,Driftdrakeum,Ember,Fire,Striker,Mythic,42,189,45,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-154
+MON-0769,Bramblegolemyx,Mist,Water,Guardian,Legendary,43,85,13,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-154
+MON-0770,Frostgriffin,Aether,Arcane,Controller,Common,44,102,20,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-154
+MON-0771,Mirehoppera,Lumen,Light,Support,Common,45,119,27,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-155
+MON-0772,Shardspriteis,Verdant,Nature,Scout,Uncommon,46,136,34,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-155
+MON-0773,Voltwolfon,Tide,Water,Artillery,Uncommon,47,153,41,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-155
+MON-0774,Feralsaurix,Storm,Wind,Assassin,Rare,48,170,48,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-155
+MON-0775,Coralskimmerar,Metal,Tech,Summoner,Rare,49,187,16,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-155
+MON-0776,Gravserpenten,Umbral,Dark,Striker,Epic,50,83,23,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-156
+MON-0777,Obsidphoenixor,Frost,Ice,Guardian,Epic,30,100,30,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-156
+MON-0778,Spectrahoundum,Gale,Wind,Controller,Mythic,31,117,37,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-156
+MON-0779,Zephyrhornyx,Crystal,Earth,Support,Mythic,32,134,44,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-156
+MON-0780,Glintbat,Magma,Fire,Scout,Legendary,33,151,12,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-156
+MON-0781,Emberharea,Astral,Space,Artillery,Common,34,168,19,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-157
+MON-0782,Ironspriteis,Volt,Lightning,Assassin,Common,35,185,26,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-157
+MON-0783,Quilltuskon,Terra,Earth,Summoner,Uncommon,36,81,33,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-157
+MON-0784,Thorntigerix,Ember,Fire,Striker,Uncommon,37,98,40,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-157
+MON-0785,Bloomorbar,Mist,Water,Guardian,Rare,38,115,47,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-157
+MON-0786,Astralynxen,Aether,Arcane,Controller,Rare,39,132,15,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-158
+MON-0787,Flarestagor,Lumen,Light,Support,Epic,40,149,22,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-158
+MON-0788,Lumenscorpionum,Verdant,Nature,Scout,Epic,41,166,29,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-158
+MON-0789,Runeshardyx,Tide,Water,Artillery,Mythic,42,183,36,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-158
+MON-0790,Vesperwyrm,Storm,Wind,Assassin,Mythic,43,200,43,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-158
+MON-0791,Echomantisa,Metal,Tech,Summoner,Legendary,44,96,50,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-159
+MON-0792,Cinderrayis,Umbral,Dark,Striker,Common,45,113,18,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-159
+MON-0793,Glimcolossuson,Frost,Ice,Guardian,Common,46,130,25,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-159
+MON-0794,Novabeetleix,Gale,Wind,Controller,Uncommon,47,147,32,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-159
+MON-0795,Solarramar,Crystal,Earth,Support,Uncommon,48,164,39,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-159
+MON-0796,Wispweaveren,Magma,Fire,Scout,Rare,49,181,46,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-160
+MON-0797,Galedrakeor,Astral,Space,Artillery,Rare,50,198,14,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-160
+MON-0798,Duskgolemum,Volt,Lightning,Assassin,Epic,30,94,21,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-160
+MON-0799,Hollowgriffinyx,Terra,Earth,Summoner,Epic,31,111,28,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-160
+MON-0800,Quillhopper,Ember,Fire,Striker,Mythic,32,128,35,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-160
+MON-0801,Thornspritea,Mist,Water,Guardian,Mythic,33,145,42,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-161
+MON-0802,Bloomwolfis,Aether,Arcane,Controller,Legendary,34,162,49,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-161
+MON-0803,Astrasauron,Lumen,Light,Support,Common,35,179,17,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-161
+MON-0804,Flareskimmerix,Verdant,Nature,Scout,Common,36,196,24,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-161
+MON-0805,Lumenfoxar,Tide,Water,Artillery,Uncommon,37,92,31,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-161
+MON-0806,Runehydraen,Storm,Wind,Assassin,Uncommon,38,109,38,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-162
+MON-0807,Vesperfinor,Metal,Tech,Summoner,Rare,39,126,45,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-162
+MON-0808,Echomothum,Umbral,Dark,Striker,Rare,40,143,13,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-162
+MON-0809,Cinderowlyx,Frost,Ice,Guardian,Epic,41,160,20,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-162
+MON-0810,Glimpanther,Gale,Wind,Controller,Epic,42,177,27,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-162
+MON-0811,Novaspritea,Crystal,Earth,Support,Mythic,43,194,34,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-163
+MON-0812,Solartuskis,Magma,Fire,Scout,Mythic,44,90,41,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-163
+MON-0813,Wisptigeron,Astral,Space,Artillery,Legendary,45,107,48,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-163
+MON-0814,Galeorbix,Volt,Lightning,Assassin,Common,46,124,16,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-163
+MON-0815,Dusklynxar,Terra,Earth,Summoner,Common,47,141,23,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-163
+MON-0816,Hollowstagen,Ember,Fire,Striker,Uncommon,48,158,30,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-164
+MON-0817,Pyrascorpionor,Mist,Water,Guardian,Uncommon,49,175,37,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-164
+MON-0818,Tempestshardum,Aether,Arcane,Controller,Rare,50,192,44,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-164
+MON-0819,Blazewyrmyx,Lumen,Light,Support,Rare,30,88,12,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-164
+MON-0820,Aeromantis,Verdant,Nature,Scout,Epic,31,105,19,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-164
+MON-0821,Fangraya,Tide,Water,Artillery,Epic,32,122,26,11,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-165
+MON-0822,Jadecolossusis,Storm,Wind,Assassin,Mythic,33,139,33,16,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-165
+MON-0823,Riftbeetleon,Metal,Tech,Summoner,Mythic,34,156,40,21,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-165
+MON-0824,Titanramix,Umbral,Dark,Striker,Legendary,35,173,47,26,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-165
+MON-0825,Driftweaverar,Frost,Ice,Guardian,Common,36,190,15,31,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-165
+MON-0826,Brambledrakeen,Gale,Wind,Controller,Common,37,86,22,36,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-166
+MON-0827,Frostgolemor,Crystal,Earth,Support,Uncommon,38,103,29,41,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-166
+MON-0828,Mirehareum,Magma,Fire,Scout,Uncommon,39,120,36,10,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-166
+MON-0829,Shardreaveryx,Astral,Space,Artillery,Rare,40,137,43,15,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-166
+MON-0830,Voltraptor,Volt,Lightning,Assassin,Rare,41,154,50,20,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-166
+MON-0831,Feralcraba,Terra,Earth,Summoner,Epic,42,171,18,25,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-167
+MON-0832,Coralimpis,Ember,Fire,Striker,Epic,43,188,25,30,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-167
+MON-0833,Gravmonarchon,Mist,Water,Guardian,Mythic,44,84,32,35,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-167
+MON-0834,Obsidfoxix,Aether,Arcane,Controller,Mythic,45,101,39,40,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-167
+MON-0835,Spectrahydraar,Lumen,Light,Support,Legendary,46,118,46,45,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-167
+MON-0836,Zephyrfinen,Verdant,Nature,Scout,Common,47,135,14,14,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-168
+MON-0837,Glintmothor,Tide,Water,Artillery,Common,48,152,21,19,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-168
+MON-0838,Emberowlum,Storm,Wind,Assassin,Uncommon,49,169,28,24,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-168
+MON-0839,Ironpantheryx,Metal,Tech,Summoner,Uncommon,50,186,35,29,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-168
+MON-0840,Riftsprite,Umbral,Dark,Striker,Rare,30,82,42,34,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-168
+MON-0841,Titantuska,Frost,Ice,Guardian,Rare,31,99,49,39,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-169
+MON-0842,Drifttigeris,Gale,Wind,Controller,Epic,32,116,17,44,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-169
+MON-0843,Brambleorbon,Crystal,Earth,Support,Epic,33,133,24,13,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-169
+MON-0844,Frostlynxix,Magma,Fire,Scout,Mythic,34,150,31,18,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-169
+MON-0845,Mirestagar,Astral,Space,Artillery,Mythic,35,167,38,23,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-169
+MON-0846,Shardscorpionen,Volt,Lightning,Assassin,Legendary,36,184,45,28,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-170
+MON-0847,Voltshardor,Terra,Earth,Summoner,Common,37,80,13,33,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-170
+MON-0848,Feralwyrmum,Ember,Fire,Striker,Common,38,97,20,38,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-170
+MON-0849,Coralmantisyx,Mist,Water,Guardian,Uncommon,39,114,27,43,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-170
+MON-0850,Gravray,Aether,Arcane,Controller,Uncommon,40,131,34,12,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-170
+MON-0851,Obsidskimmera,Lumen,Light,Support,Rare,41,148,41,17,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-171
+MON-0852,Spectraserpentis,Verdant,Nature,Scout,Rare,42,165,48,22,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-171
+MON-0853,Zephyrphoenixon,Tide,Water,Artillery,Epic,43,182,16,27,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-171
+MON-0854,Glinthoundix,Storm,Wind,Assassin,Epic,44,199,23,32,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-171
+MON-0855,Emberhornar,Metal,Tech,Summoner,Mythic,45,95,30,37,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-171
+MON-0856,Ironbaten,Umbral,Dark,Striker,Mythic,46,112,37,42,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-172
+MON-0857,Quillhareor,Frost,Ice,Guardian,Legendary,47,129,44,11,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-172
+MON-0858,Thornreaverum,Gale,Wind,Controller,Common,48,146,12,16,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-172
+MON-0859,Bloomraptoryx,Crystal,Earth,Support,Common,49,163,19,21,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-172
+MON-0860,Astracrab,Magma,Fire,Scout,Uncommon,50,180,26,26,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-172
+MON-0861,Flareimpa,Astral,Space,Artillery,Uncommon,30,197,33,31,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-173
+MON-0862,Lumenmonarchis,Volt,Lightning,Assassin,Rare,31,93,40,36,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-173
+MON-0863,Runefoxon,Terra,Earth,Summoner,Rare,32,110,47,41,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-173
+MON-0864,Vesperhydraix,Ember,Fire,Striker,Epic,33,127,15,10,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-173
+MON-0865,Echofinar,Mist,Water,Guardian,Epic,34,144,22,15,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-173
+MON-0866,Cindermothen,Aether,Arcane,Controller,Mythic,35,161,29,20,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-174
+MON-0867,Glimowlor,Lumen,Light,Support,Mythic,36,178,36,25,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-174
+MON-0868,Novapantherum,Verdant,Nature,Scout,Legendary,37,195,43,30,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-174
+MON-0869,Solarspriteyx,Tide,Water,Artillery,Common,38,91,50,35,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-174
+MON-0870,Wisptusk,Storm,Wind,Assassin,Common,39,108,18,40,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-174
+MON-0871,Galetigera,Metal,Tech,Summoner,Uncommon,40,125,25,45,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-175
+MON-0872,Duskorbis,Umbral,Dark,Striker,Uncommon,41,142,32,14,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-175
+MON-0873,Hollowlynxon,Frost,Ice,Guardian,Rare,42,159,39,19,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-175
+MON-0874,Pyragolemix,Gale,Wind,Controller,Rare,43,176,46,24,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-175
+MON-0875,Tempestgriffinar,Crystal,Earth,Support,Epic,44,193,14,29,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-175
+MON-0876,Blazehopperen,Magma,Fire,Scout,Epic,45,89,21,34,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-176
+MON-0877,Aerospriteor,Astral,Space,Artillery,Mythic,46,106,28,39,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-176
+MON-0878,Fangwolfum,Volt,Lightning,Assassin,Mythic,47,123,35,44,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-176
+MON-0879,Jadesauryx,Terra,Earth,Summoner,Legendary,48,140,42,13,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-176
+MON-0880,Runeskimmer,Ember,Fire,Striker,Common,49,157,49,18,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-176
+MON-0881,Vesperserpenta,Mist,Water,Guardian,Common,50,174,17,23,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-177
+MON-0882,Echophoenixis,Aether,Arcane,Controller,Uncommon,30,191,24,28,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-177
+MON-0883,Cinderhoundon,Lumen,Light,Support,Uncommon,31,87,31,33,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-177
+MON-0884,Glimhornix,Verdant,Nature,Scout,Rare,32,104,38,38,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-177
+MON-0885,Novabatar,Tide,Water,Artillery,Rare,33,121,45,43,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-177
+MON-0886,Solarhareen,Storm,Wind,Assassin,Epic,34,138,13,12,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-178
+MON-0887,Wispreaveror,Metal,Tech,Summoner,Epic,35,155,20,17,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-178
+MON-0888,Galeraptorum,Umbral,Dark,Striker,Mythic,36,172,27,22,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-178
+MON-0889,Duskcrabyx,Frost,Ice,Guardian,Mythic,37,189,34,27,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-178
+MON-0890,Hollowimp,Gale,Wind,Controller,Legendary,38,85,41,32,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-178
+MON-0891,Pyramonarcha,Crystal,Earth,Support,Common,39,102,48,37,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-179
+MON-0892,Tempestfoxis,Magma,Fire,Scout,Common,40,119,16,42,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-179
+MON-0893,Blazehydraon,Astral,Space,Artillery,Uncommon,41,136,23,11,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-179
+MON-0894,Aerofinix,Volt,Lightning,Assassin,Uncommon,42,153,30,16,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-179
+MON-0895,Fangmothar,Terra,Earth,Summoner,Rare,43,170,37,21,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-179
+MON-0896,Jadeowlen,Ember,Fire,Striker,Rare,44,187,44,26,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-180
+MON-0897,Riftrayor,Mist,Water,Guardian,Epic,45,83,12,31,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-180
+MON-0898,Titancolossusum,Aether,Arcane,Controller,Epic,46,100,19,36,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-180
+MON-0899,Driftbeetleyx,Lumen,Light,Support,Mythic,47,117,26,41,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-180
+MON-0900,Brambleram,Verdant,Nature,Scout,Mythic,48,134,33,10,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-180
+MON-0901,Frostweavera,Tide,Water,Artillery,Legendary,49,151,40,15,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-181
+MON-0902,Miredrakeis,Storm,Wind,Assassin,Common,50,168,47,20,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-181
+MON-0903,Shardgolemon,Metal,Tech,Summoner,Common,30,185,15,25,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-181
+MON-0904,Voltgriffinix,Umbral,Dark,Striker,Uncommon,31,81,22,30,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-181
+MON-0905,Feralhopperar,Frost,Ice,Guardian,Uncommon,32,98,29,35,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-181
+MON-0906,Coralspriteen,Gale,Wind,Controller,Rare,33,115,36,40,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-182
+MON-0907,Gravwolfor,Crystal,Earth,Support,Rare,34,132,43,45,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-182
+MON-0908,Obsidsaurum,Magma,Fire,Scout,Epic,35,149,50,14,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-182
+MON-0909,Spectraskimmeryx,Astral,Space,Artillery,Epic,36,166,18,19,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-182
+MON-0910,Zephyrserpent,Volt,Lightning,Assassin,Mythic,37,183,25,24,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-182
+MON-0911,Glintphoenixa,Terra,Earth,Summoner,Mythic,38,200,32,29,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-183
+MON-0912,Emberhoundis,Ember,Fire,Striker,Legendary,39,96,39,34,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-183
+MON-0913,Ironhornon,Mist,Water,Guardian,Common,40,113,46,39,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-183
+MON-0914,Quillbatix,Aether,Arcane,Controller,Common,41,130,14,44,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-183
+MON-0915,Thornharear,Lumen,Light,Support,Uncommon,42,147,21,13,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-183
+MON-0916,Bloomreaveren,Verdant,Nature,Scout,Uncommon,43,164,28,18,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-184
+MON-0917,Astraraptoror,Tide,Water,Artillery,Rare,44,181,35,23,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-184
+MON-0918,Flarecrabum,Storm,Wind,Assassin,Rare,45,198,42,28,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-184
+MON-0919,Lumenimpyx,Metal,Tech,Summoner,Epic,46,94,49,33,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-184
+MON-0920,Shardlynx,Umbral,Dark,Striker,Epic,47,111,17,38,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-184
+MON-0921,Voltstaga,Frost,Ice,Guardian,Mythic,48,128,24,43,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-185
+MON-0922,Feralscorpionis,Gale,Wind,Controller,Mythic,49,145,31,12,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-185
+MON-0923,Coralshardon,Crystal,Earth,Support,Legendary,50,162,38,17,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-185
+MON-0924,Gravwyrmix,Magma,Fire,Scout,Common,30,179,45,22,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-185
+MON-0925,Obsidmantisar,Astral,Space,Artillery,Common,31,196,13,27,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-185
+MON-0926,Spectrarayen,Volt,Lightning,Assassin,Uncommon,32,92,20,32,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-186
+MON-0927,Zephyrcolossusor,Terra,Earth,Summoner,Uncommon,33,109,27,37,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-186
+MON-0928,Glintbeetleum,Ember,Fire,Striker,Rare,34,126,34,42,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-186
+MON-0929,Emberramyx,Mist,Water,Guardian,Rare,35,143,41,11,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-186
+MON-0930,Ironweaver,Aether,Arcane,Controller,Epic,36,160,48,16,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-186
+MON-0931,Quilldrakea,Lumen,Light,Support,Epic,37,177,16,21,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-187
+MON-0932,Thorngolemis,Verdant,Nature,Scout,Mythic,38,194,23,26,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-187
+MON-0933,Bloomgriffinon,Tide,Water,Artillery,Mythic,39,90,30,31,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-187
+MON-0934,Astrahopperix,Storm,Wind,Assassin,Legendary,40,107,37,36,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-187
+MON-0935,Flarespritear,Metal,Tech,Summoner,Common,41,124,44,41,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-187
+MON-0936,Lumenwolfen,Umbral,Dark,Striker,Common,42,141,12,10,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-188
+MON-0937,Runesauror,Frost,Ice,Guardian,Uncommon,43,158,19,15,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-188
+MON-0938,Vesperskimmerum,Gale,Wind,Controller,Uncommon,44,175,26,20,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-188
+MON-0939,Echoserpentyx,Crystal,Earth,Support,Rare,45,192,33,25,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-188
+MON-0940,Cinderphoenix,Magma,Fire,Scout,Rare,46,88,40,30,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-188
+MON-0941,Glimhounda,Astral,Space,Artillery,Epic,47,105,47,35,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-189
+MON-0942,Novahornis,Volt,Lightning,Assassin,Epic,48,122,15,40,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-189
+MON-0943,Solarowlon,Terra,Earth,Summoner,Mythic,49,139,22,45,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-189
+MON-0944,Wisppantherix,Ember,Fire,Striker,Mythic,50,156,29,14,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-189
+MON-0945,Galespritear,Mist,Water,Guardian,Legendary,30,173,36,19,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-189
+MON-0946,Dusktusken,Aether,Arcane,Controller,Common,31,190,43,24,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-190
+MON-0947,Hollowtigeror,Lumen,Light,Support,Common,32,86,50,29,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-190
+MON-0948,Pyraorbum,Verdant,Nature,Scout,Uncommon,33,103,18,34,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-190
+MON-0949,Tempestlynxyx,Tide,Water,Artillery,Uncommon,34,120,25,39,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-190
+MON-0950,Blazestag,Storm,Wind,Assassin,Rare,35,137,32,44,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-190
+MON-0951,Aeroscorpiona,Metal,Tech,Summoner,Rare,36,154,39,13,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-191
+MON-0952,Fangshardis,Umbral,Dark,Striker,Epic,37,171,46,18,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-191
+MON-0953,Jadewyrmon,Frost,Ice,Guardian,Epic,38,188,14,23,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-191
+MON-0954,Riftmantisix,Gale,Wind,Controller,Mythic,39,84,21,28,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-191
+MON-0955,Titanrayar,Crystal,Earth,Support,Mythic,40,101,28,33,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-191
+MON-0956,Driftcolossusen,Magma,Fire,Scout,Legendary,41,118,35,38,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-192
+MON-0957,Bramblebeetleor,Astral,Space,Artillery,Common,42,135,42,43,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-192
+MON-0958,Frostramum,Volt,Lightning,Assassin,Common,43,152,49,12,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-192
+MON-0959,Mireweaveryx,Terra,Earth,Summoner,Uncommon,44,169,17,17,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-192
+MON-0960,Solardrake,Ember,Fire,Striker,Uncommon,45,186,24,22,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-192
+MON-0961,Wispgolema,Mist,Water,Guardian,Rare,46,82,31,27,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-193
+MON-0962,Galegriffinis,Aether,Arcane,Controller,Rare,47,99,38,32,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-193
+MON-0963,Duskhopperon,Lumen,Light,Support,Epic,48,116,45,37,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-193
+MON-0964,Hollowspriteix,Verdant,Nature,Scout,Epic,49,133,13,42,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-193
+MON-0965,Pyrawolfar,Tide,Water,Artillery,Mythic,50,150,20,11,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-193
+MON-0966,Tempestimpen,Storm,Wind,Assassin,Mythic,30,167,27,16,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-194
+MON-0967,Blazemonarchor,Metal,Tech,Summoner,Legendary,31,184,34,21,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-194
+MON-0968,Aerofoxum,Umbral,Dark,Striker,Common,32,80,41,26,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-194
+MON-0969,Fanghydrayx,Frost,Ice,Guardian,Common,33,97,48,31,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-194
+MON-0970,Jadefin,Gale,Wind,Controller,Uncommon,34,114,16,36,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-194
+MON-0971,Riftmotha,Crystal,Earth,Support,Uncommon,35,131,23,41,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-195
+MON-0972,Titanowlis,Magma,Fire,Scout,Rare,36,148,30,10,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-195
+MON-0973,Driftpantheron,Astral,Space,Artillery,Rare,37,165,37,15,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-195
+MON-0974,Bramblespriteix,Volt,Lightning,Assassin,Epic,38,182,44,20,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-195
+MON-0975,Frosttuskar,Terra,Earth,Summoner,Epic,39,199,12,25,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-195
+MON-0976,Miretigeren,Ember,Fire,Striker,Mythic,40,95,19,30,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-196
+MON-0977,Shardorbor,Mist,Water,Guardian,Mythic,41,112,26,35,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-196
+MON-0978,Voltlynxum,Aether,Arcane,Controller,Legendary,42,129,33,40,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-196
+MON-0979,Feralstagyx,Lumen,Light,Support,Common,43,146,40,45,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-196
+MON-0980,Coralscorpion,Verdant,Nature,Scout,Common,44,163,47,14,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-196
+MON-0981,Gravsharda,Tide,Water,Artillery,Uncommon,45,180,15,19,3,2,Phase Step,Ignores one obstacle and gains bonus movement after entering a new terrain type.,FAM-197
+MON-0982,Obsidwyrmis,Storm,Wind,Assassin,Uncommon,46,197,22,24,4,3,Ember Mark,Marks an enemy; the next attack against it deals bonus elemental damage.,FAM-197
+MON-0983,Spectramantison,Metal,Tech,Summoner,Rare,47,93,29,29,5,4,Tidal Pull,Drags a nearby enemy one tile toward this unit after a successful hit.,FAM-197
+MON-0984,Zephyrrayix,Umbral,Dark,Striker,Rare,48,110,36,34,6,1,Verdant Renewal,Restores a small amount of HP when ending a turn on Nature terrain.,FAM-197
+MON-0985,Glintcolossusar,Frost,Ice,Guardian,Epic,49,127,43,39,2,2,Storm Dash,"May move again after defeating an enemy, with reduced range.",FAM-197
+MON-0986,Emberbeetleen,Gale,Wind,Controller,Epic,50,144,50,44,3,3,Frost Lock,A critical hit briefly prevents the target from moving.,FAM-198
+MON-0987,Ironramor,Crystal,Earth,Support,Mythic,30,161,18,13,4,4,Void Echo,Repeats a weakened version of the last ability used nearby.,FAM-198
+MON-0988,Quillweaverum,Magma,Fire,Scout,Mythic,31,178,25,18,5,1,Gravity Well,Creates a temporary zone that reduces movement around the target tile.,FAM-198
+MON-0989,Thornhornyx,Astral,Space,Artillery,Legendary,32,195,32,23,6,2,Lumen Ward,Protects an adjacent ally from the next status effect.,FAM-198
+MON-0990,Bloombat,Volt,Lightning,Assassin,Common,33,91,39,28,2,3,Metal Skin,Reduces physical damage while HP is above half.,FAM-198
+MON-0991,Astraharea,Terra,Earth,Summoner,Common,34,108,46,33,3,4,Astral Shift,Teleports to a visible unoccupied special node once per battle.,FAM-199
+MON-0992,Flarereaveris,Ember,Fire,Striker,Uncommon,35,125,14,38,4,1,Rift Bite,Deals more damage to enemies standing on portals or warp tiles.,FAM-199
+MON-0993,Lumenraptoron,Mist,Water,Guardian,Uncommon,36,142,21,43,5,2,Crystal Bloom,Creates a temporary defensive crystal on an adjacent tile.,FAM-199
+MON-0994,Runecrabix,Aether,Arcane,Controller,Rare,37,159,28,12,6,3,Soul Lantern,Reveals hidden traps and concealed capsules within a short radius.,FAM-199
+MON-0995,Vesperimpar,Lumen,Light,Support,Rare,38,176,35,17,2,4,Chain Spark,A hit can jump to a second nearby enemy for reduced damage.,FAM-199
+MON-0996,Echomonarchen,Verdant,Nature,Scout,Epic,39,193,42,22,3,1,Magma Trail,Leaves heated tiles behind while moving; enemies crossing them take damage.,FAM-200
+MON-0997,Cinderfoxor,Tide,Water,Artillery,Epic,40,89,49,27,4,2,Mist Veil,Becomes harder to target until it attacks.,FAM-200
+MON-0998,Glimhydraum,Storm,Wind,Assassin,Mythic,41,106,17,32,5,3,Iron Root,Cannot be displaced by knockback and gains defense while stationary.,FAM-200
+MON-0999,Novafinyx,Metal,Tech,Summoner,Mythic,42,123,24,37,6,4,Moon Pulse,"Charges over two turns, then emits a radial attack.",FAM-200
+MON-1000,Spectramoth,Umbral,Dark,Striker,Legendary,43,140,31,42,2,1,Prism Guard,Reduces the first incoming hit each round and reflects a fraction of it.,FAM-200

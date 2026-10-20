@@ -1,4 +1,6 @@
-# Emberwick
+# Aether Sigil: Chronicles of the Capsule Realms
+
+> Renamed from the Emberwick prototype on 2026-10-20. Game data: `data/` (master bible JSON, 1,000 monsters, 120 stages/maps, 486 dialogue lines).
 
 An original turn-based tactics game for iPhone and Android. Every creature (a **Wick**) lives inside a lantern, and **light is territory**: you can only summon where your light reaches, and you win by snuffing the rival's Hearth Lantern or holding all three Beacons.
 
