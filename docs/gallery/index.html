@@ -81,6 +81,35 @@ button:focus-visible{outline:3px solid var(--glow);outline-offset:3px}
 .anim{background:var(--night2);border:1px solid var(--line);border-radius:20px;padding:14px;display:grid;gap:10px}
 .anim svg{width:100%;height:auto;background:radial-gradient(circle at 50% 70%,var(--night3),var(--night) 75%);border-radius:14px}
 .note{font-size:13px;color:var(--parch2);border-left:3px solid var(--brass);padding-left:12px;max-width:72ch}
+
+/* ---- v2: anime ink style, modern + fun ---- */
+body{background:radial-gradient(1200px 600px at 80% -10%,#2A1E5C 0,transparent 60%),radial-gradient(900px 500px at 0% 10%,#3A2412 0,transparent 55%),var(--night)}
+.ink path,.ink ellipse,.ink circle:not(.heart):not(.halo):not(.hit),.ink rect,.ink polygon{stroke:#160D2E;stroke-width:3;stroke-linejoin:round;stroke-linecap:round;paint-order:stroke}
+.ink .noink{stroke:none!important}
+.speed{background:repeating-conic-gradient(from 0deg at 50% 60%,rgba(255,213,138,.10) 0 4deg,transparent 4deg 12deg)}
+.card,.wick{transition:transform .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s}
+.card:hover,.wick:hover{transform:translateY(-6px) rotate(-1.2deg);box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 0 2px var(--lantern)}
+.wick:nth-child(even):hover{transform:translateY(-6px) rotate(1.2deg)}
+.frame{position:relative;border-radius:16px;overflow:hidden;border:3px solid var(--brass);background:linear-gradient(160deg,#2B3A73,#141C3D)}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 45%,rgba(160,220,255,.18) 50%,transparent 62%);background-size:250% 100%;animation:holo 3.8s ease-in-out infinite;pointer-events:none;mix-blend-mode:screen}
+@keyframes holo{0%{background-position:120% 0}100%{background-position:-120% 0}}
+.rarity{position:absolute;top:8px;left:8px;font:700 10px var(--fd);letter-spacing:.08em;background:var(--ink);color:var(--glow);padding:3px 7px;border-radius:999px;z-index:1}
+.chip{display:inline-block;font:700 11px var(--fd);padding:3px 9px;border-radius:999px;background:var(--night3);color:var(--glow);border:1px solid var(--line)}
+
+/* sigil maker */
+.sigil{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:20px;align-items:start;background:var(--night2);border:1px solid var(--line);border-radius:22px;padding:18px}
+@media (max-width:720px){.sigil{grid-template-columns:1fr}}
+.sigil svg{width:100%;max-width:340px;height:auto;display:block;margin:0 auto}
+.ctl{display:grid;gap:14px}
+.ctl label{font:600 12px var(--fd);letter-spacing:.06em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{padding:7px 13px;font-size:13px}
+.sw{width:30px;height:30px;border-radius:50%;border:3px solid var(--night);box-shadow:0 0 0 2px var(--line);cursor:pointer;padding:0}
+.sw.on{box-shadow:0 0 0 3px var(--glow)}
+input[type=text]{font:600 15px var(--fd);background:var(--night);color:var(--parch);border:2px solid var(--line);border-radius:12px;padding:9px 12px;width:100%;max-width:320px}
+input[type=text]:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+@keyframes spinslow{to{transform:rotate(360deg)}}
+.spin{animation:spinslow 40s linear infinite;transform-box:fill-box;transform-origin:center}
 </style>
 
 <div class="wrap">
@@ -133,6 +162,23 @@ button:focus-visible{outline:3px solid var(--glow);outline-offset:3px}
   <div class="anims" id="anims"></div>
 </section>
 
+<section aria-labelledby="sigil-h">
+  <span class="eyebrow">Make it yours</span>
+  <h2 id="sigil-h">Design your lantern sigil</h2>
+  <p class="lede">Every Lamplighter carries a sigil: it shows on your lantern, your Hearth and your profile. Pick a shape, an emblem and your colours.</p>
+  <div class="sigil">
+    <svg id="sigil-svg" viewBox="0 0 240 260" role="img" aria-label="Your lantern sigil"></svg>
+    <div class="ctl">
+      <div><label>Shape</label><div class="opts" id="sg-shape"></div></div>
+      <div><label>Emblem</label><div class="opts" id="sg-emblem"></div></div>
+      <div><label>Main colour</label><div class="opts" id="sg-main"></div></div>
+      <div><label>Trim</label><div class="opts" id="sg-trim"></div></div>
+      <div><label for="sg-name">Your Lamplighter name</label><input type="text" id="sg-name" maxlength="16" value="Noor"></div>
+      <div class="opts"><button id="sg-random">Surprise me</button></div>
+    </div>
+  </div>
+</section>
+
 <section>
   <p class="note">These are concept sketches drawn in code to set the direction: shapes, colours, personality and motion. Final art would be painted by an artist you hire under a work-for-hire contract, so you own it outright. Every design here is original to Emberwick.</p>
 </section>
@@ -160,7 +206,7 @@ function portrait(c){
   const s=c.skin,h=c.hair,o=c.outfit;
   let hairBack='',hairFront='',acc='';
   if(c.style==='long'){hairBack=`<path d="M46 70c-6 40 0 78 6 92h56c6-14 12-52 6-92z" fill="${h}"/>`;hairFront=`<path d="M48 66c4-26 60-30 64 0c-14-10-48-10-64 0z" fill="${h}"/>`;}
-  if(c.style==='spiky'){hairFront=`<path d="M46 66l6-22l10 12l8-20l10 16l10-18l8 18l10-10l4 24c-18-10-48-10-66 0z" fill="${h}"/>`;}
+  if(c.style==='spiky'){hairBack=`<path d="M40 74l-14-30l22 8l-6-30l22 18l8-30l12 26l16-24l2 30l22-14l-10 30l16 4l-20 14z" fill="${h}"/>`;hairFront=`<path d="M46 70l4-26l12 14l6-24l12 20l10-22l8 22l12-12l2 28c-18-12-48-12-66 0z" fill="${h}"/><path class="noink" d="M70 40l6-10l2 12z" fill="#9FD3EE" opacity=".6"/>`;}
   if(c.style==='bun'){hairBack=`<circle cx="80" cy="30" r="14" fill="${h}"/>`;hairFront=`<path d="M48 66c4-28 60-30 64 0c-16-12-48-12-64 0z" fill="${h}"/>`;}
   if(c.style==='beard'){hairFront=`<path d="M50 60c6-10 54-10 60 0c-4-4-56-4-60 0z" fill="${h}"/>`;acc+=`<path d="M56 92c4 30 44 30 48 0c-6 10-42 10-48 0z" fill="${h}"/><path d="M66 86q14 8 28 0" stroke="${h}" stroke-width="5" fill="none" stroke-linecap="round"/>`;}
   if(c.style==='hood'){hairBack=`<path d="M36 74c0-46 88-46 88 0v94h-88z" fill="${o}"/><path d="M54 70c-4 36 0 70 4 86h44c4-16 8-50 4-86z" fill="${h}"/>`;}
@@ -170,12 +216,15 @@ function portrait(c){
   if(c.acc==='mask')acc+=`<path d="M56 74q24-8 48 0l-2 10q-22-6-44 0z" fill="${c.accC}"/>`;
   if(c.acc==='glasses')acc+=`<circle cx="69" cy="80" r="8" fill="none" stroke="${c.accC}" stroke-width="2.5"/><circle cx="91" cy="80" r="8" fill="none" stroke="${c.accC}" stroke-width="2.5"/><line x1="77" y1="80" x2="83" y2="80" stroke="${c.accC}" stroke-width="2.5"/>`;
   if(c.acc==='collar')acc+=`<path d="M58 124l22 14l22-14l-6 20h-32z" fill="${c.accC}"/>`;
-  const eyes=c.acc==='mask'?`<circle cx="69" cy="80" r="2.6" fill="#F6EEDC"/><circle cx="91" cy="80" r="2.6" fill="#F6EEDC"/>`:`<circle cx="69" cy="81" r="3.4" fill="#1C1A16"/><circle cx="91" cy="81" r="3.4" fill="#1C1A16"/><circle cx="70" cy="80" r="1.1" fill="#fff"/><circle cx="92" cy="80" r="1.1" fill="#fff"/>`;
+  const irisC={noor:'#C9763A',taro:'#3A9AD9',mira:'#5FB760',odo:'#8A6630',veyla:'#7B5CC4',jun:'#4E8A4F'}[c.id];
+  const aeye=(ex)=>`<ellipse class="noink" cx="${ex}" cy="81" rx="7" ry="8.5" fill="#fff"/><ellipse class="noink" cx="${ex}" cy="82" rx="5.4" ry="7" fill="${irisC}"/><ellipse class="noink" cx="${ex}" cy="83.5" rx="2.8" ry="4" fill="#0B0618"/><circle class="noink" cx="${ex-2}" cy="78.5" r="2.2" fill="#fff"/><circle class="noink" cx="${ex+2}" cy="86" r="1" fill="#fff"/><path d="M${ex-8} ${c.id==='taro'||c.id==='veyla'?75:73}q8-${c.id==='taro'||c.id==='veyla'?1:5} 16 ${c.id==='taro'||c.id==='veyla'?2:0}" fill="none" stroke="#160D2E" stroke-width="2.6" stroke-linecap="round"/>`;
+  const eyes=c.acc==='mask'?`<ellipse class="noink" cx="69" cy="80" rx="4" ry="2.4" fill="#F6EEDC"/><ellipse class="noink" cx="91" cy="80" rx="4" ry="2.4" fill="#F6EEDC"/>`:aeye(69)+aeye(91);
   const mouth=c.id==='veyla'?`<path d="M72 98q8 2 16 0" stroke="#7A4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>`:c.id==='taro'?`<path d="M72 98h16" stroke="#7A4A4A" stroke-width="2.5" stroke-linecap="round"/>`:`<path d="M71 96q9 8 18 0" stroke="#7A4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
   const glowC=c.id==='veyla'?'#7B5CC4':'#F2A93B';
   const lantern=c.id==='noor'?`<g class="bob"><rect x="118" y="128" width="20" height="26" rx="5" fill="#FFD58A" fill-opacity=".35" stroke="#B8893E" stroke-width="3"/><path class="flame" d="M128 134c6 7 6 12 2 16c-2 2-5 2-6 0c-3-5-1-10 4-16z" fill="#E8613C"/></g>`:'';
-  return `<svg viewBox="0 0 160 180" role="img" aria-label="Portrait of ${c.name}">
-   <circle cx="80" cy="96" r="76" fill="${glowC}" opacity=".16" class="halo"/>
+  return `<svg viewBox="0 0 160 180" role="img" aria-label="Portrait of ${c.name}" class="ink">
+   <circle class="halo noink" cx="80" cy="96" r="76" fill="${glowC}" opacity=".16"/>
+   <g class="spin noink" opacity=".35">${Array.from({length:12},(_,i)=>`<path class="noink" d="M80 96L${80+90*Math.cos(i*Math.PI/6)} ${96+90*Math.sin(i*Math.PI/6)}L${80+90*Math.cos(i*Math.PI/6+0.12)} ${96+90*Math.sin(i*Math.PI/6+0.12)}z" fill="${glowC}"/>`).join('')}</g>
    <g class="breathe">
     ${hairBack}
     <path d="M30 180c4-36 24-52 50-52s46 16 50 52z" fill="${o}"/>
@@ -211,7 +260,11 @@ const wicks=[
  ['hollowlamp','Hollowlamp','empty lantern','dusk','Striker',4,6,2,10,'Night Hunger: +3 Power in the dark','lamp'],
  ['shade','The Shade','Veyla’s moth','dusk','Legendary',5,7,4,15,'Eclipse: darkens every tile around it','bigmoth']
 ];
-function eyesAt(x,y,gap,col){col=col||'#1C1A16';return `<circle cx="${x-gap}" cy="${y}" r="3.2" fill="${col}"/><circle cx="${x+gap}" cy="${y}" r="3.2" fill="${col}"/><circle cx="${x-gap+1}" cy="${y-1}" r="1" fill="#fff"/><circle cx="${x+gap+1}" cy="${y-1}" r="1" fill="#fff"/>`;}
+function eyesAt(x,y,gap,col){
+  const iris=col||'#2A1A55';
+  const one=ex=>`<ellipse class="noink" cx="${ex}" cy="${y}" rx="4.6" ry="5.6" fill="#fff"/><ellipse class="noink" cx="${ex}" cy="${y+0.6}" rx="3.6" ry="4.6" fill="${iris}"/><ellipse class="noink" cx="${ex}" cy="${y+1.4}" rx="2" ry="2.8" fill="#0B0618"/><circle class="noink" cx="${ex-1.3}" cy="${y-1.6}" r="1.5" fill="#fff"/><circle class="noink" cx="${ex+1.4}" cy="${y+2.2}" r=".7" fill="#fff"/><path d="M${ex-5} ${y-5.2}q5-3 10 0" fill="none" stroke="#160D2E" stroke-width="2"/>`;
+  return one(x-gap)+one(x+gap);
+}
 function creature(kind,el,big){
   const m=C[el],l=LIGHT[el],d=DARK[el];
   let g='';
@@ -259,9 +312,10 @@ function creature(kind,el,big){
 }
 function wickSvg(w,cls){
   const [id,name,,el,,,,,,,kind]=w;
-  return `<svg viewBox="0 0 120 120" role="img" aria-label="${name}, ${el} Wick">
-    <ellipse cx="60" cy="104" rx="34" ry="6" fill="#000" opacity=".35"/>
-    <circle cx="60" cy="64" r="48" fill="${C[el]}" opacity=".12" class="halo"/>
+  return `<svg viewBox="0 0 120 120" role="img" aria-label="${name}, ${el} Wick" class="ink">
+    <ellipse class="noink" cx="60" cy="104" rx="34" ry="6" fill="#000" opacity=".35"/>
+    <circle cx="60" cy="64" r="48" fill="${C[el]}" opacity=".14" class="halo"/>
+    <g class="noink" opacity=".5">${[0,1,2,3,4,5,6,7].map(i=>`<path class="noink" d="M${60+50*Math.cos(i*Math.PI/4)} ${64+50*Math.sin(i*Math.PI/4)}L${60+58*Math.cos(i*Math.PI/4)} ${64+58*Math.sin(i*Math.PI/4)}" stroke="${LIGHT[el]}" stroke-width="2" stroke-linecap="round"/>`).join('')}</g>
     <g class="body ${cls||'bob'}">${creature(kind,el)}
       <circle class="heart" cx="60" cy="${kind==='kite'?62:kind==='golem'?72:78}" r="6" fill="#FFD58A" opacity=".9"/>
     </g>
@@ -273,9 +327,10 @@ const wEl=document.getElementById('wicks');
 function renderWicks(filter){
   wEl.innerHTML=wicks.filter(w=>filter==='all'||w[3]===filter).map(w=>{
     const [id,name,desc,el,role,cost,pw,gd,hp,ab]=w;
-    return `<article class="wick" tabindex="0" data-id="${id}" style="border-color:${C[el]}55" aria-label="${name}. Tap to attack">
+    const rar=role==='Legendary'?'LEGENDARY':cost>=4?'RARE':cost>=2?'UNCOMMON':'COMMON';
+    return `<article class="wick" tabindex="0" data-id="${id}" style="border-color:${C[el]}" aria-label="${name}. Tap to attack">
      <div class="top"><span>${name}</span><span class="cost" title="Oil cost">${cost}</span></div>
-     ${wickSvg(w)}
+     <div class="frame speed" style="border-color:${C[el]}"><span class="rarity">${rar}</span>${wickSvg(w)}</div>
      <div class="el" style="color:${C[el]}">${elName[el]} · ${role}</div>
      <div class="stats"><span title="Power">⚔ ${pw}</span><span title="Guard">🛡 ${gd}</span><span title="HP">♥ ${hp}</span></div>
      <p class="ab"><b>${ab.split(':')[0]}</b>:${ab.split(':').slice(1).join(':')}</p>
@@ -353,5 +408,55 @@ aEl.innerHTML=anims.map(a=>`<article class="anim" id="a-${a.id}"><h3>${a.title}<
 anims.forEach(a=>{const card=document.getElementById('a-'+a.id),btn=document.getElementById('play-'+a.id);
   const play=()=>{const svg=card.querySelector('svg');const fresh=svg.cloneNode(false);fresh.innerHTML=a.draw();svg.replaceWith(fresh);card.classList.remove('play');void card.offsetWidth;card.classList.add('play');};
   btn.addEventListener('click',play);setTimeout(play,400);});
+
+/* ---------- sigil maker ---------- */
+const SH={
+ Circle:'<circle cx="120" cy="118" r="92"/>',
+ Hex:'<polygon points="120,22 203,70 203,166 120,214 37,166 37,70"/>',
+ Shield:'<path d="M120 22l82 26v62c0 54-36 88-82 106c-46-18-82-52-82-106v-62z"/>',
+ Star:'<polygon points="120,18 144,88 218,90 158,134 180,206 120,162 60,206 82,134 22,90 96,88"/>',
+ Lantern:'<path d="M84 30h72l-8-14h-56zM70 36h100l14 152h-128z"/>'
+};
+const EM={
+ Flame:'<path d="M120 62c30 34 36 62 18 88c-10 14-30 14-40 0c-16-24-8-52 22-88z"/><path d="M120 100c13 16 15 30 7 42c-4 6-12 6-16 0c-7-12-4-26 9-42z" fill="#FFD58A"/>',
+ Leaf:'<path d="M80 150c0-56 40-88 84-88c0 56-34 92-84 88z"/><path d="M84 146q30-30 74-80" fill="none" stroke-width="5"/>',
+ Drop:'<path d="M120 58c32 44 44 66 32 90c-10 20-54 20-64 0c-12-24 0-46 32-90z"/>',
+ Crystal:'<polygon points="120,56 152,96 138,162 102,162 88,96"/><path d="M120 56v106M88 96h64" fill="none" stroke-width="4"/>',
+ Wind:'<path d="M74 92h66a16 16 0 1 0-16-16M66 118h96a18 18 0 1 1-18 18M82 144h40" fill="none" stroke-width="9" stroke-linecap="round"/>',
+ Moon:'<path d="M140 58a62 62 0 1 0 34 104a50 50 0 1 1-34-104z"/>'
+};
+const COLS=['#F2A93B','#E8613C','#5FB760','#3A9AD9','#9FD3EE','#9A8F82','#7B5CC4','#F6EEDC','#E06C9F'];
+const sg={shape:'Shield',emblem:'Flame',main:'#F2A93B',trim:'#7B5CC4',name:'Noor'};
+try{const saved=JSON.parse(localStorage.getItem('ew-sigil')||'null');if(saved)Object.assign(sg,saved);}catch(e){}
+const sgSvg=document.getElementById('sigil-svg'),nameIn=document.getElementById('sg-name');
+function drawSigil(){
+  const nm=(sg.name||'').replace(/[<>&"]/g,'').slice(0,16);
+  sgSvg.innerHTML=`<defs><radialGradient id="sgG" cx="50%" cy="40%" r="65%"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+   <g class="spin" opacity=".25">${Array.from({length:16},(_,i)=>`<path d="M120 118L${120+130*Math.cos(i*Math.PI/8)} ${118+130*Math.sin(i*Math.PI/8)}L${120+130*Math.cos(i*Math.PI/8+.1)} ${118+130*Math.sin(i*Math.PI/8+.1)}z" fill="${sg.main}"/>`).join('')}</g>
+   <g fill="${sg.main}" stroke="${sg.trim}" stroke-width="10" stroke-linejoin="round">${SH[sg.shape]}</g>
+   <g fill="url(#sgG)">${SH[sg.shape]}</g>
+   <g fill="${sg.trim}" stroke="#160D2E" stroke-width="4" stroke-linejoin="round" paint-order="stroke" class="flame">${EM[sg.emblem]}</g>
+   <rect x="40" y="222" width="160" height="30" rx="15" fill="#160D2E" stroke="${sg.trim}" stroke-width="3"/>
+   <text x="120" y="243" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="17" fill="${sg.main}">${nm||'Lamplighter'}</text>`;
+  try{localStorage.setItem('ew-sigil',JSON.stringify(sg));}catch(e){}
+  document.querySelectorAll('#sg-shape button').forEach(b=>b.className=b.dataset.v===sg.shape?'on':'');
+  document.querySelectorAll('#sg-emblem button').forEach(b=>b.className=b.dataset.v===sg.emblem?'on':'');
+  document.querySelectorAll('#sg-main .sw').forEach(b=>b.classList.toggle('on',b.dataset.v===sg.main));
+  document.querySelectorAll('#sg-trim .sw').forEach(b=>b.classList.toggle('on',b.dataset.v===sg.trim));
+}
+function opts(id,list,keyName,isColor){
+  const box=document.getElementById(id);
+  list.forEach((v,i)=>{const b=document.createElement('button');b.dataset.v=v;b.id=id+'-'+i;
+    if(isColor){b.className='sw';b.style.background=v;b.setAttribute('aria-label',keyName+' colour '+v);}else b.textContent=v;
+    b.addEventListener('click',()=>{sg[keyName]=v;drawSigil();});box.appendChild(b);});
+}
+opts('sg-shape',Object.keys(SH),'shape');opts('sg-emblem',Object.keys(EM),'emblem');
+opts('sg-main',COLS,'main',true);opts('sg-trim',COLS,'trim',true);
+nameIn.value=sg.name;nameIn.addEventListener('input',()=>{sg.name=nameIn.value;drawSigil();});
+document.getElementById('sg-random').addEventListener('click',()=>{
+  const pick=a=>a.at(Math.floor(Math.random()*a.length));
+  sg.shape=pick(Object.keys(SH));sg.emblem=pick(Object.keys(EM));sg.main=pick(COLS);
+  do{sg.trim=pick(COLS);}while(sg.trim===sg.main);drawSigil();});
+drawSigil();
 })();
 </script>
