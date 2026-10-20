@@ -1,0 +1,357 @@
+<title>Emberwick Concept Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap">
+<style>
+:root{
+  --night:#0E1630;--night2:#18234A;--night3:#25335F;--line:#34457A;
+  --parch:#F6EEDC;--parch2:#C9C1AE;--ink:#1C1A16;
+  --lantern:#F2A93B;--glow:#FFD58A;--brass:#B8893E;
+  --ember:#E8613C;--bloom:#5FB760;--tide:#3A9AD9;--stone:#9A8F82;--gale:#9FD3EE;--dusk:#7B5CC4;
+  --fd:'Fredoka','Trebuchet MS',system-ui,sans-serif;--fb:'Nunito','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{background:var(--night);color:var(--parch);font:400 15px/1.55 var(--fb);padding-inline:18px;padding-block:0 60px}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--fd);margin:0;text-wrap:balance}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:600;color:var(--glow)}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+section{padding-block:48px 8px;display:grid;gap:18px}
+.lede{color:var(--parch2);max-width:64ch}
+.eyebrow{font:600 .72rem/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+button{font:600 14px var(--fd);border-radius:999px;padding:9px 16px;cursor:pointer;border:2px solid var(--brass);background:transparent;color:var(--glow)}
+button.on,button:hover{background:var(--lantern);color:var(--ink);border-color:var(--lantern)}
+button:focus-visible{outline:3px solid var(--glow);outline-offset:3px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding-block:44px 8px}
+@media (max-width:720px){.hero{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:700;color:var(--lantern);line-height:.95;text-shadow:0 0 34px rgba(242,169,59,.45)}
+.hero .tag{font-size:1.1rem;color:var(--parch);max-width:44ch;margin-top:12px}
+.hero svg{width:220px;max-width:100%;height:auto}
+
+/* board */
+.board-wrap{background:radial-gradient(ellipse at 50% 60%,var(--night2),var(--night) 70%);border:1px solid var(--line);border-radius:22px;padding:14px;display:grid;gap:10px}
+.board-wrap svg{width:100%;height:auto;max-height:520px}
+.caption{font-size:13px;color:var(--parch2);min-height:2.6em}
+.hex{transition:fill .6s ease, stroke .6s ease}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,var(--night2),var(--night));border:2px solid var(--line);border-radius:20px;padding:14px;display:grid;gap:8px;align-content:start}
+.card svg{width:100%;height:auto;display:block}
+.who{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.role{font-size:12px;color:var(--brass);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.quote{font-size:13px;color:var(--parch2);font-style:italic}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px}
+.wick{background:linear-gradient(180deg,var(--night2),var(--night));border:2px solid var(--line);border-radius:18px;padding:10px 12px 12px;display:grid;gap:4px;cursor:pointer;position:relative}
+.wick:focus-visible{outline:3px solid var(--glow);outline-offset:2px}
+.wick .top{display:flex;justify-content:space-between;align-items:center;font-family:var(--fd);font-weight:600}
+.cost{background:var(--lantern);color:var(--ink);border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;font-size:13px}
+.el{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.stats{display:flex;justify-content:space-between;font:600 13px var(--fd);color:var(--parch)}
+.ab{font-size:12px;color:var(--parch2);line-height:1.4}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+
+/* animation */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
+@keyframes flicker{0%,100%{transform:scale(1) translateY(0);opacity:1}30%{transform:scale(1.08,.94) translateY(1px);opacity:.92}60%{transform:scale(.95,1.07) translateY(-1px);opacity:1}}
+@keyframes heart{0%,100%{opacity:.75;r:5}50%{opacity:1;r:7}}
+@keyframes lunge{0%{transform:translateX(0)}30%{transform:translateX(-6px)}55%{transform:translateX(14px) scale(1.05)}100%{transform:translateX(0)}}
+@keyframes hitflash{0%,100%{opacity:0}40%{opacity:.9}}
+@keyframes summon{0%{transform:scale(0) translateY(30px);opacity:0;filter:brightness(3)}55%{transform:scale(1.18) translateY(-6px);opacity:1;filter:brightness(1.6)}100%{transform:scale(1) translateY(0);opacity:1;filter:brightness(1)}}
+@keyframes ring{0%{r:6;opacity:.9}100%{r:58;opacity:0}}
+@keyframes snuff{0%{opacity:1;transform:scale(1)}100%{opacity:.15;transform:scale(.3)}}
+@keyframes glowpulse{0%,100%{opacity:.35}50%{opacity:.75}}
+.bob{animation:bob 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.breathe{animation:breathe 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.flame{animation:flicker 1.1s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.heart{animation:heart 1.6s ease-in-out infinite}
+.halo{animation:glowpulse 2.4s ease-in-out infinite}
+.wick.attack .body{animation:lunge .55s ease-out}
+.wick.attack .hit{animation:hitflash .55s ease-out}
+.summon{animation:summon .8s cubic-bezier(.2,.8,.3,1.2) both;transform-box:fill-box;transform-origin:50% 100%}
+.ringfx{animation:ring .8s ease-out both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.anims{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.anim{background:var(--night2);border:1px solid var(--line);border-radius:20px;padding:14px;display:grid;gap:10px}
+.anim svg{width:100%;height:auto;background:radial-gradient(circle at 50% 70%,var(--night3),var(--night) 75%);border-radius:14px}
+.note{font-size:13px;color:var(--parch2);border-left:3px solid var(--brass);padding-left:12px;max-width:72ch}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <span class="eyebrow">Concept gallery · first look</span>
+    <h1>Emberwick</h1>
+    <p class="tag">A tactics game where every creature lives in a lantern, and light is the territory you fight over.</p>
+  </div>
+  <svg viewBox="0 0 200 240" role="img" aria-label="A brass lantern with a flame">
+    <ellipse cx="100" cy="150" rx="90" ry="80" fill="#F2A93B" class="halo" opacity=".35"/>
+    <path d="M70 40h60l-6 -14h-48z" fill="#B8893E"/>
+    <circle cx="100" cy="20" r="10" fill="none" stroke="#B8893E" stroke-width="5"/>
+    <rect x="62" y="40" width="76" height="12" rx="4" fill="#B8893E"/>
+    <path d="M68 52h64l8 120h-80z" fill="#FFD58A" fill-opacity=".18" stroke="#B8893E" stroke-width="5"/>
+    <line x1="100" y1="52" x2="100" y2="172" stroke="#B8893E" stroke-width="3" opacity=".6"/>
+    <g class="flame"><path d="M100 82c18 22 22 40 10 58c-6 9-20 9-26 0c-10-16-4-34 16-58z" fill="#E8613C"/><path d="M100 104c9 12 10 22 4 32c-3 5-11 5-14 0c-5-9-1-19 10-32z" fill="#FFD58A"/></g>
+    <rect x="56" y="172" width="88" height="14" rx="5" fill="#B8893E"/>
+    <rect x="70" y="186" width="60" height="10" rx="4" fill="#8A6630"/>
+  </svg>
+</header>
+
+<section aria-labelledby="board-h">
+  <span class="eyebrow">How a battle looks</span>
+  <h2 id="board-h">Light spreads, Wicks summon, Beacons fall</h2>
+  <p class="lede">Your light is amber and rises from the bottom; the rival's Dusk light is violet and comes from the top. You can only summon where your light reaches. This loop plays a short battle.</p>
+  <div class="board-wrap">
+    <svg id="board" viewBox="0 0 520 470" role="img" aria-label="Animated hex board showing light spreading"></svg>
+    <p class="caption" id="board-cap">Turn 1 · both Hearth Lanterns light their own corner.</p>
+  </div>
+</section>
+
+<section aria-labelledby="chars-h">
+  <span class="eyebrow">The cast</span>
+  <h2 id="chars-h">Six characters</h2>
+  <div class="grid" id="chars"></div>
+</section>
+
+<section aria-labelledby="wicks-h">
+  <span class="eyebrow">The 18 starter Wicks</span>
+  <h2 id="wicks-h">Tap a Wick to see it attack</h2>
+  <div class="filters" id="filters" role="group" aria-label="Filter by element"></div>
+  <div class="wgrid" id="wicks"></div>
+</section>
+
+<section aria-labelledby="anim-h">
+  <span class="eyebrow">Battle animations</span>
+  <h2 id="anim-h">Summon, attack, Re-wick, Snuff</h2>
+  <div class="anims" id="anims"></div>
+</section>
+
+<section>
+  <p class="note">These are concept sketches drawn in code to set the direction: shapes, colours, personality and motion. Final art would be painted by an artist you hire under a work-for-hire contract, so you own it outright. Every design here is original to Emberwick.</p>
+</section>
+
+</div>
+
+<script>
+(function(){
+const C={ember:'#E8613C',bloom:'#5FB760',tide:'#3A9AD9',stone:'#9A8F82',gale:'#9FD3EE',dusk:'#7B5CC4'};
+const LIGHT={ember:'#FFB28F',bloom:'#B6E3A1',tide:'#9ED3F5',stone:'#CFC6BA',gale:'#E3F4FC',dusk:'#B9A3F0'};
+const DARK={ember:'#9E3A1E',bloom:'#2F7A34',tide:'#1D5F93',stone:'#5E564C',gale:'#5C9DBF',dusk:'#3F2C78'};
+const ns='http://www.w3.org/2000/svg';
+const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- characters ---------- */
+const chars=[
+ {id:'noor',name:'Noor Halvani',role:'Hero',age:15,skin:'#C68A5E',hair:'#3A2418',style:'long',outfit:'#C9763A',acc:'bandana',accC:'#F2A93B',quote:'"If it is broken, I can fix it. Even the sky."'},
+ {id:'taro',name:'Taro Vesk',role:'Rival',age:16,skin:'#E2B98F',hair:'#1F2A55',style:'spiky',outfit:'#9FD3EE',acc:'collar',accC:'#F6EEDC',quote:'"Precision wins. Luck is for amateurs."'},
+ {id:'mira',name:'Mira Coalwhistle',role:'Friend and rival',age:14,skin:'#8D5A3B',hair:'#B4552A',style:'bun',outfit:'#7A6F63',acc:'goggles',accC:'#9FD3EE',quote:'"I found it in a rock. Finders keepers!"'},
+ {id:'odo',name:'Master Odo Brightwell',role:'Mentor',age:70,skin:'#D7A27A',hair:'#ECE6DA',style:'beard',outfit:'#B8893E',acc:'none',accC:'#000',quote:'"A lantern shared burns twice as long."'},
+ {id:'veyla',name:'Lady Veyla Nox',role:'Villain',age:38,skin:'#EBD9CF',hair:'#C8C6D6',style:'hood',outfit:'#3F2C78',acc:'mask',accC:'#7B5CC4',quote:'"In the dark, nobody fights over light."'},
+ {id:'jun',name:'Jun the Tinker',role:'Shopkeeper',age:'40s',skin:'#B97A57',hair:'#141414',style:'bob',outfit:'#4E8A4F',acc:'glasses',accC:'#B8893E',quote:'"This lantern? It talks back. Half price."'}
+];
+function portrait(c){
+  const s=c.skin,h=c.hair,o=c.outfit;
+  let hairBack='',hairFront='',acc='';
+  if(c.style==='long'){hairBack=`<path d="M46 70c-6 40 0 78 6 92h56c6-14 12-52 6-92z" fill="${h}"/>`;hairFront=`<path d="M48 66c4-26 60-30 64 0c-14-10-48-10-64 0z" fill="${h}"/>`;}
+  if(c.style==='spiky'){hairFront=`<path d="M46 66l6-22l10 12l8-20l10 16l10-18l8 18l10-10l4 24c-18-10-48-10-66 0z" fill="${h}"/>`;}
+  if(c.style==='bun'){hairBack=`<circle cx="80" cy="30" r="14" fill="${h}"/>`;hairFront=`<path d="M48 66c4-28 60-30 64 0c-16-12-48-12-64 0z" fill="${h}"/>`;}
+  if(c.style==='beard'){hairFront=`<path d="M50 60c6-10 54-10 60 0c-4-4-56-4-60 0z" fill="${h}"/>`;acc+=`<path d="M56 92c4 30 44 30 48 0c-6 10-42 10-48 0z" fill="${h}"/><path d="M66 86q14 8 28 0" stroke="${h}" stroke-width="5" fill="none" stroke-linecap="round"/>`;}
+  if(c.style==='hood'){hairBack=`<path d="M36 74c0-46 88-46 88 0v94h-88z" fill="${o}"/><path d="M54 70c-4 36 0 70 4 86h44c4-16 8-50 4-86z" fill="${h}"/>`;}
+  if(c.style==='bob'){hairBack=`<path d="M46 66c-4 24 0 40 4 46h60c4-6 8-22 4-46z" fill="${h}"/>`;hairFront=`<path d="M48 64c4-26 60-28 64 0c-10-6-20 4-34 4s-22-10-30-4z" fill="${h}"/>`;}
+  if(c.acc==='bandana')acc+=`<path d="M48 58q32-16 64 0l-2 8q-30-12-60 0z" fill="${c.accC}"/><path d="M110 60l14 6l-12 4z" fill="${c.accC}"/>`;
+  if(c.acc==='goggles')acc+=`<rect x="50" y="50" width="60" height="6" rx="3" fill="#5E564C"/><circle cx="66" cy="54" r="9" fill="${c.accC}" stroke="#5E564C" stroke-width="3"/><circle cx="94" cy="54" r="9" fill="${c.accC}" stroke="#5E564C" stroke-width="3"/>`;
+  if(c.acc==='mask')acc+=`<path d="M56 74q24-8 48 0l-2 10q-22-6-44 0z" fill="${c.accC}"/>`;
+  if(c.acc==='glasses')acc+=`<circle cx="69" cy="80" r="8" fill="none" stroke="${c.accC}" stroke-width="2.5"/><circle cx="91" cy="80" r="8" fill="none" stroke="${c.accC}" stroke-width="2.5"/><line x1="77" y1="80" x2="83" y2="80" stroke="${c.accC}" stroke-width="2.5"/>`;
+  if(c.acc==='collar')acc+=`<path d="M58 124l22 14l22-14l-6 20h-32z" fill="${c.accC}"/>`;
+  const eyes=c.acc==='mask'?`<circle cx="69" cy="80" r="2.6" fill="#F6EEDC"/><circle cx="91" cy="80" r="2.6" fill="#F6EEDC"/>`:`<circle cx="69" cy="81" r="3.4" fill="#1C1A16"/><circle cx="91" cy="81" r="3.4" fill="#1C1A16"/><circle cx="70" cy="80" r="1.1" fill="#fff"/><circle cx="92" cy="80" r="1.1" fill="#fff"/>`;
+  const mouth=c.id==='veyla'?`<path d="M72 98q8 2 16 0" stroke="#7A4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>`:c.id==='taro'?`<path d="M72 98h16" stroke="#7A4A4A" stroke-width="2.5" stroke-linecap="round"/>`:`<path d="M71 96q9 8 18 0" stroke="#7A4A4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+  const glowC=c.id==='veyla'?'#7B5CC4':'#F2A93B';
+  const lantern=c.id==='noor'?`<g class="bob"><rect x="118" y="128" width="20" height="26" rx="5" fill="#FFD58A" fill-opacity=".35" stroke="#B8893E" stroke-width="3"/><path class="flame" d="M128 134c6 7 6 12 2 16c-2 2-5 2-6 0c-3-5-1-10 4-16z" fill="#E8613C"/></g>`:'';
+  return `<svg viewBox="0 0 160 180" role="img" aria-label="Portrait of ${c.name}">
+   <circle cx="80" cy="96" r="76" fill="${glowC}" opacity=".16" class="halo"/>
+   <g class="breathe">
+    ${hairBack}
+    <path d="M30 180c4-36 24-52 50-52s46 16 50 52z" fill="${o}"/>
+    <rect x="72" y="104" width="16" height="22" rx="6" fill="${s}"/>
+    <ellipse cx="80" cy="78" rx="32" ry="34" fill="${s}"/>
+    <ellipse cx="62" cy="92" rx="6" ry="3.5" fill="#E8613C" opacity=".22"/><ellipse cx="98" cy="92" rx="6" ry="3.5" fill="#E8613C" opacity=".22"/>
+    ${hairFront}${eyes}${mouth}${acc}
+   </g>${lantern}</svg>`;
+}
+const charEl=document.getElementById('chars');
+charEl.innerHTML=chars.map(c=>`<article class="card"><div>${portrait(c)}</div>
+ <div class="who"><h3>${c.name}</h3><span class="role">${c.role}</span></div>
+ <p class="quote">${c.quote}</p></article>`).join('');
+
+/* ---------- wicks ---------- */
+const wicks=[
+ ['pip','Pip','ember fox','ember','Scout',1,3,1,6,'Kindle: lights the tile it ends its move on','fox'],
+ ['brazier','Brazier','fire bull','ember','Guard',3,4,4,12,'Hearth Wall: allies next to it get +1 Guard','bull'],
+ ['cinderwing','Cinderwing','ash hawk','ember','Striker',4,6,2,9,'Flare Dive: attacks from 2 tiles away','bird'],
+ ['mossling','Mossling','moss sprite','bloom','Support',1,1,2,7,'Mend: heals an ally for 3','sprite'],
+ ['thornback','Thornback','bramble tortoise','bloom','Guard',3,3,5,14,'Bramble: attackers take 1 damage','turtle'],
+ ['petalblade','Petalblade','blossom mantis','bloom','Striker',3,5,2,8,'Bloomrush: +2 Power on a lit tile','mantis'],
+ ['kitewhisk','Kitewhisk','paper kite cat','gale','Scout',1,2,1,5,'Glide: moves 3 tiles, over other Wicks','kite'],
+ ['gustmane','Gustmane','wind lion','gale','Striker',4,5,3,10,'Shove: pushes its target back 1 tile','lion'],
+ ['bellwatch','Bellwatch','bell owl','gale','Support',2,2,2,8,'Watch: shows enemies in the dark within 3','owl'],
+ ['pebblet','Pebblet','pebble pup','stone','Guard',1,1,4,8,'Brace: +2 Guard if it did not move','pup'],
+ ['shardback','Shardback','crystal ram','stone','Striker',3,5,3,10,'Charge: +2 Power after moving 2 tiles','ram'],
+ ['quarrygolem','Quarrygolem','living quarry','stone','Guard',5,6,6,18,'Heavy: moves only 1 tile a turn','golem'],
+ ['dropkin','Dropkin','raindrop imp','tide','Support',1,1,1,6,'Douse: clears a burn or curse','drop'],
+ ['riptide','Riptide','current eel','tide','Striker',3,5,2,9,'Undertow: pulls its target 1 tile closer','eel'],
+ ['harborcrab','Harborcrab','dock crab','tide','Guard',2,3,4,11,'Shell Up: halves the next hit','crab'],
+ ['murkmoth','Murkmoth','shadow moth','dusk','Scout',2,3,1,6,'Snuff: turns one tile dark','moth'],
+ ['hollowlamp','Hollowlamp','empty lantern','dusk','Striker',4,6,2,10,'Night Hunger: +3 Power in the dark','lamp'],
+ ['shade','The Shade','Veyla’s moth','dusk','Legendary',5,7,4,15,'Eclipse: darkens every tile around it','bigmoth']
+];
+function eyesAt(x,y,gap,col){col=col||'#1C1A16';return `<circle cx="${x-gap}" cy="${y}" r="3.2" fill="${col}"/><circle cx="${x+gap}" cy="${y}" r="3.2" fill="${col}"/><circle cx="${x-gap+1}" cy="${y-1}" r="1" fill="#fff"/><circle cx="${x+gap+1}" cy="${y-1}" r="1" fill="#fff"/>`;}
+function creature(kind,el,big){
+  const m=C[el],l=LIGHT[el],d=DARK[el];
+  let g='';
+  switch(kind){
+   case 'fox': g=`<path d="M78 74q26-8 22-34q-10 18-22 18" fill="${m}"/><path class="flame" d="M96 38c6 6 6 12 2 16c-3 2-7 0-6-4c0-4 2-8 4-12z" fill="#FFD58A"/>
+     <ellipse cx="58" cy="78" rx="24" ry="17" fill="${m}"/><circle cx="46" cy="58" r="17" fill="${m}"/><path d="M33 48l2-20l12 14z" fill="${m}"/><path d="M53 42l8-18l4 20z" fill="${m}"/>
+     <path d="M30 60q8 10 18 6" fill="${l}"/><ellipse cx="58" cy="84" rx="12" ry="8" fill="${l}"/>${eyesAt(46,56,7)}<circle cx="34" cy="62" r="2.4" fill="#1C1A16"/>`;break;
+   case 'bull': g=`<ellipse cx="60" cy="74" rx="34" ry="24" fill="${m}"/><circle cx="60" cy="50" r="20" fill="${m}"/><path d="M42 40q-14-6-14-18q8 10 18 10z" fill="${l}"/><path d="M78 40q14-6 14-18q-8 10-18 10z" fill="${l}"/>
+     <ellipse cx="60" cy="60" rx="12" ry="8" fill="${l}"/><circle cx="56" cy="60" r="1.8" fill="${d}"/><circle cx="64" cy="60" r="1.8" fill="${d}"/>${eyesAt(60,46,8)}<rect x="34" y="92" width="10" height="10" rx="3" fill="${d}"/><rect x="76" y="92" width="10" height="10" rx="3" fill="${d}"/>`;break;
+   case 'bird': g=`<path d="M60 60q-40-28-52 4q24-4 44 10z" fill="${d}"/><path d="M60 60q40-28 52 4q-24-4-44 10z" fill="${d}"/><ellipse cx="60" cy="68" rx="18" ry="22" fill="${m}"/><circle cx="60" cy="46" r="13" fill="${m}"/>
+     <path d="M57 50l3 8l3-8z" fill="#FFD58A"/>${eyesAt(60,44,5)}<path class="flame" d="M60 22c5 5 5 10 1 13c-3 1-5-1-4-4z" fill="#FFD58A"/>`;break;
+   case 'sprite': g=`<ellipse cx="60" cy="72" rx="24" ry="22" fill="${m}"/><path d="M60 50q-4-20 16-24q-2 18-16 24z" fill="${l}"/><path d="M60 50q-2-14-14-16q2 12 14 16z" fill="${d}"/>
+     ${eyesAt(60,70,8)}<path d="M55 80q5 4 10 0" stroke="#1C1A16" stroke-width="2" fill="none"/><circle cx="40" cy="86" r="4" fill="${l}"/><circle cx="82" cy="84" r="3" fill="${l}"/>`;break;
+   case 'turtle': g=`<ellipse cx="60" cy="84" rx="38" ry="10" fill="${d}"/><path d="M24 82q4-40 36-40t36 40z" fill="${m}"/><path d="M40 62l-6-10l10 4zM60 48l0-12l6 10zM80 62l6-10l-10 4z" fill="${d}"/>
+     <path d="M40 72q20-14 40 0" stroke="${l}" stroke-width="3" fill="none"/><circle cx="98" cy="74" r="11" fill="${l}"/>${eyesAt(100,72,3.5)}`;break;
+   case 'mantis': g=`<path d="M60 96l-8-30h16z" fill="${d}"/><ellipse cx="60" cy="62" rx="12" ry="20" fill="${m}"/><path d="M46 56l-22-14l14 22z" fill="${l}"/><path d="M74 56l22-14l-14 22z" fill="${l}"/>
+     <path d="M60 40q-14-6-12-18q10 10 12 18zM60 40q14-6 12-18q-10 10-12 18z" fill="#F6B6D0"/><circle cx="60" cy="40" r="11" fill="${m}"/>${eyesAt(60,40,5)}`;break;
+   case 'kite': g=`<path d="M60 28l28 34l-28 32l-28-32z" fill="${m}"/><path d="M60 28v66M32 62h56" stroke="${l}" stroke-width="2"/><path d="M60 94q-6 10 4 16t-2 14" stroke="${d}" stroke-width="3" fill="none"/>
+     <path d="M44 40l-4-14l12 8zM76 40l4-14l-12 8z" fill="${m}"/>${eyesAt(60,56,8)}<path d="M56 66q4 3 8 0" stroke="#1C1A16" stroke-width="2" fill="none"/>`;break;
+   case 'lion': g=`<circle cx="52" cy="52" r="28" fill="${l}"/><path d="M28 40q-10 8-4 20M76 40q10 8 4 20" stroke="${l}" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="72" cy="80" rx="28" ry="16" fill="${m}"/>
+     <circle cx="52" cy="54" r="18" fill="${m}"/>${eyesAt(52,50,7)}<path d="M48 62l4 4l4-4z" fill="${d}"/><path d="M96 74q14-8 12-22" stroke="${m}" stroke-width="4" fill="none"/>`;break;
+   case 'owl': g=`<ellipse cx="60" cy="66" rx="26" ry="30" fill="${m}"/><path d="M38 42l6-14l8 12zM82 42l-6-14l-8 12z" fill="${d}"/><circle cx="50" cy="56" r="10" fill="${l}"/><circle cx="70" cy="56" r="10" fill="${l}"/>
+     ${eyesAt(60,56,10)}<path d="M57 64l3 6l3-6z" fill="#F2A93B"/><path d="M50 86q10-6 20 0v10h-20z" fill="#B8893E"/><circle cx="60" cy="98" r="3" fill="#B8893E"/>`;break;
+   case 'pup': g=`<ellipse cx="60" cy="78" rx="26" ry="18" fill="${m}"/><circle cx="54" cy="56" r="17" fill="${m}"/><path d="M38 48q-8 6-4 16l8-8zM70 48q8 6 4 16l-8-8z" fill="${d}"/>
+     <circle cx="70" cy="80" r="5" fill="${l}"/><circle cx="52" cy="84" r="4" fill="${d}"/><circle cx="80" cy="72" r="3" fill="${l}"/>${eyesAt(54,54,6)}<ellipse cx="54" cy="64" rx="4" ry="3" fill="${d}"/>`;break;
+   case 'ram': g=`<ellipse cx="62" cy="76" rx="30" ry="20" fill="${m}"/><path d="M50 70l-6-16l10 8zM62 64l2-18l6 16zM76 66l8-14l0 18z" fill="#B9E4F7"/><circle cx="38" cy="58" r="16" fill="${m}"/>
+     <path d="M30 50q-14 0-12 14q2 10 12 6" stroke="${l}" stroke-width="5" fill="none"/>${eyesAt(40,56,5)}`;break;
+   case 'golem': g=`<rect x="30" y="50" width="60" height="44" rx="8" fill="${m}"/><rect x="40" y="26" width="40" height="30" rx="7" fill="${l}"/><rect x="16" y="56" width="16" height="30" rx="5" fill="${d}"/><rect x="88" y="56" width="16" height="30" rx="5" fill="${d}"/>
+     <path d="M44 66l8 8l-6 10M70 60l-6 12l10 6" stroke="${d}" stroke-width="2.5" fill="none"/>${eyesAt(60,40,8,'#F2A93B')}`;break;
+   case 'drop': g=`<path d="M60 26c22 30 30 46 22 62c-8 14-36 14-44 0c-8-16 0-32 22-62z" fill="${m}"/><path d="M50 52q-6 10-2 20" stroke="${l}" stroke-width="4" fill="none" stroke-linecap="round"/>
+     ${eyesAt(60,70,7)}<path d="M56 80q4 3 8 0" stroke="#1C1A16" stroke-width="2" fill="none"/>`;break;
+   case 'eel': g=`<path d="M16 80q16-30 32-6t32-6t28-20" stroke="${m}" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M16 80q16-30 32-6t32-6t28-20" stroke="${l}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+     <path d="M100 44l10-12l2 14z" fill="${d}"/>${eyesAt(104,50,4)}`;break;
+   case 'crab': g=`<ellipse cx="60" cy="74" rx="32" ry="18" fill="${m}"/><path d="M28 70q-18-8-14-24q10 2 12 12zM92 70q18-8 14-24q-10 2-12 12z" fill="${d}"/><circle cx="16" cy="42" r="8" fill="${m}"/><circle cx="104" cy="42" r="8" fill="${m}"/>
+     <line x1="52" y1="58" x2="50" y2="46" stroke="${d}" stroke-width="3"/><line x1="68" y1="58" x2="70" y2="46" stroke="${d}" stroke-width="3"/>${eyesAt(60,44,10)}<path d="M40 90l-6 8M80 90l6 8" stroke="${d}" stroke-width="3"/>`;break;
+   case 'moth': g=`<path d="M60 60q-36-34-46 0q6 20 46 10z" fill="${m}"/><path d="M60 60q36-34 46 0q-6 20-46 10z" fill="${m}"/><path d="M60 66q-26 20-30 32q16 4 30-14zM60 66q26 20 30 32q-16 4-30-14z" fill="${d}"/>
+     <circle cx="34" cy="52" r="6" fill="${l}"/><circle cx="86" cy="52" r="6" fill="${l}"/><ellipse cx="60" cy="66" rx="7" ry="18" fill="${d}"/><path d="M56 48q-8-14-16-14M64 48q8-14 16-14" stroke="${d}" stroke-width="2" fill="none"/>${eyesAt(60,54,4,'#FFD58A')}`;break;
+   case 'lamp': g=`<path d="M44 30h32l-4-8h-24z" fill="#5E564C"/><path d="M42 32h36l6 56h-48z" fill="${d}" stroke="#5E564C" stroke-width="4"/><circle cx="60" cy="16" r="6" fill="none" stroke="#5E564C" stroke-width="3"/>
+     ${eyesAt(60,56,9,l)}<path d="M50 70q10 8 20 0" stroke="${l}" stroke-width="2.5" fill="none"/><rect x="38" y="88" width="44" height="8" rx="3" fill="#5E564C"/>`;break;
+   case 'bigmoth': g=`<ellipse cx="60" cy="64" rx="56" ry="40" fill="${d}" opacity=".45" class="halo"/><path d="M60 60q-50-46-58 4q10 26 58 12z" fill="${m}"/><path d="M60 60q50-46 58 4q-10 26-58 12z" fill="${m}"/>
+     <path d="M60 70q-30 24-36 38q20 2 36-16zM60 70q30 24 36 38q-20 2-36-16z" fill="${d}"/><circle cx="28" cy="50" r="9" fill="${l}"/><circle cx="92" cy="50" r="9" fill="${l}"/><circle cx="28" cy="50" r="4" fill="${d}"/><circle cx="92" cy="50" r="4" fill="${d}"/>
+     <ellipse cx="60" cy="68" rx="9" ry="22" fill="#1A1033"/><path d="M55 48q-10-18-20-18M65 48q10-18 20-18" stroke="#1A1033" stroke-width="2.5" fill="none"/>${eyesAt(60,54,4.5,'#FFD58A')}`;break;
+  }
+  return g;
+}
+function wickSvg(w,cls){
+  const [id,name,,el,,,,,,,kind]=w;
+  return `<svg viewBox="0 0 120 120" role="img" aria-label="${name}, ${el} Wick">
+    <ellipse cx="60" cy="104" rx="34" ry="6" fill="#000" opacity=".35"/>
+    <circle cx="60" cy="64" r="48" fill="${C[el]}" opacity=".12" class="halo"/>
+    <g class="body ${cls||'bob'}">${creature(kind,el)}
+      <circle class="heart" cx="60" cy="${kind==='kite'?62:kind==='golem'?72:78}" r="6" fill="#FFD58A" opacity=".9"/>
+    </g>
+    <circle class="hit" cx="98" cy="54" r="16" fill="#FFF3C4" opacity="0"/>
+  </svg>`;
+}
+const elName={ember:'Ember',bloom:'Bloom',tide:'Tide',stone:'Stone',gale:'Gale',dusk:'Dusk'};
+const wEl=document.getElementById('wicks');
+function renderWicks(filter){
+  wEl.innerHTML=wicks.filter(w=>filter==='all'||w[3]===filter).map(w=>{
+    const [id,name,desc,el,role,cost,pw,gd,hp,ab]=w;
+    return `<article class="wick" tabindex="0" data-id="${id}" style="border-color:${C[el]}55" aria-label="${name}. Tap to attack">
+     <div class="top"><span>${name}</span><span class="cost" title="Oil cost">${cost}</span></div>
+     ${wickSvg(w)}
+     <div class="el" style="color:${C[el]}">${elName[el]} · ${role}</div>
+     <div class="stats"><span title="Power">⚔ ${pw}</span><span title="Guard">🛡 ${gd}</span><span title="HP">♥ ${hp}</span></div>
+     <p class="ab"><b>${ab.split(':')[0]}</b>:${ab.split(':').slice(1).join(':')}</p>
+     <p class="ab" style="opacity:.7">${desc}</p></article>`;}).join('');
+}
+const fEl=document.getElementById('filters');
+['all','ember','bloom','gale','stone','tide','dusk'].forEach((f,i)=>{
+  const b=document.createElement('button');b.textContent=f==='all'?'All 18':elName[f];b.id='f-'+f;if(i===0)b.className='on';
+  b.addEventListener('click',()=>{fEl.querySelectorAll('button').forEach(x=>x.className='');b.className='on';renderWicks(f);});
+  fEl.appendChild(b);
+});
+renderWicks('all');
+function attack(card){card.classList.remove('attack');void card.offsetWidth;card.classList.add('attack');}
+wEl.addEventListener('click',e=>{const c=e.target.closest('.wick');if(c)attack(c);});
+wEl.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('wick')){e.preventDefault();attack(e.target);}});
+
+/* ---------- board ---------- */
+const board=document.getElementById('board'),cap=document.getElementById('board-cap');
+const R=3,S=36,CX=260,CY=240,hexes=[];
+for(let q=-R;q<=R;q++)for(let r=-R;r<=R;r++){const s=-q-r;if(Math.abs(s)<=R)hexes.push({q,r});}
+const px=h=>({x:CX+S*Math.sqrt(3)*(h.q+h.r/2),y:CY+S*1.5*h.r});
+const corner=(c,i)=>{const a=Math.PI/180*(60*i-30);return `${(c.x+(S-2)*Math.cos(a)).toFixed(1)},${(c.y+(S-2)*Math.sin(a)).toFixed(1)}`;};
+const dist=(a,b)=>(Math.abs(a.q-b.q)+Math.abs(a.r-b.r)+Math.abs((-a.q-a.r)-(-b.q-b.r)))/2;
+const key=h=>h.q+','+h.r;
+const nodes={};
+hexes.forEach(h=>{const c=px(h);const p=document.createElementNS(ns,'polygon');p.setAttribute('points',[0,1,2,3,4,5].map(i=>corner(c,i)).join(' '));p.setAttribute('class','hex');p.setAttribute('fill','#1D2850');p.setAttribute('stroke','#34457A');p.setAttribute('stroke-width','1.5');board.appendChild(p);nodes[key(h)]=p;});
+const mine={q:0,r:3},theirs={q:0,r:-3},beacons=[{q:-2,r:1},{q:0,r:0},{q:2,r:-1}];
+function mark(h,txt,col){const c=px(h);const t=document.createElementNS(ns,'text');t.setAttribute('x',c.x);t.setAttribute('y',c.y+5);t.setAttribute('text-anchor','middle');t.setAttribute('font-size','13');t.setAttribute('font-family','Fredoka, sans-serif');t.setAttribute('fill',col);t.textContent=txt;board.appendChild(t);return t;}
+function lanternIcon(h,col){const c=px(h);const g=document.createElementNS(ns,'g');g.innerHTML=`<rect x="${c.x-9}" y="${c.y-13}" width="18" height="22" rx="5" fill="${col}" fill-opacity=".25" stroke="#B8893E" stroke-width="2.5"/><path class="flame" d="M${c.x} ${c.y-8}c5 6 5 10 2 13c-2 2-4 2-5 0c-2-4-1-8 3-13z" fill="${col}"/>`;board.appendChild(g);}
+lanternIcon(mine,'#F2A93B');lanternIcon(theirs,'#7B5CC4');
+const bMarks=beacons.map(b=>mark(b,'◆','#FFD58A'));
+const tok=document.createElementNS(ns,'g');board.appendChild(tok);
+function placeToken(h,el,kind){const c=px(h);tok.innerHTML=`<g transform="translate(${c.x-26},${c.y-34}) scale(.45)"><g class="summon">${creature(kind,el)}<circle class="heart" cx="60" cy="78" r="6" fill="#FFD58A"/></g></g>`;}
+const rTok=document.createElementNS(ns,'g');board.appendChild(rTok);
+function placeRival(h){const c=px(h);rTok.innerHTML=`<g transform="translate(${c.x-26},${c.y-34}) scale(.45)"><g class="summon">${creature('moth','dusk')}</g></g>`;}
+let posts=[mine],rposts=[theirs],owned={};
+function paint(){
+  hexes.forEach(h=>{const k=key(h);const a=Math.min(...posts.map(p=>dist(p,h)));const b=Math.min(...rposts.map(p=>dist(p,h)));
+   let f='#1D2850',st='#34457A';
+   if(owned[k]==='me'||(a<=1&&a<=b)){f='#F2A93B';st='#FFD58A';}
+   else if(owned[k]==='them'||(b<=1&&b<a)){f='#5A3FA0';st='#B9A3F0';}
+   if(owned[k]==='me'){f='#FFD58A';}
+   nodes[k].setAttribute('fill',f);nodes[k].setAttribute('stroke',st);});
+}
+const steps=[
+ ()=>{posts=[mine];rposts=[theirs];owned={};tok.innerHTML='';rTok.innerHTML='';bMarks.forEach(m=>m.setAttribute('fill','#FFD58A'));cap.textContent='Turn 1 · both Hearth Lanterns light their own corner.';},
+ ()=>{placeToken({q:0,r:2},'ember','fox');cap.textContent='You summon Pip onto a lit tile next to your Hearth (1 Oil).';},
+ ()=>{posts=[mine,{q:-1,r:2}];cap.textContent='Plant a Lantern Post (2 Oil): your light pushes 2 tiles further.';},
+ ()=>{placeRival({q:1,r:-2});rposts=[theirs,{q:1,r:-2}];cap.textContent='The rival summons Murkmoth and spreads violet Dusk light.';},
+ ()=>{posts=[mine,{q:-1,r:2},{q:0,r:1}];placeToken({q:0,r:1},'ember','fox');cap.textContent='Pip runs ahead, lighting each tile it ends on (Kindle).';},
+ ()=>{placeToken({q:0,r:0},'ember','fox');owned['0,0']='me';bMarks.at(1).setAttribute('fill','#1C1A16');posts.push({q:0,r:0});cap.textContent='Pip ends its turn on the centre Beacon. It lights up: yours.';},
+ ()=>{owned['-2,1']='me';bMarks.at(0).setAttribute('fill','#1C1A16');posts.push({q:-2,r:1});cap.textContent='A second Beacon falls. Hold all three at the start of a turn to win.';}
+];
+let si=0;function tick(){steps.at(si)();paint();si=(si+1)%steps.length;}
+tick();if(!reduced)setInterval(tick,2400);else{steps.forEach(s=>s());paint();}
+
+/* ---------- animation showcase ---------- */
+const anims=[
+ {id:'summon',title:'Summon',desc:'A Wick bursts out of its lantern onto a lit tile, with a ring of light.',draw:()=>`<circle class="ringfx" cx="120" cy="120" r="6" fill="none" stroke="#FFD58A" stroke-width="4"/><g transform="translate(60,22)"><g class="summon">${creature('fox','ember')}<circle class="heart" cx="60" cy="78" r="6" fill="#FFD58A"/></g></g>`},
+ {id:'attack',title:'Attack',desc:'Wind-up, lunge, impact flash. Damage = Power minus Guard.',draw:()=>`<g transform="translate(150,40) scale(.8)">${creature('crab','tide')}</g><g transform="translate(10,30)"><g class="lungeonce">${creature('lion','gale')}</g></g><circle class="flashonce" cx="168" cy="96" r="22" fill="#FFF3C4" opacity="0"/><text class="flashonce" x="186" y="58" font-family="Fredoka" font-size="20" fill="#FFD58A" opacity="0">-2</text>`},
+ {id:'rewick',title:'Re-wicking',desc:'At level 10, Pip flares white and comes back as Pyrefox.',draw:()=>`<g transform="translate(60,22)"><g class="rewickA">${creature('fox','ember')}</g></g><g transform="translate(46,10) scale(1.22)"><g class="rewickB" opacity="0">${creature('fox','ember')}<path class="flame" d="M30 30c6 8 6 14 2 18c-3 2-6 0-6-4c0-4 2-8 4-14zM62 22c6 8 6 14 2 18c-3 2-6 0-6-4c0-4 2-8 4-14z" fill="#FFD58A"/></g></g><circle class="flashonce" cx="120" cy="96" r="80" fill="#FFF8E0" opacity="0"/>`},
+ {id:'snuff',title:'Snuff',desc:'Murkmoth puts out a tile: the light shrinks and the tile goes dark.',draw:()=>`<polygon points="120,40 178,74 178,140 120,174 62,140 62,74" fill="#25335F" stroke="#34457A" stroke-width="2"/><g class="snuffonce" style="transform-origin:120px 107px"><polygon points="120,40 178,74 178,140 120,174 62,140 62,74" fill="#F2A93B"/></g><g transform="translate(150,2) scale(.6)">${creature('moth','dusk')}</g>`}
+];
+const aEl=document.getElementById('anims');
+const st=document.createElement('style');
+st.textContent=`@keyframes lungeX{0%{transform:translateX(0)}35%{transform:translateX(-10px)}60%{transform:translateX(70px)}100%{transform:translateX(0)}}
+@keyframes flashX{0%,45%{opacity:0}60%{opacity:.95}100%{opacity:0}}
+@keyframes rwA{0%,40%{opacity:1}55%,100%{opacity:0}}@keyframes rwB{0%,50%{opacity:0;transform:scale(.6)}75%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes snX{0%,20%{transform:scale(1);opacity:1}100%{transform:scale(.05);opacity:0}}
+.play .lungeonce{animation:lungeX 1s ease-out both}.play .flashonce{animation:flashX 1.1s ease-out both}
+.play .rewickA{animation:rwA 1.6s ease both}.play .rewickB{animation:rwB 1.6s ease both;transform-box:fill-box;transform-origin:50% 100%}
+.play .snuffonce{animation:snX 1.4s ease-in both}`;
+document.head.appendChild(st);
+aEl.innerHTML=anims.map(a=>`<article class="anim" id="a-${a.id}"><h3>${a.title}</h3><svg viewBox="0 0 240 200" role="img" aria-label="${a.title} animation">${a.draw()}</svg><p class="ab">${a.desc}</p><button id="play-${a.id}">Play again</button></article>`).join('');
+anims.forEach(a=>{const card=document.getElementById('a-'+a.id),btn=document.getElementById('play-'+a.id);
+  const play=()=>{const svg=card.querySelector('svg');const fresh=svg.cloneNode(false);fresh.innerHTML=a.draw();svg.replaceWith(fresh);card.classList.remove('play');void card.offsetWidth;card.classList.add('play');};
+  btn.addEventListener('click',play);setTimeout(play,400);});
+})();
+</script>

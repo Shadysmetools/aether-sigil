@@ -1,0 +1,19 @@
+# Godot engine binaries and downloads (re-download from godotengine.org)
+engine/
+*.zip
+# Godot cache
+.godot/
+**/.godot/
+# Build outputs
+export/
+builds/
+*.apk
+*.aab
+*.ipa
+# Keystores and secrets: never commit
+*.keystore
+*.jks
+export_credentials.cfg
+.env
+# Third-party art packs live outside git (see README for sources)
+assets/
