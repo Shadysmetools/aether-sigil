@@ -30,7 +30,7 @@ Playable prototype (Godot 4.7.2, GDScript). The hex "Emberwick" prototype it rep
 
 Tests: `bash game/run_tests.sh` (import check, data validation of all 120 stages, rules, UI smoke, AI-vs-AI on all 120 stages, main scene for 120 frames).
 
-Mobile export: add `data/*.json` to the export preset's non-resource include filter, or the bible will not ship.
+Mobile export: check that the export includes `data/*.json` (add it to the preset's include filter if needed); the game reads the bible from `res://data/` at startup.
 
 ## What's here
 | Path | What |
