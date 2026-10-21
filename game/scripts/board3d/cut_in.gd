@@ -60,7 +60,7 @@ func advance(dt: float) -> void:
 
 
 func _draw() -> void:
-	var vp := size
+	var vp := get_viewport_rect().size
 	if flash_a > 0.0:
 		draw_rect(Rect2(Vector2.ZERO, vp), Color(flash_col, flash_a))
 	if not active():

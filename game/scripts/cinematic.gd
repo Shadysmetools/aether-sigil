@@ -59,6 +59,8 @@ static func play(host: Node, p_kind: String, p_data: Dictionary) -> Node:
 
 ## Monster art for a bible form id (cut-out, crop or nothing).
 static func art(mon_id: String) -> Texture2D:
+	if mon_id == "" or not Data.has_monster(mon_id):
+		return null
 	var fam := str(Data.monster(mon_id).get("element_family", "")) if mon_id != "" else ""
 	return Assets.monster(mon_id, fam) if mon_id != "" else null
 
@@ -141,6 +143,8 @@ func close() -> void:
 
 
 func _process(delta: float) -> void:
+	view.position = Vector2.ZERO
+	view.size = view.get_viewport_rect().size
 	t += delta
 	_flash = maxf(0.0, _flash - delta * 2.0)
 	if t >= dur:

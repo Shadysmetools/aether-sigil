@@ -6,6 +6,8 @@
 ## Record: Godot.exe --path game --resolution 720x1280 --write-movie out.avi --fixed-fps 30 --script res://tests/demo_recording.gd
 ## Demo shortcut (disclosed): one capsule node is pre-activated for the player so the video can show a
 ## capsule-node summon on turn 1 (normally a monster must stand on the node first).
+## Demo shortcut 2 (disclosed): from round 2, before one of our attacks the target rival's HP is
+## lowered to 1 so the video is guaranteed to show a KO (the statue crumbling to rubble).
 extends SceneTree
 
 const GameState = preload("res://scripts/game_state.gd")
@@ -30,6 +32,14 @@ func mark(label: String) -> void:
 
 func wait(sec: float) -> void:
 	await create_timer(sec).timeout
+
+
+## Waits while the 3D board's statue / transform animations play (max 8 s).
+func anim_idle() -> void:
+	var n := 0
+	while main.board.has_method("anim_busy") and main.board.anim_busy() and n < 80:
+		await wait(0.1)
+		n += 1
 
 
 func advance_dialogue(per_line: float, max_lines: int = 99) -> void:
@@ -86,6 +96,7 @@ func _run() -> void:
 	mark("summon")
 	var used_skill := false
 	var summoned_node := false
+	var did_ko := false
 	while s.winner == GameState.NONE and s.round_num <= 3:
 		if main.dialogue_box.visible:
 			await advance_dialogue(3.0)
@@ -112,7 +123,9 @@ func _run() -> void:
 				main._on_tile(pick.tile)
 				if pick.tile == near_node:
 					summoned_node = true
-				await wait(1.0)
+				await wait(0.3)
+				await anim_idle()
+				await wait(0.4)
 			if s.is_sigil_turn() and s.current == GameState.PLAYER:  # a Crack already ended the Sigil's turn
 				main._on_cmd("Wait")
 			await wait(0.4)
@@ -129,12 +142,35 @@ func _run() -> void:
 			await wait(1.2)
 			main._on_tile(targets[0])
 			used_skill = true
-			await wait(1.2)
+			await wait(0.3)
+			await anim_idle()
+			await wait(0.6)
 			continue
+		if not did_ko and s.round_num >= 2:
+			var victim: GameState.Unit = null
+			for e in s.units:
+				if e.owner == GameState.ENEMY and s.can_attack(GameState.PLAYER, u.id, e.pos) == GameState.OK:
+					victim = e
+					break
+			if victim != null:
+				mark("ko")
+				victim.hp = 1   # demo shortcut 2 (see header)
+				s.force_hit = 1
+				main.mode = main.Mode.UNIT
+				main._on_tile(victim.pos)
+				s.force_hit = -1
+				did_ko = true
+				await wait(0.3)
+				await anim_idle()
+				await wait(0.8)
+				continue
 		AI.take_activation(s, 0, "rush attacker")
 		main._after_action("%s acts" % u.name)
-		await wait(1.0)
+		await wait(0.3)
+		await anim_idle()
+		await wait(0.5)
 	# Victory (forced after 3 rounds to keep the video short).
+	await anim_idle()
 	mark("victory")
 	if s.winner == GameState.NONE:
 		s.symbol_hp[1] = 0
@@ -150,7 +186,7 @@ func _run() -> void:
 	main.show_evolution()
 	await wait(2.5)
 	main._on_evolve(evo_uid)
-	await wait(3.5)
+	await wait(4.4)
 	# Fusion.
 	mark("fusion")
 	var bench: Array = main.progress.roster.filter(func(i): return not main.progress.squad.has(i.uid))
@@ -163,7 +199,7 @@ func _run() -> void:
 	main._on_fusion_toggle(bench[1].uid)
 	await wait(3.5)
 	main._on_fusion_confirm()
-	await wait(3.0)
+	await wait(4.4)
 	# Tower 12 preview.
 	mark("tower12")
 	main.progress.unlocked = Data.stage_count()

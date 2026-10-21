@@ -5,14 +5,17 @@
 ## skill and KO themselves go through the real rules (GameState.attack / skill, forced hit). The
 ## presentation is stepped manually at 30 fps so each still lands on a phase:
 ##   transform-1-crack, -2-shatter, -3-live, -4-attack, -5-repetrify, cutin, ko-crumble, summon-vessel,
-##   summon-statue. --fps=N measures the frame rate over N seconds of repeated transforms (uncapped).
+##   summon-statue. --art-root=<dir> points the asset resolver's painted-art root at <dir> (a folder
+##   with monsters/<id or family>.png cut-outs) and prefixes the stills "painted-". --fps=N measures the frame rate over N seconds of repeated transforms (uncapped).
 extends SceneTree
 
 const GameState = preload("res://scripts/game_state.gd")
 const AI = preload("res://scripts/ai.gd")
 const SAVE := "user://capture_anim_save.json"
+const Assets = preload("res://scripts/assets.gd")
 
 var out := "user://"
+var prefix := ""
 var main: Node
 var board
 
@@ -29,7 +32,7 @@ func _frames(n: int) -> void:
 func snap(name: String) -> void:
 	await process_frame
 	var img := root.get_texture().get_image()
-	var path := out.path_join("%s.png" % name)
+	var path := out.path_join("%s%s.png" % [prefix, name])
 	img.save_png(path)
 	print("saved ", path)
 
@@ -63,6 +66,11 @@ func _run() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--fps="):
 			fps_secs = float(a.trim_prefix("--fps="))
+		elif a.begins_with("--art-root="):
+			Assets.ai_root = a.trim_prefix("--art-root=")
+			Assets.dev_root = ""
+			Assets.clear_cache()
+			prefix = "painted-"
 		elif out == "user://":
 			out = a
 	DirAccess.make_dir_recursive_absolute(out)

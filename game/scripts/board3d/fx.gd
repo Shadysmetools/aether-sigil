@@ -230,14 +230,15 @@ static func _orb_mover(parent: Node3D, from: Vector3, to: Vector3, col: Color, s
 
 ## Delivers an element attack from `from` (attacker chest) to `to` (target chest). `var_k` = skill
 ## variant 0..2 (from the skill name): more / bigger pieces. Returns the travel time to impact.
-static func deliver(parent: Node3D, family: String, from: Vector3, to: Vector3, var_k: int, rng_seed: int) -> float:
+## ground_y: the target's foot height (ground-borne effects: spikes, vines, waves, pillars).
+static func deliver(parent: Node3D, family: String, from: Vector3, to: Vector3, var_k: int, rng_seed: int, ground_y := -999.0) -> float:
 	var kind := str(DELIVERY.get(family, "runes"))
 	var col := Palette.family(family)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = rng_seed
 	var travel: float = TRAVEL.get(kind, 0.15)
 	var n := 1 + var_k * 2
-	var ground := Vector3(to.x, to.y - 0.45, to.z)
+	var ground := Vector3(to.x, to.y - 0.45 if ground_y < -900.0 else ground_y, to.z)
 	match kind:
 		"bolt":
 			for i in n:
@@ -439,10 +440,17 @@ static func impact(parent: Node3D, pos: Vector3, family: String, big: bool) -> v
 static func capsule(parent: Node3D, pos: Vector3, col: Color) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	mi.mesh = Build.crystal_mesh(0.2, 0.42, 0.3, 6)
-	mi.material_override = Mats.crystal(col.lerp(Color.WHITE, 0.2), 1.2)
+	mi.material_override = Mats.crystal(col, 1.0)
 	mi.position = pos
+	mi.scale = Vector3.ONE * 1.6
 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	parent.add_child(mi)
+	var h := MeshInstance3D.new()
+	h.mesh = QuadMesh.new()
+	h.material_override = Mats.halo(col, 0.9)
+	h.scale = Vector3.ONE * 0.9
+	h.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mi.add_child(h)
 	return mi
 
 

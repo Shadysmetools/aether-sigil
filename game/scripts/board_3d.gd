@@ -1330,7 +1330,7 @@ func _beat_attack(act: Dictionary) -> void:
 			t.queued_hp -= info.dmg
 			info["hp"] = t.queued_hp
 			info["effective"] = not info.reflect and GameState.beats(a.family, t.family)
-			if kos.has(t.unit_name) and t.queued_hp <= 0:
+			if kos.has(t.unit_name) and t.dying:
 				info["ko"] = true
 				t.set_meta("claimed", true)
 		infos.append(info)
@@ -1401,13 +1401,16 @@ func _beat_attack(act: Dictionary) -> void:
 				if not is_instance_valid(a):
 					return
 				var to: Vector3
+				var gy := -999.0
 				if info.actor != null and is_instance_valid(info.actor):
 					to = info.actor.chest_world()
+					gy = info.actor.base.y
 				elif info.get("sigil", false):
 					to = info.pos
 				else:
 					to = a.chest_world() + a.facing * 1.2
-				FX.deliver(_fx, fam, a.chest_world(), to, var_k, a.seed + i)])
+					gy = a.base.y
+				FX.deliver(_fx, fam, a.chest_world(), to, var_k, a.seed + i, gy)])
 		else:
 			ti = t_imp + 0.12
 		# extra visual strikes for multi-hit move-sets (ram) land on the first target

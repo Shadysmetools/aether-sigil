@@ -576,10 +576,12 @@ func _on_fusion_confirm() -> void:
 	if res.has("error"):
 		fusion_preview_label.text = "Can't fuse: %s" % res.error
 		return
-	var rid := str(res.get("form_id", ""))
-	Cinematic.play(self, "fusion", {"a_tex": Cinematic.art(str(pa.get("form_id", ""))), "b_tex": Cinematic.art(str(pb.get("form_id", ""))),
-		"to_tex": Cinematic.art(rid), "a_name": str(pa.get("name", "")), "b_name": str(pb.get("name", "")), "to_name": str(res.get("name", "")),
-		"family": str(Data.monster(rid).get("element_family", "Arcane")) if rid != "" else "Arcane"})
+	# a fused monster has no bible form of its own: it is revealed in its primary parent's likeness
+	var a_tex := Cinematic.art(str(pa.get("form_id", "")))
+	var to_tex := Cinematic.art(str(res.get("form_id", ""))) if Data.has_monster(str(res.get("form_id", ""))) else null
+	Cinematic.play(self, "fusion", {"a_tex": a_tex, "b_tex": Cinematic.art(str(pb.get("form_id", ""))),
+		"to_tex": to_tex if to_tex != null else a_tex, "a_name": str(pa.get("name", "")), "b_name": str(pb.get("name", "")), "to_name": str(res.get("name", "")),
+		"family": str(res.get("element_family", "Arcane"))})
 	fused.emit(str(res.uid))
 	show_fusion()
 	fusion_preview_label.text = Story.template("new_monster").format({"name": res.name})
