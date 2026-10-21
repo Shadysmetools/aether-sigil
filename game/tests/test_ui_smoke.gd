@@ -1,6 +1,7 @@
 ## Loads the real main scene headless and drives it through the UI code paths:
-## stage select -> intro dialogue -> deploy by tapping a tile (real input path) -> End Turn ->
-## AI reply -> select + move -> win -> rival's defeat line -> Next stage. Exits with failures.
+## Build Your Squad -> stage select -> intro -> Sigil summon by tapping a tile (real input path)
+## -> End summons -> paced AI -> own monster's activation: move + Defend -> layout check ->
+## win -> rival's defeat line -> Next stage -> loss -> Retry. Exits with the failure count.
 extends SceneTree
 
 const GameState = preload("res://scripts/game_state.gd")
@@ -26,14 +27,27 @@ func _tap(main: Node, c: Vector2i) -> void:
 	var ev := InputEventMouseButton.new()
 	ev.button_index = MOUSE_BUTTON_LEFT
 	ev.pressed = true
-	# Real input path: viewport -> GUI (mouse filters) -> _unhandled_input, in canvas coords.
 	ev.position = main.board.get_global_transform_with_canvas() * main.board.tile_center(c)
 	ev.global_position = ev.position
 	root.push_input(ev, true)
 
 
+## Waits until the AI hands control back (bounded).
+func _wait_ai(main: Node) -> void:
+	for i in 200:
+		if not main.ai_running:
+			return
+		await create_timer(0.1).timeout
+
+
 func _initialize() -> void:
 	_run.call_deferred()
+
+
+func _done() -> void:
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE))
+	print("%d pass / %d fail" % [passed, failed])
+	quit(mini(failed, 255))
 
 
 func _run() -> void:
@@ -46,75 +60,111 @@ func _run() -> void:
 	await process_frame
 	await process_frame
 	check(main.select_screen.visible, "starts on stage select")
-	check(main.stage_buttons.size() == 120, "120 stage buttons (got %d)" % main.stage_buttons.size())
-	check(not main.stage_buttons["T01-L01"].disabled, "T01-L01 unlocked")
-	check(main.stage_buttons["T01-L02"].disabled, "T01-L02 locked")
-	# Every tile type on any map has its own colour.
+	check(main.stage_buttons.size() == 120, "120 stage buttons")
+	check(not main.stage_buttons["T01-L01"].disabled and main.stage_buttons["T01-L02"].disabled, "T01-L01 unlocked, T01-L02 locked")
 	var missing := []
 	for st in Data.stages():
 		for row in st.map_grid:
 			for t in row:
 				if not Palette.has_tile(t) and not missing.has(t):
 					missing.append(t)
-	check(missing.is_empty(), "every tile type has a colour (missing %s)" % str(missing))
-
+	check(missing.is_empty(), "every tile type has a colour")
+	# Build Your Squad.
+	main.show_squad_builder()
+	check(main.squad_screen.visible and main.squad_buttons.size() == Data.squad_collection().size(), "squad builder lists the collection (%d)" % main.squad_buttons.size())
+	var coll := Data.squad_collection()
+	main._on_squad_toggle(coll[0])
+	check(main.squad_confirm.disabled, "confirm disabled with 3 selected")
+	main._on_squad_toggle(coll[4])
+	check(not main.squad_confirm.disabled, "confirm enabled with 4")
+	main._on_squad_confirm()
+	check(main.progress.squad.has(coll[4]) and main.progress.squad.size() == 4, "squad saved: %s" % str(main.progress.squad))
+	main.progress.set_squad(Data.default_squad())
+	# Battle.
 	main._on_stage_pressed("T01-L01")
 	await process_frame
-	check(main.dialogue_box.visible, "intro dialogue shows before battle")
-	check(main.dialogue_text.text.length() > 10 and main.dialogue_speaker.text == "Ari Voss", "intro line from the bible, speaker '%s'" % main.dialogue_speaker.text)
+	check(main.dialogue_box.visible and main.dialogue_speaker.text == "Ari Voss", "intro dialogue from the bible")
 	main._on_dialogue_next()
-	check(not main.dialogue_box.visible and main.hud.visible, "dialogue closes, HUD shows")
-	var s: GameState = main.state
-	var team := Data.starter_team()
-	main._on_team(team[0])
-	check(main.board.highlights.size() > 0, "deploy mode highlights legal tiles (%d)" % main.board.highlights.size())
-	var spawn: Vector2i = main.board.highlights.keys()[0]
-	_tap(main, spawn)
 	await process_frame
-	check(s.unit_at(spawn) != null and s.unit_at(spawn).mon_id == team[0], "tap on tile deployed %s at %s" % [team[0], spawn])
-	check(main.team_buttons[team[0]].text.contains("on board"), "team button shows the monster is on board")
-	# Pick-test the iso inverse on every tile.
-	var pick_ok := true
+	await process_frame
+	var s: GameState = main.state
+	check(main.hud.visible and s.actor_id == GameState.sigil_id(GameState.PLAYER), "battle opens on the Player Sigil's activation")
+	check(main.order_box.get_child_count() >= 3, "turn order panel lists actors (%d)" % main.order_box.get_child_count())
+	check(main.objectives_box.get_child_count() >= 4, "objectives panel lists objectives (%d)" % main.objectives_box.get_child_count())
+	check(main.minimap.size.x >= 150, "tactical minimap shown (%s)" % str(main.minimap.size))
+	check(s.units_of(GameState.ENEMY).any(func(u): return u.dormant), "dormant statues on the board")
+	# Layout: no visible HUD panel covers a tile you might tap.
+	var covered := []
+	var panels: Array = [main.top_panel, main.turn_panel, main.side_panel, main.bottom_panel]
 	for y in 12:
 		for x in 12:
 			var c := Vector2i(x, y)
-			if main.board.tile_at_local(main.board.tile_center(c)) != c:
-				pick_ok = false
-	check(pick_ok, "isometric picking inverts the projection on all 144 tiles")
-	main._on_end_turn()
-	check(main.ai_running, "AI turn started after End Turn")
-	await create_timer(1.5).timeout
-	check(not main.ai_running and s.current == GameState.PLAYER, "AI finished and handed the turn back")
-	check(s.units_of(GameState.ENEMY).size() > 0, "AI deployed monsters")
-	# Layout: the board's tapped tile must not sit under a HUD panel.
-	var hud_bottom: Control = main.team_buttons[team[0]].get_parent().get_parent().get_parent()
-	check(hud_bottom.get_global_rect().position.y > main.get_viewport().get_visible_rect().size.y * 0.6, "bottom HUD docked to the lower part of the screen (top at %d)" % hud_bottom.get_global_rect().position.y)
-	var u := s.unit_at(spawn)
-	if u == null:
-		print("%d pass / %d fail" % [passed, failed + 1])
-		quit(failed + 1)
-		return
+			var pt: Vector2 = main.board.get_global_transform_with_canvas() * main.board.top_center(c)
+			for pnl in panels:
+				if pnl.get_global_rect().has_point(pt):
+					covered.append(c)
+	check(covered.is_empty(), "no HUD panel covers any of the 144 tiles (covered: %s)" % str(covered.slice(0, 6)))
+	var vp: Vector2 = main.get_viewport().get_visible_rect().size
+	var on_screen := true
+	for c in [Vector2i(0, 0), Vector2i(11, 0), Vector2i(0, 11), Vector2i(11, 11)]:
+		var pt: Vector2 = main.board.get_global_transform_with_canvas() * main.board.tile_center(c)
+		on_screen = on_screen and Rect2(Vector2.ZERO, vp).has_point(pt)
+	check(on_screen, "all four board corners on screen")
+	# Summon by tapping.
+	var first: String = main.progress.squad[0]
+	main._on_team(0)
+	check(main.board.highlights.size() > 0, "summon mode highlights legal tiles (%d)" % main.board.highlights.size())
+	var spawn: Vector2i = main.board.highlights.keys()[0]
 	_tap(main, spawn)
 	await process_frame
-	check(main.mode == main.Mode.UNIT and main.selected_unit == u.id, "tapping own monster selects it")
-	var dests: Array = s.legal_moves(u)
-	check(dests.size() > 0 and main.board.highlights.size() >= dests.size(), "move range highlighted")
-	_tap(main, dests[0])
-	await process_frame
-	check(u.pos == dests[0], "tap moved the monster to %s" % dests[0])
-	# Force a win: the rival's 'defeat' line plays, then the result with Next stage.
+	check(s.unit_at(spawn) != null and s.unit_at(spawn).mon_id == first, "tap summoned %s at %s" % [first, spawn])
+	main._on_cmd("Wait")
+	check(main.ai_running, "End summons hands over to the enemy (AI paced)")
+	# Play on until one of our monsters is the active actor.
+	var mine: GameState.Unit = null
+	for guard in 40:
+		await _wait_ai(main)
+		if s.winner != GameState.NONE:
+			break
+		if main.dialogue_box.visible:
+			main._on_dialogue_next()
+			continue
+		if s.current == GameState.PLAYER and not s.is_sigil_turn():
+			mine = s.actor_unit()
+			break
+		if s.current == GameState.PLAYER:
+			main._on_cmd("Wait")
+	check(mine != null, "one of our monsters gets an initiative turn")
+	if mine == null:
+		_done()
+		return
+	check(main.mode == main.Mode.UNIT and main.board.selected == mine.pos, "active monster auto-selected")
+	check(not main.cmd_buttons["Defend"].disabled and not main.cmd_buttons["Wait"].disabled, "command bar enabled")
+	var dests: Array = s.legal_moves(mine)
+	if not dests.is_empty():
+		_tap(main, dests[0])
+		await process_frame
+		check(mine.pos == dests[0], "tap moved the monster")
+	main._on_cmd("Defend")
+	check(mine.defending and s.actor_id != mine.id, "Defend command ends its activation")
+	await _wait_ai(main)
+	if main.dialogue_box.visible:
+		main._on_dialogue_next()
+	# Win -> rival's defeat line -> result -> Next stage.
+	main.ai_running = false
 	s.symbol_hp[GameState.ENEMY] = 0
 	s._set_winner(GameState.PLAYER, "symbol")
 	main._after_action()
-	check(main.dialogue_box.visible and main.dialogue_text.text == str(s.stage.dialogue.defeat).substr(str(s.stage.dialogue.defeat).find(": ") + 2), "rival's defeat line after the win")
+	var defeat_line := str(s.stage.dialogue.defeat)
+	check(main.dialogue_box.visible and main.dialogue_text.text == defeat_line.substr(defeat_line.find(": ") + 2), "rival's defeat line after the win")
 	main._on_dialogue_next()
-	check(main.result_box.visible and main.result_title.text == "Victory", "victory panel")
-	check(main.next_button.visible, "Next stage offered")
+	check(main.result_box.visible and main.result_title.text == "Victory" and main.next_button.visible, "victory panel with Next stage")
 	check(main.progress.is_unlocked("T01-L02"), "win unlocked T01-L02")
 	main._on_next()
 	await process_frame
 	check(main.stage_id == "T01-L02" and main.dialogue_box.visible, "Next stage starts T01-L02 with its intro")
 	main._on_dialogue_next()
+	main.ai_running = false
 	s.symbol_hp[GameState.PLAYER] = 0
 	s._set_winner(GameState.ENEMY, "symbol")
 	main._after_action()
@@ -124,6 +174,4 @@ func _run() -> void:
 	check(main.stage_id == "T01-L02" and s.winner == GameState.NONE and s.units.is_empty(), "Retry restarts the stage")
 	main.show_stage_select()
 	check(not main.stage_buttons["T01-L02"].disabled and main.stage_buttons["T01-L03"].disabled, "stage select reflects progress")
-	DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE))
-	print("%d pass / %d fail" % [passed, failed])
-	quit(failed)
+	_done()

@@ -89,20 +89,50 @@ static func draw_portal(ci: CanvasItem, t: Vector2, w: float, h: float, active: 
 	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
-## Sigil (a Symbol): gold eight-point compass star on a pillar, ringed in the owner colour, HP bar.
+## Sigil (a side's Symbol, the commander): a large faceted crystal floating over a stone pedestal
+## that carries the gold compass-star motif, ringed in the owner colour, with an HP bar.
+## Deliberately bigger and taller than the capsule-node Prism so the two never read alike.
 static func draw_symbol(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int, hp: int, max_hp: int) -> void:
-	var c := t + Vector2(0, -h * 0.75)
-	var r := h * 0.62
+	var side := Palette.side(owner)
+	# pedestal: a small raised block
+	var pw := w * 0.5
+	var ph := h * 0.5
+	var lift := h * 0.45
+	var base := t
+	var top := base - Vector2(0, lift)
+	var left := PackedVector2Array([top + Vector2(-pw / 2, 0), top + Vector2(0, ph / 2), base + Vector2(0, ph / 2), base + Vector2(-pw / 2, 0)])
+	var right := PackedVector2Array([top + Vector2(0, ph / 2), top + Vector2(pw / 2, 0), base + Vector2(pw / 2, 0), base + Vector2(0, ph / 2)])
+	var stone := Palette.SOFT_SILVER.lerp(Palette.MIDNIGHT_NAVY, 0.45)
+	ci.draw_colored_polygon(left, stone.darkened(0.3))
+	ci.draw_colored_polygon(right, stone.darkened(0.5))
+	ci.draw_colored_polygon(_diamond(top, pw, ph), stone)
+	# owner ring on the pedestal top
+	ci.draw_set_transform(top, 0.0, Vector2(1.0, 0.5))
+	ci.draw_arc(Vector2.ZERO, pw * 0.42, 0, TAU, 32, side, 3.0)
+	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	# compass star on the pedestal's front face
+	var star_c := base + Vector2(0, ph * 0.25 - lift * 0.45)
+	var r := h * 0.2
 	var pts := PackedVector2Array()
 	for i in 16:
 		var a := -PI / 2 + i * TAU / 16
-		var rr := r if i % 4 == 0 else (r * 0.6 if i % 2 == 0 else r * 0.3)
-		pts.append(c + Vector2(cos(a), sin(a)) * rr)
-	ci.draw_circle(c, r * 0.95, Palette.side(owner).darkened(0.55))
-	ci.draw_arc(c, r * 0.95, 0, TAU, 32, Palette.side(owner), 3.0)
+		var rr := r if i % 4 == 0 else (r * 0.55 if i % 2 == 0 else r * 0.28)
+		pts.append(star_c + Vector2(cos(a), sin(a)) * rr)
 	ci.draw_colored_polygon(pts, Palette.SIGIL_GOLD)
-	ci.draw_circle(c, r * 0.14, Palette.MIDNIGHT_NAVY)
-	_hp_bar(ci, c + Vector2(0, -r - 12), w * 0.6, hp, max_hp, Palette.side(owner))
+	# floating crystal: tall bipyramid, two shaded facets, gold edge
+	var cc := top + Vector2(0, -h * 0.95)
+	var ch := h * 0.85
+	var cw := w * 0.17
+	var apex := cc + Vector2(0, -ch)
+	var foot := cc + Vector2(0, ch * 0.45)
+	var lft := cc + Vector2(-cw, 0)
+	var rgt := cc + Vector2(cw, 0)
+	var mid := cc + Vector2(cw * 0.15, ch * 0.05)
+	ci.draw_colored_polygon(PackedVector2Array([apex, lft, foot, mid]), side.lightened(0.15))
+	ci.draw_colored_polygon(PackedVector2Array([apex, mid, foot, rgt]), side.darkened(0.35))
+	ci.draw_polyline(PackedVector2Array([apex, lft, foot, rgt, apex]), Palette.SIGIL_GOLD, 2.0)
+	ci.draw_line(apex, mid, Palette.SOFT_SILVER, 1.0)
+	_hp_bar(ci, apex + Vector2(0, -12), w * 0.6, hp, max_hp, side)
 
 
 static func _hp_bar(ci: CanvasItem, c: Vector2, width: float, hp: int, max_hp: int, col: Color) -> void:
@@ -114,7 +144,7 @@ static func _hp_bar(ci: CanvasItem, c: Vector2, width: float, hp: int, max_hp: i
 
 
 ## Monster token: family-coloured disc, owner ring, element initial, HP number underneath.
-static func draw_unit(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int, family: String, element: String, hp: int, max_hp: int, spent: bool) -> void:
+static func draw_unit(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int, family: String, element: String, hp: int, max_hp: int, spent: bool, dormant: bool = false) -> void:
 	var r := h * 0.5
 	var c := t + Vector2(0, -r * 0.9)
 	ci.draw_set_transform(t, 0.0, Vector2(1.0, 0.5))
@@ -123,6 +153,8 @@ static func draw_unit(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int
 	var fill := Palette.family(family)
 	if spent:
 		fill = fill.lerp(Palette.MIDNIGHT_NAVY, 0.45)
+	if dormant:  # ruins statue: grey stone until it awakens
+		fill = Palette.SOFT_SILVER.lerp(Palette.MIDNIGHT_NAVY, 0.5)
 	ci.draw_circle(c, r, fill)
 	ci.draw_arc(c, r, 0, TAU, 32, Palette.side(owner), 4.0)
 	var f := font()
@@ -145,3 +177,30 @@ static func draw_highlight(ci: CanvasItem, t: Vector2, w: float, h: float, col: 
 	ci.draw_colored_polygon(face, Color(col, 0.35))
 	face.append(face[0])
 	ci.draw_polyline(face, col, 2.5)
+
+
+## Tactical minimap: top-down 12x12, player corner bottom-left (same side as the iso view).
+## Tiles by type colour, Sigils as rings, monsters as dots, relics gold, capsule nodes as small prisms.
+static func draw_minimap(ci: CanvasItem, rect: Rect2, state) -> void:
+	if state == null or state.grid.is_empty():
+		return
+	var n := 12
+	var cell := floorf(minf(rect.size.x, rect.size.y) / n)
+	var origin := rect.position + (rect.size - Vector2(cell * n, cell * n)) / 2.0
+	var at := func(c: Vector2i) -> Vector2:
+		return origin + Vector2(c.x * cell, (n - 1 - c.y) * cell)
+	ci.draw_rect(Rect2(origin - Vector2(2, 2), Vector2(cell * n + 4, cell * n + 4)), Palette.MIDNIGHT_NAVY)
+	for y in n:
+		for x in n:
+			var c := Vector2i(x, y)
+			ci.draw_rect(Rect2(at.call(c), Vector2(cell - 1, cell - 1)), Palette.tile(state.tile_type(c)))
+	for c in state.relics:
+		ci.draw_circle(at.call(c) + Vector2(cell, cell) / 2, cell * 0.3, Palette.SIGIL_GOLD)
+	for c in state.nodes:
+		var m: Vector2 = at.call(c) + Vector2(cell, cell) / 2
+		ci.draw_colored_polygon(PackedVector2Array([m + Vector2(0, -cell * 0.4), m + Vector2(cell * 0.25, 0), m + Vector2(0, cell * 0.4), m + Vector2(-cell * 0.25, 0)]), Palette.side(state.nodes[c]))
+	for side in 2:
+		var sp: Vector2 = at.call(state.symbol_pos[side]) + Vector2(cell, cell) / 2
+		ci.draw_arc(sp, cell * 0.45, 0, TAU, 16, Palette.side(side), 2.5)
+	for u in state.units:
+		ci.draw_circle(at.call(u.pos) + Vector2(cell, cell) / 2, cell * 0.32, Palette.side(u.owner))

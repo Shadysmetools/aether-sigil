@@ -80,5 +80,5 @@ func _draw_tile(c: Vector2i) -> void:
 		Art.draw_symbol(self, top, TILE_W, TILE_H, sym, state.symbol_hp[sym], state.symbol_max)
 	var u := state.unit_at(c)
 	if u != null:
-		var spent: bool = u.owner == state.current and u.moved and u.attacked
-		Art.draw_unit(self, top, TILE_W, TILE_H, u.owner, u.family, u.element, u.hp, u.max_hp, spent)
+		var spent: bool = u.moved and u.attacked
+		Art.draw_unit(self, top, TILE_W, TILE_H, u.owner, u.family, u.element, u.hp, u.max_hp, spent, u.dormant)
