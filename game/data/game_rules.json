@@ -2,27 +2,53 @@
   "_doc": [
     "Aether Sigil rules tables. ONE file for every number and interpretation the bible does not define.",
     "The bible (AETHER_SIGIL_MASTER_GAME_BIBLE.json) stays the source of truth for maps, rosters, monsters and dialogue; nothing here edits it.",
-    "Coordinates: a tile [x, y] in the bible means map_grid[y][x] (544 of 564 objective tiles agree with this reading; 465 with the transpose)."
+    "Battle-screen design (owner, 2026-10-20) overrides the bible where they conflict: initiative turn order, 5 commands, terrain percentages, line of sight, multi-objectives, Player Sigil as commander, dormant statues, squad of 4.",
+    "Maps: map_grid is the source of truth (BALANCE-REPORT section 2: JSON spawn/objective coordinates disagree with the grid on 483 of 720 spawns). Symbols, spawns, capsule nodes, relics and gates are read from grid tiles; the JSON coordinate lists are only reported as data findings."
   ],
   "damage": {
-    "_doc": "damage = max(1, attack - defense). Then x advantage_mult if the attacker's family beats the defender's, x disadvantage_mult if the defender's family beats the attacker's (floored, min 1). Light and Dark beat each other.",
-    "advantage_mult": 1.5,
-    "disadvantage_mult": 0.75
+    "_doc": "damage = max(1, round(1.5 * atk^2 / (atk + def))) x modifiers (skill, high ground, mark, defend, element), result rounded, min 1. Replaces max(1, atk - def), under which 42% of matchups dealt 1 damage and the median was 41 hits to KO (BALANCE-REPORT section 4). Source: docs/BALANCE-REPORT.md (design agent, 2026-10-21).",
+    "scale": 1.5,
+    "advantage_mult": 1.25,
+    "disadvantage_mult": 0.8
   },
   "element_chart": {
-    "_doc": "The bible and PDF define 12 element_families but no relationships, so this chart is original. Each family beats exactly 2 and is beaten by exactly 2 (balanced). Only Light<->Dark is mutual.",
-    "Water": ["Fire", "Earth"],
-    "Fire": ["Nature", "Ice"],
-    "Nature": ["Water", "Earth"],
-    "Earth": ["Lightning", "Fire"],
-    "Lightning": ["Water", "Wind"],
-    "Wind": ["Nature", "Tech"],
-    "Ice": ["Wind", "Space"],
-    "Tech": ["Ice", "Lightning"],
-    "Light": ["Dark", "Arcane"],
-    "Dark": ["Light", "Space"],
-    "Arcane": ["Tech", "Dark"],
-    "Space": ["Light", "Arcane"]
+    "_doc": "Three rings of four (BALANCE-REPORT element section). Each family beats the next in its ring (x1.25) and takes x0.8 from the one before; families in different rings, or opposite in a ring, are neutral. Rings: Fire>Wind>Earth>Water>Fire; Lightning>Tech>Ice>Nature>Lightning; Light>Dark>Arcane>Space>Light. Source: docs/BALANCE-REPORT.md (design agent, 2026-10-21).",
+    "Fire": [
+      "Wind"
+    ],
+    "Wind": [
+      "Earth"
+    ],
+    "Earth": [
+      "Water"
+    ],
+    "Water": [
+      "Fire"
+    ],
+    "Lightning": [
+      "Tech"
+    ],
+    "Tech": [
+      "Ice"
+    ],
+    "Ice": [
+      "Nature"
+    ],
+    "Nature": [
+      "Lightning"
+    ],
+    "Light": [
+      "Dark"
+    ],
+    "Dark": [
+      "Arcane"
+    ],
+    "Arcane": [
+      "Space"
+    ],
+    "Space": [
+      "Light"
+    ]
   },
   "terrain_bonus": {
     "_doc": "A monster on a terrain tile matching its element_family gets +family_atk attack and +family_def defense ('terrain advantage zones'). 'mixed' gives every family +mixed_def defense. Elevation and stone bonuses below are terrain bonuses too, so 'Terrain bonuses are doubled' doubles all of them.",
@@ -32,47 +58,374 @@
   },
   "tiles": {
     "_doc": "Every tile type in the legend of all 120 maps, plus 'stone' (used on maps but missing from every legend). walkable=false blocks movement. move_cost is movement points to enter. raise is the drawn block height (0..1).",
-    "ground":        {"walkable": true,  "move_cost": 1},
-    "stone":         {"walkable": true,  "move_cost": 1, "def_bonus": 2, "raise": 0.35, "_doc": "Not in any legend (data finding). Treated as raised stone cover: +2 defense."},
-    "obstacle":      {"walkable": false, "raise": 0.8},
-    "bridge":        {"walkable": true,  "move_cost": 1, "_doc": "Crossable chokepoint: walkable, 1-wide by map design. AI styles value holding it."},
-    "capsule_node":  {"walkable": true,  "move_cost": 1, "_doc": "Deployment/recharge node. Captured by ending your turn on it. Owner may deploy onto it; owner's units starting a turn on it heal recharge_pct of max HP."},
-    "player_symbol": {"walkable": false, "symbol": 0},
-    "enemy_symbol":  {"walkable": false, "symbol": 1},
-    "player_spawn":  {"walkable": true,  "move_cost": 1, "spawn": 0},
-    "enemy_spawn":   {"walkable": true,  "move_cost": 1, "spawn": 1},
-    "relic":         {"walkable": true,  "move_cost": 1, "_doc": "Optional scoring objective. Secured by ending your turn on it; counts toward 'secure 3 relic nodes'."},
-    "warp_gate":     {"walkable": true,  "move_cost": 1, "_doc": "Teleport tile. Every map has at most ONE gate, so there is no gate-to-gate link (data finding). Gates are dormant unless the stage rule 'One random portal activates each round' activates one; an active gate sends a unit that ends its move on it to the mirrored tile (11-x, 11-y), or the nearest free walkable tile to it."},
-    "elevation":     {"walkable": true,  "move_cost": 2, "atk_bonus": 3, "range_bonus": 1, "raise": 0.6, "_doc": "High ground: +3 attack, +1 range, costs 2 to climb onto."},
-    "hazard":        {"walkable": true,  "move_cost": 1, "_doc": "A unit ending its owner's turn here takes hazard_damage_per_tier x tier, tier parsed from the stage's 'X hazard tier N' (1 if absent)."},
-    "forest":        {"walkable": true,  "move_cost": 1, "family": ["Nature"]},
-    "lava":          {"walkable": true,  "move_cost": 1, "family": ["Fire"]},
-    "water":         {"walkable": true,  "move_cost": 1, "family": ["Water"]},
-    "ice":           {"walkable": true,  "move_cost": 1, "family": ["Ice"]},
-    "metal":         {"walkable": true,  "move_cost": 1, "family": ["Tech"]},
-    "sky":           {"walkable": true,  "move_cost": 1, "family": ["Wind"]},
-    "shadow":        {"walkable": true,  "move_cost": 1, "family": ["Dark"]},
-    "ruins":         {"walkable": true,  "move_cost": 1, "family": ["Earth"]},
-    "space":         {"walkable": true,  "move_cost": 1, "family": ["Space"]},
-    "crystal":       {"walkable": true,  "move_cost": 1, "family": ["Earth", "Arcane"], "_doc": "The 'Crystal' element is in the Earth family; crystal also reads as arcane, so both match."},
-    "rift":          {"walkable": true,  "move_cost": 1, "family": ["Arcane"]},
-    "mixed":         {"walkable": true,  "move_cost": 1, "mixed": true}
+    "ground": {
+      "walkable": true,
+      "move_cost": 1
+    },
+    "stone": {
+      "walkable": true,
+      "move_cost": 1,
+      "def_bonus": 2,
+      "raise": 0.35,
+      "_doc": "'stone' is painted on 12 maps but missing from every map_legend. Choice (coordinator, 2026-10-21): walkable and does NOT block line of sight; drawn as a raised slab giving +2 defense cover. BALANCE-REPORT's main run treated it as LOS-blocking; it found only T08-L01 changes path length if stone blocks movement."
+    },
+    "obstacle": {
+      "walkable": false,
+      "blocks_los": true,
+      "raise": 0.8,
+      "_doc": "Ruins/column/obstacle (design): blocks movement and line of sight for ranged attacks."
+    },
+    "bridge": {
+      "walkable": true,
+      "move_cost": 1,
+      "_doc": "Design: narrow chokepoint, 1 unit wide (one tile holds one unit; maps paint bridges 1 tile wide)."
+    },
+    "capsule_node": {
+      "walkable": true,
+      "move_cost": 1,
+      "_doc": "Deployment/recharge node. Captured by ending your turn on it. Owner may deploy onto it; owner's units starting a turn on it heal recharge_pct of max HP."
+    },
+    "player_symbol": {
+      "walkable": false,
+      "symbol": 0
+    },
+    "enemy_symbol": {
+      "walkable": false,
+      "symbol": 1
+    },
+    "player_spawn": {
+      "walkable": true,
+      "move_cost": 1,
+      "spawn": 0
+    },
+    "enemy_spawn": {
+      "walkable": true,
+      "move_cost": 1,
+      "spawn": 1
+    },
+    "relic": {
+      "walkable": true,
+      "move_cost": 1,
+      "_doc": "Optional scoring objective. Secured by ending your turn on it; counts toward 'secure 3 relic nodes'."
+    },
+    "warp_gate": {
+      "walkable": true,
+      "move_cost": 1,
+      "_doc": "Teleport tile. Every map has at most ONE gate, so there is no gate-to-gate link (data finding). Gates are dormant unless the stage rule 'One random portal activates each round' activates one; an active gate sends a unit that ends its move on it to the mirrored tile (11-x, 11-y), or the nearest free walkable tile to it."
+    },
+    "elevation": {
+      "walkable": true,
+      "move_cost": 2,
+      "dmg_pct": 30,
+      "acc_bonus": 15,
+      "range_bonus": 1,
+      "raise": 0.6,
+      "_doc": "High ground (design): +30% damage dealt, +15 accuracy, +1 range; costs 2 to climb."
+    },
+    "hazard": {
+      "walkable": true,
+      "move_cost": 1,
+      "move_penalty": 1,
+      "start_damage_per_tier": 8,
+      "_doc": "Design: -1 move and continuous damage at the start of the unit's activation: start_damage_per_tier x tier (tier parsed from the stage's 'X hazard tier N', 1 if absent)."
+    },
+    "forest": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Nature"
+      ]
+    },
+    "lava": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Fire"
+      ]
+    },
+    "water": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Water"
+      ],
+      "start_damage": 5,
+      "move_penalty": 1,
+      "_doc": "Design: a unit starting its activation here has -1 move and takes start_damage (Water-family too unless water_family_immune). Water-family monsters still get the family terrain bonus."
+    },
+    "ice": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Ice"
+      ]
+    },
+    "metal": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Tech"
+      ]
+    },
+    "sky": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Wind"
+      ]
+    },
+    "shadow": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Dark"
+      ]
+    },
+    "ruins": {
+      "walkable": false,
+      "blocks_los": true,
+      "raise": 0.8,
+      "_doc": "Design: ruins/columns block movement and line of sight. 'ruins' is in every legend but painted on no map, so this has no effect on the 120 shipped stages."
+    },
+    "space": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Space"
+      ]
+    },
+    "crystal": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Earth",
+        "Arcane"
+      ],
+      "_doc": "The 'Crystal' element is in the Earth family; crystal also reads as arcane, so both match."
+    },
+    "rift": {
+      "walkable": true,
+      "move_cost": 1,
+      "family": [
+        "Arcane"
+      ]
+    },
+    "mixed": {
+      "walkable": true,
+      "move_cost": 1,
+      "mixed": true
+    }
   },
-  "symbol": {"_doc": "Symbol HP/defense are not in the data. A Symbol blocks movement and is attacked like a unit with no element.", "hp": 120, "defense": 10},
-  "hazard_damage_per_tier": 8,
+  "symbol": {
+    "_doc": "The Player Sigil / enemy Symbol: a crystal on a pedestal on the *_symbol tile, the side's commander. HP/defense are not in the data. It blocks movement and is attacked like a unit with no element; if it falls, its side loses.",
+    "hp": 120,
+    "defense": 10
+  },
   "recharge_pct": 20,
-  "ap": {"_doc": "Action points exist only for 'Capsules cost 1 AP to deploy'. Without that rule deploying is free.", "per_turn": 1, "cap": 3, "start": 1},
+  "ap": {
+    "_doc": "AP accrues +1 per own Sigil activation (cap 3, start 0). Only spent when the stage rule 'Capsules cost 1 AP to deploy' applies.",
+    "per_sigil_activation": 1,
+    "cap": 3,
+    "start": 0
+  },
   "relics_to_win": 3,
   "special_rules": {
     "_doc": "Rule table keyed by the exact special_rule text in the bible. Any text not listed here is reported as unimplemented by tests/test_data.gd.",
-    "Terrain bonuses are doubled": {"terrain_mult": 2},
-    "Movement after a knockout is +1": {"ko_move_bonus": 1, "_doc": "After a side KOs an enemy monster, all its monsters get +1 move for the rest of that turn and its next turn."},
-    "One random portal activates each round": {"random_portal": true},
-    "Capsules cost 1 AP to deploy": {"deploy_ap_cost": 1}
+    "Terrain bonuses are doubled": {
+      "terrain_mult": 2,
+      "_doc": "Doubles family bonuses, stone defense, high-ground +30% damage (to +60%) and +15 accuracy (to +30). Range bonus is not doubled."
+    },
+    "Movement after a knockout is +1": {
+      "ko_move_bonus": 1,
+      "_doc": "After a side KOs an enemy monster, all its monsters get +1 move for the rest of this round and all of the next."
+    },
+    "One random portal activates each round": {
+      "random_portal": true,
+      "_doc": "Each round one warp gate (seeded RNG) is active; a unit ending a move on it warps to the mirrored tile (11-x, 11-y) or the nearest free tile. Every map has 1 gate, so the destination is invented and 'random' has nothing to choose between."
+    },
+    "Capsules cost 1 AP to deploy": {
+      "deploy_ap_cost": 1,
+      "_doc": "Each summon costs 1 AP; AP comes +1 per Sigil activation, so 1 summon per activation instead of 2."
+    }
   },
-  "starter_team": {
-    "_doc": "The player's starting 5. One per role (Guardian, Striker, Artillery, Scout, Support), five different families, chosen as the strongest Common/Uncommon of each role by hp/5 + 1.5*atk + def + 3*move + 3*range. In this data rarity does not predict stats (Commons average the same as every tier).",
-    "ids": ["MON-0033", "MON-0640", "MON-0077", "MON-0596", "MON-0099"]
+  "turn_cap_rounds": 60,
+  "water_family_immune": false,
+  "accuracy": {
+    "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG.",
+    "base": 90,
+    "min": 5,
+    "max": 100,
+    "veil_penalty": 30
   },
-  "turn_cap_rounds": 60
+  "defend": {
+    "_doc": "Defend command: damage taken x mult until the unit's next activation.",
+    "mult": 0.5
+  },
+  "initiative": {
+    "_doc": "Turn order (design): every actor acts once per round, highest score first. score = move*move_weight + range. Ties interleave the two sides (player first), then lower unit id. Both Sigils act first each round (player, then enemy). The order is rebuilt each round from units on the board; monsters summoned mid-round join next round.",
+    "move_weight": 10,
+    "sigil_score": 1000
+  },
+  "summon": {
+    "_doc": "Capsule summon (design): the summoner is not on the board; on its Sigil's activation a side summons squad monsters onto its spawn tiles or the capsule nodes it has activated.",
+    "per_sigil_activation": 2
+  },
+  "skill": {
+    "_doc": "Skill command = the monster's ability, mapped to an effect type in 'abilities'. Usable again after `cooldown` own activations.",
+    "cooldown": 3
+  },
+  "dormant_start": {
+    "_doc": "Design battle-start mechanic for ruins-themed stages: up to `statues` enemy roster monsters start on enemy spawn tiles as dormant statues (a visual flag; still targetable) and awaken at their first activation. 'Ruins-themed' is an interpretation: terrain 'Ancient' (Tower 08) plus the design's own example stage.",
+    "terrains": [
+      "Ancient"
+    ],
+    "stage_ids": [
+      "T01-L01"
+    ],
+    "statues": 3
+  },
+  "objectives": {
+    "_doc": "Multi-objective list (design). The primary win is the stage's win_condition from the bible; losing the Player Sigil loses; the rest are tracked bonus objectives. Destroying every enemy monster is a bonus, not a win.",
+    "primary_symbol": "Destroy the enemy Symbol",
+    "primary_relics": "or secure %d relic nodes",
+    "protect": "Protect the Player Sigil",
+    "defeat_all": "Defeat all enemy monsters",
+    "capsule_nodes": "Activate capsule nodes",
+    "golden_relic": "Obtain the golden relic"
+  },
+  "squad": {
+    "_doc": "Squad of 4. Default = the design agent's recommended starter squad (BALANCE-REPORT section 11): Cinderhopperor (Water Guardian), Feraldrakea (Earth Support), Aerospriteum (Fire Scout), Spectratuskon (Space Artillery); fair, not strongest. The Build Your Squad collection adds the 5 earlier picks (strongest Common/Uncommon per role), which the 2026-10-20 sims showed are much stronger.",
+    "size": 4,
+    "collection": [
+      "MON-0177",
+      "MON-0011",
+      "MON-0188",
+      "MON-0573",
+      "MON-0033",
+      "MON-0640",
+      "MON-0077",
+      "MON-0596",
+      "MON-0099"
+    ],
+    "default": [
+      "MON-0177",
+      "MON-0011",
+      "MON-0188",
+      "MON-0573"
+    ]
+  },
+  "abilities": {
+    "_doc": "Skill effect per ability. The bible's descriptions are mostly passives; each is SIMPLIFIED to one active effect type: strike (damage x mult), pull (strike, then drag target 1 tile toward user), chain (strike, then chain_mult to the nearest other enemy within radius), mark (next hit on target x mult; radius>0 marks all enemies within radius), root (damage x mult if mult>0; target cannot move on its next activation), pulse (damage x mult to every enemy within radius, ignores line of sight), heal (pct of max HP, x nature_mult on Nature terrain), guard (defend at mult, reflect% of damage back to attackers), ward (an adjacent ally defends), blink (teleport to a free tile within range; nodes_only = capsule node/relic/warp gate; once = once per battle), veil (-veil_penalty enemy accuracy until this unit attacks).",
+    "Phase Step": {
+      "type": "blink",
+      "range": 3,
+      "simplified": "Ignores an obstacle -> blink up to 3 tiles."
+    },
+    "Ember Mark": {
+      "type": "mark",
+      "mult": 1.5
+    },
+    "Tidal Pull": {
+      "type": "pull",
+      "mult": 1.0
+    },
+    "Verdant Renewal": {
+      "type": "heal",
+      "pct": 20,
+      "nature_mult": 2,
+      "simplified": "Regen when ending on Nature -> active heal, doubled on Nature terrain."
+    },
+    "Storm Dash": {
+      "type": "strike",
+      "mult": 1.25,
+      "simplified": "Move again after a KO -> strike x1.25."
+    },
+    "Frost Lock": {
+      "type": "root",
+      "mult": 0.8,
+      "simplified": "A crit roots -> strike x0.8 that always roots."
+    },
+    "Void Echo": {
+      "type": "strike",
+      "mult": 1.2,
+      "simplified": "Repeats a nearby ability -> strike x1.2."
+    },
+    "Gravity Well": {
+      "type": "root",
+      "mult": 0,
+      "simplified": "Movement-reducing zone -> root the target (no damage)."
+    },
+    "Lumen Ward": {
+      "type": "ward",
+      "simplified": "Blocks the next status on an adjacent ally -> that ally defends."
+    },
+    "Metal Skin": {
+      "type": "guard",
+      "mult": 0.35,
+      "reflect": 0,
+      "simplified": "Passive damage reduction -> strong guard."
+    },
+    "Astral Shift": {
+      "type": "blink",
+      "range": 99,
+      "nodes_only": true,
+      "once": true
+    },
+    "Rift Bite": {
+      "type": "strike",
+      "mult": 1.1,
+      "portal_mult": 1.5,
+      "simplified": "x1.5 vs targets on warp gates or hazards, else x1.1."
+    },
+    "Crystal Bloom": {
+      "type": "ward",
+      "simplified": "Defensive crystal on an adjacent tile -> adjacent ally defends."
+    },
+    "Soul Lantern": {
+      "type": "mark",
+      "mult": 1.25,
+      "radius": 3,
+      "simplified": "Reveals traps (none are hidden) -> marks all enemies within 3 for x1.25."
+    },
+    "Chain Spark": {
+      "type": "chain",
+      "mult": 1.0,
+      "chain_mult": 0.5,
+      "radius": 2
+    },
+    "Magma Trail": {
+      "type": "strike",
+      "mult": 1.2,
+      "simplified": "Burning trail -> strike x1.2."
+    },
+    "Mist Veil": {
+      "type": "veil"
+    },
+    "Iron Root": {
+      "type": "guard",
+      "mult": 0.4,
+      "reflect": 0,
+      "simplified": "Defense while stationary -> guard."
+    },
+    "Moon Pulse": {
+      "type": "pulse",
+      "mult": 0.6,
+      "radius": 2,
+      "simplified": "Two-turn charge -> immediate radial pulse x0.6."
+    },
+    "Prism Guard": {
+      "type": "guard",
+      "mult": 0.5,
+      "reflect": 25,
+      "simplified": "First hit each round reduced and reflected -> guard x0.5, reflect 25%."
+    }
+  },
+  "map_policy": {
+    "_doc": "Data-side fixes for map contradictions. Source: docs/BALANCE-REPORT.md (design agent, 2026-10-21).",
+    "missing_symbol": "first_player_spawn",
+    "missing_symbol_doc": "7 boss maps (T01/T03/T05/T07/T08/T09/T11-L10) paint no player_symbol: it is placed on the first player_spawn tile in row-major order.",
+    "relic_counts_capsule_nodes": true,
+    "relic_doc": "The 36 'secure 3 relic nodes' stages have 1 relic tile, so activated capsule nodes count as relic nodes toward the 3.",
+    "portal_doc": "Portal rule (24 stages, 1 gate each): the active gate teleports to the mirror-image tile (11-x, 11-y); see special_rules."
+  }
 }

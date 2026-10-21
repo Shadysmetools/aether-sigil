@@ -1,4 +1,4 @@
-## Validates all 120 stages of the bible. Two kinds of check:
+## Validates all 120 stages of the bible. map_grid is the source of truth (game_rules.json map_policy). Two kinds of check:
 ##   ENGINE  must pass: the game can load and play the stage (grid, tile types, deploy tiles,
 ##           roster ids, Symbols, paths). Failures here are code or fatal data bugs.
 ##   DATA    contradictions inside the bible itself. Reported as data findings, never "fixed"
@@ -104,6 +104,13 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 		if inb:
 			data(g[c.y][c.x] == o.type, "objective tile painted as another type in map_grid", id, "%s %s is '%s'" % [o.type, c, g[c.y][c.x]])
 	engine(syms.player_symbol == 1 and syms.enemy_symbol == 1, id, "exactly one Symbol per side in objectives")
+	var painted := {"player_symbol": 0, "enemy_symbol": 0}
+	for row in g:
+		for t in row:
+			if painted.has(t):
+				painted[t] += 1
+	data(painted.player_symbol == 1, "map paints no player_symbol (placed on the first player_spawn)", id, "%d painted" % painted.player_symbol)
+	data(painted.enemy_symbol == 1, "map paints no enemy_symbol (placed on the first enemy_spawn)", id, "%d painted" % painted.enemy_symbol)
 
 	var s := GameState.new()
 	engine(s.setup(id), id, "GameState.setup")
@@ -154,9 +161,9 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 	var win := str(st.get("win_condition", ""))
 	engine(win.contains("Defeat the enemy Symbol"), id, "win condition includes 'Defeat the enemy Symbol'")
 	if s.relic_win:
-		data(s.relics.size() >= int(Data.rules().relics_to_win), "'secure 3 relic nodes' but fewer than 3 relics on the map", id, "%d relic(s)" % s.relics.size())
+		data(s.relics.size() >= int(Data.rules().relics_to_win), "'secure 3 relic nodes' but fewer than 3 relics (policy: capsule nodes count)", id, "%d relic(s)" % s.relics.size())
 	if s.rule.get("random_portal", false):
-		data(s.portals.size() >= 2, "portal rule but fewer than 2 warp gates (no gate-to-gate link)", id, "%d gate(s)" % s.portals.size())
+		data(s.portals.size() >= 2, "portal rule but fewer than 2 warp gates (policy: mirror-tile teleport)", id, "%d gate(s)" % s.portals.size())
 	var dlg: Dictionary = st.get("dialogue", {})
 	for k in ["intro", "midbattle", "defeat"]:
 		engine(str(dlg.get(k, "")) != "", id, "dialogue '%s' present" % k)

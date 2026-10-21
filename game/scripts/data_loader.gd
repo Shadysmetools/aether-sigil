@@ -105,8 +105,21 @@ static func tile_handled(type: String) -> bool:
 	return rules().get("tiles", {}).has(type)
 
 
-static func starter_team() -> Array:
-	return rules().get("starter_team", {}).get("ids", []).duplicate()
+static func squad_size() -> int:
+	return int(rules().get("squad", {}).get("size", 4))
+
+
+static func squad_collection() -> Array:
+	return rules().get("squad", {}).get("collection", []).duplicate()
+
+
+static func default_squad() -> Array:
+	return rules().get("squad", {}).get("default", []).duplicate()
+
+
+## Skill effect for an ability name ({} if unmapped).
+static func ability(name: String) -> Dictionary:
+	return rules().get("abilities", {}).get(name, {})
 
 
 static func special_rule(text: String) -> Dictionary:

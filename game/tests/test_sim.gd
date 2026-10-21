@@ -1,4 +1,4 @@
-## AI-vs-AI simulation of every stage: player side = starter team with the "balanced" AI,
+## AI-vs-AI simulation of every stage (initiative model, one AI call per activation): player side = squad with the "balanced" AI,
 ## enemy side = the stage roster with the AI for its opponent_style. Seeded per stage, so
 ## results are reproducible. Turn cap from game_rules.json (turn_cap_rounds).
 ## Pass/fail covers legality and consistency only; win rates are printed as balance evidence.
@@ -23,18 +23,18 @@ func check(cond: bool, label: String) -> void:
 func _initialize() -> void:
 	print("Aether Sigil AI-vs-AI simulation (120 stages)")
 	Data.ensure_loaded()
-	print("== RUN A: starter team (data/game_rules.json) ==")
-	run(Data.starter_team(), true)
+	print("== RUN A: default squad of 4 (data/game_rules.json squad.default) ==")
+	run(Data.default_squad(), true)
 	var avg := average_commons()
 	print("")
-	print("== RUN B (control): 5 Commons closest to the Common average stats %s ==" % str(avg))
+	print("== RUN B (control): 4 Commons closest to the Common average stats %s ==" % str(avg))
 	run(avg, false)
 	check(Data.stage_count() == 120, "simulated all 120 stages")
 	print("%d pass / %d fail" % [passed, failed])
 	quit(failed)
 
 
-## One Common per role (Guardian, Striker, Artillery, Scout, Support) nearest the Common mean stats.
+## One Common per role (Guardian, Striker, Artillery, Scout) nearest the Common mean stats.
 func average_commons() -> Array:
 	var keys := ["hp", "attack", "defense", "move", "range"]
 	var commons := Data.monster_ids().filter(func(id): return Data.monster(id).rarity == "Common")
@@ -45,7 +45,7 @@ func average_commons() -> Array:
 			t += Data.monster(id)[k]
 		mean[k] = t / commons.size()
 	var out := []
-	for role in ["Guardian", "Striker", "Artillery", "Scout", "Support"]:
+	for role in ["Guardian", "Striker", "Artillery", "Scout"]:
 		var best := ""
 		var best_d := INF
 		for id in commons:
@@ -80,7 +80,7 @@ func run(team: Array, verbose: bool) -> void:
 		var bad := ""
 		while s.winner == GameState.NONE and s.round_num <= cap:
 			var side := s.current
-			var r := AI.take_turn(s, side, "balanced" if side == GameState.PLAYER else str(st.opponent_style))
+			var r := AI.take_activation(s, side, "balanced" if side == GameState.PLAYER else str(st.opponent_style))
 			rejected += r.rejected
 			if bad == "":
 				bad = _invariants(s)
