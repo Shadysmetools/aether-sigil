@@ -7,6 +7,7 @@ const Data = preload("res://scripts/data_loader.gd")
 const GameState = preload("res://scripts/game_state.gd")
 const AI = preload("res://scripts/ai.gd")
 const Progress = preload("res://scripts/progress.gd")
+const Summon = preload("res://scripts/summon.gd")
 
 const P := GameState.PLAYER
 const E := GameState.ENEMY
@@ -44,7 +45,10 @@ func _initialize() -> void:
 		test_water_hazard()
 		test_terrain_rule()
 		test_summon()
-		test_ap_rule()
+		test_sp_economy()
+		test_sp_rule()
+		test_vessels_and_wins()
+		test_placement()
 		test_ko_rule()
 		test_portal_rule()
 		test_skills()
@@ -82,6 +86,8 @@ func flat_state(rule_text: String = "") -> GameState:
 	s._field_cache = {}
 	s.units = []
 	s.reserve = [[], []]
+	s.capsules = [[], []]
+	s.sigil_under = ["ground", "ground"]
 	if rule_text == "":
 		s.rule = {}
 	s.relic_win = false
@@ -119,7 +125,7 @@ func test_board() -> void:
 	eq(s.symbol_pos[E], Vector2i(10, 10), "enemy Symbol from objectives")
 	check(not s.spawn_tiles[P].has(s.symbol_pos[P]), "Sigil tile is not a deploy tile")
 	eq(s.reserve[P], Data.default_squad(), "player reserve = default squad")
-	eq(s.reserve[P].size(), 4, "squad of 4")
+	eq(s.reserve[P].size(), 6, "squad of 6")
 	eq(s.reserve[E].size(), s.stage.enemy_roster.size(), "enemy reserve = stage roster")
 	var s2 := GameState.new()
 	s2.setup("T01-L10")
@@ -130,7 +136,7 @@ func test_board() -> void:
 func test_initiative() -> void:
 	print("[initiative turn order]")
 	var s := flat_state()
-	eq(s.actor_id, GameState.sigil_id(P), "round starts with the Player Sigil")
+	eq(s.actor_id, GameState.sigil_id(P), "with no monster on the board the Player Sigil acts first")
 	var fast := s.place_unit(P, sq(0), Vector2i(3, 3))
 	var slow := s.place_unit(E, sq(1), Vector2i(6, 6))
 	var tie_p := s.place_unit(P, sq(2), Vector2i(4, 4))
@@ -140,23 +146,25 @@ func test_initiative() -> void:
 	tie_p.move = 4
 	tie_e.move = 4
 	s._new_round()
-	eq(s.order.slice(0, 2), [-1, -2], "both Sigils act first (player, enemy)")
-	eq(s.order.slice(2), [fast.id, tie_p.id, tie_e.id, slow.id], "then by initiative; ties interleave player/enemy")
+	eq(GameState.sigil_initiative(), 40, "Sigil initiative = mid speed (40)")
+	eq(s.order, [fast.id, tie_p.id, tie_e.id, -1, -2, slow.id], "by initiative: monsters 61/41/41, Sigils 40, slow 2x; ties interleave player/enemy")
 	s._begin_activation()
+	eq(s.actor_id, fast.id, "fastest monster first")
 	s.wait(P)
-	eq(s.actor_id, GameState.sigil_id(E), "Wait passes to the next actor")
+	eq(s.actor_id, tie_p.id, "Wait passes to the next actor")
 	var newbie := s.place_unit(E, sq(3), Vector2i(8, 8))
-	check(not s.order.has(newbie.id), "a monster summoned mid-round is not in this round's order")
-	s.wait(E)
-	eq(s.actor_id, fast.id, "fastest monster next")
-	s.units.erase(tie_p)  # knocked out mid-round
+	check(not s.order.has(newbie.id), "a monster placed by the rules mid-round is not in this round's order")
+	s.units.erase(tie_e)  # knocked out mid-round
 	s.wait(P)
-	eq(s.actor_id, tie_e.id, "a knocked-out actor is skipped")
+	eq(s.actor_id, GameState.sigil_id(P), "a knocked-out actor is skipped")
+	s.wait(P)
+	eq(s.actor_id, GameState.sigil_id(E), "then the enemy Sigil")
 	s.wait(E)
+	eq(s.actor_id, slow.id, "slowest last")
 	s.wait(E)
 	eq(s.round_num, 2, "round advances when everyone has acted")
-	check(s.order.has(newbie.id), "next round includes the summoned monster")
-	eq(s.order_preview(3), [-1, -2, fast.id], "turn-order preview for the HUD")
+	check(s.order.has(newbie.id), "next round includes the new monster")
+	eq(s.order_preview(1), [fast.id], "turn-order preview for the HUD")
 
 
 func test_movement() -> void:
@@ -357,50 +365,247 @@ func test_terrain_rule() -> void:
 	eq(results[1][3], 100, "doubled accuracy bonus +30 (capped 100)")
 
 
+## A sealed Vessel for side on tile c (pos (-1,-1) = off-board), added to its reserve.
+func vessel(s: GameState, side: int, mon: String, c: Vector2i) -> Dictionary:
+	s.reserve[side].append(mon)
+	var hp := Summon.vessel_hp(Data.monster(mon))
+	var cap := {"mon": mon, "owner": side, "pos": c, "hp": hp, "max_hp": hp}
+	s.capsules[side].append(cap)
+	return cap
+
+
+func mon_of_rarity(r: String) -> String:
+	for id in Data.monster_ids():
+		if Data.monster(id).rarity == r:
+			return id
+	return ""
+
+
 func test_summon() -> void:
-	print("[capsule summon via the Player Sigil]")
+	print("[crack a Vessel via the Player Sigil]")
 	var s := flat_state()
 	var node := Vector2i(5, 5)
 	s.grid[5][5] = "capsule_node"
 	s.nodes = {node: GameState.NONE}
-	var sq4: Array = Data.default_squad()
-	s.reserve = [sq4.duplicate(), []]
-	eq(s.can_deploy(P, sq4[0], node), GameState.R_BAD_DEPLOY_TILE, "cannot summon onto a node not yet activated")
-	eq(s.deploy(P, sq4[0], Vector2i(2, 1)), GameState.OK, "summon onto a spawn tile")
-	eq(s.deploy(P, sq4[1], Vector2i(3, 1)), GameState.OK, "second summon this activation")
-	eq(s.deploy(P, sq4[2], Vector2i(4, 1)), GameState.R_NO_SUMMONS, "2 summons per Sigil activation")
-	var first := s.unit_at(Vector2i(2, 1))
-	check(not s.order.has(first.id), "summoned monster waits for next round")
-	s.wait(P)
-	eq(s.can_deploy(E, "MON-0001", Vector2i(9, 10)), GameState.R_NOT_IN_RESERVE, "enemy Sigil summons only its roster")
-	var runner := s.place_unit(P, sq4[3], node)
+	var sq6: Array = Data.default_squad()
+	vessel(s, P, sq6[0], Vector2i(2, 2))
+	vessel(s, P, sq6[1], Vector2i(3, 2))
+	eq(s.sp[P], 4, "start pool 4 SP")
+	eq(s.summon_cost(P, sq6[0]), 2, "a Common costs 2 SP")
+	eq(s.can_deploy(P, sq6[0], Vector2i(4, 4)), GameState.R_BAD_DEPLOY_TILE, "a Vessel cracks on its own tile")
+	eq(s.can_deploy(P, sq6[0], node), GameState.R_BAD_DEPLOY_TILE, "cannot crack onto a node not yet held")
+	eq(s.deploy(P, sq6[0], Vector2i(2, 2)), GameState.OK, "crack the Vessel")
+	eq(s.sp[P], 2, "crack spent 2 SP")
+	var first := s.unit_at(Vector2i(2, 2))
+	check(first != null and first.dormant, "the monster appears as a statue on the Vessel's tile")
+	check(s.capsule_of(P, sq6[0]).is_empty() and not s.reserve[P].has(sq6[0]), "the Vessel is gone")
+	eq(s.order[-1], first.id, "a cracked monster joins the END of the current round")
+	check(s.actor_id != GameState.sigil_id(P), "Crack ends the Sigil's activation (1 per Sigil turn)")
+	eq(s.last_crack, {"unit": first.id, "cost": 2}, "last_crack feeds board.play_summon(unit, sp_cost)")
+	s.activate(GameState.sigil_id(P))
+	eq(s.sp[P], 2, "no income in round 1 (the start pool is round 1's budget)")
+	eq(s.summons_left, 1, "one crack per Sigil turn")
+	eq(s.deploy(P, sq6[1], Vector2i(3, 2)), GameState.OK, "second crack, next Sigil turn")
+	eq(s.sp[P], 0, "SP never below 0")
+	s.activate(GameState.sigil_id(P))
+	var legend := mon_of_rarity("Legendary")
+	vessel(s, P, legend, Vector2i(4, 2))
+	eq(s.summon_cost(P, legend), 8, "a Legendary costs 8 SP")
+	eq(s.can_deploy(P, legend, Vector2i(4, 2)), GameState.R_NO_SP, "unaffordable crack rejected")
+	check(s.legal_deploys(P).is_empty(), "unaffordable Vessels are not listed as legal")
+	s.sp[P] = 12
+	var far := mon_of_rarity("Common")
+	vessel(s, P, far, Vector2i(9, 6))
+	eq(s.can_deploy(P, far, Vector2i(9, 6)), GameState.R_OUT_OF_CRACK_RANGE, "Vessel beyond Chebyshev 4 of the Sigil cannot be cracked")
+	eq(s.move_sigil(P, Vector2i(2, 1)), GameState.OK, "the Sigil moves 1 tile")
+	eq([s.symbol_pos[P], s.tile_type(Vector2i(2, 1)), s.tile_type(Vector2i(1, 1))], [Vector2i(2, 1), "player_symbol", "ground"], "Symbol tile moves; the old tile is restored")
+	eq(s.move_sigil(P, Vector2i(3, 1)), GameState.R_ALREADY_MOVED, "only 1 tile per activation")
+	eq(s.can_deploy(P, far, Vector2i(9, 6)), GameState.R_OUT_OF_CRACK_RANGE, "still out of range")
+	var runner := s.place_unit(P, sq(3), node)
 	s.activate(runner.id)
-	eq(s.nodes[node], P, "a monster starting its activation on a node activates it")
+	eq(s.nodes[node], P, "a monster starting its activation on a node takes it")
 	s.move_unit(P, runner.id, Vector2i(5, 6))
 	s.wait(P)
 	s.activate(GameState.sigil_id(P))
-	eq(s.deploy(P, sq4[2], node), GameState.OK, "summon onto the activated capsule node")
+	eq(s.deploy(P, legend, node), GameState.OK, "crack onto a held capsule node")
+	s.activate(GameState.sigil_id(E))
+	eq(s.can_deploy(E, sq6[2], Vector2i(9, 10)), GameState.R_NOT_IN_RESERVE, "enemy Sigil cracks only its own Vessels")
 	var s2 := flat_state()
 	var m := s2.place_unit(P, sq(0), Vector2i(6, 6))
 	s2.activate(m.id)
-	s2.reserve[P] = sq4.duplicate()
-	eq(s2.can_deploy(P, sq4[0], Vector2i(2, 1)), GameState.R_NOT_SIGIL_TURN, "monsters cannot summon; only the Sigil")
+	vessel(s2, P, sq6[0], Vector2i(2, 2))
+	eq(s2.can_deploy(P, sq6[0], Vector2i(2, 2)), GameState.R_NOT_SIGIL_TURN, "monsters cannot crack; only the Sigil")
 
 
-func test_ap_rule() -> void:
-	print("[special rule: Capsules cost 1 AP to deploy]")
-	var sq4: Array = Data.default_squad()
+func test_sp_economy() -> void:
+	print("[Summon Points: income, cap, node bonus, costs]")
+	var s := flat_state()
+	s.round_num = 2
+	s.sp[P] = 0
+	s.activate(GameState.sigil_id(P))
+	eq(s.sp[P], 3, "+3 SP per Sigil turn from round 2")
+	s.nodes = {Vector2i(5, 5): P, Vector2i(6, 6): P, Vector2i(7, 7): E}
+	eq(s.sp_income(P), 5, "+1 SP per capsule node held")
+	s.activate(GameState.sigil_id(P))
+	eq(s.sp[P], 8, "3 + 5")
+	s.activate(GameState.sigil_id(P))
+	eq(s.sp[P], 12, "capped at 12")
+	var costs := []
+	for r in ["Common", "Uncommon", "Rare", "Epic", "Mythic", "Legendary"]:
+		costs.append([Summon.crack_cost({"rarity": r}), Summon.bond({"rarity": r}), Summon.vessel_hp({"rarity": r})])
+	eq(costs, [[2, 10, 30], [3, 15, 40], [4, 22, 50], [6, 30, 60], [7, 35, 70], [8, 40, 80]], "crack SP / Bond / Vessel HP by rarity")
+	eq(Summon.crack_cost({"rarity": "Rare", "evo_stage": 2}), 5, "evolved: +1 SP (once)")
+	eq(Summon.bond({"rarity": "Rare", "evo_stage": 2}), 32, "Bond +5 per evolution stage")
+	eq(Summon.fusion_bond({"rarity": "Common"}, {"rarity": "Uncommon", "evo_stage": 1}), 24, "fusion Bond = 80% of the parts (10 + 20)")
+	eq(Summon.crack_cost({"rarity": "Uncommon", "fused": true, "bond": 24}), 4, "fused counts as evolved (+1 SP)")
+	var r := flat_state("Capsules cost +1 SP to summon")
+	eq(r.summon_cost(P, Data.default_squad()[0]), 3, "rule stage: a Common costs 2 + 1")
+	eq(Summon.draft_cap({"tower_id": "01"}), 60, "Bond cap 60 in T01")
+	eq(Summon.draft_cap({"tower_id": "12"}), 120, "Bond cap 120 in T12")
+	eq(Summon.draft_check(Data.default_squad(), {"tower_id": "01"}), Summon.OK, "the default squad of 6 Commons fits T01 exactly (60)")
+	var legends := Data.monster_ids().filter(func(id): return Data.monster(id).rarity == "Legendary")
+	var heavy: Array = [legends[0], legends[1]]
+	eq(Summon.draft_check(heavy, {"tower_id": "01"}), Summon.R_OVER_CAP, "2 Legendaries (80) exceed the T01 cap")
+	eq(Summon.auto_draft(heavy + [Data.default_squad()[0]], {"tower_id": "01"}), [heavy[0], Data.default_squad()[0]], "auto draft keeps what fits")
+	eq(Summon.term("vessel"), "Vessel", "player-facing name is a single key")
+
+
+func test_sp_rule() -> void:
+	print("[stage rule: Capsules cost +1 SP to summon]")
+	var texts := {}
+	for st in Data.stages():
+		texts[str(st.special_rule)] = true
+	check(not texts.has("Capsules cost 1 AP to deploy"), "no stage still says AP (AP folded into SP)")
+	for t in texts:
+		check(not str(t).contains(" AP "), "rule text has no AP: %s" % t)
+		if str(t).contains("SP"):
+			check(int(Data.special_rule(str(t)).get("sp_surcharge", 0)) > 0, "SP rule '%s' has a surcharge" % t)
 	var off := flat_state()
-	off.reserve[P] = sq4.duplicate()
-	eq(off.deploy(P, sq4[0], Vector2i(2, 1)), GameState.OK, "no rule: 1st summon")
-	eq(off.deploy(P, sq4[1], Vector2i(3, 1)), GameState.OK, "no rule: 2nd summon is free")
-	var on := flat_state("Capsules cost 1 AP to deploy")
-	on.ap[P] = 0
-	on.activate(GameState.sigil_id(P))
-	on.reserve[P] = sq4.duplicate()
-	eq(on.ap[P], 1, "Sigil activation grants 1 AP")
-	eq(on.deploy(P, sq4[0], Vector2i(2, 1)), GameState.OK, "rule: 1st summon spends the AP")
-	eq(on.deploy(P, sq4[1], Vector2i(3, 1)), GameState.R_NO_AP, "rule: 2nd summon refused (1 per activation instead of 2)")
+	var on := flat_state("Capsules cost +1 SP to summon")
+	var sq6: Array = Data.default_squad()
+	vessel(off, P, sq6[0], Vector2i(2, 2))
+	vessel(on, P, sq6[0], Vector2i(2, 2))
+	on.sp[P] = 2
+	eq(off.deploy(P, sq6[0], Vector2i(2, 2)), GameState.OK, "no rule: 2 SP cracks a Common")
+	eq(on.deploy(P, sq6[0], Vector2i(2, 2)), GameState.R_NO_SP, "rule: 2 SP is not enough (2 + 1)")
+	on.sp[P] = 3
+	eq(on.deploy(P, sq6[0], Vector2i(2, 2)), GameState.OK, "rule: 3 SP cracks it")
+
+
+func test_vessels_and_wins() -> void:
+	print("[Vessels on the board, KO backlash, rout, time limit, anti-bait]")
+	var s := flat_state()
+	var a := s.place_unit(P, sq(0), Vector2i(8, 8))
+	var target := vessel(s, E, mon_of_rarity("Common"), Vector2i(8, 9))
+	vessel(s, E, mon_of_rarity("Rare"), Vector2i(10, 8))
+	s.activate(a.id)
+	check(s.legal_attacks(a).has(Vector2i(8, 9)), "an enemy Vessel is a legal attack target")
+	check(not s.reachable(a).has(Vector2i(8, 9)), "a Vessel blocks movement")
+	eq(s.damage_preview(a, Vector2i(8, 9)), GameState.compute_damage(a.attack, 0, a.family, ""), "Vessel: DEF 0, no element")
+	target.hp = 1
+	var sym := s.symbol_hp[E]
+	eq(s.attack(P, a.id, Vector2i(8, 9)), GameState.OK, "attack the Vessel")
+	check(s.capsule_at(Vector2i(8, 9)).is_empty() and s.reserve[E].size() == 1, "a broken Vessel is gone; its monster is lost for the match")
+	eq([s.kos[E], s.symbol_hp[E]], [1, sym - 10], "breaking a Vessel: counts as lost and chips its Sigil 10")
+	eq(s.symbol_hp[P], s.symbol_max, "only the Vessel owner's Sigil is chipped")
+	var k := flat_state()
+	var b := k.place_unit(P, sq(0), Vector2i(5, 5))
+	var foe := k.place_unit(E, mon_of_rarity("Epic"), Vector2i(5, 6))
+	vessel(k, E, mon_of_rarity("Common"), Vector2i(10, 8))
+	foe.hp = 1
+	k.activate(b.id)
+	k.attack(P, b.id, foe.pos)
+	eq(k.symbol_hp[E], k.symbol_max - (8 + 4 * 3), "KO of an Epic (tier 3) deals 8 + 4x3 to its Sigil")
+	eq(k.winner, GameState.NONE, "a side with a sealed Vessel left is not routed")
+	var rt := flat_state()
+	var c := rt.place_unit(P, sq(0), Vector2i(5, 5))
+	var last := rt.place_unit(E, sq(1), Vector2i(5, 6))
+	last.hp = 1
+	rt.activate(c.id)
+	rt.attack(P, c.id, last.pos)
+	eq([rt.winner, rt.win_reason], [P, "rout"], "Rout: no monster on the board and no Vessel")
+	var tl := flat_state()
+	tl.place_unit(P, sq(0), Vector2i(5, 5))
+	tl.place_unit(E, sq(1), Vector2i(7, 7))
+	tl.round_num = GameState.turn_cap()
+	tl.symbol_hp = [150, 100]
+	var guard := 0
+	while tl.winner == GameState.NONE and tl.round_num <= GameState.turn_cap() and guard < 10:
+		tl.wait(tl.current)
+		guard += 1
+	eq([tl.winner, tl.win_reason], [P, "time"], "after round 30 the higher Sigil HP percent wins")
+	check(tl.is_over() and tl.legal_actions(P).is_empty(), "nothing is legal after the limit")
+	var dr := flat_state()
+	dr.round_num = GameState.turn_cap()
+	while dr.round_num <= GameState.turn_cap():
+		dr.wait(dr.current)
+	eq(dr.winner, GameState.NONE, "equal Sigil HP at the limit = draw")
+	var ab := flat_state()
+	var fresh := ab.place_unit(P, sq(0), Vector2i(9, 9))
+	ab.activate(fresh.id)
+	var normal := ab.damage_preview(fresh, ab.symbol_pos[E])
+	fresh.cracked_round = ab.round_num
+	eq(ab.damage_preview(fresh, ab.symbol_pos[E]), GameState.compute_damage(fresh.attack, ab.symbol_defense, fresh.family, "", 0.75), "anti-bait: a monster cracked this round hits a Sigil x0.75")
+	check(normal > ab.damage_preview(fresh, ab.symbol_pos[E]), "fresh monster deals less to a Sigil")
+	var df := flat_state()
+	df.wait(P)
+	eq(df.actor_id, GameState.sigil_id(E), "enemy Sigil acts")
+	eq(df.defend(E, GameState.sigil_id(E)), GameState.OK, "the Sigil can Defend")
+	var h := df.place_unit(P, sq(0), Vector2i(9, 9))
+	df.activate(h.id)
+	eq(df.damage_preview(h, df.symbol_pos[E]), GameState.compute_damage(h.attack, df.symbol_defense, h.family, "", 0.5), "a defending Sigil takes x0.5")
+
+
+func test_placement() -> void:
+	print("[pre-match placement]")
+	var s := GameState.new()
+	s.setup("T01-L02", [], -1, {}, false)
+	eq(s.phase, GameState.PHASE_PLACEMENT, "setup(auto_start=false) opens the placement phase")
+	check(s.legal_actions(P).is_empty() and s.legal_actions(E).is_empty(), "no battle actions while placing")
+	eq(s.placement_queue.size(), 2 + 6 + s.stage.enemy_roster.size(), "steps: 2 Sigils + every Vessel")
+	eq([s.placement_queue[0][1], s.placement_queue[1][1], s.placement_queue[2][1]], ["sigil", "sigil", "vessel"], "Sigils first, then Vessels")
+	check(s.placement_queue[2][0] != s.placement_queue[3][0], "Vessels alternate one at a time")
+	eq(s.placement_queue[0][0], s.place_first, "the initiative loser places first")
+	while s.placement_side() == E:
+		s.auto_place_step(E)
+	var sq6: Array = Data.default_squad()
+	eq(s.place_capsule(P, sq6[0], s.zone[P][0]), GameState.R_NOT_YOUR_TURN, "Vessels wait for the Sigil step")
+	var off_zone := Vector2i(6, 6)
+	eq(s.place_sigil(P, off_zone), GameState.R_BAD_PLACE, "the Sigil stays in its home zone")
+	var spot: Vector2i = s.spawn_tiles[P][0]
+	var g0 = s.grid
+	eq(s.place_sigil(P, spot), GameState.OK, "place the Sigil on a home tile")
+	check(s.symbol_pos[P] == spot and s.tile_type(spot) == "player_symbol" and not is_same(g0, s.grid), "Sigil moved; grid replaced so boards rebuild")
+	while s.placement_side() == E:
+		s.auto_place_step(E)
+	eq(s.place_capsule(P, sq6[0], off_zone), GameState.R_BAD_PLACE, "Vessels go in the home zone only")
+	var adj: Array = s.zone[P].filter(func(c): return GameState.chebyshev(c, spot) == 1 and not s.occupied(c))
+	check(adj.size() >= 3, "test map has 3 free tiles next to the Sigil (%d)" % adj.size())
+	var placed := 0
+	for i in 3:
+		while s.placement_side() == E:
+			s.auto_place_step(E)
+		var r := s.place_capsule(P, sq6[i], adj[i])
+		if i < 2:
+			eq(r, GameState.OK, "Vessel %d next to the Sigil" % (i + 1))
+			placed += 1
+		else:
+			eq(r, GameState.R_TOO_CLOSE, "at most 2 Vessels next to the own Sigil")
+	eq(s.start_battle(), GameState.OK, "start the match (the rest auto-placed)")
+	eq(s.phase, GameState.PHASE_BATTLE, "battle phase")
+	check(s.units_of(P).is_empty() and s.reserve[P].size() == 6, "the match starts with the Sigil and 6 sealed Vessels")
+	check(s.capsules[P].all(func(cap): return s.zone[P].has(cap.pos)) and s.capsules[E].all(func(cap): return s.zone[E].has(cap.pos)), "every Vessel sits in its home zone")
+	check(not s.legal_actions(s.current).is_empty(), "battle actions available")
+	var bad := []
+	for st in Data.stages():
+		var g := GameState.new()
+		g.setup(st.stage_id)
+		for side in 2:
+			if g.capsules[side].any(func(cap): return cap.pos == Vector2i(-1, -1)):
+				bad.append("%s side %d off-board" % [st.stage_id, side])
+			if g._adjacent_to_sigil(side) > 2:
+				bad.append("%s side %d adjacency" % [st.stage_id, side])
+	eq(bad, [], "all 120 stages: every Vessel placed, at most 2 next to each Sigil")
 
 
 func test_ko_rule() -> void:
@@ -571,7 +776,7 @@ func test_wins_and_objectives() -> void:
 	victim.hp = 1
 	s3.activate(killer.id)
 	s3.attack(P, killer.id, victim.pos)
-	eq(s3.winner, GameState.NONE, "wiping out every enemy monster is a bonus, not a win")
+	eq([s3.winner, s3.win_reason], [P, "rout"], "wiping out every enemy monster with no Vessel left = Rout win (research brief)")
 	var obj := s3.objectives()
 	eq(obj[0].kind, "win", "objective 1 is the stage's win condition")
 	eq(obj[1].text, "Protect the Player Sigil", "objective 2 protects the Sigil")
@@ -625,8 +830,8 @@ func test_dormant() -> void:
 	var s := GameState.new()
 	s.setup("T01-L01")
 	check(s.dormant_stage, "T01-L01 is ruins-themed (design example)")
-	var statues := s.units_of(E).filter(func(x): return x.dormant)
-	eq(statues.size(), 3, "3 enemy statues on the board at start")
+	var statues := s.units_of(E).filter(func(x): return x.dormant or x.id == s.actor_id)
+	eq(statues.size(), 3, "3 enemy statues on the board at start (one may already be awake as the first actor)")
 	check(statues.all(func(x): return s.order.has(x.id)), "statues are in round 1's turn order")
 	var st: GameState.Unit = statues[0]
 	s.activate(st.id)
@@ -701,7 +906,7 @@ func test_progress() -> void:
 	var pr := Progress.new(path)
 	check(pr.is_unlocked("T01-L01"), "first stage unlocked")
 	check(not pr.is_unlocked("T01-L02"), "second stage locked")
-	eq(pr.squad.size(), 4, "squad of 4 owned monsters")
+	eq(pr.squad.size(), 6, "squad of 6 owned monsters")
 	eq(pr.roster.size(), Data.squad_collection().size(), "roster starts with the collection")
 	eq(pr.record_win("T01-L01"), "T01-L02", "winning returns the next stage")
 	var again := Progress.new(path)

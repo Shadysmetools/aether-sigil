@@ -305,7 +305,11 @@ func test_main_scene() -> void:
 					covered.append(c)
 	check(covered.is_empty(), "no HUD panel or board button covers any of the 144 tiles (%s)" % str(covered.slice(0, 5)))
 	check(off.is_empty(), "all 144 tiles on screen (%s)" % str(off.slice(0, 5)))
-	var first: String = main.progress.squad[0]
+	for guard in 100:  # SP/Vessel rules: faster enemy statues may act before the Player Sigil (initiative 40)
+		if main._my_turn() and s.is_sigil_turn():
+			break
+		await create_timer(0.1).timeout
+	var first: String = s.team[0]
 	main._on_team(0)
 	check(main.board.highlights.size() > 0, "summon mode highlights legal tiles")
 	var spawn: Vector2i = main.board.highlights.keys()[0]

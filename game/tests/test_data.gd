@@ -290,6 +290,10 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 		engine(not s.spawn_tiles[side].is_empty(), id, "side %d has at least one legal deploy tile" % side)
 		for c in s.spawn_tiles[side]:
 			engine(s.is_walkable(c) and s.symbol_owner_at(c) == GameState.NONE, id, "deploy tile %s walkable" % c)
+		# Pre-match home zone (game_rules.json placement): room for the Sigil + every Vessel, with spare tiles.
+		var need: int = s.capsules[side].size() + s.units_of(side).size() + 1
+		engine(s.zone[side].size() - need >= 6, id, "side %d home zone %d tiles >= %d needed + 6 spare" % [side, s.zone[side].size(), need])
+		engine(s.capsules[side].all(func(cap): return s.zone[side].has(cap.pos)), id, "side %d: every Vessel auto-placed in its home zone" % side)
 	for c in s.nodes:
 		engine(s.is_walkable(c), id, "capsule node %s walkable" % c)
 

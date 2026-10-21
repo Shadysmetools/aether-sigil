@@ -6,6 +6,7 @@ const Data = preload("res://scripts/data_loader.gd")
 const Prog = preload("res://scripts/progression.gd")
 const Progress = preload("res://scripts/progress.gd")
 const GameState = preload("res://scripts/game_state.gd")
+const Summon = preload("res://scripts/summon.gd")
 
 const SAVE := "user://test_progression_save.json"
 
@@ -36,6 +37,7 @@ func _initialize() -> void:
 	test_battle_use()
 	test_save_load()
 	test_migration()
+	test_migration_v4()
 	_rm()
 	print("%d pass / %d fail" % [passed, failed])
 	quit(mini(failed, 255))
@@ -222,9 +224,9 @@ func test_battle_use() -> void:
 	# XP award after a battle
 	var s3 := GameState.new()
 	s3.setup("T03-L01", pr.squad, -1, pr.squad_records())
-	s3.reserve[GameState.PLAYER] = pr.squad.duplicate()
 	var first: String = pr.squad[0]
-	s3.deploy(GameState.PLAYER, first, s3.deploy_tiles(GameState.PLAYER)[0])
+	s3.sp[GameState.PLAYER] = 12
+	eq(s3.deploy(GameState.PLAYER, first, s3.deploy_tiles(GameState.PLAYER, first)[0]), GameState.OK, "crack the first Vessel")
 	s3.ko_by[first] = 2
 	var lvl0 := int(pr.get_inst(first).level)
 	var res := pr.award_battle(s3, true)
@@ -253,7 +255,7 @@ func test_save_load() -> void:
 	eq(pr.roster.size(), n_before - 1, "both parents consumed, one fused monster added")
 	check(pr.get_inst(u1).is_empty() and pr.get_inst(u2).is_empty(), "parents gone")
 	eq(pr.fuse(u1, u2).get("error", ""), "pick_two_monsters", "fusing consumed monsters is rejected")
-	var squad := [fused.uid, u0, pr.roster[3].uid, pr.roster[4].uid]
+	var squad := [fused.uid, u0, pr.roster[3].uid, pr.roster[4].uid, pr.roster[5].uid, pr.roster[6].uid]
 	check(pr.set_squad(squad), "fused monster can join the squad")
 	pr.save()
 	var again := Progress.new(SAVE)
@@ -263,6 +265,35 @@ func test_save_load() -> void:
 	eq(JSON.stringify(again.get_inst(fused.uid)), JSON.stringify(fused), "fused monster persists exactly")
 	eq(again.squad, squad, "squad with the fused monster persists")
 	eq(JSON.stringify(Prog.battle_record(again.get_inst(fused.uid))), JSON.stringify(Prog.battle_record(fused)), "same battle stats after reload")
+
+
+func test_migration_v4() -> void:
+	print("[save migration v3 -> v4: Bond on fused monsters, squad of 4 -> 6]")
+	_rm()
+	var pr := Progress.new(SAVE)
+	var u1: String = pr.roster[1].uid
+	var u2: String = pr.roster[2].uid
+	pr.get_inst(u1).level = 12
+	pr.get_inst(u2).level = 14
+	var fused := pr.fuse(u1, u2)
+	var want_bond := int(fused.bond)
+	eq(want_bond, Summon.fusion_bond({"rarity": "Common"}, {"rarity": "Common"}), "a new fusion stores Bond = 80% of its parents (two Commons: 16)")
+	var d := pr.to_dict()
+	d.version = 3
+	for inst in d.roster:
+		inst.erase("bond")
+	d.squad = d.squad.slice(0, 4)
+	var f := FileAccess.open(SAVE, FileAccess.WRITE)
+	f.store_string(JSON.stringify(d))
+	f.close()
+	var back := Progress.new(SAVE)
+	eq(back.load_note, "migrated_from_v3", "v3 save migrated")
+	eq(int(back.get_inst(fused.uid).get("bond", -1)), want_bond, "fused monster gets its Bond from its parents")
+	eq(back.squad.slice(0, 4), d.squad, "the v3 squad of 4 is kept")
+	eq(back.squad.size(), 6, "and topped up to 6")
+	eq(Summon.bond(Prog.battle_record(back.get_inst(fused.uid))), want_bond, "battle record carries the Bond")
+	back.save()
+	eq(int(JSON.parse_string(FileAccess.get_file_as_string(SAVE)).version), 4, "re-saved as v4")
 
 
 func test_migration() -> void:
@@ -276,11 +307,12 @@ func test_migration() -> void:
 	eq(pr.unlocked, 5, "unlocks kept")
 	check(pr.cleared.has("T01-L01"), "cleared stages kept")
 	var ids := pr.squad.map(func(u): return pr.get_inst(u).base_id)
-	eq(ids, ["MON-0033", "MON-0640", "MON-0077", "MON-0596"], "v1 squad (monster ids) mapped to owned uids")
+	eq(ids.slice(0, 4), ["MON-0033", "MON-0640", "MON-0077", "MON-0596"], "v1 squad (monster ids) mapped to owned uids")
+	eq(ids.size(), 6, "v1 squad of 4 topped up to the squad of 6")
 	eq(pr.roster.size(), Data.squad_collection().size(), "roster created for the v1 player")
 	pr.save()
 	var d: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SAVE))
-	eq(int(d.version), 3, "re-saved as the current schema (v3)")
+	eq(int(d.version), 4, "re-saved as the current schema (v4)")
 	var f2 := FileAccess.open(SAVE, FileAccess.WRITE)
 	f2.store_string("{not json")
 	f2.close()

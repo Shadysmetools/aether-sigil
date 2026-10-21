@@ -16,7 +16,7 @@ GAPS = [
     ("Bridges", "`bridge` tiles are ordinary walkable tiles. Because the maps make them 1-wide, the rule needs no code: a unit on a bridge blocks passage. Units cannot swap places."),
     ("Terrain-family mapping", "forest->Nature, lava->Fire, water->Water, ice->Ice, metal->Tech, sky->Wind, shadow->Dark, stone/ruins->Earth, crystal->Earth, space->Space, rift->Arcane. `mixed`, `ground` and the rest are neutral. Tower themes map the same way (Metal->Tech, Ancient->Earth, Aether->Arcane, Crystal->Earth)."),
     ("Terrain bonus (base)", "A unit standing on a tile whose family equals its `element_family` deals +20% damage and takes -10% damage."),
-    ("Action points (AP)", "Each side gains 2 AP at the start of its first unit's turn each round (max 4). AP is spent only by rules that say so (see 'Capsules cost 1 AP to deploy')."),
+    ("Action points (AP)", "Each side gains 2 AP at the start of its first unit's turn each round (max 4). AP is spent only by rules that say so (see 'Capsules cost +1 SP to summon')."),
     ("Squad and deployment", "Player brings 4 monsters. The 3 `player_spawn` tiles hold the first 3. The 4th, plus any KO'd-and-revivable unit, sits in a capsule and can deploy onto an owned `capsule_node` or a free spawn tile instead of acting. Enemies deploy their roster the same way (the first 3 on `enemy_spawn`, the rest from capsules, one per round)."),
     ("Symbols", "A Symbol is a static, untargetable-by-skills object: HP = 150 + 25*(tower-1), DEF = 10 + 2*(tower-1). It is attacked like a unit and cannot act. The player Symbol has the same HP at the stage's tower number."),
 ]
@@ -90,7 +90,7 @@ RULES = {
     "Terrain bonuses are doubled": "Every POSITIVE terrain modifier is doubled for both sides: high ground becomes +60% damage, +30 accuracy, +2 range, and terrain-family match becomes +40% damage dealt / -20% taken. Penalties (water move cost, water/hazard damage) are unchanged. Implement as `terrainBonusMult = 2` applied to the bonus delta, not to the total.",
     "Movement after a knockout is +1": "When a unit KOs an enemy (or the Symbol takes its final hit), that unit gets `move + 1` on its NEXT turn only, for both sides. It does not stack with itself; multiple KOs in one turn still give +1. It stacks with Storm Dash, which grants an immediate extra move.",
     "One random portal activates each round": "At the start of each round, pick one `warp_gate` tile uniformly at random (seeded RNG). A unit that ENTERS the active gate may teleport, as a free action, to any other warp gate or, if the map has only one gate, to the mirrored tile `(11-r, 11-c)` (or the nearest free walkable tile to it). The active gate glows. Inactive gates are plain ground.",
-    "Capsules cost 1 AP to deploy": "Deploying from a capsule costs 1 AP from the side's pool (see Action points) in addition to the unit's action. With 2 AP per round, at most 2 deploys per round. When this rule is absent, deploys cost 0 AP.",
+    "Capsules cost +1 SP to summon": "Deploying from a capsule costs 1 AP from the side's pool (see Action points) in addition to the unit's action. With 2 AP per round, at most 2 deploys per round. When this rule is absent, deploys cost 0 AP.",
 }
 WINS = {
     "Defeat the enemy Symbol": "Victory when the enemy Symbol's HP reaches 0. Defeat when the player Symbol's HP reaches 0 OR all player units are KO'd with no capsules left. Wiping the enemy roster does not win by itself: the Symbol must still fall, but with no defenders it takes no extra rules.",

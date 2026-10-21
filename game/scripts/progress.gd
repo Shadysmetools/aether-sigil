@@ -7,12 +7,17 @@
 ##       Migration to v3: a player who already progressed is not shown the story they skipped past
 ##       (prologue + arrivals of unlocked towers, boss scenes of cleared L10s are marked seen);
 ##       every cleared stage gets 1 star; cleared L10s grant their tower_reward.
+##   v4 (Vessels / Bond, 2026-10-21): fused instances carry "bond" (draft cost = 80% of the
+##       parents' Bond). Migration to v4: a fused instance without one gets it from its parents'
+##       base ids (bible rarity, evolution 0); a parent that was itself a fusion counts at the
+##       Bond of the child's rarity. Everything else is unchanged.
 extends RefCounted
 
 const Data = preload("res://scripts/data_loader.gd")
 const Prog = preload("res://scripts/progression.gd")
 const DEFAULT_PATH := "user://aether_sigil_save.json"
-const VERSION := 3
+const Summon = preload("res://scripts/summon.gd")
+const VERSION := 4
 
 var path := DEFAULT_PATH
 var unlocked := 1                ## number of stages unlocked, in play order (index < unlocked)
@@ -78,7 +83,7 @@ func load_save() -> void:
 		# v1 had no roster: everyone owns the collection at level 1; the v1 squad held monster ids.
 		var ids: Array = d.get("squad", [])
 		var mapped := _uids_for_ids(ids)
-		set_squad(mapped if mapped.size() == ids.size() else [])
+		set_squad(filled_squad(mapped if mapped.size() == ids.size() else []))
 		_migrate_to_v3()
 		load_note = "migrated_from_v1"
 		return
@@ -96,9 +101,13 @@ func load_save() -> void:
 				inst.level_cap = int(inst.get("level_cap", 50))
 				for k in inst.base:
 					inst.base[k] = int(inst.base[k])
+				if inst.has("bond"):
+					inst.bond = int(inst.bond)
+				else:
+					inst.bond = migrated_bond(inst)
 			roster.append(inst)
 	next_uid = maxi(int(d.get("next_uid", 1)), roster.size() + 1)
-	set_squad(d.get("squad", []))
+	set_squad(filled_squad(d.get("squad", [])))  # v3 squads of 4 keep their 4, topped up to 6
 	if v < 3:
 		_migrate_to_v3()
 		load_note = "migrated_from_v2"
@@ -110,7 +119,18 @@ func load_save() -> void:
 		for k in st:
 			stars[k] = int(st[k])
 	rewards = d.get("rewards", []) if typeof(d.get("rewards")) == TYPE_ARRAY else []
-	load_note = "loaded"
+	load_note = "loaded" if v >= VERSION else "migrated_from_v%d" % v
+
+
+## v4 migration: Bond of a fused instance saved before Bond existed.
+static func migrated_bond(inst: Dictionary) -> int:
+	var parts: Array = []
+	for pid in inst.get("parents", []):
+		var m := Data.monster(str(pid))
+		parts.append({"rarity": str(m.get("rarity", inst.get("rarity", "Common")))} if not m.is_empty() else {"rarity": str(inst.get("rarity", "Common"))})
+	while parts.size() < 2:
+		parts.append({"rarity": str(inst.get("rarity", "Common"))})
+	return Summon.fusion_bond(parts[0], parts[1])
 
 
 func _migrate_to_v3() -> void:
@@ -177,6 +197,27 @@ func set_squad(uids: Array) -> bool:
 	return ok
 
 
+## The valid, owned, distinct uids of `uids` (in order, at most squad_size), topped up with the
+## strongest other owned monsters. Used when loading older saves (squad of 4 -> 6) and after a fusion.
+func filled_squad(uids: Array) -> Array:
+	var out := []
+	for u in uids:
+		if out.size() < Data.squad_size() and not get_inst(str(u)).is_empty() and not out.has(str(u)):
+			out.append(str(u))
+	for u in auto_squad_order():
+		if out.size() >= Data.squad_size():
+			break
+		if not out.has(u):
+			out.append(u)
+	return out
+
+
+func auto_squad_order() -> Array:
+	var sorted := roster.duplicate()
+	sorted.sort_custom(func(a, b): return Prog.power(a) > Prog.power(b))
+	return sorted.map(func(i): return str(i.uid))
+
+
 func auto_squad() -> Array:
 	var sorted := roster.duplicate()
 	sorted.sort_custom(func(a, b): return Prog.power(a) > Prog.power(b))
@@ -201,7 +242,8 @@ func taken_names(except_uids: Array = []) -> Dictionary:
 func award_battle(state, won: bool) -> Dictionary:
 	var out := {}
 	var tower := maxi(1, int(str(state.stage.get("tower_id", "1"))))
-	for uid in squad:
+	var drafted: Array = state.get("team") if state.get("team") != null and not state.team.is_empty() else squad
+	for uid in drafted:
 		if not state.deployed.has(uid):
 			continue
 		var inst := get_inst(uid)
@@ -241,7 +283,7 @@ func fuse(uid_a: String, uid_b: String) -> Dictionary:
 	var sq := squad.filter(func(u): return u != uid_a and u != uid_b)
 	if sq.size() < squad.size():
 		sq.append(res.uid)
-	set_squad(sq)
+	set_squad(filled_squad(sq))
 	save()
 	return res
 

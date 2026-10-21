@@ -155,4 +155,13 @@ func _invariants(s: GameState) -> String:
 	for side in 2:
 		if s.symbol_hp[side] < 0:
 			return "negative Symbol HP"
+		if s.sp[side] < 0 or s.sp[side] > s.sp_cap():
+			return "side %d SP %d outside 0..%d (AI overspent or income broke the cap)" % [side, s.sp[side], s.sp_cap()]
+		for cap in s.capsules_on_board(side):
+			if s.unit_at(cap.pos) != null:
+				return "unit standing on a sealed Vessel at %s" % cap.pos
+			if int(cap.hp) <= 0:
+				return "broken Vessel still on the board"
+		if s.reserve[side].size() != s.capsules[side].size():
+			return "side %d reserve and Vessels disagree" % side
 	return ""

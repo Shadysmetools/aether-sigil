@@ -14,27 +14,31 @@ const Data = preload("res://scripts/data_loader.gd")
 ## keep_range  prefer standing at exactly max range from the nearest enemy (kiting)
 ## hold / trigger  stay within `hold` steps of own Sigil until an enemy comes within `trigger` of it
 ##                 (released once the other side has nothing left to summon or field)
-## deploy_max  summons per Sigil activation;  deploy_key  which stat summons first
+## deploy_key  which stat cracks first ("cheap" = lowest SP cost first)
+## sp_bank     SP kept after a crack unless the side has nothing on the board or is threatened
+##             (aggressive styles 0 = spend early; defensive styles bank)
+## crack_nodes prefer cracking onto / near capsule nodes (resource thief)
+## vessel_bonus value of hitting an enemy Vessel (breaking one also chips its Sigil)
 ## sym_bonus / kill_bonus / adv_bonus  target weights;  skill_bias  extra value for skills
 ## defend_hp  Defend (or heal/guard) below this HP fraction when an enemy is near
 const BASE := {
 	"w_symbol": 1.0, "w_enemy": 0.3, "w_node": 0.0, "w_relic": 0.0, "w_terrain": 0.3,
-	"w_choke": 0.0, "keep_range": false, "hold": 0, "trigger": 0, "deploy_max": 2,
-	"deploy_key": "attack", "sym_bonus": 10.0, "kill_bonus": 100.0, "adv_bonus": 0.0,
+	"w_choke": 0.0, "keep_range": false, "hold": 0, "trigger": 0, "sp_bank": 0, "crack_nodes": false,
+	"vessel_bonus": 12.0, "deploy_key": "attack", "sym_bonus": 10.0, "kill_bonus": 100.0, "adv_bonus": 0.0,
 	"avoid_hazard": 6.0, "w_attack_pos": 3.0, "skill_bias": 0.0, "defend_hp": 0.3,
 }
 const STYLES := {
 	"balanced": {},
-	"defensive fortress": {"w_symbol": 0.4, "w_enemy": 0.6, "hold": 3, "trigger": 6, "deploy_key": "defense", "w_terrain": 0.6, "defend_hp": 0.45},
-	"trap engineer": {"w_symbol": 0.5, "w_choke": 4.0, "hold": 5, "trigger": 5, "avoid_hazard": 12.0, "w_terrain": 0.4},
+	"defensive fortress": {"w_symbol": 0.4, "w_enemy": 0.6, "hold": 3, "trigger": 6, "deploy_key": "defense", "w_terrain": 0.6, "defend_hp": 0.45, "sp_bank": 4},
+	"trap engineer": {"w_symbol": 0.5, "w_choke": 4.0, "hold": 5, "trigger": 5, "avoid_hazard": 12.0, "w_terrain": 0.4, "sp_bank": 2},
 	"mobility specialist": {"w_symbol": 0.8, "w_node": 1.2, "w_relic": 1.0, "deploy_key": "move"},
 	"terrain controller": {"w_symbol": 0.7, "w_terrain": 2.0, "w_node": 0.5},
-	"summoner": {"w_symbol": 0.8, "deploy_max": 9, "deploy_key": "hp"},
-	"counter-attacker": {"w_symbol": 0.3, "w_enemy": 1.2, "hold": 2, "trigger": 7, "kill_bonus": 150.0},
-	"resource thief": {"w_symbol": 0.5, "w_node": 2.0, "w_relic": 2.0},
-	"long-range sniper": {"w_symbol": 0.8, "keep_range": true, "deploy_key": "range", "w_terrain": 0.8},
+	"summoner": {"w_symbol": 0.8, "deploy_key": "cheap"},
+	"counter-attacker": {"w_symbol": 0.3, "w_enemy": 1.2, "hold": 2, "trigger": 7, "kill_bonus": 150.0, "sp_bank": 3},
+	"resource thief": {"w_symbol": 0.5, "w_node": 2.0, "w_relic": 2.0, "crack_nodes": true, "vessel_bonus": 20.0},
+	"long-range sniper": {"w_symbol": 0.8, "keep_range": true, "deploy_key": "range", "w_terrain": 0.8, "sp_bank": 2},
 	"status-effect strategist": {"w_symbol": 0.8, "adv_bonus": 15.0, "w_enemy": 0.6, "skill_bias": 8.0},
-	"rush attacker": {"w_symbol": 2.0, "w_enemy": 0.1, "deploy_max": 3, "sym_bonus": 40.0, "deploy_key": "move", "avoid_hazard": 2.0, "defend_hp": 0.0},
+	"rush attacker": {"w_symbol": 2.0, "w_enemy": 0.1, "sym_bonus": 40.0, "vessel_bonus": 18.0, "deploy_key": "move", "avoid_hazard": 2.0, "defend_hp": 0.0},
 }
 
 
@@ -55,8 +59,7 @@ static func take_activation(s: GameState, p: int, style: String = "balanced") ->
 		return stats
 	var P := params(style)
 	if s.is_sigil_turn():
-		_summon(s, p, P, stats)
-		_do(s, p, {"type": "wait"}, stats)
+		_sigil_turn(s, p, P, stats)
 		return stats
 	var u := s.actor_unit()
 	var acted := _best_action(s, p, u, P, stats)
@@ -106,24 +109,80 @@ static func _do(s: GameState, p: int, action: Dictionary, stats: Dictionary) -> 
 	return false
 
 
-static func _summon(s: GameState, p: int, P: Dictionary, stats: Dictionary) -> void:
+## The Sigil's activation: step 1 tile toward an own Vessel that is out of crack range, then
+## Crack one Vessel (style policy: sp_bank, deploy_key, crack_nodes), else Defend when an enemy
+## monster is close, else Wait. Uses only legal actions, so it can never overspend SP.
+static func _sigil_turn(s: GameState, p: int, P: Dictionary, stats: Dictionary) -> void:
+	var sid := GameState.sigil_id(p)
+	var far: Array = []
+	for cap in s.capsules_on_board(p):
+		if not s.in_crack_range(p, str(cap.mon)) and s.sp[p] >= s.summon_cost(p, str(cap.mon)):
+			far.append(cap.pos)
+	var moves := s.sigil_moves(p)
+	if not far.is_empty() and not moves.is_empty() and _crack_choice(s, p, P).is_empty():
+		var best: Vector2i = s.symbol_pos[p]
+		var best_d := _nearest_cheb(best, far)
+		for c in moves:
+			var d := _nearest_cheb(c, far)
+			if d < best_d:
+				best_d = d
+				best = c
+		if best != s.symbol_pos[p]:
+			_do(s, p, {"type": "sigil_move", "tile": best}, stats)
+	if s.actor_id != sid or s.current != p or s.winner != GameState.NONE:
+		return
+	var pick := _crack_choice(s, p, P)
+	if not pick.is_empty() and _do(s, p, pick, stats):
+		return
+	if s.actor_id != sid or s.current != p or s.winner != GameState.NONE:
+		return
+	if _nearest_enemy(s, p, s.symbol_pos[p]) <= 3:
+		_do(s, p, {"type": "defend", "unit": sid}, stats)
+	else:
+		_do(s, p, {"type": "wait"}, stats)
+
+
+static func _nearest_cheb(c: Vector2i, pts: Array) -> int:
+	var best := 99
+	for q in pts:
+		best = mini(best, GameState.chebyshev(c, q))
+	return best
+
+
+## The crack to make now ({} = none): affordable after keeping sp_bank (ignored when the side
+## has nothing on the board or its Sigil is threatened); best by deploy_key, then nearest the
+## enemy Symbol; crack_nodes prefers capsule nodes and tiles near unowned nodes.
+static func _crack_choice(s: GameState, p: int, P: Dictionary) -> Dictionary:
+	var opts := s.legal_deploys(p)
+	if opts.is_empty():
+		return {}
+	var bank := int(P.sp_bank)
+	if s.units_of(p).is_empty() or _threatened(s, p, P) or s.sp[p] >= s.sp_cap():
+		bank = 0
 	var key: String = P.deploy_key
 	var field := s.distance_field(s.symbol_pos[GameState.other(p)])
-	for i in int(P.deploy_max):
-		var opts := s.legal_deploys(p)
-		if opts.is_empty():
-			return
-		var best: Dictionary = {}
-		var best_score := -INF
-		for a in opts:
-			var m: int = s.reserve[p].find(a.mon)
-			var stat := int(Data.monster(a.mon).get(key, 0))
-			var score: float = stat * 100.0 - float(field.get(a.tile, 99)) - m * 0.01
-			if score > best_score:
-				best_score = score
-				best = a
-		if not _do(s, p, best, stats):
-			return
+	var open_nodes: Array = []
+	for n in s.nodes:
+		if s.nodes[n] != p:
+			open_nodes.append(n)
+	var best: Dictionary = {}
+	var best_score := -INF
+	for a in opts:
+		var cost := s.summon_cost(p, str(a.mon))
+		if s.sp[p] - cost < bank:
+			continue
+		var rec: Dictionary = s.custom.get(a.mon, Data.monster(a.mon)) if p == GameState.PLAYER else Data.monster(a.mon)
+		var stat := -cost if key == "cheap" else int(rec.get(key, 0))
+		var score: float = stat * 100.0 - float(field.get(a.tile, 99)) - s.reserve[p].find(a.mon) * 0.01
+		if P.crack_nodes:
+			if s.nodes.has(a.tile):
+				score += 500.0
+			elif not open_nodes.is_empty():
+				score -= 20.0 * _nearest(a.tile, open_nodes)
+		if score > best_score:
+			best_score = score
+			best = a
+	return best
 
 
 ## Picks the best Attack or Skill available from where the unit stands. Returns true if it acted.
@@ -177,7 +236,12 @@ static func _value_hit(s: GameState, u: GameState.Unit, t: Vector2i, mult: float
 	var hit := s.hit_chance(u, t) / 100.0
 	var score := float(dmg) * hit
 	var e := s.unit_at(t)
-	if e == null:
+	var cap := s.capsule_at(t)
+	if e == null and not cap.is_empty():
+		score += float(P.vessel_bonus)
+		if dmg >= int(cap.hp):
+			score += float(P.kill_bonus) * 0.6 * hit
+	elif e == null:
 		score += float(P.sym_bonus)
 		if dmg >= s.symbol_hp[GameState.other(u.owner)]:
 			score += 1000.0 * hit
@@ -257,6 +321,8 @@ static func _score_tile(s: GameState, p: int, u: GameState.Unit, c: Vector2i, P:
 	var targets: Array[Vector2i] = [s.symbol_pos[foe]]
 	for e in s.units_of(foe):
 		targets.append(e.pos)
+	for cap in s.capsules_on_board(foe):
+		targets.append(cap.pos)
 	for t in targets:
 		if GameState.manhattan(c, t) <= s.range_of(u, c) and s.has_los(c, t):
 			score += float(P.w_attack_pos)

@@ -210,7 +210,7 @@ func test_migration() -> void:
 	eq(pr.roster.size(), d.roster.size(), "roster kept")
 	pr.save()
 	var back: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SAVE))
-	eq(int(back.version), 3, "re-saved as v3")
+	eq(int(back.version), 4, "re-saved as the current schema (v4)")
 	var fresh := Progress.new("user://test_story_new.json")
 	check(not fresh.is_seen("prologue"), "a brand-new game still sees the prologue")
 	if FileAccess.file_exists("user://test_story_new.json"):

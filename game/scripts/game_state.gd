@@ -2,12 +2,17 @@
 ## Initiative model (battle-screen design): every round, each actor (both Sigils, then every
 ## monster on the board by initiative) gets one activation. A monster may Move once and then
 ## take ONE action: Attack, Skill, Defend or Wait (each ends the activation). A Sigil's
-## activation is the commander's: Capsule-summon squad monsters, then Wait.
+## activation is the commander's: crack sealed capsules by paying Summon Points (SP), then Wait.
+## Pre-match (docs/SUMMON-POINTS.md): setup(..., auto_start=false) leaves the battle in the
+## "placement" phase, where each side places its Sigil and its sealed capsules on its deployment
+## zone (place_sigil / place_capsule / auto_place); start_battle() begins round 1. setup() with the
+## default auto_start places both sides deterministically and starts at once (tests, tools, sims).
 ## Every mutating action has a can_* check returning a reason code (OK on success). The UI and
 ## the AI act ONLY through legal_* / can_* / apply(). All numbers come from data/game_rules.json.
 extends RefCounted
 
 const Data = preload("res://scripts/data_loader.gd")
+const Summon = preload("res://scripts/summon.gd")
 
 const SIZE := 12
 const NONE := -1
@@ -22,7 +27,14 @@ const R_NOT_YOUR_TURN := "not_your_turn"
 const R_NOT_ACTIVE := "not_the_active_unit"
 const R_NOT_SIGIL_TURN := "only_on_your_sigil_activation"
 const R_NOT_IN_RESERVE := "not_in_reserve"
-const R_NO_AP := "not_enough_ap"
+const R_NO_SP := "not_enough_sp"
+const R_PLACEMENT := "placement_phase"
+const R_NOT_PLACEMENT := "not_in_placement_phase"
+const R_BAD_PLACE := "not_in_deployment_zone"
+const R_TOO_CLOSE := "too_many_vessels_next_to_sigil"
+const R_OUT_OF_CRACK_RANGE := "vessel_too_far_from_sigil"
+const PHASE_PLACEMENT := "placement"
+const PHASE_BATTLE := "battle"
 const R_NO_SUMMONS := "no_summons_left"
 const R_BAD_DEPLOY_TILE := "not_a_deploy_tile"
 const R_NOT_YOUR_UNIT := "not_your_unit"
@@ -69,6 +81,8 @@ class Unit:
 	var level := 1
 	var skill_tier := 0          ## evolutions (and fusion) upgrade the Skill (progression.json)
 	var secondary_family := ""   ## fused monsters: second element's affinity
+	var tier := 0                ## rarity index (Common 0 .. Legendary 5): KO backlash to its Sigil
+	var cracked_round := -1      ## round its Vessel was cracked (-1 = placed by rules/tests)
 
 
 var stage: Dictionary = {}
@@ -84,13 +98,24 @@ var relics: Dictionary = {}          ## relic Vector2i -> owner or NONE
 var portals: Array[Vector2i] = []
 var active_portal: Vector2i = Vector2i(-1, -1)
 var units: Array[Unit] = []
-var reserve: Array = [[], []]        ## per side: monster ids not yet summoned
+var reserve: Array = [[], []]        ## per side: monster ids still sealed in capsules (not yet summoned)
+var capsules: Array = [[], []]       ## per side: sealed capsules {mon, pos, hp, max_hp}; pos (-1,-1) = off-board
+var zone: Array = [[], []]           ## per side: deployment-zone tiles (placement phase)
+var team: Array = []                 ## the player's drafted capsules (monster ids / uids), for XP
+var phase := PHASE_BATTLE
+var placement_queue: Array = []      ## remaining placement steps [side, "sigil"|"vessel"]
+var place_first := PLAYER            ## the side that places first (initiative loser)
+var sigil_under: Array = ["ground", "ground"]  ## tile type under each Sigil (restored when it moves)
+var sigil_defending: Array = [false, false]    ## Sigil Defend: damage x symbol.defend_mult until its next activation
+var sigil_moved := false             ## the active Sigil has used its 1-tile move
+var last_crack: Dictionary = {}      ## the latest crack {unit, cost} (UI: board.play_summon)
+var last_break: Dictionary = {}      ## the latest broken Vessel (UI: board.play_vessel_break)
 var order: Array[int] = []           ## this round's actor ids (Sigils are -1 / -2)
 var order_index := 0
 var actor_id := -1
 var current := PLAYER                ## side of the active actor
 var round_num := 1
-var ap: Array[int] = [0, 0]
+var sp: Array[int] = [0, 0]          ## Summon Points per side
 var summons_left := 0
 var momentum_until: Array[int] = [0, 0]  ## KO move bonus applies while round_num <= this
 var kos: Array[int] = [0, 0]         ## monsters each side has LOST
@@ -110,8 +135,9 @@ var _next_id := 1
 var _field_cache: Dictionary = {}
 
 
-## Builds a battle for a stage. squad defaults to the default squad of 4.
-func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom: Dictionary = {}) -> bool:
+## Builds a battle for a stage. squad defaults to the default squad of 4. auto_start: place both
+## sides with auto_place and start round 1; false leaves the "placement" phase open.
+func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom: Dictionary = {}, auto_start: bool = true) -> bool:
 	stage = Data.stage(p_stage_id)
 	if stage.is_empty():
 		push_error("game_state: unknown stage %s" % p_stage_id)
@@ -172,9 +198,10 @@ func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom
 		if m:
 			hazard_tier = int(m.get_string(1))
 	units = []
-	var team: Array = squad if not squad.is_empty() else Data.default_squad()
+	team = (squad if not squad.is_empty() else Data.default_squad()).duplicate()
 	reserve = [team.duplicate(), Array(stage.get("enemy_roster", [])).duplicate()]
-	ap = [int(R.ap.start), int(R.ap.start)]
+	var SPR: Dictionary = R.summon_points
+	sp = [int(SPR.start), int(SPR.start) + int(SPR.get("enemy_start_bonus", 0))]
 	momentum_until = [0, 0]
 	kos = [0, 0]
 	winner = NONE
@@ -182,6 +209,11 @@ func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom
 	events = []
 	_next_id = 1
 	_field_cache = {}
+	sigil_under = ["ground", "ground"]
+	sigil_defending = [false, false]
+	sigil_moved = false
+	last_crack = {}
+	last_break = {}
 	var D: Dictionary = R.dormant_start
 	dormant_stage = Array(D.terrains).has(str(stage.get("terrain", ""))) or Array(D.stage_ids).has(p_stage_id)
 	if dormant_stage:
@@ -190,11 +222,270 @@ func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom
 				break
 			var u := place_unit(ENEMY, reserve[ENEMY].pop_front(), spawn_tiles[ENEMY][i])
 			u.dormant = true
+	capsules = [[], []]
+	for side in 2:
+		for mon in reserve[side]:
+			var hp := Summon.vessel_hp(_record(side, mon))
+			capsules[side].append({"mon": mon, "owner": side, "pos": Vector2i(-1, -1), "hp": hp, "max_hp": hp})
+	zone = [_compute_zone(PLAYER), _compute_zone(ENEMY)]
+	_build_placement_queue()
+	round_num = 1
+	order = []
+	order_index = 0
+	actor_id = NONE
+	current = placement_side()
+	phase = PHASE_PLACEMENT
+	if auto_start:
+		auto_place_all()
+		start_battle()
+	return true
+
+
+func _record(side: int, mon_id: String) -> Dictionary:
+	return Summon.record_for(mon_id, custom if side == PLAYER else {})
+
+
+## Ends the placement phase (anything still unplaced is auto-placed) and starts round 1.
+func start_battle() -> String:
+	if phase != PHASE_PLACEMENT:
+		return R_NOT_PLACEMENT
+	auto_place_all()
+	phase = PHASE_BATTLE
 	round_num = 1
 	_roll_portal()
 	_new_round()
 	_begin_activation()
-	return true
+	return OK
+
+
+# ---------------------------------------------------------------- pre-match placement
+
+## Home zone: walkable tiles within placement.zone_radius of the side's spawns or painted Symbol,
+## strictly closer to its own Symbol than to the enemy's; excludes placement.exclude and the
+## foe's spawns. Includes the side's own Symbol tile (the Sigil may stay on it).
+func _compute_zone(p: int) -> Array:
+	var PL: Dictionary = Data.rules().placement
+	var rad := int(PL.zone_radius)
+	var anchors: Array = spawn_tiles[p].duplicate()
+	anchors.append(symbol_pos[p])
+	var foe_spawn := "enemy_spawn" if p == PLAYER else "player_spawn"
+	var out: Array = []
+	for y in SIZE:
+		for x in SIZE:
+			var c := Vector2i(x, y)
+			if c == symbol_pos[p]:
+				out.append(c)
+				continue
+			var t := tile_type(c)
+			if not is_walkable(c) or Array(PL.exclude).has(t) or t == foe_spawn:
+				continue
+			if manhattan(c, symbol_pos[p]) >= manhattan(c, symbol_pos[other(p)]):
+				continue
+			for a in anchors:
+				if manhattan(a, c) <= rad:
+					out.append(c)
+					break
+	return out
+
+
+## Placement steps: both Sigils, then Vessels alternating one at a time. The side whose Vessels
+## have the lower total initiative (the initiative loser) goes first; ties: the player.
+func _build_placement_queue() -> void:
+	var score := [0, 0]
+	for side in 2:
+		for cap in capsules[side]:
+			var d := _record(side, str(cap.mon))
+			score[side] += int(d.get("move", 1)) * int(Data.rules().initiative.move_weight) + int(d.get("range", 1))
+	place_first = ENEMY if score[ENEMY] < score[PLAYER] else PLAYER
+	var second := other(place_first)
+	placement_queue = [[place_first, "sigil"], [second, "sigil"]]
+	var n := [capsules[PLAYER].size(), capsules[ENEMY].size()]
+	for i in maxi(n[0], n[1]):
+		for side in [place_first, second]:
+			if i < n[side]:
+				placement_queue.append([side, "vessel"])
+
+
+## Side whose placement step is next (NONE when placement is complete).
+func placement_side() -> int:
+	return int(placement_queue[0][0]) if not placement_queue.is_empty() else NONE
+
+
+## "sigil", "vessel" or "" (placement complete).
+func placement_step() -> String:
+	return str(placement_queue[0][1]) if not placement_queue.is_empty() else ""
+
+
+func capsule_at(c: Vector2i) -> Dictionary:
+	if in_bounds(c):
+		for side in 2:
+			for cap in capsules[side]:
+				if cap.pos == c:
+					return cap
+	return {}
+
+
+func capsule_owner_at(c: Vector2i) -> int:
+	var cap := capsule_at(c)
+	return int(cap.owner) if not cap.is_empty() else NONE
+
+
+func capsule_of(p: int, mon_id: String) -> Dictionary:
+	for cap in capsules[p]:
+		if cap.mon == mon_id:
+			return cap
+	return {}
+
+
+## Sealed Vessels of side p that sit on the board.
+func capsules_on_board(p: int) -> Array:
+	return capsules[p].filter(func(cap): return cap.pos != Vector2i(-1, -1))
+
+
+func unplaced_capsules(p: int) -> Array:
+	return capsules[p].filter(func(cap): return cap.pos == Vector2i(-1, -1))
+
+
+## A unit or a sealed Vessel stands here (the Symbol tile is terrain-blocked already).
+func occupied(c: Vector2i) -> bool:
+	return unit_at(c) != null or capsule_owner_at(c) != NONE
+
+
+static func chebyshev(a: Vector2i, b: Vector2i) -> int:
+	return maxi(absi(a.x - b.x), absi(a.y - b.y))
+
+
+func _adjacent_to_sigil(p: int) -> int:
+	var n := 0
+	for cap in capsules_on_board(p):
+		if chebyshev(cap.pos, symbol_pos[p]) <= 1:
+			n += 1
+	return n
+
+
+func can_place_capsule(p: int, mon_id: String, c: Vector2i) -> String:
+	if phase != PHASE_PLACEMENT:
+		return R_NOT_PLACEMENT
+	if placement_side() != p or placement_step() != "vessel":
+		return R_NOT_YOUR_TURN
+	var cap := capsule_of(p, mon_id)
+	if cap.is_empty() or cap.pos != Vector2i(-1, -1):
+		return R_NOT_IN_RESERVE
+	if not zone[p].has(c) or c == symbol_pos[p] or occupied(c):
+		return R_BAD_PLACE
+	if chebyshev(c, symbol_pos[p]) <= 1 and _adjacent_to_sigil(p) >= int(Data.rules().placement.max_adjacent_to_sigil):
+		return R_TOO_CLOSE
+	return OK
+
+
+## Places the next Vessel of side p (one placement step).
+func place_capsule(p: int, mon_id: String, c: Vector2i) -> String:
+	var r := can_place_capsule(p, mon_id, c)
+	if r != OK:
+		return r
+	capsule_of(p, mon_id).pos = c
+	placement_queue.pop_front()
+	current = maxi(PLAYER, placement_side())
+	return OK
+
+
+func can_place_sigil(p: int, c: Vector2i) -> String:
+	if phase != PHASE_PLACEMENT:
+		return R_NOT_PLACEMENT
+	if placement_side() != p or placement_step() != "sigil":
+		return R_NOT_YOUR_TURN
+	if c != symbol_pos[p] and not bool(Data.rules().placement.get("sigil_movable", true)):
+		return R_BAD_PLACE
+	if not zone[p].has(c) or (c != symbol_pos[p] and occupied(c)):
+		return R_BAD_PLACE
+	return OK
+
+
+## The side's Sigil placement step (c may be its current tile). The grid is replaced by a copy so
+## boards that cache by grid reference rebuild.
+func place_sigil(p: int, c: Vector2i) -> String:
+	var r := can_place_sigil(p, c)
+	if r != OK:
+		return r
+	if c != symbol_pos[p]:
+		var g: Array = []
+		for row in grid:
+			g.append(row.duplicate())
+		grid = g
+		_relocate_sigil(p, c)
+	placement_queue.pop_front()
+	current = maxi(PLAYER, placement_side())
+	return OK
+
+
+## Moves the Symbol tile: restores what was under it and remembers the new tile's type.
+func _relocate_sigil(p: int, c: Vector2i) -> void:
+	var old := symbol_pos[p]
+	grid[old.y][old.x] = sigil_under[p]
+	sigil_under[p] = str(grid[c.y][c.x])
+	grid[c.y][c.x] = "player_symbol" if p == PLAYER else "enemy_symbol"
+	symbol_pos[p] = c
+	_field_cache = {}
+
+
+## Plays side p's next placement step with its plan (placement.plan_by_style, or `plan`):
+## the Sigil stays where the map paints it; the next unplaced Vessel goes on the first legal tile.
+func auto_place_step(p: int, plan: String = "") -> String:
+	if placement_side() != p:
+		return R_NOT_YOUR_TURN
+	if placement_step() == "sigil":
+		return place_sigil(p, symbol_pos[p])
+	var caps := unplaced_capsules(p)
+	if plan == "":
+		plan = plan_for(p)
+	for c in placement_order(p, plan):
+		if can_place_capsule(p, str(caps[0].mon), c) == OK:
+			return place_capsule(p, str(caps[0].mon), c)
+	# No legal tile left: this Vessel stays off-board (cracked onto spawn tiles / held nodes).
+	placement_queue.pop_front()
+	current = maxi(PLAYER, placement_side())
+	return OK
+
+
+## Finishes every remaining placement step with each side's plan.
+func auto_place_all() -> void:
+	var guard := 0
+	while phase == PHASE_PLACEMENT and not placement_queue.is_empty() and guard < 64:
+		auto_place_step(placement_side())
+		guard += 1
+
+
+## The placement plan for side p: the enemy's opponent_style, the player's "balanced".
+func plan_for(p: int) -> String:
+	var style := "balanced" if p == PLAYER else str(stage.get("opponent_style", "balanced"))
+	return str(Data.rules().placement.plan_by_style.get(style, "spawn"))
+
+
+## Zone tiles (minus the Sigil) sorted for a placement plan: "spawn" (spawn tiles, then nearest
+## the own Sigil), "front" (nearest the enemy Symbol by path), "wall" (nearest the own Sigil),
+## "nodes" (nearest a capsule node; "front" when the map has none).
+func placement_order(p: int, plan: String) -> Array:
+	var tiles: Array = zone[p].filter(func(c): return c != symbol_pos[p])
+	var foe_field := distance_field(symbol_pos[other(p)])
+	var node_list: Array = nodes.keys()
+	var keys := {}
+	for c in tiles:
+		var k := 0.0
+		match plan:
+			"front":
+				k = float(foe_field.get(c, 99))
+			"wall":
+				k = float(manhattan(c, symbol_pos[p]))
+			"nodes":
+				var best := 99
+				for n in node_list:
+					best = mini(best, manhattan(c, n))
+				k = float(best) if not node_list.is_empty() else float(foe_field.get(c, 99))
+			_:
+				k = (0.0 if spawn_tiles[p].has(c) else 100.0) + manhattan(c, symbol_pos[p])
+		keys[c] = k * 1000.0 + c.y * SIZE + c.x
+	tiles.sort_custom(func(a, b): return keys[a] < keys[b])
+	return tiles
 
 
 static func other(p: int) -> int:
@@ -315,18 +606,28 @@ func initiative(u: Unit) -> int:
 	return u.move * int(I.move_weight) + u.attack_range
 
 
-## Both Sigils first, then monsters by initiative; ties interleave sides (player first), then id.
+## Sigil initiative (mid speed, symbol.initiative).
+static func sigil_initiative() -> int:
+	return int(Data.rules().symbol.initiative)
+
+
+## Monsters and both Sigils by initiative; ties interleave sides (player first), then id (a
+## Sigil's id is negative, so it goes first within its side). Sealed Vessels have no slot.
 func _new_round() -> void:
 	var by_score := {}
+	var actors: Array = []
 	for u in units:
-		var sc := initiative(u)
-		if not by_score.has(sc):
-			by_score[sc] = [[], []]
-		by_score[sc][u.owner].append(u.id)
+		actors.append([u.id, initiative(u), u.owner])
+	for side in 2:
+		actors.append([sigil_id(side), sigil_initiative(), side])
+	for a in actors:
+		if not by_score.has(a[1]):
+			by_score[a[1]] = [[], []]
+		by_score[a[1]][a[2]].append(a[0])
 	var scores := by_score.keys()
 	scores.sort()
 	scores.reverse()
-	order = [sigil_id(PLAYER), sigil_id(ENEMY)]
+	order = []
 	for sc in scores:
 		var pl: Array = by_score[sc][PLAYER]
 		var en: Array = by_score[sc][ENEMY]
@@ -375,9 +676,11 @@ func _begin_activation() -> void:
 	actor_id = order[order_index]
 	current = PLAYER if actor_id == sigil_id(PLAYER) else (ENEMY if actor_id == sigil_id(ENEMY) else get_unit(actor_id).owner)
 	if is_sigil(actor_id):
-		var A: Dictionary = Data.rules().ap
-		ap[current] = mini(int(A.cap), ap[current] + int(A.per_sigil_activation))
-		summons_left = int(Data.rules().summon.per_sigil_activation)
+		if round_num > 1:
+			sp[current] = mini(sp_cap(), sp[current] + sp_income(current))
+		summons_left = int(Data.rules().summon_points.per_sigil_turn)
+		sigil_moved = false
+		sigil_defending[current] = false
 		return
 	var u := get_unit(actor_id)
 	u.dormant = false
@@ -429,9 +732,30 @@ func _end_activation() -> void:
 		order_index += 1
 	if order_index >= order.size():
 		round_num += 1
+		if round_num > turn_cap():
+			_time_up()
+			return
 		_roll_portal()
 		_new_round()
 	_begin_activation()
+
+
+static func turn_cap() -> int:
+	return int(Data.rules().turn_cap_rounds)
+
+
+## Round limit reached: the higher Sigil HP % wins ("time"); equal = draw (winner stays NONE).
+func _time_up() -> void:
+	actor_id = NONE
+	if symbol_hp[PLAYER] != symbol_hp[ENEMY]:
+		_set_winner(PLAYER if symbol_hp[PLAYER] > symbol_hp[ENEMY] else ENEMY, "time")
+	else:
+		_log("Round limit: draw")
+
+
+## True once the battle is decided or the round limit has passed (draws included).
+func is_over() -> bool:
+	return winner != NONE or round_num > turn_cap()
 
 
 ## Makes `id` act next (tests and tools): it is placed at the front of the remaining order.
@@ -522,13 +846,27 @@ func damage_preview(u: Unit, target: Vector2i, skill_mult: float = 1.0) -> int:
 		if t.defending:
 			mult *= t.defend_mult
 		return compute_damage(attack_of(u, u.pos), defense_of(t, t.pos), u.family, t.family, mult)
+	if capsule_owner_at(target) != NONE:
+		return compute_damage(attack_of(u, u.pos), int(Data.rules().vessel.defense), u.family, "", mult)
+	var victim := symbol_owner_at(target)
+	if victim != NONE and sigil_defending[victim]:
+		mult *= float(Data.rules().symbol.defend_mult)
+	if u.cracked_round == round_num:  # anti-bait: fresh monsters hit a Sigil softer
+		mult *= float(Data.rules().symbol.anti_bait_mult)
 	return compute_damage(attack_of(u, u.pos), symbol_defense, u.family, "", mult)
+
+
+## Sealed Vessels can be attacked unless vessel.hp_base is 0.
+static func capsule_attackable() -> bool:
+	return int(Data.rules().vessel.hp_base) > 0
 
 
 # ---------------------------------------------------------------- activation checks
 
 func _turn_check(p: int) -> String:
-	if winner != NONE:
+	if phase != PHASE_BATTLE:
+		return R_PLACEMENT
+	if winner != NONE or round_num > turn_cap():
 		return R_GAME_OVER
 	if p != current:
 		return R_NOT_YOUR_TURN
@@ -549,53 +887,141 @@ func _unit_check(p: int, unit_id: int) -> String:
 	return OK
 
 
-# ---------------------------------------------------------------- capsule summon (Sigil)
-
-func deploy_cost() -> int:
-	return int(rule.get("deploy_ap_cost", 0))
-
-
-## Own spawn tiles plus capsule nodes this side has activated, that are free.
-func deploy_tiles(p: int) -> Array[Vector2i]:
-	var out: Array[Vector2i] = []
-	for c in spawn_tiles[p]:
-		if unit_at(c) == null:
-			out.append(c)
-	for c in nodes:
-		if nodes[c] == p and unit_at(c) == null and not out.has(c):
-			out.append(c)
-	return out
-
-
-func can_deploy(p: int, mon_id: String, c: Vector2i) -> String:
+func _sigil_check(p: int) -> String:
 	var r := _turn_check(p)
 	if r != OK:
 		return r
 	if actor_id != sigil_id(p):
 		return R_NOT_SIGIL_TURN
+	return OK
+
+
+# ---------------------------------------------------------------- the Sigil's actions: Move 1, Crack / Defend / Wait
+
+## Free walkable tiles next to (4-dir) the side's Sigil, if it has not moved this activation.
+func sigil_moves(p: int) -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	if _sigil_check(p) != OK or sigil_moved:
+		return out
+	for _i in int(Data.rules().symbol.get("move", 1)):
+		for d in DIRS:
+			var c: Vector2i = symbol_pos[p] + d
+			if is_walkable(c) and not occupied(c) and not out.has(c):
+				out.append(c)
+	return out
+
+
+func can_move_sigil(p: int, c: Vector2i) -> String:
+	var r := _sigil_check(p)
+	if r != OK:
+		return r
+	if sigil_moved:
+		return R_ALREADY_MOVED
+	return OK if sigil_moves(p).has(c) else R_UNREACHABLE
+
+
+func move_sigil(p: int, c: Vector2i) -> String:
+	var r := can_move_sigil(p, c)
+	if r != OK:
+		return r
+	_relocate_sigil(p, c)
+	sigil_moved = true
+	_log("P%d Sigil moves to %s" % [p, c])
+	return OK
+
+
+## Stage rule surcharge on every crack ('Capsules cost +1 SP to summon').
+func sp_surcharge() -> int:
+	return int(rule.get("sp_surcharge", 0))
+
+
+## Deprecated (pre-SP name, kept for callers that have not moved yet): the stage's SP surcharge.
+func deploy_cost() -> int:
+	return sp_surcharge()
+
+
+func sp_cap() -> int:
+	return int(Data.rules().summon_points.cap)
+
+
+## SP gained at each own Sigil activation from round 2: income + per held capsule node.
+func sp_income(p: int) -> int:
+	var S: Dictionary = Data.rules().summon_points
+	var n := int(S.income_per_turn) + int(S.per_capsule_node) * nodes_activated(p)
+	if p == ENEMY:
+		n += int(S.get("enemy_income_bonus", 0))
+	return n
+
+
+## SP to crack this side's Vessel holding mon_id (rarity + evolved + stage surcharge).
+func summon_cost(p: int, mon_id: String) -> int:
+	return Summon.crack_cost(_record(p, mon_id)) + sp_surcharge()
+
+
+## The Vessel is within crack range (Chebyshev summon_points.crack_range) of its own Sigil.
+## Off-board Vessels (no zone tile left at placement) are always in range.
+func in_crack_range(p: int, mon_id: String) -> bool:
+	var cap := capsule_of(p, mon_id)
+	if cap.is_empty() or cap.pos == Vector2i(-1, -1):
+		return true
+	return chebyshev(cap.pos, symbol_pos[p]) <= int(Data.rules().summon_points.crack_range)
+
+
+## Where mon_id may appear when its Vessel cracks: the Vessel's own tile when it is on the
+## board, else the side's free spawn tiles; plus free capsule nodes the side holds.
+## mon_id "" = spawn tiles + held nodes.
+func deploy_tiles(p: int, mon_id: String = "") -> Array[Vector2i]:
+	var out: Array[Vector2i] = []
+	var cap := capsule_of(p, mon_id) if mon_id != "" else {}
+	if not cap.is_empty() and cap.pos != Vector2i(-1, -1):
+		out.append(cap.pos)
+	else:
+		for c in spawn_tiles[p]:
+			if is_walkable(c) and not occupied(c):
+				out.append(c)
+	for c in nodes:
+		if nodes[c] == p and is_walkable(c) and not occupied(c) and not out.has(c):
+			out.append(c)
+	return out
+
+
+func can_deploy(p: int, mon_id: String, c: Vector2i) -> String:
+	var r := _sigil_check(p)
+	if r != OK:
+		return r
 	if not reserve[p].has(mon_id):
 		return R_NOT_IN_RESERVE
 	if summons_left <= 0:
 		return R_NO_SUMMONS
-	if ap[p] < deploy_cost():
-		return R_NO_AP
-	if not deploy_tiles(p).has(c):
+	if sp[p] < summon_cost(p, mon_id):
+		return R_NO_SP
+	if not in_crack_range(p, mon_id):
+		return R_OUT_OF_CRACK_RANGE
+	if not deploy_tiles(p, mon_id).has(c):
 		return R_BAD_DEPLOY_TILE
 	return OK
 
 
-## Capsule summon. The monster joins the turn order next round.
+## Crack (the Sigil's action): pays the SP cost; the Vessel opens and its monster appears on `c`
+## as a statue (dormant) that joins the END of this round's turn order. Ends the Sigil's activation.
 func deploy(p: int, mon_id: String, c: Vector2i) -> String:
 	var r := can_deploy(p, mon_id, c)
 	if r != OK:
 		return r
-	ap[p] -= deploy_cost()
+	var cost := summon_cost(p, mon_id)
+	sp[p] -= cost
 	summons_left -= 1
 	reserve[p].erase(mon_id)
+	capsules[p].erase(capsule_of(p, mon_id))
 	var u := place_unit(p, mon_id, c)
+	u.dormant = true
+	u.cracked_round = round_num
+	order.append(u.id)
 	if p == PLAYER:
 		deployed[mon_id] = true
-	_log("P%d summons %s at %s" % [p, u.name, c])
+	last_crack = {"unit": u.id, "cost": cost}
+	_log("P%d summons %s at %s for %d SP" % [p, u.name, c, cost])
+	_end_activation()
 	return OK
 
 
@@ -622,6 +1048,7 @@ func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
 	u.level = int(d.get("level", 1))
 	u.skill_tier = int(d.get("skill_tier", 0))
 	u.secondary_family = str(d.get("secondary_family", ""))
+	u.tier = Summon.tier(d)
 	if p == ENEMY:
 		var f := enemy_scale()
 		u.hp = roundi(u.hp * f)
@@ -632,12 +1059,13 @@ func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
 	return u
 
 
-## Difficulty curve (game_rules.json difficulty): enemy stats x (1 + pct/100 x (tower - 1) + tower_adjust_pct/100).
+## Difficulty curve (game_rules.json difficulty): enemy stats x (1 + base/100 + pct/100 x (tower - 1) + tower_adjust_pct/100).
 func enemy_scale() -> float:
 	var pct := float(Data.rules().get("difficulty", {}).get("enemy_stat_pct_per_tower", 0))
 	var tower := maxi(1, int(str(stage.get("tower_id", "1"))))
 	var adj := float(Data.rules().get("difficulty", {}).get("tower_adjust_pct", {}).get(str(stage.get("tower_id", "")), 0))
-	return 1.0 + pct / 100.0 * (tower - 1) + adj / 100.0
+	var base := float(Data.rules().get("difficulty", {}).get("enemy_stat_base_pct", 0))
+	return 1.0 + base / 100.0 + pct / 100.0 * (tower - 1) + adj / 100.0
 
 
 # ---------------------------------------------------------------- Move
@@ -656,7 +1084,7 @@ func reachable(u: Unit) -> Dictionary:
 		open.remove_at(best_i)
 		for d in DIRS:
 			var n := c + d
-			if not is_walkable(n) or unit_at(n) != null:
+			if not is_walkable(n) or occupied(n):
 				continue
 			var nc: int = cost[c] + int(tile_def(n).get("move_cost", 1))
 			if nc > budget or (cost.has(n) and cost[n] <= nc):
@@ -701,7 +1129,7 @@ func portal_destination(from: Vector2i) -> Vector2i:
 	var q: Array[Vector2i] = [mirror]
 	while not q.is_empty():
 		var c: Vector2i = q.pop_front()
-		if c != from and is_walkable(c) and unit_at(c) == null:
+		if c != from and is_walkable(c) and not occupied(c):
 			return c
 		for d in DIRS:
 			var n := c + d
@@ -723,7 +1151,8 @@ func _roll_portal() -> void:
 func _target_check(u: Unit, target: Vector2i, allow_symbol: bool) -> String:
 	var t := unit_at(target)
 	var enemy_symbol := allow_symbol and symbol_owner_at(target) == other(u.owner)
-	if not enemy_symbol and (t == null or t.owner == u.owner):
+	var enemy_capsule := allow_symbol and capsule_attackable() and capsule_owner_at(target) == other(u.owner)
+	if not enemy_symbol and not enemy_capsule and (t == null or t.owner == u.owner):
 		return R_NO_TARGET
 	if manhattan(u.pos, target) > range_of(u, u.pos):
 		return R_OUT_OF_RANGE
@@ -779,6 +1208,17 @@ func _hit(u: Unit, target: Vector2i, mult: float) -> int:
 				ko_by[u.mon_id] = int(ko_by.get(u.mon_id, 0)) + 1
 			if rule.has("ko_move_bonus"):
 				momentum_until[u.owner] = round_num + 1
+	elif capsule_owner_at(target) != NONE:
+		var victim := capsule_owner_at(target)
+		var cap := capsule_at(target)
+		cap.hp = maxi(0, int(cap.hp) - dmg)
+		_log("%s hits P%d %s for %d" % [u.name, victim, Summon.term("vessel"), dmg])
+		if cap.hp == 0:
+			_shatter(victim, cap)
+			if u.owner == PLAYER:
+				ko_by[u.mon_id] = int(ko_by.get(u.mon_id, 0)) + 1
+			if rule.has("ko_move_bonus"):
+				momentum_until[u.owner] = round_num + 1
 	else:
 		var victim := other(u.owner)
 		symbol_hp[victim] = maxi(0, symbol_hp[victim] - dmg)
@@ -788,10 +1228,42 @@ func _hit(u: Unit, target: Vector2i, mult: float) -> int:
 	return dmg
 
 
+## A broken Vessel: its monster is lost for the match (counts as a knockout) and its Sigil takes
+## vessel.break_sigil_damage.
+func _shatter(p: int, cap: Dictionary) -> void:
+	capsules[p].erase(cap)
+	reserve[p].erase(cap.mon)
+	kos[p] += 1
+	last_break = cap.duplicate()
+	_log("P%d %s breaks: %s is lost" % [p, Summon.term("vessel"), str(_record(p, str(cap.mon)).get("name", cap.mon))])
+	_sigil_damage(p, int(Data.rules().vessel.break_sigil_damage))
+	_check_rout(p)
+
+
+## A knocked-out monster: its Sigil takes ko_sigil_damage (base + per_tier x tier).
 func _knock_out(t: Unit) -> void:
 	units.erase(t)
 	kos[t.owner] += 1
 	_log("%s is knocked out" % t.name)
+	var K: Dictionary = Data.rules().ko_sigil_damage
+	_sigil_damage(t.owner, int(K.base) + int(K.per_tier) * t.tier)
+	_check_rout(t.owner)
+
+
+## Damage to a side's Sigil from a rule (Vessel break, KO backlash). 0 HP loses.
+func _sigil_damage(p: int, amount: int) -> void:
+	if amount <= 0 or winner != NONE:
+		return
+	symbol_hp[p] = maxi(0, symbol_hp[p] - amount)
+	_log("P%d Symbol takes %d" % [p, amount])
+	if symbol_hp[p] == 0:
+		_set_winner(other(p), "symbol")
+
+
+## Rout: a side with no monster on the board and no sealed Vessel loses.
+func _check_rout(p: int) -> void:
+	if winner == NONE and bool(Data.rules().get("win", {}).get("rout", true)) and units_of(p).is_empty() and reserve[p].is_empty():
+		_set_winner(other(p), "rout")
 
 
 ## Ends the active unit's activation after an action (unless the game ended or it died).
@@ -833,7 +1305,7 @@ func can_skill(p: int, unit_id: int, target: Vector2i) -> String:
 			var a := unit_at(target)
 			return OK if a != null and a.owner == p and a != u and manhattan(a.pos, u.pos) == 1 else R_NO_TARGET
 		"blink":
-			if target == u.pos or not is_walkable(target) or unit_at(target) != null:
+			if target == u.pos or not is_walkable(target) or occupied(target):
 				return R_NO_TARGET
 			if sd.get("nodes_only", false) and not ["capsule_node", "relic", "warp_gate"].has(tile_type(target)):
 				return R_NO_TARGET
@@ -860,7 +1332,7 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 			if _hit(u, target, mult) >= 0 and t.hp > 0:
 				var step := Vector2i(signi(u.pos.x - t.pos.x), 0) if absi(u.pos.x - t.pos.x) >= absi(u.pos.y - t.pos.y) else Vector2i(0, signi(u.pos.y - t.pos.y))
 				var dest := t.pos + step
-				if is_walkable(dest) and unit_at(dest) == null:
+				if is_walkable(dest) and not occupied(dest):
 					t.pos = dest
 		"chain":
 			if _hit(u, target, mult) >= 0:
@@ -915,7 +1387,10 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 
 # ---------------------------------------------------------------- Defend / Wait
 
+## unit_id may be the active Sigil's id (sigil_id(p)): the Sigil defends until its next activation.
 func can_defend(p: int, unit_id: int) -> String:
+	if is_sigil(unit_id):
+		return _sigil_check(p) if unit_id == sigil_id(p) else R_NOT_YOUR_UNIT
 	return _unit_check(p, unit_id)
 
 
@@ -923,6 +1398,11 @@ func defend(p: int, unit_id: int) -> String:
 	var r := can_defend(p, unit_id)
 	if r != OK:
 		return r
+	if is_sigil(unit_id):
+		sigil_defending[p] = true
+		_log("P%d Sigil defends" % p)
+		_end_activation()
+		return OK
 	var u := get_unit(unit_id)
 	u.defending = true
 	u.defend_mult = float(Data.rules().defend.mult)
@@ -1007,11 +1487,12 @@ func objectives() -> Array:
 
 func legal_deploys(p: int) -> Array:
 	var out := []
-	if _turn_check(p) != OK or actor_id != sigil_id(p) or summons_left <= 0 or ap[p] < deploy_cost():
+	if _turn_check(p) != OK or actor_id != sigil_id(p) or summons_left <= 0:
 		return out
-	var tiles := deploy_tiles(p)
 	for mon in reserve[p]:
-		for c in tiles:
+		if sp[p] < summon_cost(p, mon):
+			continue
+		for c in deploy_tiles(p, mon):
 			out.append({"type": "deploy", "mon": mon, "tile": c})
 	return out
 
@@ -1032,6 +1513,8 @@ func legal_attacks(u: Unit) -> Array[Vector2i]:
 	var targets: Array[Vector2i] = [symbol_pos[other(u.owner)]]
 	for e in units_of(other(u.owner)):
 		targets.append(e.pos)
+	for cap in capsules_on_board(other(u.owner)):
+		targets.append(cap.pos)
 	for t in targets:
 		if can_attack(u.owner, u.id, t) == OK:
 			out.append(t)
@@ -1049,6 +1532,8 @@ func legal_skill_targets(u: Unit) -> Array[Vector2i]:
 			cands.append(symbol_pos[other(u.owner)])
 			for e in units_of(other(u.owner)):
 				cands.append(e.pos)
+			for cap in capsules_on_board(other(u.owner)):
+				cands.append(cap.pos)
 		"pull", "chain", "root", "mark":
 			for e in units_of(other(u.owner)):
 				cands.append(e.pos)
@@ -1075,6 +1560,9 @@ func legal_actions(p: int) -> Array:
 	var out := []
 	if is_sigil(actor_id):
 		out = legal_deploys(p)
+		for c in sigil_moves(p):
+			out.append({"type": "sigil_move", "tile": c})
+		out.append({"type": "defend", "unit": actor_id})
 	else:
 		var u := actor_unit()
 		for c in legal_moves(u):
@@ -1093,6 +1581,7 @@ func apply(p: int, a: Dictionary) -> String:
 	match str(a.get("type", "")):
 		"deploy": return deploy(p, str(a.mon), a.tile)
 		"move": return move_unit(p, int(a.unit), a.tile)
+		"sigil_move": return move_sigil(p, a.tile)
 		"attack": return attack(p, int(a.unit), a.tile)
 		"skill": return skill(p, int(a.unit), a.tile)
 		"defend": return defend(p, int(a.unit))

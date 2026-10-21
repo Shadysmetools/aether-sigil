@@ -18,6 +18,7 @@ const Story = preload("res://scripts/story.gd")
 const UIArt = preload("res://scripts/ui_art.gd")
 const Assets = preload("res://scripts/assets.gd")
 const SkyBackdrop = preload("res://scripts/sky_backdrop.gd")
+const Summon = preload("res://scripts/summon.gd")  # Vessels / SP / Bond (pre-match section at the end)
 
 signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
 signal fused(uid: String)
@@ -29,7 +30,7 @@ const P := GameState.PLAYER
 const E := GameState.ENEMY
 const COMMANDS := ["Attack", "Skill", "Defend", "Wait"]
 
-enum Mode { NONE, DEPLOY, UNIT, SKILL }
+enum Mode { NONE, DEPLOY, UNIT, SKILL, PLACE }
 
 
 ## Story portrait: painted art per speaker (assets.gd), else a lit silhouette; drawing lives in ui_art.gd.
@@ -156,6 +157,16 @@ var retry_button: Button
 var backdrop: SkyBackdrop
 var tower_art: Dictionary = {}           ## tower id -> TowerArt behind its card
 var _type_tween: Tween
+# Pre-match (Vessels): draft + placement. See the section at the end of this file.
+var placing := false
+var draft_screen: Control
+var draft_list: VBoxContainer
+var draft_label: Label
+var draft_confirm: Button
+var draft_buttons: Dictionary = {}
+var draft_pick: Array = []
+var draft_stage := ""
+var _break_seen: Dictionary = {}
 
 
 ## Studio ident + title on a CanvasLayer over the built UI; it swallows input until tapped through.
@@ -303,6 +314,7 @@ func _build_ui() -> void:
 	layer.add_child(ui_root)
 	_build_select()
 	_build_squad()
+	_build_draft()
 	_build_evolution()
 	_build_fusion()
 	_build_tower_screen()
@@ -661,7 +673,7 @@ func _check_barks() -> void:
 			barks[key] = true
 			var d := Story.global_line(n, rival)
 			bark_label.text = "%s: %s" % [d.speaker, d.line]
-	if not barks.has("battle_start") and state.current == P:
+	if not barks.has("battle_start"):  # the first check of a battle (faster enemy statues may act first)
 		fire.call("battle_start", 1)
 	if state.symbol_hp[P] * 100 < low * state.symbol_max:
 		fire.call("low_hp", 3)
@@ -858,6 +870,8 @@ func _hide_all() -> void:
 	result_box.visible = false
 	select_screen.visible = false
 	squad_screen.visible = false
+	draft_screen.visible = false
+	placing = false
 	evo_screen.visible = false
 	fusion_screen.visible = false
 	tower_screen.visible = false
@@ -934,7 +948,14 @@ func start_stage(id: String) -> void:
 	for inst in progress.roster:
 		if str(inst.get("form_id", "")) != "":
 			Assets.aliases[str(inst.uid)] = str(inst.form_id)
-	state.setup(id, progress.squad, -1, progress.squad_records())
+	state.setup(id, _default_draft(id), -1, _roster_records())
+	_open_battle()
+
+
+## The battle screen after setup / placement: HUD, intro dialogue, then play.
+func _open_battle() -> void:
+	_hide_all()
+	_break_seen = {}
 	mode = Mode.NONE
 	midbattle_shown = false
 	barks = {}
@@ -1037,9 +1058,10 @@ func _refresh(msg: String = "") -> void:
 		return
 	var st := state.stage
 	stage_label.text = "%s  |  %s" % [state.stage_id, st.name]
-	var extra := "   AP %d" % state.ap[P] if state.deploy_cost() > 0 else ""
-	status_label.text = "vs %s (%s)   Round %d
-Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, st.special_rule, extra]
+	var extra := "   %s %d/%d (+%d next turn)" % [Summon.term("sp"), state.sp[P], state.sp_cap(), state.sp_income(P)]
+	status_label.text = "vs %s (%s)   Round %d/%d
+Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, GameState.turn_cap(), st.special_rule, extra]
+	_vessel_hooks()
 	for c in order_box.get_children():
 		c.queue_free()
 	var i := 1
@@ -1085,7 +1107,7 @@ Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, st.special_rule,
 		objectives_box.add_child(orow)
 	var my_turn := _my_turn()
 	var sigil_turn := my_turn and state.is_sigil_turn()
-	var squad: Array = progress.squad
+	var squad: Array = state.team  # the Vessel tray: this match's drafted Vessels
 	for idx in team_buttons:
 		var b: Button = team_buttons[idx]
 		if idx >= squad.size():
@@ -1095,7 +1117,9 @@ Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, st.special_rule,
 		var d: Dictionary = state.custom.get(id, Data.monster(id))
 		var waiting: bool = state.reserve[P].has(id)
 		var can := sigil_turn and waiting and state.legal_deploys(P).any(func(a): return a.mon == id)
-		b.text = "%s\n%s %d/%d/%d" % [str(d.name).left(10), str(d.element_family).left(5), d.hp, d.attack, d.defense] if waiting else "%s\n%s" % [str(d.name).left(10), "on board" if state.units_of(P).any(func(u): return u.mon_id == id) else "KO"]
+		if placing:
+			can = waiting and state.capsule_of(P, id).get("pos", Vector2i.ZERO) == Vector2i(-1, -1) and state.placement_side() == P and state.placement_step() == "vessel"
+		b.text = _tray_text(id, d, waiting)
 		b.disabled = not can
 		b.set_pressed_no_signal(mode == Mode.DEPLOY and selected_mon == id)
 		var art := Assets.monster(id, str(d.element_family))
@@ -1107,9 +1131,9 @@ Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, st.special_rule,
 	cmd_buttons["Attack"].disabled = u == null or state.legal_attacks(u).is_empty()
 	cmd_buttons["Skill"].disabled = u == null or state.legal_skill_targets(u).is_empty()
 	cmd_buttons["Skill"].text = "Skill" if u == null else "Skill: %s" % u.ability
-	cmd_buttons["Defend"].disabled = u == null
-	cmd_buttons["Wait"].disabled = not my_turn
-	cmd_buttons["Wait"].text = "End summons" if sigil_turn else "Wait"
+	cmd_buttons["Defend"].disabled = u == null and not sigil_turn
+	cmd_buttons["Wait"].disabled = not my_turn and not placing
+	cmd_buttons["Wait"].text = "Start battle" if placing else ("End turn" if sigil_turn else "Wait")
 	if msg != "":
 		info_label.text = msg
 	_update_highlights()
@@ -1127,7 +1151,12 @@ func _update_highlights() -> void:
 	var u := state.actor_unit()
 	if u != null:
 		board.selected = u.pos
-	if _my_turn():
+	if placing:
+		_placement_highlights(h)
+	elif _my_turn():
+		if state.is_sigil_turn() and mode != Mode.DEPLOY:
+			for c in state.sigil_moves(P):
+				h[c] = Palette.AETHER_CYAN
 		match mode:
 			Mode.DEPLOY:
 				for a in state.legal_deploys(P):
@@ -1149,9 +1178,9 @@ func _update_highlights() -> void:
 # ---------------------------------------------------------------- flow
 
 func _continue() -> void:
-	if dialogue_box.visible or result_box.visible or not board.visible:
+	if dialogue_box.visible or result_box.visible or not board.visible or placing:
 		return
-	if state.winner != GameState.NONE or state.round_num > int(Data.rules().turn_cap_rounds):
+	if state.is_over():
 		_end_battle()
 		return
 	_check_barks()
@@ -1161,7 +1190,7 @@ func _continue() -> void:
 	if state.is_sigil_turn():
 		mode = Mode.NONE
 		var any := not state.legal_deploys(P).is_empty()
-		_refresh("Your Sigil: tap a squad monster, then a cyan tile to summon it. Then End summons." if any else "Your Sigil: nothing to summon. Tap End summons.")
+		_refresh(("Your Sigil (%d %s): cyan = move 1 tile. Tap a %s in the tray, then its tile to Crack it. Or Defend / End turn." % [state.sp[P], Summon.term("sp"), Summon.term("vessel")]) if any else "Your Sigil (%d %s): cyan = move 1 tile, or Defend / End turn." % [state.sp[P], Summon.term("sp")])
 	else:
 		var u := state.actor_unit()
 		mode = Mode.UNIT
@@ -1243,7 +1272,7 @@ func _after_action(msg: String = "") -> void:
 
 func _on_stage_pressed(id: String) -> void:
 	if progress.is_unlocked(id):
-		start_stage(id)
+		show_prematch(id)
 
 
 func _on_reset_progress() -> void:
@@ -1252,14 +1281,23 @@ func _on_reset_progress() -> void:
 
 
 func _on_team(idx: int) -> void:
-	if not _my_turn() or not state.is_sigil_turn() or idx >= progress.squad.size():
+	if placing and idx < state.team.size():
+		mode = Mode.PLACE
+		selected_mon = state.team[idx]
+		_refresh("Tap a gold tile to place this %s." % Summon.term("vessel"))
+		return
+	if not _my_turn() or not state.is_sigil_turn() or idx >= state.team.size():
 		return
 	mode = Mode.DEPLOY
-	selected_mon = progress.squad[idx]
-	_refresh("Tap a cyan tile to summon %s (spawn tiles and capsule nodes you activated)." % state.custom.get(selected_mon, Data.monster(selected_mon)).get("name", selected_mon))
+	selected_mon = state.team[idx]
+	_refresh("Tap a cyan tile to Crack %s for %d %s (its %s, or a capsule node you hold)." % [state.custom.get(selected_mon, Data.monster(selected_mon)).get("name", selected_mon), state.summon_cost(P, selected_mon), Summon.term("sp"), Summon.term("vessel")])
 
 
 func _on_cmd(c: String) -> void:
+	if placing:
+		if c == "Wait":
+			_start_placed_battle()
+		return
 	if not _my_turn():
 		return
 	var u := state.actor_unit()
@@ -1276,6 +1314,9 @@ func _on_cmd(c: String) -> void:
 			if u != null:
 				state.defend(P, u.id)
 				_after_action("%s defends." % u.name)
+			elif state.is_sigil_turn():
+				state.defend(P, GameState.sigil_id(P))
+				_after_action("Your Sigil defends.")
 		"Wait":
 			state.wait(P)
 			_after_action(" ")
@@ -1296,12 +1337,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if not board.visible:
 			return
 		var picked: Variant = board.handle_input(event)
-		if picked != null and _my_turn():
+		if picked != null and (_my_turn() or placing):
 			_on_tile(picked)
 		return
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 		return
-	if not board.visible or not _my_turn():
+	if not board.visible or not (_my_turn() or placing):
 		return
 	var tile: Variant = board.tile_at_local(board.to_local(event.position))
 	if tile != null:
@@ -1309,12 +1350,25 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_tile(c: Vector2i) -> void:
+	if placing:
+		_on_place_tile(c)
+		return
 	var u := state.actor_unit()
+	if state.is_sigil_turn() and mode != Mode.DEPLOY and state.can_move_sigil(P, c) == GameState.OK:
+		state.move_sigil(P, c)
+		_refresh("Your Sigil moved. Crack a %s, Defend or End turn." % Summon.term("vessel"))
+		return
 	match mode:
 		Mode.DEPLOY:
 			var r := state.deploy(P, selected_mon, c)
 			mode = Mode.NONE
-			_refresh("Summoned. It joins the turn order next round." if r == GameState.OK else "Can't summon there: " + r)
+			if r == GameState.OK:
+				var cracked: GameState.Unit = state.get_unit(int(state.last_crack.unit))
+				if board.has_method("play_summon"):  # animation hook: the Vessel cracks into a statue
+					board.play_summon(cracked, int(state.last_crack.cost))
+				_after_action("Cracked! %s joins the end of this round." % cracked.name)
+			else:
+				_refresh("Can't Crack there: " + r)
 			return
 		Mode.SKILL:
 			if u != null and state.can_skill(P, u.id, c) == GameState.OK:
@@ -1333,6 +1387,9 @@ func _on_tile(c: Vector2i) -> void:
 				_refresh("Moved. Attack, Skill, Defend or Wait.")
 				return
 	var t := state.unit_at(c)
+	if t == null and not state.capsule_at(c).is_empty():
+		_refresh(_vessel_text(state.capsule_at(c)))
+		return
 	if t != null:
 		_refresh("%s %s (%s %s)  HP %d/%d  ATK %d DEF %d  Move %d Range %d  Skill %s%s" % [
 			"Ally" if t.owner == P else "Enemy", t.name, t.element, t.role, t.hp, t.max_hp,
@@ -1340,3 +1397,184 @@ func _on_tile(c: Vector2i) -> void:
 	else:
 		var td := state.tile_type(c)
 		_refresh("%s: %s" % [td, str(state.stage.get("map_legend", {}).get(td, ""))])
+
+
+# ---------------------------------------------------------------- pre-match: draft + placement (Vessels)
+# Owner design 2026-10-21 (docs/SUMMON-POINTS.md): pick up to 6 Vessels under the tower's Bond
+# cap, then place the Sigil and the Vessels on the home zone, alternating with the AI one at a
+# time; the match starts with the Sigil and sealed Vessels on the board. start_stage(id) skips
+# all of this (auto draft + auto placement) for tests, tools and the demo.
+
+func _build_draft() -> void:
+	var parts := _meta_screen("CHOOSE YOUR %s" % Summon.term("vessels").to_upper())
+	draft_screen = parts[0]
+	draft_list = parts[2]
+	draft_label = parts[3]
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 12)
+	parts[1].add_child(row)
+	row.add_child(_button("Back", show_stage_select))
+	draft_confirm = _button("Place %s" % Summon.term("vessels"), _on_draft_confirm)
+	row.add_child(draft_confirm)
+
+
+## Battle records for the whole owned roster (a draft may include monsters outside the saved squad).
+func _roster_records() -> Dictionary:
+	var out := {}
+	for inst in progress.roster:
+		out[str(inst.uid)] = Prog.battle_record(inst)
+	return out
+
+
+## The saved squad trimmed to the stage's Bond cap (strongest first).
+func _default_draft(id: String) -> Array:
+	return Summon.auto_draft(progress.squad, Data.stage(id), _roster_records(), func(u): return Prog.power(progress.get_inst(str(u))))
+
+
+func show_prematch(id: String) -> void:
+	_hide_all()
+	draft_stage = id
+	draft_screen.visible = true
+	for c in draft_list.get_children():
+		c.queue_free()
+	draft_buttons = {}
+	var recs := _roster_records()
+	for inst in progress.roster:
+		var uid := str(inst.uid)
+		var r: Dictionary = recs[uid]
+		var b := _button("%s\n%s %d   %s %d   %s %d HP" % [_inst_text(inst), Summon.term("bond"), Summon.bond(r), Summon.term("sp"), Summon.crack_cost(r), Summon.term("vessel"), Summon.vessel_hp(r)], _on_draft_toggle.bind(uid), 140)
+		b.toggle_mode = true
+		b.add_theme_font_size_override("font_size", SMALL + 2)
+		draft_buttons[uid] = b
+		draft_list.add_child(b)
+	draft_pick = _default_draft(id)
+	_refresh_draft()
+
+
+func _refresh_draft() -> void:
+	var st := Data.stage(draft_stage)
+	var recs := _roster_records()
+	for uid in draft_buttons:
+		draft_buttons[uid].set_pressed_no_signal(draft_pick.has(uid))
+	var why := Summon.draft_check(draft_pick, st, recs)
+	draft_label.text = "%s: %s   |   %s %d / %d   |   %s %d / %d%s" % [draft_stage, str(st.get("name", "")), Summon.term("vessels"), draft_pick.size(), Data.squad_size(),
+		Summon.term("bond"), Summon.total_bond(draft_pick, recs), Summon.draft_cap(st), "" if why == Summon.OK else "   (" + why.replace("_", " ") + ")"]
+	draft_confirm.disabled = why != Summon.OK
+
+
+func _on_draft_toggle(uid: String) -> void:
+	if draft_pick.has(uid):
+		draft_pick.erase(uid)
+	elif draft_pick.size() < Data.squad_size():
+		draft_pick.append(uid)
+	_refresh_draft()
+
+
+func _on_draft_confirm() -> void:
+	if Summon.draft_check(draft_pick, Data.stage(draft_stage), _roster_records()) != Summon.OK:
+		return
+	_begin_placement(draft_stage, draft_pick.duplicate())
+
+
+## Placement on the battle board: the state is in its placement phase; the AI plays its steps.
+func _begin_placement(id: String, pick: Array) -> void:
+	_hide_all()
+	stage_id = id
+	for inst in progress.roster:
+		if str(inst.get("form_id", "")) != "":
+			Assets.aliases[str(inst.uid)] = str(inst.form_id)
+	state.setup(id, pick, -1, _roster_records(), false)
+	placing = true
+	mode = Mode.NONE
+	selected_mon = ""
+	board.visible = true
+	hud.visible = true
+	backdrop.set_tower(str(state.stage.tower_id), tower_family(_tower(str(state.stage.tower_id))))
+	_layout_board.call_deferred()
+	_advance_placement()
+
+
+## Plays the enemy's placement steps (one at a time, alternating) and prompts the player.
+func _advance_placement() -> void:
+	while state.placement_side() == E:
+		state.auto_place_step(E)
+	var v := Summon.term("vessel")
+	var msg := ""
+	match state.placement_step():
+		"sigil":
+			msg = "Place your Sigil: tap a gold tile of your home zone (tap it where it stands to keep it)."
+		"vessel":
+			msg = "Place a %s: pick one in the tray (or just tap a gold tile for the next). At most %d next to your Sigil. %d left." % [v, int(Data.rules().placement.max_adjacent_to_sigil), state.unplaced_capsules(P).size()]
+		_:
+			msg = "All placed. Tap Start battle."
+	_refresh(msg)
+
+
+func _placement_highlights(h: Dictionary) -> void:
+	if state.placement_side() != P:
+		return
+	for c in state.zone[P]:
+		var ok := false
+		if state.placement_step() == "sigil":
+			ok = state.can_place_sigil(P, c) == GameState.OK
+		else:
+			var caps := state.unplaced_capsules(P)
+			ok = not caps.is_empty() and state.can_place_capsule(P, str(caps[0].mon), c) == GameState.OK
+		if ok:
+			h[c] = Palette.SIGIL_GOLD
+
+
+func _on_place_tile(c: Vector2i) -> void:
+	if state.placement_side() != P:
+		return
+	var r := ""
+	if state.placement_step() == "sigil":
+		r = state.place_sigil(P, c)
+	else:
+		var mon := selected_mon
+		if mon == "" or state.capsule_of(P, mon).get("pos", Vector2i.ZERO) != Vector2i(-1, -1):
+			var caps := state.unplaced_capsules(P)
+			mon = str(caps[0].mon) if not caps.is_empty() else ""
+		r = state.place_capsule(P, mon, c)
+	if r != GameState.OK:
+		_refresh("Can't place there: " + r.replace("_", " "))
+		return
+	selected_mon = ""
+	mode = Mode.NONE
+	_advance_placement()
+
+
+## Start battle: anything still unplaced is auto-placed, then the stage intro plays.
+func _start_placed_battle() -> void:
+	if not placing:
+		return
+	state.start_battle()
+	placing = false
+	_open_battle()
+
+
+func _tray_text(id: String, d: Dictionary, waiting: bool) -> String:
+	var nm := str(d.get("name", id)).left(10)
+	if waiting:
+		var cap := state.capsule_of(P, id)
+		var where := "unplaced" if cap.get("pos", Vector2i.ZERO) == Vector2i(-1, -1) else ("%s %d/%d" % [Summon.term("vessel"), int(cap.hp), int(cap.max_hp)])
+		return "%s  %d %s\n%s" % [nm, state.summon_cost(P, id), Summon.term("sp"), where]
+	return "%s\n%s" % [nm, "on board" if state.units_of(P).any(func(u): return u.mon_id == id) else "lost"]
+
+
+## Tap info for a sealed Vessel; enemy contents stay hidden (placement.enemy_contents_hidden).
+func _vessel_text(cap: Dictionary) -> String:
+	var mine := int(cap.owner) == P
+	var hidden := not mine and bool(Data.rules().placement.get("enemy_contents_hidden", true))
+	var nm := "sealed" if hidden else str(Summon.record_for(str(cap.mon), state.custom if mine else {}).get("name", cap.mon))
+	return "%s %s (%s)  HP %d/%d%s" % ["Your" if mine else "Enemy", Summon.term("vessel"), nm, int(cap.hp), int(cap.max_hp),
+		("  Crack: %d %s" % [state.summon_cost(P, str(cap.mon)), Summon.term("sp")]) if mine else ""]
+
+
+## Animation hook for broken Vessels (board.play_vessel_break), fired once per break.
+func _vessel_hooks() -> void:
+	if state.last_break.is_empty() or _break_seen.has(state.last_break.hash()):
+		return
+	_break_seen[state.last_break.hash()] = true
+	if board.has_method("play_vessel_break"):
+		board.play_vessel_break(state.last_break)

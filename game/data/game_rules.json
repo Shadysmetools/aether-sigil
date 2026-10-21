@@ -220,14 +220,106 @@
   "symbol": {
     "_doc": "The Player Sigil / enemy Symbol: a crystal on a pedestal on the *_symbol tile, the side's commander; it blocks movement and is attacked like a unit with no element; if it falls, its side loses. Defense 10 (design proposal, accepted 2026-10-21). HP tuned by simulation on 2026-10-21 (game/tests/tune_sigil.gd, default squad, 120 stages, 60-round cap): tried 120/180/240/300/360 with no difficulty curve: 120 -> 48% player / 9% capped / median 12; 180 -> 47% / 9% / 13; 240 -> 46% / 10% / 14; 300 -> 46% / 10% / 15; 360 -> 45% / 11% / 16. Chose 180: inside every target (45-55% player wins, median 12-20 rounds, <=10% capped) with margin on all three. HP barely moves the win rate; it mostly sets battle length. See HANDOFF.md 'Open decisions'.",
     "hp": 180,
-    "defense": 10
+    "defense": 10,
+    "move": 1,
+    "initiative": 40,
+    "defend_mult": 0.5,
+    "anti_bait_mult": 0.75,
+    "_doc2": "Research brief 2026-10-21: the Sigil is an actor with its own initiative slot (initiative = mid speed, monsters score move*10+range): Move 1 tile (4-dir), then Crack, Defend (damage x defend_mult until its next activation) or Wait. A monster cracked THIS round deals x anti_bait_mult to a Sigil (anti-bait)."
   },
   "recharge_pct": 20,
-  "ap": {
-    "_doc": "AP accrues +1 per own Sigil activation (cap 3, start 0). Only spent when the stage rule 'Capsules cost 1 AP to deploy' applies.",
-    "per_sigil_activation": 1,
-    "cap": 3,
-    "start": 0
+  "terms": {
+    "_doc": "Player-facing names (localisation keys). The sealed monster shell is a 'Vessel' on screen (IP: avoid 'capsule' as the player-facing noun); code and data keep 'capsule' internally. Capsule NODES (map tiles) keep their name and behaviour.",
+    "vessel": "Vessel",
+    "vessels": "Vessels",
+    "crack": "Crack",
+    "sp": "SP",
+    "bond": "Bond"
+  },
+  "summon_points": {
+    "_doc": "Summon Points (SP) pay to crack a Vessel (design: docs/SUMMON-POINTS.md, coordinator research brief 2026-10-21). A side starts with `start`; from round 2 each own Sigil activation adds income_per_turn + per_capsule_node x nodes held, never above `cap`. Crack cost = crack_cost_by_rarity[rarity] + evolved_extra if the monster has evolved or is fused, + the stage rule's sp_surcharge. At most per_sigil_turn cracks per Sigil activation; only Vessels within Chebyshev crack_range of the own Sigil. enemy_* are enemy-only difficulty knobs (tests/tune_sp.gd). Mythic is our 6th rarity tier (the brief has 5): priced between Epic and Legendary.",
+    "start": 4,
+    "income_per_turn": 3,
+    "per_capsule_node": 1,
+    "cap": 12,
+    "crack_cost_by_rarity": {
+      "Common": 2,
+      "Uncommon": 3,
+      "Rare": 4,
+      "Epic": 6,
+      "Mythic": 7,
+      "Legendary": 8
+    },
+    "evolved_extra": 1,
+    "per_sigil_turn": 1,
+    "crack_range": 4,
+    "enemy_start_bonus": 0,
+    "enemy_income_bonus": 0
+  },
+  "bond": {
+    "_doc": "Pre-match draft: the player takes up to squad.size Vessels from a roster of at most roster_max, whose Bond costs total at most cap_by_tower[tower-1] (60 early -> 120 late). Bond = cost_by_rarity + per_evolution x evolution stage; a fused monster's Bond = fusion_pct% of its two parents' Bond (stored on the instance at fusion; save v4 migrates older fusions). The enemy always brings its whole bible enemy_roster.",
+    "cost_by_rarity": {
+      "Common": 10,
+      "Uncommon": 15,
+      "Rare": 22,
+      "Epic": 30,
+      "Mythic": 35,
+      "Legendary": 40
+    },
+    "per_evolution": 5,
+    "fusion_pct": 80,
+    "cap_by_tower": [
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      105,
+      110,
+      120
+    ],
+    "roster_max": 12
+  },
+  "placement": {
+    "_doc": "Pre-match placement. Home zone = walkable tiles within zone_radius (Manhattan) of the side's spawn tiles or painted Symbol tile, strictly closer to its own Symbol than to the enemy's, minus `exclude` and the other side's spawns (radius 2 leaves >= 6 spare tiles on every map for both sides; tests/test_data.gd). Order: both Sigils first, then Vessels ALTERNATING one at a time; the side with the lower total Vessel initiative (the initiative loser) goes first, ties = player. At most max_adjacent_to_sigil Vessels within Chebyshev 1 of the own Sigil. The AI's plan comes from plan_by_style: spawn = spawn tiles then nearest the Sigil, front = nearest the enemy Symbol, wall = nearest the own Sigil, nodes = nearest a capsule node. Enemy Vessel positions are revealed, contents hidden (UI).",
+    "zone_radius": 2,
+    "exclude": [
+      "capsule_node",
+      "relic",
+      "warp_gate"
+    ],
+    "max_adjacent_to_sigil": 2,
+    "sigil_movable": true,
+    "enemy_contents_hidden": true,
+    "plan_by_style": {
+      "balanced": "spawn",
+      "defensive fortress": "wall",
+      "trap engineer": "wall",
+      "mobility specialist": "front",
+      "terrain controller": "spawn",
+      "summoner": "spawn",
+      "counter-attacker": "wall",
+      "resource thief": "nodes",
+      "long-range sniper": "wall",
+      "status-effect strategist": "spawn",
+      "rush attacker": "front"
+    }
+  },
+  "vessel": {
+    "_doc": "A sealed Vessel on the board: blocks movement, has no initiative, can be attacked (no element). HP = hp_base + hp_per_tier x tier (tier = rarity index: Common 0 .. Legendary 5), defense `defense`. Broken = its monster is lost for the match and its Sigil takes break_sigil_damage. Cracking puts the monster on the Vessel's tile (or a capsule node its side holds) as a statue that joins the END of the current round's turn order.",
+    "hp_base": 30,
+    "hp_per_tier": 10,
+    "defense": 0,
+    "break_sigil_damage": 10
+  },
+  "ko_sigil_damage": {
+    "_doc": "A knocked-out monster deals base + per_tier x tier damage to its own Sigil (bond backlash).",
+    "base": 8,
+    "per_tier": 4
   },
   "relics_to_win": 3,
   "special_rules": {
@@ -244,12 +336,12 @@
       "random_portal": true,
       "_doc": "Each round one warp gate (seeded RNG) is active; a unit ending a move on it warps to the mirrored tile (11-x, 11-y) or the nearest free tile. Every map has 1 gate, so the destination is invented and 'random' has nothing to choose between."
     },
-    "Capsules cost 1 AP to deploy": {
-      "deploy_ap_cost": 1,
-      "_doc": "Each summon costs 1 AP; AP comes +1 per Sigil activation, so 1 summon per activation instead of 2."
+    "Capsules cost +1 SP to summon": {
+      "sp_surcharge": 1,
+      "_doc": "Every summon on this stage costs 1 SP more (replaces the pre-SP 'Capsules cost 1 AP to deploy'; renamed in the bible by tools/apply_summon_points.py)."
     }
   },
-  "turn_cap_rounds": 60,
+  "turn_cap_rounds": 30,
   "water_family_immune": false,
   "accuracy": {
     "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15).",
@@ -263,13 +355,12 @@
     "mult": 0.5
   },
   "initiative": {
-    "_doc": "Turn order (design): every actor acts once per round, highest score first. score = move*move_weight + range. Ties interleave the two sides (player first), then lower unit id. Both Sigils act first each round (player, then enemy). The order is rebuilt each round from units on the board; monsters summoned mid-round join next round.",
-    "move_weight": 10,
-    "sigil_score": 1000
+    "_doc": "Turn order: every actor acts once per round, highest score first. Monster score = move*move_weight + range; each Sigil scores symbol.initiative (mid speed). Ties interleave the two sides (player first), then lower id (Sigils first). Unopened Vessels have no slot; a cracked monster joins the END of the current round.",
+    "move_weight": 10
   },
   "summon": {
-    "_doc": "Capsule summon (design): the summoner is not on the board; on its Sigil's activation a side summons squad monsters onto its spawn tiles or the capsule nodes it has activated.",
-    "per_sigil_activation": 2
+    "_doc": "Crack (Sigil action): pay the SP cost of one own Vessel within range; it ends the Sigil's activation. per_sigil_activation mirrors summon_points.per_sigil_turn.",
+    "per_sigil_activation": 1
   },
   "skill": {
     "_doc": "Skill command = the monster's ability, mapped to an effect type in 'abilities'. Usable again after `cooldown` own activations.",
@@ -295,8 +386,8 @@
     "golden_relic": "Obtain the golden relic"
   },
   "squad": {
-    "_doc": "Squad of 4. Default = the design agent's recommended starter squad (BALANCE-REPORT section 11): Cinderhopperor (Water Guardian), Feraldrakea (Earth Support), Aerospriteum (Fire Scout), Spectratuskon (Space Artillery); fair, not strongest. The Build Your Squad collection adds the 5 earlier picks (strongest Common/Uncommon per role), which the 2026-10-20 sims showed are much stronger.",
-    "size": 4,
+    "_doc": "Squad of 6 (research brief 2026-10-21; was 4). Default = the design agent's recommended starter squad (BALANCE-REPORT section 11): Cinderhopperor (Water Guardian), Feraldrakea (Earth Support), Aerospriteum (Fire Scout), Spectratuskon (Space Artillery); fair, not strongest. The Build Your Squad collection adds the 5 earlier picks (strongest Common/Uncommon per role), which the 2026-10-20 sims showed are much stronger. Picks 5 and 6 (2026-10-21, squad of 6): Wispwyrmon (Guardian) and Quillfoxor (Artillery), the remaining Commons of the collection, so the default draft costs exactly the T01 Bond cap of 60.",
+    "size": 6,
     "collection": [
       "MON-0177",
       "MON-0011",
@@ -312,7 +403,9 @@
       "MON-0177",
       "MON-0011",
       "MON-0188",
-      "MON-0573"
+      "MON-0573",
+      "MON-0033",
+      "MON-0077"
     ]
   },
   "abilities": {
@@ -430,10 +523,13 @@
     "portal_doc": "Portal rule (24 stages, 1 gate each): the active gate teleports to the mirror-image tile (11-x, 11-y); see special_rules."
   },
   "difficulty": {
-    "_doc": "Difficulty curve: enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1) + tower_adjust_pct[tower]/100); player monsters are unscaled (they level, evolve and fuse instead). History: shipped at 0 on 2026-10-21 while the squad had no progression (+1/+2/+3% gave 37/27/22% player wins at Sigil HP 240). Switched on the same day with progression (game/data/progression.json) and tuned with game/tests/tune_curve.gd (progressing default squad, T01->T12 in order, one attempt per stage, fusions after T04 and T08): pct 6 -> 89% player wins, 8 -> 74%, 9 -> 63%, 10 -> 53% but T03/T04 8/10, 11 -> 47% but T03 8/10; with T03 +10%: pct 9.5 -> 58% (T04/T05 8/10), 10 -> 50% with every tower 3-7/10 (chosen), 10.5 -> 43%. The player's XP snowballs, so the result is sensitive: re-run tune_curve after changing XP or growth.",
+    "_doc": "Difficulty curve: enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1) + tower_adjust_pct[tower]/100); player monsters are unscaled (they level, evolve and fuse instead). History: shipped at 0 on 2026-10-21 while the squad had no progression (+1/+2/+3% gave 37/27/22% player wins at Sigil HP 240). Switched on the same day with progression (game/data/progression.json) and tuned with game/tests/tune_curve.gd (progressing default squad, T01->T12 in order, one attempt per stage, fusions after T04 and T08): pct 6 -> 89% player wins, 8 -> 74%, 9 -> 63%, 10 -> 53% but T03/T04 8/10, 11 -> 47% but T03 8/10; with T03 +10%: pct 9.5 -> 58% (T04/T05 8/10), 10 -> 50% with every tower 3-7/10 (chosen), 10.5 -> 43%. The player's XP snowballs, so the result is sensitive: re-run tune_curve after changing XP or growth. RE-TUNED 2026-10-21 for Vessels/SP (docs/SUMMON-POINTS.md section 9, game/tests/tune_sp.gd): the squad of 6 cracked from Vessels won 95% at the old curve (T01-T05 10/10), so a flat enemy_stat_base_pct was added at every tower. Sweep (base/pct/adjust -> player wins): 0/15 -> 84%; 0/20 -> 56% but T01-T03 10/10 and T11 0/10; 40/12 -> 48% (T11 1/10); 40/10 -> 54% (T03 8, T08 1); 40/10 +T03 10 -T08 15 -> 58% (T03 8); 42/10 with T02 +10, T03 +25, T08 -15 -> 52% with every tower 3-7/10 (chosen; T08 is the Ancient tower whose 3 dormant statues start on the board). Formula: enemy hp/attack/defense x (1 + base/100 + pct/100 x (tower-1) + tower_adjust_pct/100).",
+    "enemy_stat_base_pct": 42,
     "enemy_stat_pct_per_tower": 10,
     "tower_adjust_pct": {
-      "03": 10
+      "02": 10,
+      "03": 25,
+      "08": -15
     }
   },
   "tower_theme_family": {
@@ -450,5 +546,10 @@
     "Crystal": "Earth",
     "Aether": "Arcane",
     "Mixed": "Light"
+  },
+  "win": {
+    "_doc": "Wins: enemy Sigil to 0 HP; OR Rout = the enemy has no monster on the board and no sealed Vessel; OR (relic stages) the bible's relic win. At the end of round turn_cap_rounds the higher Sigil HP % wins ('time'); equal = draw.",
+    "rout": true,
+    "tiebreak": "sigil_hp_pct"
   }
 }

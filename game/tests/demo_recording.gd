@@ -68,7 +68,7 @@ func _run() -> void:
 	await advance_dialogue(3.2, 2)
 	mark("tower1_stages")
 	await wait(3.0)
-	main._on_stage_pressed("T01-L01")
+	main.start_stage("T01-L01")  # skips the pre-match draft/placement (auto)
 	mark("stage_intro")
 	await advance_dialogue(3.5)
 	var s: GameState = main.state
@@ -113,7 +113,8 @@ func _run() -> void:
 				if pick.tile == near_node:
 					summoned_node = true
 				await wait(1.0)
-			main._on_cmd("Wait")
+			if s.is_sigil_turn() and s.current == GameState.PLAYER:  # a Crack already ended the Sigil's turn
+				main._on_cmd("Wait")
 			await wait(0.4)
 			if s.round_num == 1:
 				mark("battle")
@@ -171,7 +172,7 @@ func _run() -> void:
 	main._on_tower_pressed("12")
 	await advance_dialogue(3.2, 1)
 	await wait(2.5)
-	main._on_stage_pressed("T12-L01")
+	main.start_stage("T12-L01")
 	await advance_dialogue(3.0, 1)
 	main._continue()
 	await wait(4.0)

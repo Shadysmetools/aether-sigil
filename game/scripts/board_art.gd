@@ -71,6 +71,21 @@ static func draw_capsule_node(ci: CanvasItem, t: Vector2, w: float, h: float, ow
 	ci.draw_polyline(PackedVector2Array([top, mid_l, low_l, base, low_r, mid_r, top]), Palette.MIDNIGHT_NAVY, 1.5)
 
 
+## Sealed Vessel (pre-match shell, docs/SUMMON-POINTS.md): an upright pod in the owner's colour
+## with a seam across it and an HP bar. Placeholder until the 3D board draws its own.
+static func draw_vessel(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int, hp: int, max_hp: int) -> void:
+	var col := Palette.side(owner)
+	var c := t + Vector2(0, -h * 0.55)
+	var pts := PackedVector2Array()
+	for i in 20:
+		var a := TAU * i / 20.0
+		pts.append(c + Vector2(cos(a) * w * 0.17, sin(a) * h * 0.5))
+	ci.draw_colored_polygon(pts, col.darkened(0.25))
+	ci.draw_polyline(pts + PackedVector2Array([pts[0]]), Palette.MIDNIGHT_NAVY, 1.5)
+	ci.draw_line(c + Vector2(-w * 0.17, 0), c + Vector2(w * 0.17, 0), col.lightened(0.6), 2.0)
+	hp_bar(ci, c + Vector2(0, -h * 0.62), w * 0.5, hp, max_hp, col)
+
+
 ## Relic: gold triangle; filled when secured (owner ring), outline when open.
 static func draw_relic(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int) -> void:
 	var s := h * 0.38
@@ -205,6 +220,11 @@ static func draw_minimap(ci: CanvasItem, rect: Rect2, state) -> void:
 		ci.draw_arc(sp, cell * 0.45, 0, TAU, 16, Palette.side(side), 2.5)
 	for u in state.units:
 		ci.draw_circle(at.call(u.pos) + Vector2(cell, cell) / 2, cell * 0.32, Palette.side(u.owner))
+	if "capsules" in state:  # sealed Vessels: small squares
+		for side in 2:
+			for cap in state.capsules[side]:
+				if cap.pos != Vector2i(-1, -1):
+					ci.draw_rect(Rect2(at.call(cap.pos) + Vector2(cell, cell) * 0.3, Vector2(cell, cell) * 0.4), Palette.side(side))
 
 
 ## Story portrait placeholder: a ringed disc in a colour picked from the speaker's name, with

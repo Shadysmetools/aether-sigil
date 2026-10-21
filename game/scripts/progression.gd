@@ -10,6 +10,7 @@
 extends RefCounted
 
 const Data = preload("res://scripts/data_loader.gd")
+const Summon = preload("res://scripts/summon.gd")
 
 const OK := "ok"
 const STATS := ["hp", "attack", "defense", "move", "range"]
@@ -119,6 +120,10 @@ static func battle_record(inst: Dictionary) -> Dictionary:
 	r["skill_tier"] = int(inst.get("evo_stage", 0)) + (1 if is_fused(inst) else 0)
 	r["secondary_family"] = str(inst.get("secondary_family", ""))
 	r["secondary_ability"] = str(inst.get("secondary_ability", ""))
+	r["evo_stage"] = int(inst.get("evo_stage", 0))
+	r["fused"] = is_fused(inst)
+	if inst.has("bond"):
+		r["bond"] = int(inst.bond)
 	return r
 
 
@@ -286,4 +291,13 @@ static func fusion_preview(a: Dictionary, b: Dictionary, uid: String, taken: Dic
 		"role": field(p, "role"), "rarity": str(F.rarity_order[ri]),
 		"level_cap": maxi(level_cap(p), level_cap(s)),
 		"ability": field(p, "ability"), "secondary_ability": field(s, "ability"),
-		"secondary_family": field(s, "element_family"), "base": base}
+		"secondary_family": field(s, "element_family"), "base": base,
+		"bond": Summon.fusion_bond(_bond_view(p), _bond_view(s))}
+
+
+## What Summon.bond needs from an instance: its rarity, evolution stage and stored bond.
+static func _bond_view(inst: Dictionary) -> Dictionary:
+	var v := {"rarity": field(inst, "rarity"), "evo_stage": int(inst.get("evo_stage", 0))}
+	if inst.has("bond"):
+		v["bond"] = int(inst.bond)
+	return v

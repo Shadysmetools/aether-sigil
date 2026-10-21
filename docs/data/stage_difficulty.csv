@@ -2,120 +2,120 @@ stage_id,tower,level,boss,opponent,opponent_style,special_rule,win_condition,ros
 T01-L01,1,1,False,Ari Voss,defensive fortress,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0018,MON-0023,26.296,4.383,1,Common:2 Epic:1 Legendary:1 Mythic:2
 T01-L02,1,2,False,Kael Nyx,trap engineer,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0035,MON-0041,8.205,1.172,10,Epic:2 Mythic:1 Rare:2 Uncommon:2
 T01-L03,1,3,False,Mira Reed,mobility specialist,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0052,MON-0056,11.774,2.355,7,Common:2 Legendary:1 Mythic:2
-T01-L04,1,4,False,Rin Rook,terrain controller,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0069,MON-0074,21.865,3.644,3,Epic:2 Mythic:1 Rare:2 Uncommon:1
+T01-L04,1,4,False,Rin Rook,terrain controller,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0069,MON-0074,21.865,3.644,3,Epic:2 Mythic:1 Rare:2 Uncommon:1
 T01-L05,1,5,False,Sora Dray,summoner,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0086,MON-0092,15.858,2.265,6,Common:2 Legendary:1 Mythic:1 Rare:1 Uncommon:2
 T01-L06,1,6,False,Veya Flint,counter-attacker,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0103,MON-0107,9.673,1.935,9,Epic:2 Mythic:1 Rare:2
 T01-L07,1,7,False,Niko Storm,resource thief,One random portal activates each round,Defeat the enemy Symbol,6,MON-0120,MON-0125,22.055,3.676,2,Common:2 Legendary:1 Rare:1 Uncommon:2
-T01-L08,1,8,False,Lira Calder,long-range sniper,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0137,MON-0143,16.514,2.359,4,Common:1 Epic:2 Legendary:1 Mythic:2 Rare:1
+T01-L08,1,8,False,Lira Calder,long-range sniper,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0137,MON-0143,16.514,2.359,4,Common:1 Epic:2 Legendary:1 Mythic:2 Rare:1
 T01-L09,1,9,False,Tarin Slate,status-effect strategist,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0154,MON-0158,11.033,2.207,8,Common:2 Rare:1 Uncommon:2
 T01-L10,1,10,True,Zane Lux,rush attacker,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0171,MON-0176,16.093,2.682,5,Common:1 Epic:2 Legendary:1 Mythic:2
 T02-L01,2,1,False,Cira Grave,terrain controller,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0101,MON-0106,8.978,1.496,9,Epic:2 Rare:2 Uncommon:2
 T02-L02,2,2,False,Orin Moss,summoner,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0118,MON-0124,22.984,3.283,1,Common:2 Legendary:1 Mythic:2 Uncommon:2
 T02-L03,2,3,False,Juno Ardent,counter-attacker,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0135,MON-0139,9.079,1.816,8,Epic:2 Rare:2 Uncommon:1
-T02-L04,2,4,False,Rhea Ashen,resource thief,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0152,MON-0157,8.456,1.409,10,Common:2 Legendary:1 Mythic:1 Uncommon:2
+T02-L04,2,4,False,Rhea Ashen,resource thief,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0152,MON-0157,8.456,1.409,10,Common:2 Legendary:1 Mythic:1 Uncommon:2
 T02-L05,2,5,False,Varen Rune,long-range sniper,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0169,MON-0175,17.95,2.564,3,Epic:2 Legendary:1 Mythic:2 Rare:2
 T02-L06,2,6,False,Ilya Dawn,status-effect strategist,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0186,MON-0190,14.174,2.835,6,Common:2 Legendary:1 Uncommon:2
 T02-L07,2,7,False,Noa Zephyr,rush attacker,One random portal activates each round,Defeat the enemy Symbol,6,MON-0203,MON-0208,16.978,2.83,4,Epic:2 Legendary:1 Mythic:2 Rare:1
-T02-L08,2,8,False,Kira Voss,defensive fortress,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0220,MON-0226,16.246,2.321,5,Common:2 Epic:1 Rare:2 Uncommon:2
+T02-L08,2,8,False,Kira Voss,defensive fortress,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0220,MON-0226,16.246,2.321,5,Common:2 Epic:1 Rare:2 Uncommon:2
 T02-L09,2,9,False,Dax Nyx,trap engineer,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0237,MON-0241,10.024,2.005,7,Epic:2 Legendary:1 Mythic:2
 T02-L10,2,10,True,Yuna Reed,mobility specialist,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0254,MON-0259,21.087,3.514,2,Common:1 Epic:1 Rare:2 Uncommon:2
 T03-L01,3,1,False,Milo Bloom,resource thief,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0184,MON-0189,15.352,2.559,5,Common:2 Legendary:1 Mythic:2 Uncommon:1
 T03-L02,3,2,False,Zara Quill,long-range sniper,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0201,MON-0207,15.636,2.234,4,Epic:2 Mythic:2 Rare:2 Uncommon:1
 T03-L03,3,3,False,Eren Cross,status-effect strategist,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0218,MON-0222,13.901,2.78,6,Common:2 Legendary:1 Mythic:1 Uncommon:1
-T03-L04,3,4,False,Lyra Frost,rush attacker,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0235,MON-0240,11.125,1.854,9,Epic:2 Mythic:2 Rare:2
+T03-L04,3,4,False,Lyra Frost,rush attacker,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0235,MON-0240,11.125,1.854,9,Epic:2 Mythic:2 Rare:2
 T03-L05,3,5,False,Tessa Vale,defensive fortress,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0252,MON-0258,13.629,1.947,7,Common:2 Legendary:1 Rare:2 Uncommon:2
 T03-L06,3,6,False,Silas Wren,trap engineer,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0269,MON-0273,11.258,2.252,8,Epic:2 Mythic:2 Rare:1
 T03-L07,3,7,False,Mako Hollow,mobility specialist,One random portal activates each round,Defeat the enemy Symbol,6,MON-0286,MON-0291,9.427,1.571,10,Common:2 Rare:2 Uncommon:2
-T03-L08,3,8,False,Ayla Grave,terrain controller,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0303,MON-0309,16.797,2.4,3,Common:2 Epic:2 Legendary:1 Mythic:2
+T03-L08,3,8,False,Ayla Grave,terrain controller,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0303,MON-0309,16.797,2.4,3,Common:2 Epic:2 Legendary:1 Mythic:2
 T03-L09,3,9,False,Rex Moss,summoner,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0320,MON-0324,24.64,4.928,1,Common:1 Rare:2 Uncommon:2
 T03-L10,3,10,True,Nyla Ardent,counter-attacker,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0337,MON-0342,18.611,3.102,2,Common:2 Epic:1 Legendary:1 Mythic:2
 T04-L01,4,1,False,Ari Rook,rush attacker,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0267,MON-0272,12.306,2.051,7,Epic:2 Mythic:1 Rare:2 Uncommon:1
 T04-L02,4,2,False,Kael Dray,defensive fortress,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0284,MON-0290,14.508,2.073,5,Common:2 Legendary:1 Mythic:1 Rare:1 Uncommon:2
 T04-L03,4,3,False,Mira Flint,trap engineer,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0301,MON-0305,6.4,1.28,10,Epic:2 Mythic:1 Rare:2
-T04-L04,4,4,False,Rin Storm,mobility specialist,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0318,MON-0323,25.181,4.197,1,Common:2 Legendary:1 Rare:1 Uncommon:2
+T04-L04,4,4,False,Rin Storm,mobility specialist,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0318,MON-0323,25.181,4.197,1,Common:2 Legendary:1 Rare:1 Uncommon:2
 T04-L05,4,5,False,Sora Calder,terrain controller,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0335,MON-0341,19.008,2.715,3,Common:1 Epic:2 Legendary:1 Mythic:2 Rare:1
 T04-L06,4,6,False,Veya Slate,summoner,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0352,MON-0356,6.577,1.315,9,Common:2 Rare:1 Uncommon:2
 T04-L07,4,7,False,Niko Lux,counter-attacker,One random portal activates each round,Defeat the enemy Symbol,6,MON-0369,MON-0374,20.221,3.37,2,Common:1 Epic:2 Legendary:1 Mythic:2
-T04-L08,4,8,False,Lira Bloom,resource thief,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0386,MON-0392,14.42,2.06,6,Common:1 Epic:2 Rare:2 Uncommon:2
+T04-L08,4,8,False,Lira Bloom,resource thief,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0386,MON-0392,14.42,2.06,6,Common:1 Epic:2 Rare:2 Uncommon:2
 T04-L09,4,9,False,Tarin Quill,long-range sniper,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0403,MON-0407,9.577,1.915,8,Common:1 Epic:1 Legendary:1 Mythic:2
 T04-L10,4,10,True,Zane Cross,status-effect strategist,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0420,MON-0425,16.28,2.713,4,Epic:2 Rare:2 Uncommon:2
 T05-L01,5,1,False,Cira Ashen,mobility specialist,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0350,MON-0355,8.403,1.401,8,Common:2 Legendary:1 Mythic:1 Uncommon:2
 T05-L02,5,2,False,Orin Rune,terrain controller,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0367,MON-0373,41.824,5.975,1,Epic:2 Legendary:1 Mythic:2 Rare:2
 T05-L03,5,3,False,Juno Dawn,summoner,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0384,MON-0388,16.088,3.218,6,Common:2 Legendary:1 Uncommon:2
-T05-L04,5,4,False,Rhea Zephyr,counter-attacker,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0401,MON-0406,17.349,2.892,4,Epic:2 Legendary:1 Mythic:2 Rare:1
+T05-L04,5,4,False,Rhea Zephyr,counter-attacker,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0401,MON-0406,17.349,2.892,4,Epic:2 Legendary:1 Mythic:2 Rare:1
 T05-L05,5,5,False,Varen Voss,resource thief,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0418,MON-0424,16.489,2.356,5,Common:2 Epic:1 Rare:2 Uncommon:2
 T05-L06,5,6,False,Ilya Nyx,long-range sniper,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0435,MON-0439,33.437,6.687,2,Epic:2 Legendary:1 Mythic:2
 T05-L07,5,7,False,Noa Reed,status-effect strategist,One random portal activates each round,Defeat the enemy Symbol,6,MON-0452,MON-0457,8.047,1.341,9,Common:1 Epic:1 Rare:2 Uncommon:2
-T05-L08,5,8,False,Kira Rook,rush attacker,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0469,MON-0475,15.908,2.273,7,Common:2 Epic:1 Legendary:1 Mythic:2 Uncommon:1
+T05-L08,5,8,False,Kira Rook,rush attacker,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0469,MON-0475,15.908,2.273,7,Common:2 Epic:1 Legendary:1 Mythic:2 Uncommon:1
 T05-L09,5,9,False,Dax Dray,defensive fortress,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0486,MON-0490,25.913,5.183,3,Epic:1 Rare:2 Uncommon:2
 T05-L10,5,10,True,Yuna Flint,trap engineer,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0503,MON-0508,6.396,1.066,10,Common:2 Legendary:1 Mythic:2 Uncommon:1
 T06-L01,6,1,False,Milo Frost,counter-attacker,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0433,MON-0438,14.831,2.472,8,Epic:2 Mythic:2 Rare:2
 T06-L02,6,2,False,Zara Vale,resource thief,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0450,MON-0456,16.091,2.299,5,Common:2 Legendary:1 Rare:2 Uncommon:2
 T06-L03,6,3,False,Eren Wren,long-range sniper,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0467,MON-0471,15.797,3.159,6,Epic:2 Mythic:2 Rare:1
-T06-L04,6,4,False,Lyra Hollow,status-effect strategist,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0484,MON-0489,25.217,4.203,3,Common:2 Rare:2 Uncommon:2
+T06-L04,6,4,False,Lyra Hollow,status-effect strategist,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0484,MON-0489,25.217,4.203,3,Common:2 Rare:2 Uncommon:2
 T06-L05,6,5,False,Tessa Grave,rush attacker,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0501,MON-0507,11.075,1.582,9,Common:2 Epic:2 Legendary:1 Mythic:2
 T06-L06,6,6,False,Silas Moss,defensive fortress,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0518,MON-0522,33.637,6.727,2,Common:1 Rare:2 Uncommon:2
 T06-L07,6,7,False,Mako Ardent,trap engineer,One random portal activates each round,Defeat the enemy Symbol,6,MON-0535,MON-0540,21.472,3.579,4,Common:2 Epic:1 Legendary:1 Mythic:2
-T06-L08,6,8,False,Ayla Ashen,mobility specialist,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0552,MON-0558,15.597,2.228,7,Epic:2 Mythic:1 Rare:2 Uncommon:2
+T06-L08,6,8,False,Ayla Ashen,mobility specialist,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0552,MON-0558,15.597,2.228,7,Epic:2 Mythic:1 Rare:2 Uncommon:2
 T06-L09,6,9,False,Rex Rune,terrain controller,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0569,MON-0573,7.338,1.468,10,Common:2 Legendary:1 Mythic:2
 T06-L10,6,10,True,Nyla Dawn,summoner,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0586,MON-0591,38.621,6.437,1,Epic:2 Mythic:1 Rare:2 Uncommon:1
 T07-L01,7,1,False,Ari Storm,status-effect strategist,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0516,MON-0521,44.373,7.396,1,Common:2 Legendary:1 Rare:1 Uncommon:2
 T07-L02,7,2,False,Kael Calder,rush attacker,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0533,MON-0539,22.146,3.164,6,Common:1 Epic:2 Legendary:1 Mythic:2 Rare:1
 T07-L03,7,3,False,Mira Slate,defensive fortress,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0550,MON-0554,16.334,3.267,7,Common:2 Rare:1 Uncommon:2
-T07-L04,7,4,False,Rin Lux,trap engineer,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0567,MON-0572,32.636,5.439,3,Common:1 Epic:2 Legendary:1 Mythic:2
+T07-L04,7,4,False,Rin Lux,trap engineer,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0567,MON-0572,32.636,5.439,3,Common:1 Epic:2 Legendary:1 Mythic:2
 T07-L05,7,5,False,Sora Bloom,mobility specialist,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0584,MON-0590,39.483,5.64,2,Common:1 Epic:2 Rare:2 Uncommon:2
 T07-L06,7,6,False,Veya Quill,terrain controller,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0601,MON-0605,11.038,2.208,10,Common:1 Epic:1 Legendary:1 Mythic:2
 T07-L07,7,7,False,Niko Cross,summoner,One random portal activates each round,Defeat the enemy Symbol,6,MON-0618,MON-0623,27.302,4.55,5,Epic:2 Rare:2 Uncommon:2
-T07-L08,7,8,False,Lira Frost,counter-attacker,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0635,MON-0641,30.338,4.334,4,Common:2 Legendary:1 Mythic:2 Uncommon:2
+T07-L08,7,8,False,Lira Frost,counter-attacker,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0635,MON-0641,30.338,4.334,4,Common:2 Legendary:1 Mythic:2 Uncommon:2
 T07-L09,7,9,False,Tarin Vale,resource thief,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0652,MON-0656,12.234,2.447,9,Epic:2 Rare:2 Uncommon:1
 T07-L10,7,10,True,Zane Wren,long-range sniper,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0669,MON-0674,15.062,2.51,8,Common:2 Legendary:1 Mythic:1 Uncommon:2
 T08-L01,8,1,False,Cira Zephyr,trap engineer,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0599,MON-0604,12.401,2.067,7,Epic:2 Legendary:1 Mythic:2 Rare:1
 T08-L02,8,2,False,Orin Voss,mobility specialist,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0616,MON-0622,30.959,4.423,1,Common:2 Epic:1 Rare:2 Uncommon:2
 T08-L03,8,3,False,Juno Nyx,terrain controller,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0633,MON-0637,16.154,3.231,4,Epic:2 Legendary:1 Mythic:2
-T08-L04,8,4,False,Rhea Reed,summoner,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0650,MON-0655,15.372,2.562,5,Common:1 Epic:1 Rare:2 Uncommon:2
+T08-L04,8,4,False,Rhea Reed,summoner,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0650,MON-0655,15.372,2.562,5,Common:1 Epic:1 Rare:2 Uncommon:2
 T08-L05,8,5,False,Varen Rook,counter-attacker,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0667,MON-0673,24.728,3.533,2,Common:2 Epic:1 Legendary:1 Mythic:2 Uncommon:1
 T08-L06,8,6,False,Ilya Dray,resource thief,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0684,MON-0688,4.514,0.903,10,Epic:1 Rare:2 Uncommon:2
 T08-L07,8,7,False,Noa Flint,long-range sniper,One random portal activates each round,Defeat the enemy Symbol,6,MON-0701,MON-0706,10.951,1.825,8,Common:2 Legendary:1 Mythic:2 Uncommon:1
-T08-L08,8,8,False,Kira Storm,status-effect strategist,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0718,MON-0724,22.271,3.182,3,Epic:2 Mythic:2 Rare:2 Uncommon:1
+T08-L08,8,8,False,Kira Storm,status-effect strategist,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0718,MON-0724,22.271,3.182,3,Epic:2 Mythic:2 Rare:2 Uncommon:1
 T08-L09,8,9,False,Dax Calder,rush attacker,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0735,MON-0739,8.443,1.689,9,Common:2 Legendary:1 Mythic:1 Uncommon:1
 T08-L10,8,10,True,Yuna Slate,defensive fortress,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0752,MON-0757,12.464,2.077,6,Epic:2 Mythic:2 Rare:2
 T09-L01,9,1,False,Milo Hollow,summoner,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0682,MON-0687,16.247,2.708,5,Common:2 Rare:2 Uncommon:2
 T09-L02,9,2,False,Zara Grave,counter-attacker,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0699,MON-0705,11.476,1.639,9,Common:2 Epic:2 Legendary:1 Mythic:2
 T09-L03,9,3,False,Eren Moss,resource thief,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0716,MON-0720,16.724,3.345,4,Common:1 Rare:2 Uncommon:2
-T09-L04,9,4,False,Lyra Ardent,long-range sniper,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0733,MON-0738,21.401,3.567,2,Common:2 Epic:1 Legendary:1 Mythic:2
+T09-L04,9,4,False,Lyra Ardent,long-range sniper,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0733,MON-0738,21.401,3.567,2,Common:2 Epic:1 Legendary:1 Mythic:2
 T09-L05,9,5,False,Tessa Ashen,status-effect strategist,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0750,MON-0756,13.849,1.978,7,Epic:2 Mythic:1 Rare:2 Uncommon:2
 T09-L06,9,6,False,Silas Rune,rush attacker,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0767,MON-0771,13.489,2.698,8,Common:2 Legendary:1 Mythic:2
 T09-L07,9,7,False,Mako Dawn,defensive fortress,One random portal activates each round,Defeat the enemy Symbol,6,MON-0784,MON-0789,13.913,2.319,6,Epic:2 Mythic:1 Rare:2 Uncommon:1
-T09-L08,9,8,False,Ayla Zephyr,trap engineer,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0801,MON-0807,19.96,2.851,3,Common:2 Legendary:1 Mythic:1 Rare:1 Uncommon:2
+T09-L08,9,8,False,Ayla Zephyr,trap engineer,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0801,MON-0807,19.96,2.851,3,Common:2 Legendary:1 Mythic:1 Rare:1 Uncommon:2
 T09-L09,9,9,False,Rex Voss,mobility specialist,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0818,MON-0822,9.284,1.857,10,Epic:2 Mythic:1 Rare:2
 T09-L10,9,10,True,Nyla Nyx,terrain controller,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0835,MON-0840,23.917,3.986,1,Common:2 Legendary:1 Rare:1 Uncommon:2
 T10-L01,10,1,False,Ari Lux,long-range sniper,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0765,MON-0770,14.599,2.433,5,Common:1 Epic:2 Legendary:1 Mythic:2
 T10-L02,10,2,False,Kael Bloom,status-effect strategist,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0782,MON-0788,14.351,2.05,6,Common:1 Epic:2 Rare:2 Uncommon:2
 T10-L03,10,3,False,Mira Quill,rush attacker,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0799,MON-0803,11.848,2.37,7,Common:1 Epic:1 Legendary:1 Mythic:2
-T10-L04,10,4,False,Rin Cross,defensive fortress,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0816,MON-0821,11.797,1.966,8,Epic:2 Rare:2 Uncommon:2
+T10-L04,10,4,False,Rin Cross,defensive fortress,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0816,MON-0821,11.797,1.966,8,Epic:2 Rare:2 Uncommon:2
 T10-L05,10,5,False,Sora Frost,trap engineer,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0833,MON-0839,29.651,4.236,1,Common:2 Legendary:1 Mythic:2 Uncommon:2
 T10-L06,10,6,False,Veya Vale,mobility specialist,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0850,MON-0854,6.709,1.342,9,Epic:2 Rare:2 Uncommon:1
 T10-L07,10,7,False,Niko Wren,terrain controller,One random portal activates each round,Defeat the enemy Symbol,6,MON-0867,MON-0872,18.582,3.097,3,Common:2 Legendary:1 Mythic:1 Uncommon:2
-T10-L08,10,8,False,Lira Hollow,summoner,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0884,MON-0890,22.21,3.173,2,Epic:2 Legendary:1 Mythic:2 Rare:2
+T10-L08,10,8,False,Lira Hollow,summoner,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0884,MON-0890,22.21,3.173,2,Epic:2 Legendary:1 Mythic:2 Rare:2
 T10-L09,10,9,False,Tarin Grave,counter-attacker,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0901,MON-0905,5.916,1.183,10,Common:2 Legendary:1 Uncommon:2
 T10-L10,10,10,True,Zane Moss,resource thief,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0918,MON-0923,15.029,2.505,4,Epic:2 Legendary:1 Mythic:2 Rare:1
 T11-L01,11,1,False,Cira Reed,defensive fortress,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0848,MON-0853,9.848,1.641,9,Common:1 Epic:1 Rare:2 Uncommon:2
 T11-L02,11,2,False,Orin Rook,trap engineer,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0865,MON-0871,18.975,2.711,3,Common:2 Epic:1 Legendary:1 Mythic:2 Uncommon:1
 T11-L03,11,3,False,Juno Dray,mobility specialist,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0882,MON-0886,19.121,3.824,2,Epic:1 Rare:2 Uncommon:2
-T11-L04,11,4,False,Rhea Flint,terrain controller,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0899,MON-0904,8.09,1.348,10,Common:2 Legendary:1 Mythic:2 Uncommon:1
+T11-L04,11,4,False,Rhea Flint,terrain controller,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0899,MON-0904,8.09,1.348,10,Common:2 Legendary:1 Mythic:2 Uncommon:1
 T11-L05,11,5,False,Varen Storm,summoner,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0916,MON-0922,15.781,2.254,4,Epic:2 Mythic:2 Rare:2 Uncommon:1
 T11-L06,11,6,False,Ilya Calder,counter-attacker,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0933,MON-0937,15.591,3.118,5,Common:2 Legendary:1 Mythic:1 Uncommon:1
 T11-L07,11,7,False,Noa Slate,resource thief,One random portal activates each round,Defeat the enemy Symbol,6,MON-0950,MON-0955,11.674,1.946,7,Epic:2 Mythic:2 Rare:2
-T11-L08,11,8,False,Kira Lux,long-range sniper,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0967,MON-0973,10.976,1.568,8,Common:2 Legendary:1 Rare:2 Uncommon:2
+T11-L08,11,8,False,Kira Lux,long-range sniper,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0967,MON-0973,10.976,1.568,8,Common:2 Legendary:1 Rare:2 Uncommon:2
 T11-L09,11,9,False,Dax Bloom,status-effect strategist,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0984,MON-0988,33.383,6.677,1,Epic:2 Mythic:2 Rare:1
 T11-L10,11,10,True,Yuna Quill,rush attacker,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0001,MON-0006,13.918,2.32,6,Common:1 Epic:1 Rare:2 Uncommon:2
 T12-L01,12,1,False,Milo Ardent,terrain controller,Terrain bonuses are doubled,Defeat the enemy Symbol,6,MON-0931,MON-0936,16.328,2.721,5,Common:2 Epic:1 Legendary:1 Mythic:2
 T12-L02,12,2,False,Zara Ashen,summoner,Movement after a knockout is +1,Defeat the enemy Symbol,7,MON-0948,MON-0954,13.049,1.864,6,Epic:2 Mythic:1 Rare:2 Uncommon:2
 T12-L03,12,3,False,Eren Rune,counter-attacker,One random portal activates each round,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0965,MON-0969,7.457,1.491,10,Common:2 Legendary:1 Mythic:2
-T12-L04,12,4,False,Lyra Dawn,resource thief,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,6,MON-0982,MON-0987,34.44,5.74,1,Epic:2 Mythic:1 Rare:2 Uncommon:1
+T12-L04,12,4,False,Lyra Dawn,resource thief,Capsules cost +1 SP to summon,Defeat the enemy Symbol,6,MON-0982,MON-0987,34.44,5.74,1,Epic:2 Mythic:1 Rare:2 Uncommon:1
 T12-L05,12,5,False,Tessa Zephyr,long-range sniper,Terrain bonuses are doubled,Defeat the enemy Symbol,7,MON-0999,MON-0005,19.137,2.734,4,Common:1 Legendary:1 Mythic:1 Rare:2 Uncommon:2
 T12-L06,12,6,False,Silas Voss,status-effect strategist,Movement after a knockout is +1,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0016,MON-0020,9.285,1.857,9,Epic:2 Mythic:2 Rare:1
 T12-L07,12,7,False,Mako Nyx,rush attacker,One random portal activates each round,Defeat the enemy Symbol,6,MON-0033,MON-0038,12.667,2.111,7,Common:2 Rare:2 Uncommon:2
-T12-L08,12,8,False,Ayla Reed,defensive fortress,Capsules cost 1 AP to deploy,Defeat the enemy Symbol,7,MON-0050,MON-0056,24.313,3.473,2,Common:2 Epic:2 Legendary:1 Mythic:2
+T12-L08,12,8,False,Ayla Reed,defensive fortress,Capsules cost +1 SP to summon,Defeat the enemy Symbol,7,MON-0050,MON-0056,24.313,3.473,2,Common:2 Epic:2 Legendary:1 Mythic:2
 T12-L09,12,9,False,Rex Rook,trap engineer,Terrain bonuses are doubled,Defeat the enemy Symbol or secure 3 relic nodes,5,MON-0067,MON-0071,21.075,4.215,3,Common:1 Rare:2 Uncommon:2
 T12-L10,12,10,True,Nyla Dray,mobility specialist,Movement after a knockout is +1,Defeat the enemy Symbol,6,MON-0084,MON-0089,11.601,1.933,8,Common:2 Epic:1 Legendary:1 Mythic:2

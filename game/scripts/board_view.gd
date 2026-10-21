@@ -158,6 +158,9 @@ func _draw_tile(c: Vector2i) -> void:
 			Art.hp_bar(self, head + Vector2(0, -8), TILE_W * 0.7, state.symbol_hp[sym], state.symbol_max, Palette.side(sym))
 		else:
 			Art.draw_symbol(self, top, TILE_W, TILE_H, sym, state.symbol_hp[sym], state.symbol_max)
+	var cap: Dictionary = state.capsule_at(c)
+	if not cap.is_empty():
+		Art.draw_vessel(self, top, TILE_W, TILE_H, int(cap.owner), int(cap.hp), int(cap.max_hp))
 	var u := state.unit_at(c)
 	if u != null:
 		var spent: bool = u.moved and u.attacked

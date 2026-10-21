@@ -127,11 +127,11 @@ func _run() -> void:
 	var out_uid: String = default_uids[0]
 	var in_uid: String = coll.filter(func(u): return not default_uids.has(u))[0]
 	main._on_squad_toggle(out_uid)
-	check(main.squad_confirm.disabled, "confirm disabled with 3 selected")
+	check(main.squad_confirm.disabled, "confirm disabled with 5 selected")
 	main._on_squad_toggle(in_uid)
-	check(not main.squad_confirm.disabled, "confirm enabled with 4")
+	check(not main.squad_confirm.disabled, "confirm enabled with 6")
 	main._on_squad_confirm()
-	check(main.progress.squad.has(in_uid) and main.progress.squad.size() == 4, "squad saved: %s" % str(main.progress.squad))
+	check(main.progress.squad.has(in_uid) and main.progress.squad.size() == 6, "squad saved: %s" % str(main.progress.squad))
 	main.progress.set_squad(default_uids)
 	# Evolution screen.
 	var evo_uid: String = default_uids[1]
@@ -164,19 +164,53 @@ func _run() -> void:
 	check(main.squad_buttons.has(str(expected.uid)), "fused monster appears in the squad builder")
 	main.progress.set_squad(default_uids)
 	# Battle.
+	# Pre-match: Vessel draft under the Bond cap, then placement on the board (alternating with the AI).
 	main._on_stage_pressed("T01-L01")
 	await process_frame
+	check(main.draft_screen.visible and main.draft_buttons.size() == main.progress.roster.size(), "a stage tap opens the Vessel draft (%d)" % main.draft_buttons.size())
+	check(not main.draft_confirm.disabled and main.draft_pick.size() >= 1 and main.draft_pick.size() <= 6, "default draft: the saved squad trimmed to the Bond cap (%s)" % main.draft_label.text)
+	var pick0: Array = main.draft_pick.duplicate()
+	main._on_draft_toggle(main.draft_pick[0])
+	main._on_draft_toggle(main.progress.roster.map(func(i): return str(i.uid)).filter(func(u): return not main.draft_pick.has(u))[0])
+	check(main.draft_label.text.contains("/ 60"), "draft shows the T01 Bond cap: %s" % main.draft_label.text)
+	main.draft_pick = pick0
+	main._refresh_draft()
+	main._on_draft_confirm()
+	await process_frame
+	var s: GameState = main.state
+	check(main.placing and s.phase == GameState.PHASE_PLACEMENT and main.board.visible, "placement happens on the board")
+	check(s.placement_side() == GameState.PLAYER and s.placement_step() == "sigil", "enemy steps auto-played; the Sigil step is ours")
+	check(main.board.highlights.size() > 0 and main.cmd_buttons["Wait"].text == "Start battle", "home tiles highlighted; Start battle button")
+	_tap(main, s.symbol_pos[GameState.PLAYER])
+	await process_frame
+	check(s.placement_side() == GameState.PLAYER and s.placement_step() == "vessel", "Sigil kept; next a Vessel (%s %s)" % [s.placement_side(), s.placement_step()])
+	main._on_team(1)
+	var spot: Vector2i = main.board.highlights.keys()[0] if main.board.highlights.size() > 0 else Vector2i(-1, -1)
+	_tap(main, spot)
+	await process_frame
+	check(s.capsule_of(GameState.PLAYER, s.team[1]).get("pos") == spot, "tray pick + tap places that Vessel at %s" % spot)
+	main._on_cmd("Wait")
+	await process_frame
+	check(not main.placing and s.phase == GameState.PHASE_BATTLE and s.capsules[GameState.PLAYER].all(func(c): return c.pos != Vector2i(-1, -1)), "Start battle auto-places the rest")
 	check(main.dialogue_box.visible and main.dialogue_speaker.text == "Ari Voss", "stage_intro dialogue from the bible")
 	main._on_dialogue_next()
 	await process_frame
 	await process_frame
-	var s: GameState = main.state
 	check(main.bark_label.text.begins_with(Story.hero() + ":"), "battle_start bark: %s" % main.bark_label.text)
-	check(main.hud.visible and s.actor_id == GameState.sigil_id(GameState.PLAYER), "battle opens on the Player Sigil's activation")
+	for guard in 40:
+		await _wait_ai(main)
+		if main._my_turn() and s.is_sigil_turn():
+			break
+		if main.dialogue_box.visible:
+			main._on_dialogue_next()
+		elif main._my_turn():
+			main._on_cmd("Wait")
+	check(main.hud.visible and s.actor_id == GameState.sigil_id(GameState.PLAYER), "the Player Sigil gets its activation (faster statues may act first)")
+	check(main.status_label.text.contains("SP "), "HUD shows SP with the income preview: %s" % main.status_label.text.replace("\n", " | "))
 	check(main.order_box.get_child_count() >= 3, "turn order panel lists actors (%d)" % main.order_box.get_child_count())
 	check(main.objectives_box.get_child_count() >= 4, "objectives panel lists objectives (%d)" % main.objectives_box.get_child_count())
 	check(main.minimap.size.x >= 150, "tactical minimap shown (%s)" % str(main.minimap.size))
-	check(s.units_of(GameState.ENEMY).any(func(u): return u.dormant), "dormant statues on the board")
+	check(s.dormant_stage and s.units_of(GameState.ENEMY).size() >= 1, "ruins stage: enemy statues on the board")
 	# Layout: no visible HUD panel covers a tile you might tap.
 	var covered := []
 	var panels: Array = [main.top_panel, main.turn_panel, main.side_panel, main.bottom_panel]
@@ -201,9 +235,8 @@ func _run() -> void:
 	var spawn: Vector2i = main.board.highlights.keys()[0]
 	_tap(main, spawn)
 	await process_frame
-	check(s.unit_at(spawn) != null and s.unit_at(spawn).mon_id == first, "tap summoned %s at %s" % [first, spawn])
-	main._on_cmd("Wait")
-	check(main.ai_running, "End summons hands over to the enemy (AI paced)")
+	check(s.unit_at(spawn) != null and s.unit_at(spawn).mon_id == first, "tap cracked %s's Vessel at %s" % [first, spawn])
+	check(s.actor_id != GameState.sigil_id(GameState.PLAYER), "Crack ends the Sigil's activation")
 	# Play on until one of our monsters is the active actor.
 	var mine: GameState.Unit = null
 	for guard in 40:

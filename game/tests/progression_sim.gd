@@ -1,5 +1,5 @@
 ## A progressing player plays all 120 stages in order (AI vs AI, one attempt per stage):
-## the squad earns XP after every battle, evolves as soon as it may, and fuses once after T04-L10
+## the squad (drafted under the stage's Bond cap: summon.gd auto_draft) earns XP after every battle, evolves as soon as it may, and fuses once after T04-L10
 ## and once after T08-L10 (the two weakest eligible squad members). The squad starts as the
 ## default squad and is kept; after a fusion the fused monster and the strongest bench monster
 ## take the two freed slots. Used by tests/test_sim.gd (gate) and tests/tune_curve.gd (tuning).
@@ -10,6 +10,7 @@ const GameState = preload("res://scripts/game_state.gd")
 const AI = preload("res://scripts/ai.gd")
 const Prog = preload("res://scripts/progression.gd")
 const Progress = preload("res://scripts/progress.gd")
+const Summon = preload("res://scripts/summon.gd")
 
 const FUSE_AFTER := ["T04-L10", "T08-L10"]
 
@@ -21,13 +22,20 @@ static func run(pct: float, save_path: String) -> Dictionary:
 	var pr := Progress.new(save_path)
 	pr.new_game()
 	var cap := int(Data.rules().turn_cap_rounds)
-	var out := {"wins": 0, "losses": 0, "capped": 0, "rejected": 0, "bad": "", "tower": {}, "evolutions": 0, "fusions": [], "levels": []}
+	var out := {"wins": 0, "losses": 0, "capped": 0, "rejected": 0, "bad": "", "tower": {}, "evolutions": 0, "fusions": [], "levels": [], "trimmed": 0, "rounds": 0, "reasons": {}}
 	for st in Data.stages():
 		var s := GameState.new()
-		s.setup(st.stage_id, pr.squad, -1, pr.squad_records())
+		var recs := pr.squad_records()
+		var team := Summon.auto_draft(pr.squad, st, recs, func(u): return Prog.power(pr.get_inst(u)))
+		if team.size() < pr.squad.size():
+			out.trimmed += 1
+		s.setup(st.stage_id, team, -1, recs)
 		while s.winner == GameState.NONE and s.round_num <= cap:
 			var r := AI.take_activation(s, s.current, "balanced" if s.current == GameState.PLAYER else str(st.opponent_style))
 			out.rejected += r.rejected
+		out.rounds += mini(s.round_num, cap)
+		var why := ("P:" if s.winner == GameState.PLAYER else "E:") + s.win_reason if s.winner != GameState.NONE else "draw"
+		out.reasons[why] = int(out.reasons.get(why, 0)) + 1
 		var t: String = st.tower_id
 		if not out.tower.has(t):
 			out.tower[t] = [0, 0, 0]
@@ -71,5 +79,5 @@ static func summary(pct: float, r: Dictionary) -> String:
 	for k in r.tower:
 		var w: Array = r.tower[k]
 		rows.append("T%s %d/%d/%d" % [k, w[0], w[1], w[2]])
-	return "PROG pct=%s  player %d (%.0f%%)  enemy %d  capped %d  evolutions %d  fusions %s\n  per tower (player/enemy/capped): %s\n  final squad: %s" % [
-		str(pct), r.wins, 100.0 * r.wins / n, r.losses, r.capped, r.evolutions, str(r.fusions), "  ".join(rows), ", ".join(r.levels)]
+	return "PROG pct=%s  player %d (%.0f%%)  enemy %d  draw %d  avg rounds %.1f  drafts trimmed by Bond cap %d  reasons %s  evolutions %d  fusions %s\n  per tower (player/enemy/capped): %s\n  final squad: %s" % [
+		str(pct), r.wins, 100.0 * r.wins / n, r.losses, r.capped, r.rounds / n, r.trimmed, str(r.reasons), r.evolutions, str(r.fusions), "  ".join(rows), ", ".join(r.levels)]
