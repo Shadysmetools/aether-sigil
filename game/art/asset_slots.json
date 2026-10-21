@@ -1,0 +1,1319 @@
+{
+  "core_speakers": [
+    "ari_zephyr",
+    "cira_dawn",
+    "elio",
+    "kess_varrow",
+    "lyra_quill",
+    "mako_reed",
+    "maren_oake",
+    "narrator",
+    "niko_ardent",
+    "pell",
+    "renn_calder",
+    "rhea_volt",
+    "sera_vale",
+    "silas_wren",
+    "tarin_moss",
+    "varen_lux",
+    "zara_nyx"
+  ],
+  "slots": {
+    "backdrops": [
+      "backdrops/world",
+      "backdrops/T01",
+      "backdrops/T02",
+      "backdrops/T03",
+      "backdrops/T04",
+      "backdrops/T05",
+      "backdrops/T06",
+      "backdrops/T07",
+      "backdrops/T08",
+      "backdrops/T09",
+      "backdrops/T10",
+      "backdrops/T11",
+      "backdrops/T12"
+    ],
+    "icons": [
+      "icons/elements/fire",
+      "icons/elements/water",
+      "icons/elements/wind",
+      "icons/elements/earth",
+      "icons/elements/wood",
+      "icons/elements/ice",
+      "icons/elements/thunder",
+      "icons/elements/light",
+      "icons/elements/dark",
+      "icons/elements/tech",
+      "icons/elements/space",
+      "icons/elements/arcane"
+    ],
+    "monsters": [
+      "monsters/fire",
+      "monsters/water",
+      "monsters/wind",
+      "monsters/earth",
+      "monsters/wood",
+      "monsters/ice",
+      "monsters/thunder",
+      "monsters/light",
+      "monsters/dark",
+      "monsters/tech",
+      "monsters/space",
+      "monsters/arcane",
+      "monsters/FAM-001",
+      "monsters/FAM-002",
+      "monsters/FAM-003",
+      "monsters/FAM-004",
+      "monsters/FAM-005",
+      "monsters/FAM-006",
+      "monsters/FAM-007",
+      "monsters/FAM-008",
+      "monsters/FAM-009",
+      "monsters/FAM-010",
+      "monsters/FAM-011",
+      "monsters/FAM-012",
+      "monsters/FAM-013",
+      "monsters/FAM-014",
+      "monsters/FAM-015",
+      "monsters/FAM-016",
+      "monsters/FAM-017",
+      "monsters/FAM-018",
+      "monsters/FAM-019",
+      "monsters/FAM-020",
+      "monsters/FAM-021",
+      "monsters/FAM-022",
+      "monsters/FAM-023",
+      "monsters/FAM-024",
+      "monsters/FAM-025",
+      "monsters/FAM-026",
+      "monsters/FAM-027",
+      "monsters/FAM-028",
+      "monsters/FAM-029",
+      "monsters/FAM-030",
+      "monsters/FAM-031",
+      "monsters/FAM-032",
+      "monsters/FAM-033",
+      "monsters/FAM-034",
+      "monsters/FAM-035",
+      "monsters/FAM-036",
+      "monsters/FAM-037",
+      "monsters/FAM-038",
+      "monsters/FAM-039",
+      "monsters/FAM-040",
+      "monsters/FAM-041",
+      "monsters/FAM-042",
+      "monsters/FAM-043",
+      "monsters/FAM-044",
+      "monsters/FAM-045",
+      "monsters/FAM-046",
+      "monsters/FAM-047",
+      "monsters/FAM-048",
+      "monsters/FAM-049",
+      "monsters/FAM-050",
+      "monsters/FAM-051",
+      "monsters/FAM-052",
+      "monsters/FAM-053",
+      "monsters/FAM-054",
+      "monsters/FAM-055",
+      "monsters/FAM-056",
+      "monsters/FAM-057",
+      "monsters/FAM-058",
+      "monsters/FAM-059",
+      "monsters/FAM-060",
+      "monsters/FAM-061",
+      "monsters/FAM-062",
+      "monsters/FAM-063",
+      "monsters/FAM-064",
+      "monsters/FAM-065",
+      "monsters/FAM-066",
+      "monsters/FAM-067",
+      "monsters/FAM-068",
+      "monsters/FAM-069",
+      "monsters/FAM-070",
+      "monsters/FAM-071",
+      "monsters/FAM-072",
+      "monsters/FAM-073",
+      "monsters/FAM-074",
+      "monsters/FAM-075",
+      "monsters/FAM-076",
+      "monsters/FAM-077",
+      "monsters/FAM-078",
+      "monsters/FAM-079",
+      "monsters/FAM-080",
+      "monsters/FAM-081",
+      "monsters/FAM-082",
+      "monsters/FAM-083",
+      "monsters/FAM-084",
+      "monsters/FAM-085",
+      "monsters/FAM-086",
+      "monsters/FAM-087",
+      "monsters/FAM-088",
+      "monsters/FAM-089",
+      "monsters/FAM-090",
+      "monsters/FAM-091",
+      "monsters/FAM-092",
+      "monsters/FAM-093",
+      "monsters/FAM-094",
+      "monsters/FAM-095",
+      "monsters/FAM-096",
+      "monsters/FAM-097",
+      "monsters/FAM-098",
+      "monsters/FAM-099",
+      "monsters/FAM-100",
+      "monsters/FAM-101",
+      "monsters/FAM-102",
+      "monsters/FAM-103",
+      "monsters/FAM-104",
+      "monsters/FAM-105",
+      "monsters/FAM-106",
+      "monsters/FAM-107",
+      "monsters/FAM-108",
+      "monsters/FAM-109",
+      "monsters/FAM-110",
+      "monsters/FAM-111",
+      "monsters/FAM-112",
+      "monsters/FAM-113",
+      "monsters/FAM-114",
+      "monsters/FAM-115",
+      "monsters/FAM-116",
+      "monsters/FAM-117",
+      "monsters/FAM-118",
+      "monsters/FAM-119",
+      "monsters/FAM-120",
+      "monsters/FAM-121",
+      "monsters/FAM-122",
+      "monsters/FAM-123",
+      "monsters/FAM-124",
+      "monsters/FAM-125",
+      "monsters/FAM-126",
+      "monsters/FAM-127",
+      "monsters/FAM-128",
+      "monsters/FAM-129",
+      "monsters/FAM-130",
+      "monsters/FAM-131",
+      "monsters/FAM-132",
+      "monsters/FAM-133",
+      "monsters/FAM-134",
+      "monsters/FAM-135",
+      "monsters/FAM-136",
+      "monsters/FAM-137",
+      "monsters/FAM-138",
+      "monsters/FAM-139",
+      "monsters/FAM-140",
+      "monsters/FAM-141",
+      "monsters/FAM-142",
+      "monsters/FAM-143",
+      "monsters/FAM-144",
+      "monsters/FAM-145",
+      "monsters/FAM-146",
+      "monsters/FAM-147",
+      "monsters/FAM-148",
+      "monsters/FAM-149",
+      "monsters/FAM-150",
+      "monsters/FAM-151",
+      "monsters/FAM-152",
+      "monsters/FAM-153",
+      "monsters/FAM-154",
+      "monsters/FAM-155",
+      "monsters/FAM-156",
+      "monsters/FAM-157",
+      "monsters/FAM-158",
+      "monsters/FAM-159",
+      "monsters/FAM-160",
+      "monsters/FAM-161",
+      "monsters/FAM-162",
+      "monsters/FAM-163",
+      "monsters/FAM-164",
+      "monsters/FAM-165",
+      "monsters/FAM-166",
+      "monsters/FAM-167",
+      "monsters/FAM-168",
+      "monsters/FAM-169",
+      "monsters/FAM-170",
+      "monsters/FAM-171",
+      "monsters/FAM-172",
+      "monsters/FAM-173",
+      "monsters/FAM-174",
+      "monsters/FAM-175",
+      "monsters/FAM-176",
+      "monsters/FAM-177",
+      "monsters/FAM-178",
+      "monsters/FAM-179",
+      "monsters/FAM-180",
+      "monsters/FAM-181",
+      "monsters/FAM-182",
+      "monsters/FAM-183",
+      "monsters/FAM-184",
+      "monsters/FAM-185",
+      "monsters/FAM-186",
+      "monsters/FAM-187",
+      "monsters/FAM-188",
+      "monsters/FAM-189",
+      "monsters/FAM-190",
+      "monsters/FAM-191",
+      "monsters/FAM-192",
+      "monsters/FAM-193",
+      "monsters/FAM-194",
+      "monsters/FAM-195",
+      "monsters/FAM-196",
+      "monsters/FAM-197",
+      "monsters/FAM-198",
+      "monsters/FAM-199",
+      "monsters/FAM-200"
+    ],
+    "portraits": [
+      "portraits/ari_lux",
+      "portraits/ari_rook",
+      "portraits/ari_storm",
+      "portraits/ari_voss",
+      "portraits/ari_zephyr",
+      "portraits/ayla_ashen",
+      "portraits/ayla_grave",
+      "portraits/ayla_reed",
+      "portraits/ayla_zephyr",
+      "portraits/cira_ashen",
+      "portraits/cira_dawn",
+      "portraits/cira_grave",
+      "portraits/cira_reed",
+      "portraits/cira_zephyr",
+      "portraits/dax_bloom",
+      "portraits/dax_calder",
+      "portraits/dax_dray",
+      "portraits/dax_nyx",
+      "portraits/elio",
+      "portraits/eren_cross",
+      "portraits/eren_moss",
+      "portraits/eren_rune",
+      "portraits/eren_wren",
+      "portraits/ilya_calder",
+      "portraits/ilya_dawn",
+      "portraits/ilya_dray",
+      "portraits/ilya_nyx",
+      "portraits/juno_ardent",
+      "portraits/juno_dawn",
+      "portraits/juno_dray",
+      "portraits/juno_nyx",
+      "portraits/kael_bloom",
+      "portraits/kael_calder",
+      "portraits/kael_dray",
+      "portraits/kael_nyx",
+      "portraits/kess_varrow",
+      "portraits/kira_lux",
+      "portraits/kira_rook",
+      "portraits/kira_storm",
+      "portraits/kira_voss",
+      "portraits/lira_bloom",
+      "portraits/lira_calder",
+      "portraits/lira_frost",
+      "portraits/lira_hollow",
+      "portraits/lyra_ardent",
+      "portraits/lyra_dawn",
+      "portraits/lyra_frost",
+      "portraits/lyra_hollow",
+      "portraits/lyra_quill",
+      "portraits/mako_ardent",
+      "portraits/mako_dawn",
+      "portraits/mako_hollow",
+      "portraits/mako_nyx",
+      "portraits/mako_reed",
+      "portraits/maren_oake",
+      "portraits/milo_ardent",
+      "portraits/milo_bloom",
+      "portraits/milo_frost",
+      "portraits/milo_hollow",
+      "portraits/mira_flint",
+      "portraits/mira_quill",
+      "portraits/mira_reed",
+      "portraits/mira_slate",
+      "portraits/narrator",
+      "portraits/niko_ardent",
+      "portraits/niko_cross",
+      "portraits/niko_lux",
+      "portraits/niko_storm",
+      "portraits/niko_wren",
+      "portraits/noa_flint",
+      "portraits/noa_reed",
+      "portraits/noa_slate",
+      "portraits/noa_zephyr",
+      "portraits/orin_moss",
+      "portraits/orin_rook",
+      "portraits/orin_rune",
+      "portraits/orin_voss",
+      "portraits/pell",
+      "portraits/renn_calder",
+      "portraits/rex_moss",
+      "portraits/rex_rook",
+      "portraits/rex_rune",
+      "portraits/rex_voss",
+      "portraits/rhea_ashen",
+      "portraits/rhea_flint",
+      "portraits/rhea_reed",
+      "portraits/rhea_volt",
+      "portraits/rhea_zephyr",
+      "portraits/rin_cross",
+      "portraits/rin_lux",
+      "portraits/rin_rook",
+      "portraits/rin_storm",
+      "portraits/sera_vale",
+      "portraits/silas_moss",
+      "portraits/silas_rune",
+      "portraits/silas_voss",
+      "portraits/silas_wren",
+      "portraits/sora_bloom",
+      "portraits/sora_calder",
+      "portraits/sora_dray",
+      "portraits/sora_frost",
+      "portraits/tarin_grave",
+      "portraits/tarin_moss",
+      "portraits/tarin_quill",
+      "portraits/tarin_slate",
+      "portraits/tarin_vale",
+      "portraits/tessa_ashen",
+      "portraits/tessa_grave",
+      "portraits/tessa_vale",
+      "portraits/tessa_zephyr",
+      "portraits/varen_lux",
+      "portraits/varen_rook",
+      "portraits/varen_rune",
+      "portraits/varen_storm",
+      "portraits/varen_voss",
+      "portraits/veya_flint",
+      "portraits/veya_quill",
+      "portraits/veya_slate",
+      "portraits/veya_vale",
+      "portraits/zara_ashen",
+      "portraits/zara_grave",
+      "portraits/zara_nyx",
+      "portraits/zara_quill",
+      "portraits/zara_vale"
+    ],
+    "props": [
+      "props/player_sigil",
+      "props/enemy_sigil",
+      "props/capsule_node",
+      "props/relic",
+      "props/portal"
+    ],
+    "tiles": [
+      "tiles/T01/ground",
+      "tiles/T01/ground_v2",
+      "tiles/T01/ground_v3",
+      "tiles/T01/stone",
+      "tiles/T01/obstacle",
+      "tiles/T01/bridge",
+      "tiles/T01/bridge_y",
+      "tiles/T01/capsule_node",
+      "tiles/T01/player_symbol",
+      "tiles/T01/enemy_symbol",
+      "tiles/T01/player_spawn",
+      "tiles/T01/enemy_spawn",
+      "tiles/T01/relic",
+      "tiles/T01/warp_gate",
+      "tiles/T01/elevation",
+      "tiles/T01/hazard",
+      "tiles/T01/forest",
+      "tiles/T01/lava",
+      "tiles/T01/water",
+      "tiles/T01/ice",
+      "tiles/T01/metal",
+      "tiles/T01/sky",
+      "tiles/T01/shadow",
+      "tiles/T01/ruins",
+      "tiles/T01/space",
+      "tiles/T01/crystal",
+      "tiles/T01/rift",
+      "tiles/T01/mixed",
+      "tiles/T02/ground",
+      "tiles/T02/ground_v2",
+      "tiles/T02/ground_v3",
+      "tiles/T02/stone",
+      "tiles/T02/obstacle",
+      "tiles/T02/bridge",
+      "tiles/T02/bridge_y",
+      "tiles/T02/capsule_node",
+      "tiles/T02/player_symbol",
+      "tiles/T02/enemy_symbol",
+      "tiles/T02/player_spawn",
+      "tiles/T02/enemy_spawn",
+      "tiles/T02/relic",
+      "tiles/T02/warp_gate",
+      "tiles/T02/elevation",
+      "tiles/T02/hazard",
+      "tiles/T02/forest",
+      "tiles/T02/lava",
+      "tiles/T02/water",
+      "tiles/T02/ice",
+      "tiles/T02/metal",
+      "tiles/T02/sky",
+      "tiles/T02/shadow",
+      "tiles/T02/ruins",
+      "tiles/T02/space",
+      "tiles/T02/crystal",
+      "tiles/T02/rift",
+      "tiles/T02/mixed",
+      "tiles/T03/ground",
+      "tiles/T03/ground_v2",
+      "tiles/T03/ground_v3",
+      "tiles/T03/stone",
+      "tiles/T03/obstacle",
+      "tiles/T03/bridge",
+      "tiles/T03/bridge_y",
+      "tiles/T03/capsule_node",
+      "tiles/T03/player_symbol",
+      "tiles/T03/enemy_symbol",
+      "tiles/T03/player_spawn",
+      "tiles/T03/enemy_spawn",
+      "tiles/T03/relic",
+      "tiles/T03/warp_gate",
+      "tiles/T03/elevation",
+      "tiles/T03/hazard",
+      "tiles/T03/forest",
+      "tiles/T03/lava",
+      "tiles/T03/water",
+      "tiles/T03/ice",
+      "tiles/T03/metal",
+      "tiles/T03/sky",
+      "tiles/T03/shadow",
+      "tiles/T03/ruins",
+      "tiles/T03/space",
+      "tiles/T03/crystal",
+      "tiles/T03/rift",
+      "tiles/T03/mixed",
+      "tiles/T04/ground",
+      "tiles/T04/ground_v2",
+      "tiles/T04/ground_v3",
+      "tiles/T04/stone",
+      "tiles/T04/obstacle",
+      "tiles/T04/bridge",
+      "tiles/T04/bridge_y",
+      "tiles/T04/capsule_node",
+      "tiles/T04/player_symbol",
+      "tiles/T04/enemy_symbol",
+      "tiles/T04/player_spawn",
+      "tiles/T04/enemy_spawn",
+      "tiles/T04/relic",
+      "tiles/T04/warp_gate",
+      "tiles/T04/elevation",
+      "tiles/T04/hazard",
+      "tiles/T04/forest",
+      "tiles/T04/lava",
+      "tiles/T04/water",
+      "tiles/T04/ice",
+      "tiles/T04/metal",
+      "tiles/T04/sky",
+      "tiles/T04/shadow",
+      "tiles/T04/ruins",
+      "tiles/T04/space",
+      "tiles/T04/crystal",
+      "tiles/T04/rift",
+      "tiles/T04/mixed",
+      "tiles/T05/ground",
+      "tiles/T05/ground_v2",
+      "tiles/T05/ground_v3",
+      "tiles/T05/stone",
+      "tiles/T05/obstacle",
+      "tiles/T05/bridge",
+      "tiles/T05/bridge_y",
+      "tiles/T05/capsule_node",
+      "tiles/T05/player_symbol",
+      "tiles/T05/enemy_symbol",
+      "tiles/T05/player_spawn",
+      "tiles/T05/enemy_spawn",
+      "tiles/T05/relic",
+      "tiles/T05/warp_gate",
+      "tiles/T05/elevation",
+      "tiles/T05/hazard",
+      "tiles/T05/forest",
+      "tiles/T05/lava",
+      "tiles/T05/water",
+      "tiles/T05/ice",
+      "tiles/T05/metal",
+      "tiles/T05/sky",
+      "tiles/T05/shadow",
+      "tiles/T05/ruins",
+      "tiles/T05/space",
+      "tiles/T05/crystal",
+      "tiles/T05/rift",
+      "tiles/T05/mixed",
+      "tiles/T06/ground",
+      "tiles/T06/ground_v2",
+      "tiles/T06/ground_v3",
+      "tiles/T06/stone",
+      "tiles/T06/obstacle",
+      "tiles/T06/bridge",
+      "tiles/T06/bridge_y",
+      "tiles/T06/capsule_node",
+      "tiles/T06/player_symbol",
+      "tiles/T06/enemy_symbol",
+      "tiles/T06/player_spawn",
+      "tiles/T06/enemy_spawn",
+      "tiles/T06/relic",
+      "tiles/T06/warp_gate",
+      "tiles/T06/elevation",
+      "tiles/T06/hazard",
+      "tiles/T06/forest",
+      "tiles/T06/lava",
+      "tiles/T06/water",
+      "tiles/T06/ice",
+      "tiles/T06/metal",
+      "tiles/T06/sky",
+      "tiles/T06/shadow",
+      "tiles/T06/ruins",
+      "tiles/T06/space",
+      "tiles/T06/crystal",
+      "tiles/T06/rift",
+      "tiles/T06/mixed",
+      "tiles/T07/ground",
+      "tiles/T07/ground_v2",
+      "tiles/T07/ground_v3",
+      "tiles/T07/stone",
+      "tiles/T07/obstacle",
+      "tiles/T07/bridge",
+      "tiles/T07/bridge_y",
+      "tiles/T07/capsule_node",
+      "tiles/T07/player_symbol",
+      "tiles/T07/enemy_symbol",
+      "tiles/T07/player_spawn",
+      "tiles/T07/enemy_spawn",
+      "tiles/T07/relic",
+      "tiles/T07/warp_gate",
+      "tiles/T07/elevation",
+      "tiles/T07/hazard",
+      "tiles/T07/forest",
+      "tiles/T07/lava",
+      "tiles/T07/water",
+      "tiles/T07/ice",
+      "tiles/T07/metal",
+      "tiles/T07/sky",
+      "tiles/T07/shadow",
+      "tiles/T07/ruins",
+      "tiles/T07/space",
+      "tiles/T07/crystal",
+      "tiles/T07/rift",
+      "tiles/T07/mixed",
+      "tiles/T08/ground",
+      "tiles/T08/ground_v2",
+      "tiles/T08/ground_v3",
+      "tiles/T08/stone",
+      "tiles/T08/obstacle",
+      "tiles/T08/bridge",
+      "tiles/T08/bridge_y",
+      "tiles/T08/capsule_node",
+      "tiles/T08/player_symbol",
+      "tiles/T08/enemy_symbol",
+      "tiles/T08/player_spawn",
+      "tiles/T08/enemy_spawn",
+      "tiles/T08/relic",
+      "tiles/T08/warp_gate",
+      "tiles/T08/elevation",
+      "tiles/T08/hazard",
+      "tiles/T08/forest",
+      "tiles/T08/lava",
+      "tiles/T08/water",
+      "tiles/T08/ice",
+      "tiles/T08/metal",
+      "tiles/T08/sky",
+      "tiles/T08/shadow",
+      "tiles/T08/ruins",
+      "tiles/T08/space",
+      "tiles/T08/crystal",
+      "tiles/T08/rift",
+      "tiles/T08/mixed",
+      "tiles/T09/ground",
+      "tiles/T09/ground_v2",
+      "tiles/T09/ground_v3",
+      "tiles/T09/stone",
+      "tiles/T09/obstacle",
+      "tiles/T09/bridge",
+      "tiles/T09/bridge_y",
+      "tiles/T09/capsule_node",
+      "tiles/T09/player_symbol",
+      "tiles/T09/enemy_symbol",
+      "tiles/T09/player_spawn",
+      "tiles/T09/enemy_spawn",
+      "tiles/T09/relic",
+      "tiles/T09/warp_gate",
+      "tiles/T09/elevation",
+      "tiles/T09/hazard",
+      "tiles/T09/forest",
+      "tiles/T09/lava",
+      "tiles/T09/water",
+      "tiles/T09/ice",
+      "tiles/T09/metal",
+      "tiles/T09/sky",
+      "tiles/T09/shadow",
+      "tiles/T09/ruins",
+      "tiles/T09/space",
+      "tiles/T09/crystal",
+      "tiles/T09/rift",
+      "tiles/T09/mixed",
+      "tiles/T10/ground",
+      "tiles/T10/ground_v2",
+      "tiles/T10/ground_v3",
+      "tiles/T10/stone",
+      "tiles/T10/obstacle",
+      "tiles/T10/bridge",
+      "tiles/T10/bridge_y",
+      "tiles/T10/capsule_node",
+      "tiles/T10/player_symbol",
+      "tiles/T10/enemy_symbol",
+      "tiles/T10/player_spawn",
+      "tiles/T10/enemy_spawn",
+      "tiles/T10/relic",
+      "tiles/T10/warp_gate",
+      "tiles/T10/elevation",
+      "tiles/T10/hazard",
+      "tiles/T10/forest",
+      "tiles/T10/lava",
+      "tiles/T10/water",
+      "tiles/T10/ice",
+      "tiles/T10/metal",
+      "tiles/T10/sky",
+      "tiles/T10/shadow",
+      "tiles/T10/ruins",
+      "tiles/T10/space",
+      "tiles/T10/crystal",
+      "tiles/T10/rift",
+      "tiles/T10/mixed",
+      "tiles/T11/ground",
+      "tiles/T11/ground_v2",
+      "tiles/T11/ground_v3",
+      "tiles/T11/stone",
+      "tiles/T11/obstacle",
+      "tiles/T11/bridge",
+      "tiles/T11/bridge_y",
+      "tiles/T11/capsule_node",
+      "tiles/T11/player_symbol",
+      "tiles/T11/enemy_symbol",
+      "tiles/T11/player_spawn",
+      "tiles/T11/enemy_spawn",
+      "tiles/T11/relic",
+      "tiles/T11/warp_gate",
+      "tiles/T11/elevation",
+      "tiles/T11/hazard",
+      "tiles/T11/forest",
+      "tiles/T11/lava",
+      "tiles/T11/water",
+      "tiles/T11/ice",
+      "tiles/T11/metal",
+      "tiles/T11/sky",
+      "tiles/T11/shadow",
+      "tiles/T11/ruins",
+      "tiles/T11/space",
+      "tiles/T11/crystal",
+      "tiles/T11/rift",
+      "tiles/T11/mixed",
+      "tiles/T12/ground",
+      "tiles/T12/ground_v2",
+      "tiles/T12/ground_v3",
+      "tiles/T12/stone",
+      "tiles/T12/obstacle",
+      "tiles/T12/bridge",
+      "tiles/T12/bridge_y",
+      "tiles/T12/capsule_node",
+      "tiles/T12/player_symbol",
+      "tiles/T12/enemy_symbol",
+      "tiles/T12/player_spawn",
+      "tiles/T12/enemy_spawn",
+      "tiles/T12/relic",
+      "tiles/T12/warp_gate",
+      "tiles/T12/elevation",
+      "tiles/T12/hazard",
+      "tiles/T12/forest",
+      "tiles/T12/lava",
+      "tiles/T12/water",
+      "tiles/T12/ice",
+      "tiles/T12/metal",
+      "tiles/T12/sky",
+      "tiles/T12/shadow",
+      "tiles/T12/ruins",
+      "tiles/T12/space",
+      "tiles/T12/crystal",
+      "tiles/T12/rift",
+      "tiles/T12/mixed"
+    ],
+    "towers": [
+      "towers/T01",
+      "towers/T02",
+      "towers/T03",
+      "towers/T04",
+      "towers/T05",
+      "towers/T06",
+      "towers/T07",
+      "towers/T08",
+      "towers/T09",
+      "towers/T10",
+      "towers/T11",
+      "towers/T12"
+    ],
+    "ui": [
+      "ui/panel/panel_border",
+      "ui/panel/panel_header",
+      "ui/turn_order/slot_ally",
+      "ui/turn_order/slot_ally_active",
+      "ui/turn_order/slot_enemy",
+      "ui/turn_order/slot_enemy_active",
+      "ui/objective/checkbox_unchecked",
+      "ui/objective/checkbox_checked",
+      "ui/objective/checkbox_failed",
+      "ui/buttons/btn_move_normal",
+      "ui/buttons/btn_move_pressed",
+      "ui/buttons/btn_move_disabled",
+      "ui/buttons/btn_attack_normal",
+      "ui/buttons/btn_attack_pressed",
+      "ui/buttons/btn_attack_disabled",
+      "ui/buttons/btn_skill_normal",
+      "ui/buttons/btn_skill_pressed",
+      "ui/buttons/btn_skill_disabled",
+      "ui/buttons/btn_defend_normal",
+      "ui/buttons/btn_defend_pressed",
+      "ui/buttons/btn_defend_disabled",
+      "ui/buttons/btn_wait_normal",
+      "ui/buttons/btn_wait_pressed",
+      "ui/buttons/btn_wait_disabled",
+      "ui/logo"
+    ]
+  },
+  "speakers": [
+    {
+      "id": "ari_lux",
+      "name": "Ari Lux"
+    },
+    {
+      "id": "ari_rook",
+      "name": "Ari Rook"
+    },
+    {
+      "id": "ari_storm",
+      "name": "Ari Storm"
+    },
+    {
+      "id": "ari_voss",
+      "name": "Ari Voss"
+    },
+    {
+      "id": "ari_zephyr",
+      "name": "Ari Zephyr"
+    },
+    {
+      "id": "ayla_ashen",
+      "name": "Ayla Ashen"
+    },
+    {
+      "id": "ayla_grave",
+      "name": "Ayla Grave"
+    },
+    {
+      "id": "ayla_reed",
+      "name": "Ayla Reed"
+    },
+    {
+      "id": "ayla_zephyr",
+      "name": "Ayla Zephyr"
+    },
+    {
+      "id": "cira_ashen",
+      "name": "Cira Ashen"
+    },
+    {
+      "id": "cira_dawn",
+      "name": "Cira Dawn"
+    },
+    {
+      "id": "cira_grave",
+      "name": "Cira Grave"
+    },
+    {
+      "id": "cira_reed",
+      "name": "Cira Reed"
+    },
+    {
+      "id": "cira_zephyr",
+      "name": "Cira Zephyr"
+    },
+    {
+      "id": "dax_bloom",
+      "name": "Dax Bloom"
+    },
+    {
+      "id": "dax_calder",
+      "name": "Dax Calder"
+    },
+    {
+      "id": "dax_dray",
+      "name": "Dax Dray"
+    },
+    {
+      "id": "dax_nyx",
+      "name": "Dax Nyx"
+    },
+    {
+      "id": "elio",
+      "name": "Elio"
+    },
+    {
+      "id": "eren_cross",
+      "name": "Eren Cross"
+    },
+    {
+      "id": "eren_moss",
+      "name": "Eren Moss"
+    },
+    {
+      "id": "eren_rune",
+      "name": "Eren Rune"
+    },
+    {
+      "id": "eren_wren",
+      "name": "Eren Wren"
+    },
+    {
+      "id": "ilya_calder",
+      "name": "Ilya Calder"
+    },
+    {
+      "id": "ilya_dawn",
+      "name": "Ilya Dawn"
+    },
+    {
+      "id": "ilya_dray",
+      "name": "Ilya Dray"
+    },
+    {
+      "id": "ilya_nyx",
+      "name": "Ilya Nyx"
+    },
+    {
+      "id": "juno_ardent",
+      "name": "Juno Ardent"
+    },
+    {
+      "id": "juno_dawn",
+      "name": "Juno Dawn"
+    },
+    {
+      "id": "juno_dray",
+      "name": "Juno Dray"
+    },
+    {
+      "id": "juno_nyx",
+      "name": "Juno Nyx"
+    },
+    {
+      "id": "kael_bloom",
+      "name": "Kael Bloom"
+    },
+    {
+      "id": "kael_calder",
+      "name": "Kael Calder"
+    },
+    {
+      "id": "kael_dray",
+      "name": "Kael Dray"
+    },
+    {
+      "id": "kael_nyx",
+      "name": "Kael Nyx"
+    },
+    {
+      "id": "kess_varrow",
+      "name": "Kess Varrow"
+    },
+    {
+      "id": "kira_lux",
+      "name": "Kira Lux"
+    },
+    {
+      "id": "kira_rook",
+      "name": "Kira Rook"
+    },
+    {
+      "id": "kira_storm",
+      "name": "Kira Storm"
+    },
+    {
+      "id": "kira_voss",
+      "name": "Kira Voss"
+    },
+    {
+      "id": "lira_bloom",
+      "name": "Lira Bloom"
+    },
+    {
+      "id": "lira_calder",
+      "name": "Lira Calder"
+    },
+    {
+      "id": "lira_frost",
+      "name": "Lira Frost"
+    },
+    {
+      "id": "lira_hollow",
+      "name": "Lira Hollow"
+    },
+    {
+      "id": "lyra_ardent",
+      "name": "Lyra Ardent"
+    },
+    {
+      "id": "lyra_dawn",
+      "name": "Lyra Dawn"
+    },
+    {
+      "id": "lyra_frost",
+      "name": "Lyra Frost"
+    },
+    {
+      "id": "lyra_hollow",
+      "name": "Lyra Hollow"
+    },
+    {
+      "id": "lyra_quill",
+      "name": "Lyra Quill"
+    },
+    {
+      "id": "mako_ardent",
+      "name": "Mako Ardent"
+    },
+    {
+      "id": "mako_dawn",
+      "name": "Mako Dawn"
+    },
+    {
+      "id": "mako_hollow",
+      "name": "Mako Hollow"
+    },
+    {
+      "id": "mako_nyx",
+      "name": "Mako Nyx"
+    },
+    {
+      "id": "mako_reed",
+      "name": "Mako Reed"
+    },
+    {
+      "id": "maren_oake",
+      "name": "Maren Oake"
+    },
+    {
+      "id": "milo_ardent",
+      "name": "Milo Ardent"
+    },
+    {
+      "id": "milo_bloom",
+      "name": "Milo Bloom"
+    },
+    {
+      "id": "milo_frost",
+      "name": "Milo Frost"
+    },
+    {
+      "id": "milo_hollow",
+      "name": "Milo Hollow"
+    },
+    {
+      "id": "mira_flint",
+      "name": "Mira Flint"
+    },
+    {
+      "id": "mira_quill",
+      "name": "Mira Quill"
+    },
+    {
+      "id": "mira_reed",
+      "name": "Mira Reed"
+    },
+    {
+      "id": "mira_slate",
+      "name": "Mira Slate"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator"
+    },
+    {
+      "id": "niko_ardent",
+      "name": "Niko Ardent"
+    },
+    {
+      "id": "niko_cross",
+      "name": "Niko Cross"
+    },
+    {
+      "id": "niko_lux",
+      "name": "Niko Lux"
+    },
+    {
+      "id": "niko_storm",
+      "name": "Niko Storm"
+    },
+    {
+      "id": "niko_wren",
+      "name": "Niko Wren"
+    },
+    {
+      "id": "noa_flint",
+      "name": "Noa Flint"
+    },
+    {
+      "id": "noa_reed",
+      "name": "Noa Reed"
+    },
+    {
+      "id": "noa_slate",
+      "name": "Noa Slate"
+    },
+    {
+      "id": "noa_zephyr",
+      "name": "Noa Zephyr"
+    },
+    {
+      "id": "orin_moss",
+      "name": "Orin Moss"
+    },
+    {
+      "id": "orin_rook",
+      "name": "Orin Rook"
+    },
+    {
+      "id": "orin_rune",
+      "name": "Orin Rune"
+    },
+    {
+      "id": "orin_voss",
+      "name": "Orin Voss"
+    },
+    {
+      "id": "pell",
+      "name": "Pell"
+    },
+    {
+      "id": "renn_calder",
+      "name": "Renn Calder"
+    },
+    {
+      "id": "rex_moss",
+      "name": "Rex Moss"
+    },
+    {
+      "id": "rex_rook",
+      "name": "Rex Rook"
+    },
+    {
+      "id": "rex_rune",
+      "name": "Rex Rune"
+    },
+    {
+      "id": "rex_voss",
+      "name": "Rex Voss"
+    },
+    {
+      "id": "rhea_ashen",
+      "name": "Rhea Ashen"
+    },
+    {
+      "id": "rhea_flint",
+      "name": "Rhea Flint"
+    },
+    {
+      "id": "rhea_reed",
+      "name": "Rhea Reed"
+    },
+    {
+      "id": "rhea_volt",
+      "name": "Rhea Volt"
+    },
+    {
+      "id": "rhea_zephyr",
+      "name": "Rhea Zephyr"
+    },
+    {
+      "id": "rin_cross",
+      "name": "Rin Cross"
+    },
+    {
+      "id": "rin_lux",
+      "name": "Rin Lux"
+    },
+    {
+      "id": "rin_rook",
+      "name": "Rin Rook"
+    },
+    {
+      "id": "rin_storm",
+      "name": "Rin Storm"
+    },
+    {
+      "id": "sera_vale",
+      "name": "Sera Vale"
+    },
+    {
+      "id": "silas_moss",
+      "name": "Silas Moss"
+    },
+    {
+      "id": "silas_rune",
+      "name": "Silas Rune"
+    },
+    {
+      "id": "silas_voss",
+      "name": "Silas Voss"
+    },
+    {
+      "id": "silas_wren",
+      "name": "Silas Wren"
+    },
+    {
+      "id": "sora_bloom",
+      "name": "Sora Bloom"
+    },
+    {
+      "id": "sora_calder",
+      "name": "Sora Calder"
+    },
+    {
+      "id": "sora_dray",
+      "name": "Sora Dray"
+    },
+    {
+      "id": "sora_frost",
+      "name": "Sora Frost"
+    },
+    {
+      "id": "tarin_grave",
+      "name": "Tarin Grave"
+    },
+    {
+      "id": "tarin_moss",
+      "name": "Tarin Moss"
+    },
+    {
+      "id": "tarin_quill",
+      "name": "Tarin Quill"
+    },
+    {
+      "id": "tarin_slate",
+      "name": "Tarin Slate"
+    },
+    {
+      "id": "tarin_vale",
+      "name": "Tarin Vale"
+    },
+    {
+      "id": "tessa_ashen",
+      "name": "Tessa Ashen"
+    },
+    {
+      "id": "tessa_grave",
+      "name": "Tessa Grave"
+    },
+    {
+      "id": "tessa_vale",
+      "name": "Tessa Vale"
+    },
+    {
+      "id": "tessa_zephyr",
+      "name": "Tessa Zephyr"
+    },
+    {
+      "id": "varen_lux",
+      "name": "Varen Lux"
+    },
+    {
+      "id": "varen_rook",
+      "name": "Varen Rook"
+    },
+    {
+      "id": "varen_rune",
+      "name": "Varen Rune"
+    },
+    {
+      "id": "varen_storm",
+      "name": "Varen Storm"
+    },
+    {
+      "id": "varen_voss",
+      "name": "Varen Voss"
+    },
+    {
+      "id": "veya_flint",
+      "name": "Veya Flint"
+    },
+    {
+      "id": "veya_quill",
+      "name": "Veya Quill"
+    },
+    {
+      "id": "veya_slate",
+      "name": "Veya Slate"
+    },
+    {
+      "id": "veya_vale",
+      "name": "Veya Vale"
+    },
+    {
+      "id": "zara_ashen",
+      "name": "Zara Ashen"
+    },
+    {
+      "id": "zara_grave",
+      "name": "Zara Grave"
+    },
+    {
+      "id": "zara_nyx",
+      "name": "Zara Nyx"
+    },
+    {
+      "id": "zara_quill",
+      "name": "Zara Quill"
+    },
+    {
+      "id": "zara_vale",
+      "name": "Zara Vale"
+    }
+  ],
+  "spec": {
+    "backdrops": {
+      "alpha": "opaque",
+      "rules": "Portrait sky behind the board (per tower) or the world map (world). Keep the middle 50% calm: the board and HUD sit on it. world falls back to the key-art poster; a tower falls back to the procedural cloud-sky shader.",
+      "size": "1080x1920"
+    },
+    "icons": {
+      "alpha": "transparent",
+      "rules": "Element family icon; readable down to 24 px.",
+      "size": "256x256"
+    },
+    "monsters": {
+      "alpha": "transparent cut-out",
+      "rules": "Whole creature, 3/4 view facing the viewer's left, feet at (256,472) = 50% x, 92% y. Drawn standing on its tile, ~1.15 tile wide, with team ring + HP bar + element badge added by code; also cropped (top 60%) for turn-order chips and squad buttons. Lookup: monsters/MON-xxxx -> monsters/FAM-xxx -> monsters/<element family>. The list below is the evolution-family + element set; per-monster MON-xxxx files are optional overrides. Opaque rectangular crops are shown inside the team medallion instead of standing.",
+      "size": "512x512"
+    },
+    "portraits": {
+      "alpha": "opaque painted background OK",
+      "rules": "Head and shoulders, eyes at ~38% height, face centred. Drawn cover-cropped into a square gold frame (230 px in dialogue). Id = speaker name lowercased, every run of non-letters/digits -> '_' (Kess Varrow -> kess_varrow). Tall crops (height > 1.5 x width) are framed at 62% height, so champion card crops work as-is.",
+      "size": "512x512"
+    },
+    "props": {
+      "alpha": "transparent",
+      "rules": "Standing object. Foot anchor (128,352) = 50% x, 91.7% y, placed on the tile's top-face centre. Drawn ~0.7-0.95 tile wide. A tower may override one: props/T05/relic.png.",
+      "size": "256x384 (or 512x768)"
+    },
+    "tiles": {
+      "alpha": "transparent",
+      "rules": "Isometric tile. Top face = 2:1 diamond 256 px wide. Ground-plane anchor at (128,248) = 50% x, 77.5% y, the same point on every tile. Raised types lift the top face by raise x 128 px: stone 0.35 (45 px), elevation 0.6 (77 px), obstacle 0.8 (102 px); every other type is a ~12 px slab. Floor engravings only on player_symbol / enemy_symbol / capsule_node / relic / warp_gate (the standing object is a prop). ground_v2/_v3 = variants; bridge = deck along board X, bridge_y = along Y.",
+      "size": "256x320 (or 512x640)"
+    },
+    "towers": {
+      "alpha": "opaque",
+      "rules": "World-map card art: the tower's floating realm, no text. Shown in the top two-thirds of a 3:4 card (cover crop, focus 35% height); the card adds the name, element icon, stars and lock state.",
+      "size": "640x400"
+    },
+    "ui": {
+      "alpha": "transparent",
+      "rules": "panel/panel_border 384x384 nine-patch, all margins 56 px (corner ornaments inside). panel/panel_header 384x64, margins L/R 40. turn_order/slot_* 144x144, portrait inset 16 px, index in the top-left 40 px. objective/checkbox_* 128x128. buttons/btn_* 192x192, no text (the label is code). logo: any size, transparent or on pure black (luma-keyed).",
+      "size": "see notes"
+    }
+  },
+  "total": 739
+}

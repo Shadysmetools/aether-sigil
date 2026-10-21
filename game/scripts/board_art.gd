@@ -6,6 +6,7 @@
 extends RefCounted
 
 const Palette = preload("res://scripts/theme_colors.gd")
+const Assets = preload("res://scripts/assets.gd")
 
 
 static func font() -> Font:
@@ -225,3 +226,177 @@ static func draw_portrait(ci: CanvasItem, rect: Rect2, who: String) -> void:
 	var fs := int(r * 0.8)
 	var tw := f.get_string_size(initials, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
 	ci.draw_string(f, c + Vector2(-tw / 2, fs * 0.35), initials, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Palette.SOFT_SILVER)
+
+
+# ---------------------------------------------------------------- textured board (assets.gd)
+
+## An isometric tile texture (contract: 256 px top face wide, ground anchor at 50% x, 77.5% y).
+static func draw_tile_texture(ci: CanvasItem, tex: Texture2D, ground: Vector2, w: float) -> void:
+	var ts := Vector2(tex.get_size())
+	var s := w / ts.x
+	var anchor := Vector2(ts.x * 0.5, ts.y * 248.0 / 320.0) * s
+	ci.draw_texture_rect(tex, Rect2(ground - anchor, ts * s), false)
+
+
+## A standing prop (contract: foot anchor at 50% x, 91.7% y) drawn `width` px wide on the top face.
+## Returns the prop's top point (for HP bars).
+static func draw_prop(ci: CanvasItem, tex: Texture2D, top: Vector2, width: float, mod: Color = Color.WHITE) -> Vector2:
+	var ts := Vector2(tex.get_size())
+	var s := width / ts.x
+	var anchor := Vector2(ts.x * 0.5, ts.y * 352.0 / 384.0) * s
+	ci.draw_texture_rect(tex, Rect2(top - anchor, ts * s), false, mod)
+	return top - Vector2(0, anchor.y * 0.88)
+
+
+## Owner glow ring on a tile's top face (capsule nodes, relics, Sigils); nothing when unowned.
+static func draw_owner_glow(ci: CanvasItem, t: Vector2, w: float, h: float, owner: int) -> void:
+	if owner < 0:
+		return
+	var col := Palette.side(owner)
+	ci.draw_set_transform(t, 0.0, Vector2(1.0, 0.5))
+	ci.draw_circle(Vector2.ZERO, w * 0.36, Color(col, 0.18))
+	ci.draw_arc(Vector2.ZERO, w * 0.36, 0, TAU, 32, Color(col, 0.85), 2.5, true)
+	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+## Public HP bar (team colour fill, gold rim, HP number on the left).
+static func hp_bar(ci: CanvasItem, c: Vector2, width: float, hp: int, max_hp: int, col: Color) -> void:
+	var frac := clampf(float(hp) / maxf(1.0, float(max_hp)), 0.0, 1.0)
+	var r := Rect2(c - Vector2(width / 2, 5), Vector2(width, 10))
+	ci.draw_rect(r.grow(1.5), Palette.MIDNIGHT_NAVY)
+	ci.draw_rect(Rect2(r.position, Vector2(width * frac, r.size.y)), col if frac > 0.5 else Palette.EMBER.lerp(Palette.SIGIL_GOLD, frac * 1.6))
+	ci.draw_rect(Rect2(r.position, Vector2(width * frac, 3)), Color(1, 1, 1, 0.3))
+	ci.draw_rect(r.grow(1.5), Palette.SIGIL_GOLD.darkened(0.2), false, 1.0)
+	var f := font()
+	var s := str(hp)
+	var fs := 14
+	var tw := f.get_string_size(s, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+	var tp := Vector2(r.position.x - tw - 4, c.y + fs * 0.36)
+	ci.draw_string_outline(f, tp, s, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, 4, Palette.MIDNIGHT_NAVY)
+	ci.draw_string(f, tp, s, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Palette.SOFT_SILVER)
+
+
+## Monster on the board: team tile glow, then the painted creature standing on the tile (contract:
+## 512x512, foot at 50% x, 92% y) or the generated token frame with a tinted silhouette; HP bar
+## and element badge. Spent = dimmed; dormant statue = stone grey.
+static func draw_monster(ci: CanvasItem, t: Vector2, w: float, h: float, u, spent: bool) -> void:
+	var team := Palette.side(u.owner)
+	var face := _diamond(t, w * 0.9, h * 0.9)
+	ci.draw_colored_polygon(face, Color(team, 0.1 if u.dormant else 0.26))
+	face.append(face[0])
+	ci.draw_polyline(face, Color(team, 0.45 if u.dormant else 0.95), 2.0, true)
+	var mod := Color.WHITE
+	if spent:
+		mod = Color(0.6, 0.62, 0.72)
+	if u.dormant:
+		mod = Color(0.58, 0.6, 0.64)
+	ci.draw_set_transform(t, 0.0, Vector2(1.0, 0.5))
+	ci.draw_circle(Vector2.ZERO, w * 0.26, Color(0, 0, 0, 0.35))
+	ci.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+	var head := t
+	var tex: Texture2D = Assets.monster(u.mon_id, u.family)
+	if tex != null and not Assets.is_crop(tex):
+		var ts := Vector2(tex.get_size())
+		var s := w * 1.15 / ts.x
+		var anchor := Vector2(ts.x * 0.5, ts.y * 0.92) * s
+		ci.draw_texture_rect(tex, Rect2(t - anchor, ts * s), false, mod)
+		head = t - Vector2(0, anchor.y * 0.95)
+		var icon: Texture2D = Assets.element_icon(u.family)
+		if icon != null:
+			ci.draw_texture_rect(icon, Rect2(t + Vector2(w * 0.18, -h * 0.55), Vector2(24, 24)), false)
+	else:
+		var frame: Texture2D = Assets.token_frame(u.owner, u.family)
+		if frame == null:
+			draw_unit(ci, t, w, h, u.owner, u.family, u.element, u.hp, u.max_hp, spent, u.dormant)
+			return
+		var s := w * 1.12 / 256.0
+		var origin := t - Vector2(128.0, 246.0) * s + Vector2(0, h * 0.12)
+		var fc := Palette.family(u.family)
+		ci.draw_texture_rect(frame, Rect2(origin, Vector2(256, 256) * s), false, mod)
+		var slot_c := origin + Vector2(128, 120) * s
+		ci.draw_circle(slot_c, 80.0 * s, Palette.MIDNIGHT_NAVY.lerp(fc, 0.38) * mod)
+		ci.draw_circle(slot_c + Vector2(0, -20.0 * s), 52.0 * s, Color(fc.lightened(0.3), 0.25) * mod)
+		var sil: Texture2D = Assets.silhouette(u.role)
+		if tex != null:  # a concept-sheet crop: painted creature inside the medallion
+			draw_texture_circle(ci, tex, slot_c, 80.0 * s, mod)
+		elif sil != null:
+			var box := 164.0 * 0.82 * s
+			ci.draw_texture_rect(sil, Rect2(slot_c - Vector2(box, box) / 2, Vector2(box, box)), false, Palette.SOFT_SILVER.lerp(fc, 0.22) * mod)
+		head = origin + Vector2(0, 2)
+	hp_bar(ci, Vector2(t.x, head.y - 8), w * 0.56, u.hp, u.max_hp, team)
+
+
+## The floating-island underside below the board's two front edges: rock cliff, a tapering
+## jagged root fading into the sky, waterfalls where water tiles meet the edge, cloud wisps.
+## corners = [top, right, bottom, left] of the board's ground diamond; falls = [[edge point, width]].
+static func draw_island_underside(ci: CanvasItem, corners: PackedVector2Array, tid: String = "", falls: Array = []) -> void:
+	var R := corners[1]
+	var B := corners[2]
+	var L := corners[3]
+	var N := Palette.MIDNIGHT_NAVY
+	var rock := Palette.SIGIL_GOLD.lerp(N, 0.66).lerp(Palette.SOFT_SILVER, 0.16)
+	var haze := Palette.AETHER_CYAN.lerp(Palette.SOFT_SILVER, 0.55).lerp(N, 0.25)
+	var cliff := 30.0
+	var drop := (R.x - L.x) * 0.42
+	var dl := Vector2(0, cliff)
+	ci.draw_colored_polygon(PackedVector2Array([L, B, B + dl, L + dl]), rock.darkened(0.15))
+	ci.draw_colored_polygon(PackedVector2Array([B, R, R + dl, B + dl]), rock.darkened(0.42))
+	for k in [0.45, 0.8]:
+		ci.draw_line(L + dl * k, B + dl * k, rock.darkened(0.35), 1.5, true)
+		ci.draw_line(B + dl * k, R + dl * k, rock.darkened(0.6), 1.5, true)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash("island" + tid)
+	var tip := B + Vector2((rng.randf() - 0.5) * 60.0, drop)
+	var pts := PackedVector2Array([L + dl, B + dl, R + dl])
+	var cols := PackedColorArray([rock.darkened(0.3), rock.darkened(0.45), rock.darkened(0.55)])
+	var steps := 9
+	for i in range(1, steps):
+		var f := float(i) / steps
+		var p := (R + dl).lerp(tip, f) + Vector2(rng.randf_range(-18, 18), rng.randf_range(-10, 22) * (1.0 - f))
+		p.x -= sin(f * PI) * 40.0
+		pts.append(p)
+		cols.append(rock.darkened(0.55).lerp(haze, f * 0.85))
+	pts.append(tip)
+	cols.append(Color(haze, 0.0))
+	for i in range(steps - 1, 0, -1):
+		var f := float(i) / steps
+		var p := (L + dl).lerp(tip, f) + Vector2(rng.randf_range(-18, 18), rng.randf_range(-10, 22) * (1.0 - f))
+		p.x += sin(f * PI) * 40.0
+		pts.append(p)
+		cols.append(rock.darkened(0.3).lerp(haze, f * 0.85))
+	ci.draw_polygon(pts, cols)
+	for i in 7:
+		var f := (i + 0.5) / 7.0
+		var a := (L + dl).lerp(B + dl, f) if i % 2 == 0 else (B + dl).lerp(R + dl, f)
+		var ln := rng.randf_range(18, 46)
+		ci.draw_colored_polygon(PackedVector2Array([a + Vector2(-9, -2), a + Vector2(9, -2), a + Vector2(rng.randf_range(-3, 3), ln)]), rock.darkened(0.5))
+	for fl in falls:
+		var a: Vector2 = fl[0]
+		var fw: float = fl[1]
+		var water := Palette.AETHER_CYAN.lerp(Palette.SOFT_SILVER, 0.6)
+		ci.draw_polygon(PackedVector2Array([a + Vector2(-fw / 2, 0), a + Vector2(fw / 2, 0), a + Vector2(fw * 0.4, drop * 0.75), a + Vector2(-fw * 0.4, drop * 0.75)]),
+			PackedColorArray([Color(water, 0.9), Color(water, 0.9), Color(water, 0.0), Color(water, 0.0)]))
+		for k in 3:
+			var x := (k - 1) * fw * 0.25
+			ci.draw_line(a + Vector2(x, 4), a + Vector2(x * 0.8, drop * 0.5), Color(1, 1, 1, 0.35), 1.5, true)
+	for i in 6:
+		var cx := lerpf(L.x * 0.8, R.x * 0.8, rng.randf())
+		var cy := B.y + drop * rng.randf_range(0.35, 0.95)
+		var cr := rng.randf_range(50, 110)
+		for k in 4:
+			ci.draw_circle(Vector2(cx + k * cr * 0.35, cy), cr * (1.0 - k * 0.15), Color(Palette.SOFT_SILVER, 0.07))
+
+
+## Texture clipped to a circle (square centre crop, biased to the upper part where faces are).
+static func draw_texture_circle(ci: CanvasItem, tex: Texture2D, c: Vector2, r: float, mod: Color = Color.WHITE, focus_y: float = 0.3) -> void:
+	var ts := Vector2(tex.get_size())
+	var side := minf(ts.x, ts.y)
+	var u0 := Vector2((ts.x - side) * 0.5 / ts.x, (ts.y - side) * focus_y / ts.y)
+	var us := Vector2(side / ts.x, side / ts.y)
+	var pts := PackedVector2Array()
+	var uvs := PackedVector2Array()
+	for i in 32:
+		var d := Vector2.from_angle(i * TAU / 32.0)
+		pts.append(c + d * r)
+		uvs.append(u0 + (d * 0.5 + Vector2(0.5, 0.5)) * us)
+	ci.draw_colored_polygon(pts, mod, uvs, tex)

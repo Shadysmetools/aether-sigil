@@ -14,6 +14,9 @@ const Progress = preload("res://scripts/progress.gd")
 const Art = preload("res://scripts/board_art.gd")
 const Prog = preload("res://scripts/progression.gd")
 const Story = preload("res://scripts/story.gd")
+const UIArt = preload("res://scripts/ui_art.gd")
+const Assets = preload("res://scripts/assets.gd")
+const SkyBackdrop = preload("res://scripts/sky_backdrop.gd")
 
 signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
 signal fused(uid: String)
@@ -28,13 +31,50 @@ const COMMANDS := ["Attack", "Skill", "Defend", "Wait"]
 enum Mode { NONE, DEPLOY, UNIT, SKILL }
 
 
-## Story portrait (coloured initials for now): drawing lives in board_art.gd.
+## Story portrait: painted art per speaker (assets.gd), else a lit silhouette; drawing lives in ui_art.gd.
 class Portrait extends Control:
-	const PortraitArt = preload("res://scripts/board_art.gd")
+	const PortraitArt = preload("res://scripts/ui_art.gd")
 	var who := ""
 
 	func _draw() -> void:
 		PortraitArt.draw_portrait(self, Rect2(Vector2.ZERO, size), who)
+
+
+## One Turn Order row: portrait chip (team slot frame + creature or Sigil), name, HP.
+class OrderChip extends Control:
+	const ChipArt = preload("res://scripts/ui_art.gd")
+	const Pal = preload("res://scripts/theme_colors.gd")
+	var idx := 1
+	var side := 0
+	var active := false
+	var sigil := false
+	var mon_id := ""
+	var family := ""
+	var role := ""
+	var title := ""
+	var sub := ""
+
+	func _draw() -> void:
+		var h := size.y
+		if active:
+			draw_rect(Rect2(Vector2(h * 0.5, 4), Vector2(size.x - h * 0.5, h - 8)), Color(Pal.side(side), 0.22))
+			draw_rect(Rect2(Vector2(h * 0.5, 4), Vector2(size.x - h * 0.5, h - 8)), Color(Pal.SIGIL_GOLD, 0.8), false, 1.5)
+		ChipArt.draw_chip(self, Rect2(Vector2.ZERO, Vector2(h, h)), idx, side, active, sigil, mon_id, family, role)
+		var f := ChipArt.font(false, 700)
+		var col := Pal.SIGIL_GOLD if active else Pal.side(side).lerp(Pal.SOFT_SILVER, 0.35)
+		draw_string(f, Vector2(h + 10, h * 0.48), title, HORIZONTAL_ALIGNMENT_LEFT, size.x - h - 14, 21, col)
+		draw_string(ChipArt.font(), Vector2(h + 10, h * 0.84), sub, HORIZONTAL_ALIGNMENT_LEFT, size.x - h - 14, 15, Pal.SOFT_SILVER.darkened(0.25))
+
+
+## World-map card art (behind the tower Button's border and caption).
+class TowerArt extends Control:
+	const CardArt = preload("res://scripts/ui_art.gd")
+	var tid := ""
+	var family := ""
+	var open := false
+
+	func _draw() -> void:
+		CardArt.draw_tower_card(self, Rect2(Vector2.ZERO, size), tid, family, open)
 
 
 ## Tactical minimap: drawing lives in board_art.gd.
@@ -110,6 +150,9 @@ var result_title: Label
 var result_sub: Label
 var next_button: Button
 var retry_button: Button
+var backdrop: SkyBackdrop
+var tower_art: Dictionary = {}           ## tower id -> TowerArt behind its card
+var _type_tween: Tween
 
 
 ## Studio ident + title on a CanvasLayer over the built UI; it swallows input until tapped through.
@@ -129,6 +172,11 @@ func _ready() -> void:
 	Data.ensure_loaded()
 	progress = Progress.new(save_path)
 	state = GameState.new()
+	var sky_layer := CanvasLayer.new()   # behind the board (layer 0) and the UI
+	sky_layer.layer = -1
+	add_child(sky_layer)
+	backdrop = SkyBackdrop.new()
+	sky_layer.add_child(backdrop)
 	board = BoardView.new()
 	board.state = state
 	board.visible = false
@@ -141,25 +189,36 @@ func _ready() -> void:
 
 # ---------------------------------------------------------------- widgets
 
+## Buttons and chips: navy fill, coloured border, chamfered corners (ui_art.gd).
 func _style(bg: Color, edge: Color) -> StyleBoxFlat:
-	var sb := StyleBoxFlat.new()
-	sb.bg_color = bg
-	sb.border_color = edge
-	sb.set_border_width_all(2)
-	sb.set_corner_radius_all(14)
-	sb.set_content_margin_all(14)
-	return sb
+	return UIArt.chamfer(bg, edge, 2, 12)
 
 
-func _label(text: String, size: int, col: Color = Palette.TEXT, center: bool = true) -> Label:
+## display = Cinzel (titles, names); otherwise the theme's Nunito body font.
+func _label(text: String, size: int, col: Color = Palette.TEXT, center: bool = true, display: bool = false) -> Label:
 	var l := Label.new()
 	l.text = text
 	l.add_theme_font_size_override("font_size", size)
 	l.add_theme_color_override("font_color", col)
+	l.add_theme_color_override("font_outline_color", Palette.MIDNIGHT_NAVY)
+	l.add_theme_constant_override("outline_size", 6 if display else 3)
+	if display:
+		l.add_theme_font_override("font", UIArt.font(true, 700))
 	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER if center else HORIZONTAL_ALIGNMENT_LEFT
 	l.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return l
+
+
+## Gold section plaque ("TURN ORDER", "OBJECTIVES") with a Cinzel title.
+func _header(text: String, size: int = SMALL + 2) -> PanelContainer:
+	var p := PanelContainer.new()
+	p.add_theme_stylebox_override("panel", UIArt.header_style())
+	p.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var l := _label(text, size, Palette.SIGIL_GOLD, false, true)
+	l.autowrap_mode = TextServer.AUTOWRAP_OFF
+	p.add_child(l)
+	return p
 
 
 func _button(text: String, cb: Callable, min_h: float = 96) -> Button:
@@ -171,10 +230,13 @@ func _button(text: String, cb: Callable, min_h: float = 96) -> Button:
 	b.add_theme_color_override("font_color", Palette.TEXT)
 	b.add_theme_color_override("font_pressed_color", Palette.SIGIL_GOLD)
 	b.add_theme_color_override("font_disabled_color", Palette.TEXT.darkened(0.55))
-	b.add_theme_stylebox_override("normal", _style(Palette.panel(), Palette.panel_edge()))
-	b.add_theme_stylebox_override("hover", _style(Palette.panel().lightened(0.06), Palette.AETHER_CYAN))
-	b.add_theme_stylebox_override("pressed", _style(Palette.AETHER_CYAN.darkened(0.6), Palette.SIGIL_GOLD))
-	b.add_theme_stylebox_override("disabled", _style(Palette.BG, Palette.panel()))
+	var navy := Palette.MIDNIGHT_NAVY.lerp(Palette.SOFT_SILVER, 0.07)
+	b.add_theme_stylebox_override("normal", _style(Color(navy, 0.94), Palette.SIGIL_GOLD.darkened(0.15)))
+	b.add_theme_stylebox_override("hover", _style(Color(navy.lightened(0.06), 0.96), Palette.SIGIL_GOLD))
+	b.add_theme_stylebox_override("pressed", _style(Palette.AETHER_CYAN.lerp(Palette.MIDNIGHT_NAVY, 0.62), Palette.AETHER_CYAN))
+	b.add_theme_stylebox_override("hover_pressed", _style(Palette.AETHER_CYAN.lerp(Palette.MIDNIGHT_NAVY, 0.55), Palette.AETHER_CYAN))
+	b.add_theme_stylebox_override("disabled", _style(Color(Palette.BG, 0.88), Palette.SOFT_SILVER.lerp(Palette.BG, 0.7)))
+	b.add_theme_color_override("icon_disabled_color", Color(0.45, 0.47, 0.55, 0.7))
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	b.pressed.connect(cb)
 	return b
@@ -182,7 +244,7 @@ func _button(text: String, cb: Callable, min_h: float = 96) -> Button:
 
 func _panel(edge: Color = Palette.panel_edge()) -> PanelContainer:
 	var p := PanelContainer.new()
-	p.add_theme_stylebox_override("panel", _style(Palette.panel(), edge))
+	p.add_theme_stylebox_override("panel", UIArt.panel_style(Palette.SIGIL_GOLD if edge == Palette.panel_edge() else edge))
 	return p
 
 
@@ -220,6 +282,8 @@ func _build_ui() -> void:
 	add_child(layer)
 	ui_root = _full(Control.new())
 	ui_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_root.theme = UIArt.theme(FONT)
+	ui_root.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	layer.add_child(ui_root)
 	_build_select()
 	_build_squad()
@@ -239,18 +303,37 @@ func _build_select() -> void:
 	var vb := VBoxContainer.new()
 	vb.add_theme_constant_override("separation", 14)
 	select_screen.add_child(vb)
-	vb.add_child(_label("AETHER SIGIL", 72, Palette.SIGIL_GOLD))
+	var logo := Assets.ui("logo")  # painted logo slot; else the Cinzel wordmark
+	if logo != null:
+		var lr := TextureRect.new()
+		lr.texture = logo
+		lr.custom_minimum_size = Vector2(0, 360)
+		lr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		lr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		lr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var key := ShaderMaterial.new()  # logos often arrive on black: key luminance to alpha
+		key.shader = preload("res://scripts/luma_key.gdshader")
+		lr.material = key
+		vb.add_child(lr)
+	else:
+		var word := _label("AETHER SIGIL", 104, Palette.SIGIL_GOLD.lerp(Palette.SOFT_SILVER, 0.25), true, true)
+		word.add_theme_constant_override("outline_size", 12)
+		word.add_theme_color_override("font_shadow_color", Color(Palette.CRYSTAL_VIOLET, 0.6))
+		word.add_theme_constant_override("shadow_offset_y", 4)
+		vb.add_child(word)
 	var full_title := str(Data.bible().get("title", ""))
-	if full_title.contains(": "):
-		vb.add_child(_label(full_title.split(": ", true, 1)[1], FONT - 6, Palette.SOFT_SILVER))
-	vb.add_child(_label(str(Data.bible().get("tagline", "")), FONT - 4, Palette.AETHER_CYAN))
+	if logo == null and full_title.contains(": "):
+		vb.add_child(_label(full_title.split(": ", true, 1)[1].to_upper(), FONT - 8, Palette.SIGIL_GOLD, true, true))
+	vb.add_child(_label(str(Data.bible().get("tagline", "")), FONT - 6, Palette.SOFT_SILVER))
 	var meta_row := HBoxContainer.new()
 	meta_row.add_theme_constant_override("separation", 10)
 	vb.add_child(meta_row)
 	meta_row.add_child(_button("Squad", show_squad_builder, 90))
 	meta_row.add_child(_button("Evolution", show_evolution, 90))
 	meta_row.add_child(_button("Fusion", show_fusion, 90))
-	vb.add_child(_label("WORLD MAP", FONT, Palette.SIGIL_GOLD))
+	var hdr := _header("WORLD MAP  -  THE TWELVE TOWERS", FONT - 6)
+	hdr.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vb.add_child(hdr)
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -263,19 +346,37 @@ func _build_select() -> void:
 	scroll.add_child(grid)
 	for t in Data.towers():
 		var tid := str(t.tower_id)
-		var b := _button("", _on_tower_pressed.bind(tid), 230)
+		var b := _button("", _on_tower_pressed.bind(tid), 300)
 		b.add_theme_font_size_override("font_size", SMALL)
+		b.add_theme_font_override("font", UIArt.font(true, 700))
 		b.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		b.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
-		b.add_theme_constant_override("icon_max_width", 72)
+		b.add_theme_constant_override("icon_max_width", 46)
+		b.add_theme_constant_override("h_separation", 2)
 		var fam := tower_family(t)
+		b.icon = Assets.element_icon(fam)
 		var tex_path := "res://art/elements/%s.png" % fam.to_lower()
-		if ResourceLoader.exists(tex_path):
+		if b.icon == null and ResourceLoader.exists(tex_path):
 			b.icon = load(tex_path)
 		var col := Palette.family(fam)
-		b.add_theme_stylebox_override("normal", _style(Palette.panel(), col))
-		b.add_theme_stylebox_override("hover", _style(Palette.panel().lightened(0.06), col.lightened(0.3)))
-		b.add_theme_stylebox_override("disabled", _style(Palette.BG, col.darkened(0.6)))
+		var clear := Color(0, 0, 0, 0)
+		for st in ["normal", "hover", "pressed", "hover_pressed", "disabled"]:
+			var edge: Color = {"normal": Palette.SIGIL_GOLD.darkened(0.1), "hover": Palette.SIGIL_GOLD.lerp(Palette.SOFT_SILVER, 0.4),
+				"pressed": col, "hover_pressed": col, "disabled": Palette.SOFT_SILVER.lerp(Palette.BG, 0.6)}[st]
+			var sb := UIArt.chamfer(clear, edge, 3, 18, false)
+			sb.content_margin_top = 168
+			sb.content_margin_bottom = 10
+			b.add_theme_stylebox_override(st, sb)
+		b.add_theme_color_override("font_disabled_color", Palette.SOFT_SILVER.darkened(0.35))
+		b.clip_contents = true
+		var art := TowerArt.new()
+		art.tid = tid
+		art.family = fam
+		art.show_behind_parent = true
+		art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		b.add_child(art)
+		tower_art[tid] = art
 		tower_cards[tid] = b
 		grid.add_child(b)
 	vb.add_child(_button("Reset progress", _on_reset_progress, 76))
@@ -451,7 +552,15 @@ func _notification(what: int) -> void:
 
 ## Tower theme -> element family for its icon and colour (game_rules.json tower_theme_family).
 static func tower_family(t: Dictionary) -> String:
-	return str(Data.rules().get("tower_theme_family", {}).get(str(t.theme), "Light"))
+	return str(Data.rules().get("tower_theme_family", {}).get(str(t.get("theme", "")), "Light"))
+
+
+## Bible tower entry by id ({} if unknown).
+static func _tower(tid: String) -> Dictionary:
+	for t in Data.towers():
+		if str(t.tower_id) == tid:
+			return t
+	return {}
 
 
 func _build_tower_screen() -> void:
@@ -555,36 +664,40 @@ func _build_hud() -> void:
 	_dock(top_panel, false)
 	var tv := VBoxContainer.new()
 	top_panel.add_child(tv)
-	stage_label = _label("", FONT - 6, Palette.SIGIL_GOLD)
+	tv.add_theme_constant_override("separation", 2)
+	stage_label = _label("", FONT - 4, Palette.SIGIL_GOLD, true, true)
 	tv.add_child(stage_label)
 	status_label = _label("", SMALL + 2)
 	tv.add_child(status_label)
 	bark_label = _label("", SMALL, Palette.AETHER_CYAN)
 	tv.add_child(bark_label)
-	# Left: Turn Order.
+	# Left: Turn Order (portrait chips).
 	turn_panel = _panel()
 	hud.add_child(turn_panel)
-	_column(turn_panel, false, 300)
+	_column(turn_panel, false, 330)
 	var lv := VBoxContainer.new()
+	lv.add_theme_constant_override("separation", 6)
 	turn_panel.add_child(lv)
-	lv.add_child(_label("TURN ORDER", SMALL + 2, Palette.SIGIL_GOLD, false))
+	lv.add_child(_header("TURN ORDER"))
 	order_box = VBoxContainer.new()
-	order_box.add_theme_constant_override("separation", 2)
+	order_box.add_theme_constant_override("separation", 4)
 	lv.add_child(order_box)
 	# Right: Tactical map + Objectives.
 	side_panel = _panel()
 	hud.add_child(side_panel)
-	_column(side_panel, true, 330)
+	_column(side_panel, true, 340)
 	var rv := VBoxContainer.new()
+	rv.add_theme_constant_override("separation", 6)
 	side_panel.add_child(rv)
-	rv.add_child(_label("TACTICAL MAP", SMALL + 2, Palette.SIGIL_GOLD, false))
+	rv.add_child(_header("TACTICAL MAP"))
 	minimap = Minimap.new()
-	minimap.custom_minimum_size = Vector2(300, 200)
+	minimap.custom_minimum_size = Vector2(290, 190)
 	minimap.state = state
 	minimap.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rv.add_child(minimap)
-	rv.add_child(_label("OBJECTIVES", SMALL + 2, Palette.SIGIL_GOLD, false))
+	rv.add_child(_header("OBJECTIVES"))
 	objectives_box = VBoxContainer.new()
+	objectives_box.add_theme_constant_override("separation", 2)
 	rv.add_child(objectives_box)
 	# Bottom: info, Sigil squad, monster commands.
 	bottom_panel = _panel()
@@ -592,8 +705,11 @@ func _build_hud() -> void:
 	var bv := VBoxContainer.new()
 	bv.add_theme_constant_override("separation", 10)
 	bottom_panel.add_child(bv)
+	var cmd_hdr := _header("MONSTER COMMAND")
+	cmd_hdr.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	bv.add_child(cmd_hdr)
 	info_label = _label("", SMALL + 4)
-	info_label.custom_minimum_size = Vector2(0, 70)
+	info_label.custom_minimum_size = Vector2(0, 64)
 	bv.add_child(info_label)
 	var team_row := HBoxContainer.new()
 	team_row.add_theme_constant_override("separation", 8)
@@ -601,6 +717,8 @@ func _build_hud() -> void:
 	for i in Data.squad_size():
 		var b := _button("", _on_team.bind(i), 100)
 		b.add_theme_font_size_override("font_size", SMALL)
+		b.add_theme_constant_override("icon_max_width", 64)
+		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		team_buttons[i] = b
 		team_row.add_child(b)
 	var cmd_row := HBoxContainer.new()
@@ -608,12 +726,17 @@ func _build_hud() -> void:
 	bv.add_child(cmd_row)
 	for c in COMMANDS:
 		var b := _button(c, _on_cmd.bind(c), 88)
+		b.icon = Assets.ui("buttons/btn_%s_normal" % c.to_lower())
+		b.add_theme_constant_override("icon_max_width", 60)
+		b.add_theme_font_size_override("font_size", SMALL + 2)
+		b.add_theme_font_override("font", UIArt.font(true, 700))
 		cmd_buttons[c] = b
 		cmd_row.add_child(b)
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 8)
-	bv.add_child(row)
-	row.add_child(_button("Stages", show_stage_select, 76))
+	var stages := _button("Stages", show_stage_select, 88)
+	stages.size_flags_horizontal = Control.SIZE_FILL
+	stages.custom_minimum_size.x = 150
+	stages.add_theme_font_size_override("font_size", SMALL)
+	cmd_row.add_child(stages)
 	_dock(bottom_panel, true)
 	# Panels settle over a few frames (autowrapped labels); re-fit the board whenever they change.
 	for c in [top_panel, turn_panel, side_panel, bottom_panel]:
@@ -625,29 +748,38 @@ func _build_dialogue() -> void:
 	dialogue_box = _full(Control.new())
 	ui_root.add_child(dialogue_box)
 	var dim := _full(ColorRect.new())
-	dim.color = Color(Palette.BG, 0.6)
+	dim.color = Color(Palette.BG, 0.42)
 	dim.gui_input.connect(_on_dialogue_tap)  # tap anywhere to advance
 	dialogue_box.add_child(dim)
-	var pnl := _panel(Palette.SIGIL_GOLD)
+	var pnl := PanelContainer.new()
+	pnl.add_theme_stylebox_override("panel", UIArt.panel_style(Palette.SIGIL_GOLD, 1.0))
 	pnl.gui_input.connect(_on_dialogue_tap)
 	dialogue_box.add_child(pnl)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 12)
 	pnl.add_child(v)
 	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 18)
+	row.add_theme_constant_override("separation", 22)
 	v.add_child(row)
 	portrait = Portrait.new()
-	portrait.custom_minimum_size = Vector2(150, 150)
+	portrait.custom_minimum_size = Vector2(230, 230)
+	portrait.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	row.add_child(portrait)
 	var tv := VBoxContainer.new()
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tv.add_theme_constant_override("separation", 10)
 	row.add_child(tv)
-	dialogue_speaker = _label("", FONT, Palette.SIGIL_GOLD, false)
-	tv.add_child(dialogue_speaker)
+	var plate := _header("")  # name plate: gold plaque with the speaker's name in Cinzel
+	plate.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	plate.get_child(0).free()
+	dialogue_speaker = _label("", FONT, Palette.SIGIL_GOLD, false, true)
+	dialogue_speaker.autowrap_mode = TextServer.AUTOWRAP_OFF
+	plate.add_child(dialogue_speaker)
+	tv.add_child(plate)
 	dialogue_text = _label("", FONT - 4, Palette.TEXT, false)
-	dialogue_text.custom_minimum_size = Vector2(0, 120)
+	dialogue_text.custom_minimum_size = Vector2(0, 150)
+	dialogue_text.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING  # typewriter keeps the layout
 	tv.add_child(dialogue_text)
 	var brow := HBoxContainer.new()
 	brow.add_theme_constant_override("separation", 12)
@@ -722,7 +854,10 @@ func show_stage_select() -> void:
 		var pr := progress.tower_progress(tid)
 		var open := progress.tower_unlocked(tid)
 		b.disabled = not open
-		b.text = "%s\n%s\n%d/10  Stars %d/%d" % [tid, t.name, pr.cleared, pr.stars, pr.max_stars] if open else "%s\n%s\nLocked" % [tid, t.name]
+		b.text = "T%s  %s\n%d/10   Stars %d/%d" % [tid, t.name, pr.cleared, pr.stars, pr.max_stars] if open else "T%s  %s\nLocked" % [tid, t.name]
+		tower_art[tid].open = open
+		tower_art[tid].queue_redraw()
+	backdrop.set_tower("", "")
 	_play_story("prologue", func(): pass)
 
 
@@ -777,6 +912,9 @@ func _on_squad_confirm() -> void:
 func start_stage(id: String) -> void:
 	_hide_all()
 	stage_id = id
+	for inst in progress.roster:
+		if str(inst.get("form_id", "")) != "":
+			Assets.aliases[str(inst.uid)] = str(inst.form_id)
 	state.setup(id, progress.squad, -1, progress.squad_records())
 	mode = Mode.NONE
 	midbattle_shown = false
@@ -784,6 +922,7 @@ func start_stage(id: String) -> void:
 	bark_label.text = ""
 	board.visible = true
 	hud.visible = true
+	backdrop.set_tower(str(state.stage.tower_id), tower_family(_tower(str(state.stage.tower_id))))
 	_refresh("")
 	_layout_board.call_deferred()
 	var st := state.stage
@@ -821,6 +960,13 @@ func _show_line() -> void:
 	dialogue_text.text = str(d.line)
 	portrait.who = str(d.speaker)
 	portrait.queue_redraw()
+	# Typewriter: the full text is set (tests and taps read it); only the reveal is animated, and
+	# fast enough that the longest line is out well before a tap or the demo's 3 s per line.
+	if _type_tween != null:
+		_type_tween.kill()
+	dialogue_text.visible_ratio = 0.0
+	_type_tween = create_tween()
+	_type_tween.tween_property(dialogue_text, "visible_ratio", 1.0, clampf(dialogue_text.text.length() * 0.014, 0.2, 1.6))
 
 
 func _on_dialogue_next() -> void:
@@ -871,23 +1017,53 @@ func _refresh(msg: String = "") -> void:
 	if state.stage.is_empty():
 		return
 	var st := state.stage
-	stage_label.text = "%s  |  %s  vs %s (%s)" % [state.stage_id, st.name, st.opponent, st.opponent_style]
+	stage_label.text = "%s  |  %s" % [state.stage_id, st.name]
 	var extra := "   AP %d" % state.ap[P] if state.deploy_cost() > 0 else ""
-	status_label.text = "Round %d   Rule: %s%s" % [state.round_num, st.special_rule, extra]
+	status_label.text = "vs %s (%s)   Round %d
+Rule: %s%s" % [st.opponent, st.opponent_style, state.round_num, st.special_rule, extra]
 	for c in order_box.get_children():
 		c.queue_free()
 	var i := 1
 	for id in state.order_preview(8):
-		var col := Palette.side(_actor_side(id))
-		if i == 1:
-			col = Palette.SIGIL_GOLD
-		order_box.add_child(_label("%d  %s" % [i, _actor_name(id)], SMALL, col, false))
+		var chip := OrderChip.new()
+		chip.custom_minimum_size = Vector2(0, 52)
+		chip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		chip.idx = i
+		chip.active = i == 1
+		chip.side = maxi(0, _actor_side(id))
+		chip.title = _actor_name(id)
+		if GameState.is_sigil(id):
+			chip.sigil = true
+			chip.sub = "Sigil  HP %d/%d" % [state.symbol_hp[chip.side], state.symbol_max]
+		else:
+			var u := state.get_unit(id)
+			if u != null:
+				chip.mon_id = u.mon_id
+				chip.family = u.family
+				chip.role = u.role
+				chip.title = u.name
+				chip.sub = "%s %s  HP %d/%d%s" % [u.element, u.role, u.hp, u.max_hp, "  statue" if u.dormant else ""]
+		order_box.add_child(chip)
 		i += 1
 	for c in objectives_box.get_children():
 		c.queue_free()
 	for o in state.objectives():
 		var col := Palette.SIGIL_GOLD if o.kind == "win" else (Palette.AETHER_CYAN if o.kind == "loss" else Palette.TEXT)
-		objectives_box.add_child(_label("%s %s (%s)" % ["[x]" if o.done else "[ ]", o.text, o.progress], SMALL - 2, col, false))
+		var orow := HBoxContainer.new()
+		orow.add_theme_constant_override("separation", 8)
+		orow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var box := TextureRect.new()
+		box.texture = Assets.ui("objective/checkbox_%s" % ("checked" if o.done else "unchecked"))
+		box.custom_minimum_size = Vector2(26, 26)
+		box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		box.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+		box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		orow.add_child(box)
+		var ol := _label("%s%s (%s)" % ["" if box.texture != null else ("[x] " if o.done else "[ ] "), o.text, o.progress], SMALL - 2, col, false)
+		ol.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		orow.add_child(ol)
+		objectives_box.add_child(orow)
 	var my_turn := _my_turn()
 	var sigil_turn := my_turn and state.is_sigil_turn()
 	var squad: Array = progress.squad
@@ -903,6 +1079,11 @@ func _refresh(msg: String = "") -> void:
 		b.text = "%s\n%s %d/%d/%d" % [str(d.name).left(10), str(d.element_family).left(5), d.hp, d.attack, d.defense] if waiting else "%s\n%s" % [str(d.name).left(10), "on board" if state.units_of(P).any(func(u): return u.mon_id == id) else "KO"]
 		b.disabled = not can
 		b.set_pressed_no_signal(mode == Mode.DEPLOY and selected_mon == id)
+		var art := Assets.monster(id, str(d.element_family))
+		b.icon = art if art != null else Assets.silhouette(str(d.get("role", "")))
+		var fc := Palette.family(str(d.element_family))
+		b.add_theme_color_override("icon_normal_color", Color.WHITE if art != null else Palette.SOFT_SILVER.lerp(fc, 0.45))
+		b.add_theme_color_override("icon_hover_color", Color.WHITE if art != null else Palette.SOFT_SILVER.lerp(fc, 0.3))
 	var u := state.actor_unit() if my_turn else null
 	cmd_buttons["Attack"].disabled = u == null or state.legal_attacks(u).is_empty()
 	cmd_buttons["Skill"].disabled = u == null or state.legal_skill_targets(u).is_empty()
