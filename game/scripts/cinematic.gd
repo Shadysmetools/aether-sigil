@@ -115,12 +115,29 @@ func _portrait(tex: Variant) -> void:
 	var m := ShaderMaterial.new()
 	m.shader = _shader
 	# painted cut-outs keep their silhouette; rectangular crops are framed as medallions
-	var crop := tr.texture == null or Assets.is_crop(tr.texture)
+	var crop := tr.texture == null or Assets.is_crop(tr.texture) or _opaque_corners(tr.texture)
 	m.set_shader_parameter("circle", 1.0 if crop else 0.0)
 	tr.material = m
 	tr.visible = false
 	view.add_child(tr)
 	portraits.append(tr)
+
+
+## True when the art has no real cut-out (opaque corners): framed as a medallion, never a white card.
+static func _opaque_corners(tex: Texture2D) -> bool:
+	var img := tex.get_image()
+	if img == null or img.is_empty():
+		return true
+	if img.is_compressed():
+		img = img.duplicate()
+		img.decompress()
+	var w := img.get_width() - 1
+	var h := img.get_height() - 1
+	var n := 0
+	for p in [Vector2i(2, 2), Vector2i(w - 2, 2), Vector2i(2, h - 2), Vector2i(w - 2, h - 2)]:
+		if img.get_pixelv(p).a > 0.5:
+			n += 1
+	return n >= 2
 
 
 func _on_input(ev: InputEvent) -> void:
