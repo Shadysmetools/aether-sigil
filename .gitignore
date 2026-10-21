@@ -1,5 +1,5 @@
 # Godot engine binaries and downloads (re-download from godotengine.org)
-engine/
+/engine/
 *.zip
 # Godot cache
 .godot/
@@ -17,3 +17,13 @@ export_credentials.cfg
 .env
 # Third-party art packs live outside git (see README for sources)
 assets/
+# Claude Code Game Studios (CCGS): per-developer and session files
+project.local.yaml
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/agent-memory/
+.claude/worktrees/
+production/session-logs/
+production/session-state/*
+!production/session-state/.gitkeep
+docs/consistency-failures.md
