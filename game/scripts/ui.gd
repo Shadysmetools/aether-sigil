@@ -1571,8 +1571,10 @@ func _refresh_draft() -> void:
 	for uid in draft_buttons:
 		draft_buttons[uid].set_pressed_no_signal(draft_pick.has(uid))
 		# unaffordable: adding it would break the cap (or no slot is left)
-		var over: bool = not draft_pick.has(uid) and (total + Summon.bond(recs[uid]) > cap or draft_pick.size() >= Data.squad_size())
-		draft_buttons[uid].set_states(false, over)
+		var fits: bool = total + Summon.bond(recs[uid]) <= cap
+		var full: bool = draft_pick.size() >= Data.squad_size()
+		var over: bool = not draft_pick.has(uid) and (not fits or full)
+		draft_buttons[uid].set_states(false, over, ("%d/%d SLOTS FULL" % [draft_pick.size(), Data.squad_size()]) if over and fits else "")
 	var why := Summon.draft_check(draft_pick, st, recs)
 	draft_label.text = "%s: %s   |   %s %d / %d   |   %s %d / %d%s" % [draft_stage, str(st.get("name", "")), Summon.term("vessels"), draft_pick.size(), Data.squad_size(),
 		Summon.term("bond"), total, cap, "" if why == Summon.OK else "   (" + why.replace("_", " ") + ")"]

@@ -726,7 +726,7 @@ func _draw_compact() -> void:
 	# name + rarity under the art
 	var nm: String = model.name
 	var ny := a.end.y + (size.y - a.end.y) * 0.42
-	var fs := _fit(nm, size.x - 18 * s, int(26 * s), int(17 * s))
+	var fs := _fit(nm, size.x - 14 * s, int(27 * s), int(20 * s))
 	Kit.centered_text(self, Vector2(size.x * 0.5, ny), nm, fs, SILVER.darkened(0.3) if locked else GOLD.lerp(Color.WHITE, 0.3), true, 4)
 	Kit.rarity_pips(self, Vector2(size.x * 0.5, ny + 30 * s), 7.0 * s, int(model.tier))
 	_draw_frame(cut, s)
@@ -744,7 +744,7 @@ func _draw_mini() -> void:
 	if lv != "":
 		Kit.centered_text(self, Vector2(a.end.x - 32 * s, a.end.y - 14 * s), lv, _fit(lv, 60 * s, int(19 * s), 11), GOLD.lerp(Color.WHITE, 0.3), true, 4)
 	var nm: String = model.name
-	var fs := _fit(nm, size.x - 10 * s, int(21 * s), int(14 * s))
+	var fs := _fit(nm, size.x - 8 * s, int(23 * s), int(15 * s))
 	Kit.centered_text(self, Vector2(size.x * 0.5, a.end.y + (size.y - a.end.y) * 0.5), nm, fs, GOLD.lerp(Color.WHITE, 0.3), true, 3)
 	_draw_frame(cut, s)
 	_draw_state_overlay(cut, s)

@@ -162,7 +162,7 @@ static func evolution_row(inst: Dictionary, why: String, req: String, on_evolve:
 		m.setup_form(str(inst.base_id), str(line[i]), i, MonsterCard.Variant.MINI)
 		m.locked = i > stage
 		m.show_level = false
-		m.custom_minimum_size = Vector2(118, 154)
+		m.custom_minimum_size = Vector2(150, 196)
 		m.toggle_mode = true
 		m.set_pressed_no_signal(i == stage)
 		m.mouse_filter = Control.MOUSE_FILTER_IGNORE
