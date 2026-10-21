@@ -3,30 +3,34 @@
  "speakers": {
   "Narrator": {
    "slug": "narrator",
-   "role": "narrator",
+   "role": "Vellum, the Narrator: archivist spirit bound to the Aether Sigil",
    "tier": "main",
    "description": {
-    "age": "adult",
+    "age": "adult, ageless (reads mid-40s)",
     "gender": "male",
-    "tone": "warm, wonder-filled storyteller; unhurried, gentle gravitas",
-    "accent": "neutral / british"
+    "tone": "dry, exact, fond; a measured 'reading to a quiet room' voice with a small lift on punchlines; tender and unhurried when serious, never theatrical",
+    "accent": "light british, received",
+    "timbre": "warm mid-low tenor with a faint dusty rasp, like a voice that has read aloud for an age; slightly androgynous, intimate, close-mic",
+    "pacing": "unhurried, about 150 wpm; a short pause before 'Noted.' and before every dash aside; slows and softens on grave lines; brightens (never rushes) on amused lines",
+    "direction": "Understatement over drama. Smile in the voice on wry lines. Hush on awed lines. Flat, careful delivery of passive-voice lines about the break. Final-tower lines: quiet, plain, a little unsteady, then warm on 'Thank you, Elio.'"
    },
    "match": {
     "gender": "male",
     "keywords": [
      "narration",
      "calm",
-     "deep",
      "warm",
-     "storyteller"
+     "storyteller",
+     "mature",
+     "british"
     ]
    },
    "voice_id": null,
    "voice_name": null,
    "voice_settings": {
-    "stability": 0.45,
+    "stability": 0.5,
     "similarity_boost": 0.8,
-    "style": 0.25,
+    "style": 0.35,
     "use_speaker_boost": true
    },
    "post_pitch_semitones": 0.0

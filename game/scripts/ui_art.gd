@@ -7,6 +7,8 @@ extends RefCounted
 const Palette = preload("res://scripts/theme_colors.gd")
 const Assets = preload("res://scripts/assets.gd")
 const Data = preload("res://scripts/data_loader.gd")
+const ActorArt = preload("res://scripts/ui/actor_art.gd")
+const Narrator = preload("res://scripts/narrator.gd")
 
 const CINZEL := "res://art/intro/fonts/cinzel/Cinzel-Variable.ttf"
 const NUNITO := "res://art/intro/fonts/nunito/Nunito-Variable.ttf"
@@ -180,97 +182,57 @@ static func speaker_color(who: String) -> Color:
 	return accents[absi(hash(who)) % accents.size()]
 
 
-## Dialogue portrait: painted art if present, else a lit character silhouette in the speaker's colour
-## (the Narrator gets the Aether Sigil crystal). Always framed in gold.
-static func draw_portrait(ci: CanvasItem, r: Rect2, who: String) -> void:
-	var tex := Assets.portrait(who)
-	var col := speaker_color(who)
+## Dialogue portrait: painted anime art along the resolver chain (mood -> portrait -> characters -> concept crops),
+## else the speaker's tower champion portrait recoloured, else a framed Sigil icon. Never a procedural person.
+## Always framed in gold. `expr` is one of the 7 shared expressions.
+static func draw_portrait(ci: CanvasItem, r: Rect2, who: String, expr: String = "neutral", talk: float = 0.0, blink: bool = false, t: float = 0.0) -> void:
+	var tex := Assets.portrait_mood(who, expr)
 	if tex != null:
 		var tall := tex.get_height() > tex.get_width() * 1.5   # champion card crops: face sits low
 		draw_cover(ci, tex, r, 0.62 if tall else 0.25)
-	elif who == "Narrator" or who == "":
-		_draw_narrator(ci, r)
 	else:
-		_draw_silhouette(ci, r, who, col)
+		var b := Assets.borrowed(who)
+		if not b.is_empty():
+			var bt: Texture2D = b.tex
+			draw_cover(ci, bt, r, 0.62 if bt.get_height() > bt.get_width() * 1.5 else 0.25, b.tint)
+		else:
+			var col := Palette.CRYSTAL_VIOLET if who == "Narrator" or who == "" else speaker_color(who)
+			ActorArt.draw_sigil_icon(ci, r, col, talk, t, true)
 	gold_frame(ci, r, r.size.x * 0.09, GOLD, 4.0)
 
 
-static func _draw_narrator(ci: CanvasItem, r: Rect2) -> void:
-	vgrad(ci, r, N.lerp(Palette.CRYSTAL_VIOLET, 0.35), N)
-	var c := r.get_center()
-	var s := r.size.x
-	glow(ci, c, s * 0.48, Color(Palette.CRYSTAL_VIOLET, 0.9))
-	ci.draw_arc(c, s * 0.34, 0, TAU, 64, Color(GOLD, 0.9), 3.0, true)
-	ci.draw_arc(c, s * 0.29, 0, TAU, 64, Color(GOLD, 0.45), 1.5, true)
-	var star := PackedVector2Array()
-	for i in 16:
-		var a := -PI / 2 + i * TAU / 16
-		var rr := s * 0.44 if i % 4 == 0 else (s * 0.2 if i % 2 == 0 else s * 0.1)
-		star.append(c + Vector2(cos(a), sin(a)) * rr)
-	ci.draw_colored_polygon(star, Color(GOLD, 0.85))
-	var h := s * 0.25
-	var w := s * 0.13
-	var top := c + Vector2(0, -h)
-	var bot := c + Vector2(0, h)
-	ci.draw_colored_polygon(PackedVector2Array([top, c + Vector2(-w, 0), bot, c + Vector2(w * 0.1, h * 0.1)]), Palette.CRYSTAL_VIOLET.lerp(Palette.AETHER_CYAN, 0.35).lightened(0.25))
-	ci.draw_colored_polygon(PackedVector2Array([top, c + Vector2(w * 0.1, h * 0.1), bot, c + Vector2(w, 0)]), Palette.CRYSTAL_VIOLET.darkened(0.2))
-	ci.draw_polyline(PackedVector2Array([top, c + Vector2(-w, 0), bot, c + Vector2(w, 0), top]), Palette.SOFT_SILVER, 1.5, true)
-	glow(ci, top, s * 0.06, Color(Palette.SOFT_SILVER, 1.0), 3)
-
-
-static func _draw_silhouette(ci: CanvasItem, r: Rect2, who: String, col: Color) -> void:
-	var s := r.size.x
-	var o := r.position
-	var p := func(x: float, y: float) -> Vector2:
-		return o + Vector2(x * s, y * r.size.y)
-	vgrad(ci, r, N.lerp(col, 0.42), N.lerp(col, 0.08))
-	glow(ci, p.call(0.5, 0.42), s * 0.5, Color(col.lightened(0.2), 0.8))
-	var h := absi(hash(who))
-	var style := h % 3
-	var body := N.lerp(col, 0.12)
-	var rim := col.lightened(0.35)
-	# shoulders and coat
-	var coat := PackedVector2Array([p.call(0.04, 1.0), p.call(0.1, 0.8), p.call(0.26, 0.7), p.call(0.4, 0.66), p.call(0.43, 0.6),
-		p.call(0.57, 0.6), p.call(0.6, 0.66), p.call(0.74, 0.7), p.call(0.9, 0.8), p.call(0.96, 1.0)])
-	if style == 1:  # long hair falls over the shoulders
-		ci.draw_colored_polygon(PackedVector2Array([p.call(0.3, 0.3), p.call(0.7, 0.3), p.call(0.74, 0.62), p.call(0.66, 0.84), p.call(0.34, 0.84), p.call(0.26, 0.62)]), body.darkened(0.15))
-	ci.draw_colored_polygon(coat, body)
-	ci.draw_polyline(PackedVector2Array([p.call(0.1, 0.8), p.call(0.26, 0.7), p.call(0.4, 0.66)]), rim, 2.0, true)
-	ci.draw_polyline(PackedVector2Array([p.call(0.6, 0.66), p.call(0.74, 0.7), p.call(0.9, 0.8)]), Color(rim, 0.55), 2.0, true)
-	# gold collar + emblem (the summoners' black-and-gold coats)
-	ci.draw_polyline(PackedVector2Array([p.call(0.36, 0.7), p.call(0.5, 0.82), p.call(0.64, 0.7)]), GOLD, 3.0, true)
-	var em: Vector2 = p.call(0.5, 0.9)
-	ci.draw_colored_polygon(PackedVector2Array([em + Vector2(0, -s * 0.04), em + Vector2(s * 0.025, 0), em + Vector2(0, s * 0.04), em + Vector2(-s * 0.025, 0)]), col.lightened(0.3))
-	# head
-	var hc: Vector2 = p.call(0.5, 0.43)
-	var hr := s * 0.155
-	if style == 2:  # hood
-		ci.draw_colored_polygon(PackedVector2Array([hc + Vector2(-hr * 1.45, hr * 1.6), hc + Vector2(-hr * 1.4, -hr * 0.4), hc + Vector2(0, -hr * 1.55), hc + Vector2(hr * 1.4, -hr * 0.4), hc + Vector2(hr * 1.45, hr * 1.6)]), body.darkened(0.2))
-	ci.draw_circle(hc, hr, body.lightened(0.04))
-	ci.draw_arc(hc, hr, -PI * 0.95, -PI * 0.35, 24, rim, 2.5, true)
-	if style == 0:  # spiky crown of hair
-		var spikes := PackedVector2Array([hc + Vector2(-hr * 1.15, hr * 0.1)])
-		for i in 7:
-			var a := PI + i * PI / 6.0
-			var rr := hr * (1.55 if i % 2 == 0 else 1.05)
-			spikes.append(hc + Vector2(cos(a), sin(a)) * rr + Vector2(0, -hr * 0.05))
-		spikes.append(hc + Vector2(hr * 1.15, hr * 0.1))
-		spikes.append(hc + Vector2(0, -hr * 0.35))
-		ci.draw_colored_polygon(spikes, body.darkened(0.25))
-	elif style == 1:
-		ci.draw_colored_polygon(PackedVector2Array([hc + Vector2(-hr * 1.1, hr * 0.4), hc + Vector2(-hr * 0.9, -hr * 0.9), hc + Vector2(0, -hr * 1.2), hc + Vector2(hr * 0.9, -hr * 0.9), hc + Vector2(hr * 1.1, hr * 0.4), hc + Vector2(0, -hr * 0.45)]), body.darkened(0.25))
-	# eyes: two lit slits
-	var eye := col.lightened(0.55)
-	for dx in [-0.38, 0.38]:
-		var e: Vector2 = hc + Vector2(dx * hr, hr * 0.12)
-		ci.draw_line(e + Vector2(-hr * 0.17, 0), e + Vector2(hr * 0.17, -hr * 0.04), eye, 3.0, true)
-		ci.draw_circle(e, hr * 0.07, Color(eye, 0.6))
-	# element sigil of their tower
-	var fam := speaker_family(who)
-	var icon := Assets.element_icon(fam) if fam != "" else null
-	if icon != null:
-		var isz := s * 0.26
-		ci.draw_texture_rect(icon, Rect2(r.end - Vector2(isz, isz) - Vector2(s * 0.05, r.size.y * 0.05), Vector2(isz, isz)), false)
+## A character standing in a scene (no backdrop): full-body art (characters/<id>), else a painted portrait card
+## (tall champion crops keep their aspect), else the recoloured champion portrait. A speaker with no art at all
+## is only a floating Sigil icon (Vellum) or nothing (the name plate carries the speaker). Bottom-aligned in `r`.
+static func draw_actor_figure(ci: CanvasItem, r: Rect2, who: String, expr: String = "neutral", talk: float = 0.0, blink: bool = false, t: float = 0.0, bust: bool = false) -> void:
+	var full := Assets.full_body(who) if not bust else null
+	if full != null:
+		var k := minf(r.size.x / full.get_width(), r.size.y / full.get_height())
+		var sz := Vector2(full.get_size()) * k
+		ci.draw_texture_rect(full, Rect2(Vector2(r.position.x + (r.size.x - sz.x) * 0.5, r.end.y - sz.y), sz), false)
+		return
+	var tex := Assets.portrait_mood(who, expr)
+	var mod := Color.WHITE
+	if tex == null and who != "Narrator" and who != "":
+		var b := Assets.borrowed(who)
+		if not b.is_empty():
+			tex = b.tex
+			mod = b.tint
+	if tex != null:
+		var asp := float(tex.get_width()) / float(tex.get_height())
+		var card: Rect2
+		if asp < 0.67 and not bust:   # a tall champion crop: keep its aspect
+			var cw := minf(r.size.x, r.size.y * asp)
+			card = Rect2(Vector2(r.position.x + (r.size.x - cw) * 0.5, r.position.y), Vector2(cw, r.size.y))
+		else:
+			var side := minf(r.size.x, r.size.y)
+			card = Rect2(Vector2(r.position.x + (r.size.x - side) * 0.5, r.end.y - side), Vector2(side, side))
+		ci.draw_rect(card.grow(8), Color(0, 0, 0, 0.35))
+		draw_cover(ci, tex, card, 0.62 if tex.get_height() > tex.get_width() * 1.5 and asp >= 0.67 else 0.3, mod)
+		gold_frame(ci, card, minf(card.size.x, card.size.y) * 0.07, speaker_color(who).lerp(GOLD, 0.5), 3.0)
+	elif who == "Narrator" or who == "":
+		var side2 := minf(r.size.x, r.size.y) * (1.0 if bust else 0.6)
+		ActorArt.draw_sigil_icon(ci, Rect2(Vector2(r.position.x + (r.size.x - side2) * 0.5, (r.position.y + (r.size.y - side2) * 0.5) if bust else r.end.y - side2 * 1.05), Vector2(side2, side2)), Palette.CRYSTAL_VIOLET, talk, t)
 
 
 # ---------------------------------------------------------------- creature art for chips/buttons

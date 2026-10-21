@@ -7,55 +7,68 @@
   "prologue": [
     {
       "speaker": "Narrator",
-      "line": "Long ago, one crystal held every realm under a single sky. It was called the Aether Sigil."
+      "line": "Allow me. There was one crystal, once, holding every realm under a single sky. It was called the Aether Sigil.",
+      "mood": "wistful"
     },
     {
       "speaker": "Narrator",
-      "line": "Then it broke. Twelve prisms scattered, the realms drifted apart, and the sky has been cracking ever since."
+      "line": "Then it was broken. Twelve prisms scattered, the realms drifted apart, and the sky has been cracking ever since.",
+      "mood": "ominous"
     },
     {
       "speaker": "Narrator",
-      "line": "Twelve keepers raised twelve towers around the prisms. That was an age ago. The towers are tired now."
+      "line": "Twelve keepers raised twelve towers around the prisms. An age ago. The towers are tired now. So, if I may say, am I.",
+      "mood": "rueful"
     },
     {
       "speaker": "Maren Oake",
-      "line": "Elio. The isle dropped another span last night. The skystone under Lowmere is going dark."
+      "line": "Elio. The isle dropped another span last night. The skystone under Lowmere is going dark.",
+      "mood": "grave"
     },
     {
       "speaker": "Elio",
-      "line": "Then I'm going. The towers hold the prisms, and the prisms hold the realms. Lowmere needs them."
+      "line": "Then I'm going. The towers hold the prisms, and the prisms hold the realms. Lowmere needs them.",
+      "mood": "determined"
     },
     {
       "speaker": "Maren Oake",
-      "line": "A prism won't go to a hand that grabs it. The keepers will test you, chamber by chamber, all the way up."
+      "line": "A prism won't go to a hand that grabs it. The keepers will test you, chamber by chamber, all the way up.",
+      "mood": "neutral"
     },
     {
       "speaker": "Maren Oake",
-      "line": "Here. I cut your Player Sigil from the shard that fell on our roof. The one Pell hatched beside."
+      "line": "Here. I cut your Player Sigil from the shard that fell on our roof. The one Pell hatched beside.",
+      "mood": "neutral"
     },
     {
       "speaker": "Pell",
-      "line": "Warm. Bright. Elio goes, Pell goes."
+      "line": "Warm. Bright. Elio goes, Pell goes.",
+      "mood": "neutral"
     },
     {
       "speaker": "Maren Oake",
-      "line": "Remember: a Summoner never steps onto the board. You stand behind the Sigil. Your monsters stand for you."
+      "line": "Remember: a Summoner never steps onto the board. You stand behind the Sigil. Your monsters stand for you.",
+      "mood": "neutral"
     },
     {
       "speaker": "Elio",
-      "line": "And if the Sigil falls, the battle's lost. I know. You've told me every night since I was six."
+      "line": "And if the Sigil falls, the battle's lost. I know. You've told me every night since I was six.",
+      "mood": "neutral"
     },
     {
       "speaker": "Kess Varrow",
-      "line": "Another summoner off the edge-isles? Save the speeches. I'm taking the first prism before noon."
+      "line": "Another summoner off the edge-isles? Save the speeches. I'm taking the first prism before noon.",
+      "mood": "angry"
     },
     {
       "speaker": "Elio",
-      "line": "Then I'll see you at the Verdant Spire."
+      "line": "Then I'll see you at the Verdant Spire.",
+      "mood": "neutral"
     },
     {
       "speaker": "Narrator",
-      "line": "Twelve towers. Twelve keepers. One Summoner who means to awaken the world through what he summons."
+      "line": "Twelve towers, twelve keepers, and one Summoner who means to wake the world through what he summons. Noted.",
+      "mood": "wry"
     }
   ],
   "towers": [
@@ -64,71 +77,87 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Verdant Spire. Living bridges creak between terraces, and pollen storms roll up the stairs like weather."
+          "line": "The Verdant Spire. Living bridges creak between terraces, and pollen storms climb the stairs like weather. Mind the sneezing.",
+          "mood": "wry"
         },
         {
           "speaker": "Elio",
-          "line": "The bridges are moving. They're growing while we walk on them."
+          "line": "The bridges are moving. They're growing while we walk on them.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Green smell. Happy smell."
+          "line": "Green smell. Happy smell.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Roots in the walls, pollen in the vents. I'll be at the top before you finish sneezing."
+          "line": "Roots in the walls, pollen in the vents. I'll be at the top before you finish sneezing.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Lyra Quill",
-          "line": "All the way to the tenth chamber! Oh, your monsters look tired. Good. Tired means they tried."
+          "line": "All the way to the tenth chamber! Oh, your monsters look tired. Good. Tired means they tried.",
+          "mood": "determined"
         },
         {
           "speaker": "Lyra Quill",
-          "line": "I'm Lyra Quill, keeper of the Spire. I don't wait for an opening. Spring doesn't wait either."
+          "line": "I'm Lyra Quill, keeper of the Spire. I don't wait for an opening. Spring doesn't wait either.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Kess said you'd hit fast."
+          "line": "Kess said you'd hit fast.",
+          "mood": "neutral"
         },
         {
           "speaker": "Lyra Quill",
-          "line": "Kess was right and still lost. Speed isn't the test. The test is what grows in your team when it gets hit."
+          "line": "Kess was right and still lost. Speed isn't the test. The test is what grows in your team when it gets hit.",
+          "mood": "neutral"
         },
         {
           "speaker": "Lyra Quill",
-          "line": "Every knockout feeds the roots here. Each one that falls makes the whole board run faster."
+          "line": "Every knockout feeds the roots here. Each one that falls makes the whole board run faster.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Then we hold the capsule nodes and let you come to us."
+          "line": "Then we hold the capsule nodes and let you come to us.",
+          "mood": "determined"
         },
         {
           "speaker": "Pell",
-          "line": "Pell ready."
+          "line": "Pell ready.",
+          "mood": "determined"
         }
       ],
       "post_boss": [
         {
           "speaker": "Lyra Quill",
-          "line": "Ha! You held, and your monsters grew while they held. That's restoration. Not undoing harm. Outgrowing it."
+          "line": "Ha! You held, and your monsters grew while they held. That's restoration. Not undoing harm. Outgrowing it.",
+          "mood": "amused"
         },
         {
           "speaker": "Lyra Quill",
-          "line": "Take the Sigil Core. The Nature Prism has been humming at you since you walked in."
+          "line": "Take the Sigil Core. The Nature Prism has been humming at you since you walked in.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Lowmere is falling. Will one prism stop it?"
+          "line": "Lowmere is falling. Will one prism stop it?",
+          "mood": "grave"
         },
         {
           "speaker": "Lyra Quill",
-          "line": "No. I've regrown this tower a hundred times and the sky still cracks. Whatever broke it isn't down here."
+          "line": "No. I've regrown this tower a hundred times and the sky still cracks. Whatever broke it isn't down here.",
+          "mood": "grave"
         },
         {
           "speaker": "Narrator",
-          "line": "The Nature Prism settles into the Player Sigil. A new facet lights, green as new leaves."
+          "line": "The Nature Prism settles into the Player Sigil. A new facet lights, green as new leaves. One of twelve. Noted, with relief.",
+          "mood": "fond"
         }
       ]
     },
@@ -137,67 +166,82 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Ember Bastion. Lava runs in channels under collapsing platforms, and the heat vents breathe on a count."
+          "line": "The Ember Bastion. Lava runs in channels under collapsing platforms, and the heat vents breathe on a count. Count along.",
+          "mood": "dry"
         },
         {
           "speaker": "Elio",
-          "line": "Every vent fires on the same rhythm. Someone built this place to be learned."
+          "line": "Every vent fires on the same rhythm. Someone built this place to be learned.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Or to be burned through. Water drowns Fire. I packed accordingly."
+          "line": "Or to be burned through. Water drowns Fire. I packed accordingly.",
+          "mood": "grave"
         },
         {
           "speaker": "Pell",
-          "line": "Hot. Pell stays behind Elio."
+          "line": "Hot. Pell stays behind Elio.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Varen Lux",
-          "line": "Stand straight, Summoner. You are in the Bastion of Varen Lux, and you will be measured."
+          "line": "Stand straight, Summoner. You are in the Bastion of Varen Lux, and you will be measured.",
+          "mood": "neutral"
         },
         {
           "speaker": "Varen Lux",
-          "line": "Strength is common. Discipline is rare. Show me which one you carried up those stairs."
+          "line": "Strength is common. Discipline is rare. Show me which one you carried up those stairs.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "I brought a plan. Hold the bridges, let the vents do the work."
+          "line": "I brought a plan. Hold the bridges, let the vents do the work.",
+          "mood": "neutral"
         },
         {
           "speaker": "Varen Lux",
-          "line": "A plan is only discipline if it survives the first loss. And my squad will not stand still for you."
+          "line": "A plan is only discipline if it survives the first loss. And my squad will not stand still for you.",
+          "mood": "neutral"
         },
         {
           "speaker": "Varen Lux",
-          "line": "The platforms fall in order. Learn the order, or learn the drop."
+          "line": "The platforms fall in order. Learn the order, or learn the drop.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell counts vents. One, two... hot."
+          "line": "Pell counts vents. One, two... hot.",
+          "mood": "sad"
         }
       ],
       "post_boss": [
         {
           "speaker": "Varen Lux",
-          "line": "You never chased me. Not once. You simply let me run out of floor."
+          "line": "You never chased me. Not once. You simply let me run out of floor.",
+          "mood": "neutral"
         },
         {
           "speaker": "Varen Lux",
-          "line": "That is discipline: choosing when not to strike. The Fire Prism is yours. Keep that cool head."
+          "line": "That is discipline: choosing when not to strike. The Fire Prism is yours. Keep that cool head.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Lyra said the break isn't down here. Do you know where it is?"
+          "line": "Lyra said the break isn't down here. Do you know where it is?",
+          "mood": "neutral"
         },
         {
           "speaker": "Varen Lux",
-          "line": "Above. Always above. The Sunforge Throne burns at the top of the sky."
+          "line": "Above. Always above. The Sunforge Throne burns at the top of the sky.",
+          "mood": "grave"
         },
         {
           "speaker": "Varen Lux",
-          "line": "Its keeper speaks rarely, and never to me."
+          "line": "Its keeper speaks rarely, and never to me.",
+          "mood": "neutral"
         }
       ]
     },
@@ -206,67 +250,82 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Tideglass Citadel. Flood gates turn with the tide, and every corridor is a glass tunnel under moving water."
+          "line": "The Tideglass Citadel. Flood gates turn with the tide, and every corridor is glass beneath moving water. Do not look down. Do look down.",
+          "mood": "amused"
         },
         {
           "speaker": "Elio",
-          "line": "The floor plan changes every time the gates turn."
+          "line": "The floor plan changes every time the gates turn.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Chamber six had a stargazer in it. He beat me, then said I'd be back. Who says that?"
+          "line": "Chamber six had a stargazer in it. He beat me, then said I'd be back. Who says that?",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "Chamber six is mine today, Summoner. Don't keep me waiting. I came a long way to see if you're real."
+          "line": "Chamber six is mine today, Summoner. Don't keep me waiting. I came a long way to see if you're real.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Strange man. Nice stars."
+          "line": "Strange man. Nice stars.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Niko Ardent",
-          "line": "Hey, you're the one who beat Varen without chasing him. Nice. I like a summoner who doesn't push."
+          "line": "Hey, you're the one who beat Varen without chasing him. Nice. I like a summoner who doesn't push.",
+          "mood": "neutral"
         },
         {
           "speaker": "Niko Ardent",
-          "line": "Because whatever you push in here comes right back at you. The tide's like that. I'm like that."
+          "line": "Because whatever you push in here comes right back at you. The tide's like that. I'm like that.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "So you punish every attack."
+          "line": "So you punish every attack.",
+          "mood": "neutral"
         },
         {
           "speaker": "Niko Ardent",
-          "line": "I answer every attack. Big difference. Hit me hard and I'll show you exactly how hard."
+          "line": "I answer every attack. Big difference. Hit me hard and I'll show you exactly how hard.",
+          "mood": "neutral"
         },
         {
           "speaker": "Niko Ardent",
-          "line": "The water reshapes the board every round. The only plan that lasts here is one you're willing to drop."
+          "line": "The water reshapes the board every round. The only plan that lasts here is one you're willing to drop.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Water moves. Pell moves."
+          "line": "Water moves. Pell moves.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Niko Ardent",
-          "line": "You switched formation three times! You stopped trying to win my way and started winning the tide's way."
+          "line": "You switched formation three times! You stopped trying to win my way and started winning the tide's way.",
+          "mood": "determined"
         },
         {
           "speaker": "Niko Ardent",
-          "line": "The Water Prism's yours. Adaptation's the trick, Summoner. You'll need it higher up, where things get cold."
+          "line": "The Water Prism's yours. Adaptation's the trick, Summoner. You'll need it higher up, where things get cold.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Three prisms. Maren says Lowmere's skystone flickered last night."
+          "line": "Three prisms. Maren says Lowmere's skystone flickered last night.",
+          "mood": "neutral"
         },
         {
           "speaker": "Niko Ardent",
-          "line": "Flickered, huh? So the prisms don't heal alone. They heal together. Keep climbing."
+          "line": "Flickered, huh? So the prisms don't heal alone. They heal together. Keep climbing.",
+          "mood": "neutral"
         }
       ]
     },
@@ -275,71 +334,87 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Frost Meridian. Frozen stairs climb through blizzard zones, and brittle ice cracks under anything that waits."
+          "line": "The Frost Meridian. Frozen stairs climb through blizzard zones, and brittle ice cracks under anything that waits. So, do not wait.",
+          "mood": "tense"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Don't say anything. Chamber nine froze my whole squad for three turns. I couldn't move a single piece."
+          "line": "Don't say anything. Chamber nine froze my whole squad for three turns. I couldn't move a single piece.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Then climb with me. Two summoners, one climb."
+          "line": "Then climb with me. Two summoners, one climb.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Absolutely not. I'll watch. Somebody should see you freeze."
+          "line": "Absolutely not. I'll watch. Somebody should see you freeze.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Cold. Pell's fur is big now."
+          "line": "Cold. Pell's fur is big now.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Rhea Volt",
-          "line": "Go home, Summoner. Nobody comes this high for good reasons."
+          "line": "Go home, Summoner. Nobody comes this high for good reasons.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Home is the reason. Lowmere is drifting into the crack."
+          "line": "Home is the reason. Lowmere is drifting into the crack.",
+          "mood": "neutral"
         },
         {
           "speaker": "Rhea Volt",
-          "line": "Then you already know what the sky does to things that lean on each other. They fall together."
+          "line": "Then you already know what the sky does to things that lean on each other. They fall together.",
+          "mood": "determined"
         },
         {
           "speaker": "Rhea Volt",
-          "line": "I don't hit hard. I slow you, chill you, and wait. Most teams break themselves."
+          "line": "I don't hit hard. I slow you, chill you, and wait. Most teams break themselves.",
+          "mood": "neutral"
         },
         {
           "speaker": "Rhea Volt",
-          "line": "Resilience is what's left when no one is coming to help. Show me yours."
+          "line": "Resilience is what's left when no one is coming to help. Show me yours.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell is here. Elio is not alone."
+          "line": "Pell is here. Elio is not alone.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Rhea Volt",
-          "line": "Your team kept warming each other. Guarding, swapping, covering the frozen ones. I never planned for that."
+          "line": "Your team kept warming each other. Guarding, swapping, covering the frozen ones. I never planned for that.",
+          "mood": "neutral"
         },
         {
           "speaker": "Rhea Volt",
-          "line": "Take the Ice Prism. ...The keepers used to meet, you know. Twelve of us at one table. Before the towers."
+          "line": "Take the Ice Prism. ...The keepers used to meet, you know. Twelve of us at one table. Before the towers.",
+          "mood": "sad"
         },
         {
           "speaker": "Elio",
-          "line": "What happened?"
+          "line": "What happened?",
+          "mood": "neutral"
         },
         {
           "speaker": "Rhea Volt",
-          "line": "We each locked our prism away to keep it safe. Now no one remembers why we stopped talking. Ask the Archive."
+          "line": "We each locked our prism away to keep it safe. Now no one remembers why we stopped talking. Ask the Archive.",
+          "mood": "neutral"
         },
         {
           "speaker": "Narrator",
-          "line": "Four facets glow in the Player Sigil. Far below, Lowmere stops sinking. For now."
+          "line": "Four facets glow in the Player Sigil. Far below, Lowmere stops sinking. For now. I shall allow myself to be glad.",
+          "mood": "fond"
         }
       ]
     },
@@ -348,67 +423,82 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Iron Labyrinth. Walls slide on rails, magnetic fields drag at metal, and every corridor resets on a timer."
+          "line": "The Iron Labyrinth. Walls slide on rails, magnetic fields drag at metal, and every corridor resets on a timer. I have never trusted timers.",
+          "mood": "wry"
         },
         {
           "speaker": "Maren Oake",
-          "line": "Elio, can you hear me? Your team is strong enough now to try a fusion. Two monsters, one bond."
+          "line": "Elio, can you hear me? Your team is strong enough now to try a fusion. Two monsters, one bond.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Fusion. Two of my team become one. Is that safe for them?"
+          "line": "Fusion. Two of my team become one. Is that safe for them?",
+          "mood": "neutral"
         },
         {
           "speaker": "Maren Oake",
-          "line": "Only if they choose it. They will, if they trust you. The Labyrinth will ask for something new."
+          "line": "Only if they choose it. They will, if they trust you. The Labyrinth will ask for something new.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Walls move. Pell does not like walls that move."
+          "line": "Walls move. Pell does not like walls that move.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Renn Calder",
-          "line": "You reached the core chamber in forty-one turns. Above average. Hello. I'm Renn Calder."
+          "line": "You reached the core chamber in forty-one turns. Above average. Hello. I'm Renn Calder.",
+          "mood": "neutral"
         },
         {
           "speaker": "Renn Calder",
-          "line": "Every tile you'll touch here, I've already planned. Every corridor is a sum. Most summoners never finish it."
+          "line": "Every tile you'll touch here, I've already planned. Every corridor is a sum. Most summoners never finish it.",
+          "mood": "determined"
         },
         {
           "speaker": "Elio",
-          "line": "What if I don't solve it? What if I just keep going?"
+          "line": "What if I don't solve it? What if I just keep going?",
+          "mood": "neutral"
         },
         {
           "speaker": "Renn Calder",
-          "line": "Then you'll hit every trap I built. Persistence without logic is noise. Logic without persistence is a drawing."
+          "line": "Then you'll hit every trap I built. Persistence without logic is noise. Logic without persistence is a drawing.",
+          "mood": "neutral"
         },
         {
           "speaker": "Renn Calder",
-          "line": "Also, I've been measuring the sky. The crack grows faster every year the prisms stay apart."
+          "line": "Also, I've been measuring the sky. The crack grows faster every year the prisms stay apart.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell thinks... left?"
+          "line": "Pell thinks... left?",
+          "mood": "sad"
         }
       ],
       "post_boss": [
         {
           "speaker": "Renn Calder",
-          "line": "You walked into three traps on purpose to open a fourth path. That isn't in my notes. I'm adding it."
+          "line": "You walked into three traps on purpose to open a fourth path. That isn't in my notes. I'm adding it.",
+          "mood": "neutral"
         },
         {
           "speaker": "Renn Calder",
-          "line": "The Metal Prism. Yours. And my data: the fracture feeds on separation. Every sealed prism widens it."
+          "line": "The Metal Prism. Yours. And my data: the fracture feeds on separation. Every sealed prism widens it.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Then the towers aren't holding the sky together. They're keeping it apart."
+          "line": "Then the towers aren't holding the sky together. They're keeping it apart.",
+          "mood": "neutral"
         },
         {
           "speaker": "Renn Calder",
-          "line": "That's the hypothesis. I can't prove it from a labyrinth. Someone higher up decided this. Someone old."
+          "line": "That's the hypothesis. I can't prove it from a labyrinth. Someone higher up decided this. Someone old.",
+          "mood": "grave"
         }
       ]
     },
@@ -417,67 +507,82 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Storm Crown. Floating platforms drift along gust lanes, and lightning rods hum before every strike."
+          "line": "The Storm Crown. Platforms drift along gust lanes, and lightning rods hum before every strike. Listen for the hum, Summoner.",
+          "mood": "wonder"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Zara Nyx summons mid-battle, constantly. Her side of the board never stays the same size twice."
+          "line": "Zara Nyx summons mid-battle, constantly. Her side of the board never stays the same size twice.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "You sound like a fan."
+          "line": "You sound like a fan.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "I am a fan. Tell no one. Beat her anyway."
+          "line": "I am a fan. Tell no one. Beat her anyway.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Wind sings. Pell sings back."
+          "line": "Wind sings. Pell sings back.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Zara Nyx",
-          "line": "Finally! I've watched you climb through my clouds. You hold your team so tight, Summoner."
+          "line": "Finally! I've watched you climb through my clouds. You hold your team so tight, Summoner.",
+          "mood": "determined"
         },
         {
           "speaker": "Zara Nyx",
-          "line": "My monsters come and go like weather. I summon, they fly, I summon again. Nothing up here stays caged."
+          "line": "My monsters come and go like weather. I summon, they fly, I summon again. Nothing up here stays caged.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "My team stays together. That's how we got this far."
+          "line": "My team stays together. That's how we got this far.",
+          "mood": "neutral"
         },
         {
           "speaker": "Zara Nyx",
-          "line": "Together isn't the same as held. Loosen your grip. Let one of them surprise you."
+          "line": "Together isn't the same as held. Loosen your grip. Let one of them surprise you.",
+          "mood": "neutral"
         },
         {
           "speaker": "Zara Nyx",
-          "line": "Change is coming down from the top of the sky. I can smell it on the wind. Are you ready for it?"
+          "line": "Change is coming down from the top of the sky. I can smell it on the wind. Are you ready for it?",
+          "mood": "determined"
         },
         {
           "speaker": "Pell",
-          "line": "Pell wants to fly."
+          "line": "Pell wants to fly.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Zara Nyx",
-          "line": "There it is! Your little one broke formation and took the gust lane on its own. And you let it."
+          "line": "There it is! Your little one broke formation and took the gust lane on its own. And you let it.",
+          "mood": "determined"
         },
         {
           "speaker": "Elio",
-          "line": "I didn't let it. It just knew."
+          "line": "I didn't let it. It just knew.",
+          "mood": "neutral"
         },
         {
           "speaker": "Zara Nyx",
-          "line": "That's the whole lesson. Take the Wind Prism. Freedom isn't chaos, Summoner. It's trust."
+          "line": "That's the whole lesson. Take the Wind Prism. Freedom isn't chaos, Summoner. It's trust.",
+          "mood": "neutral"
         },
         {
           "speaker": "Zara Nyx",
-          "line": "One more thing. The Sunforge keeper, Ari Zephyr? Taught me to fly. Hasn't left the Throne in a very long time."
+          "line": "One more thing. The Sunforge keeper, Ari Zephyr? Taught me to fly. Hasn't left the Throne in a very long time.",
+          "mood": "neutral"
         }
       ]
     },
@@ -486,63 +591,77 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Obsidian Eclipse. Shadow tiles swallow the light, teleport gates blink open, and nothing is where it looks."
+          "line": "The Obsidian Eclipse. Shadow tiles swallow the light, teleport gates blink open, and nothing is where it looks. I dislike this place.",
+          "mood": "uneasy"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Elio, I'm in chamber eight. Or chamber two. The gates keep showing me the same room."
+          "line": "Elio, I'm in chamber eight. Or chamber two. The gates keep showing me the same room.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Stay put. Watch the Symbol, not the shadows. The Symbol doesn't lie."
+          "line": "Stay put. Watch the Symbol, not the shadows. The Symbol doesn't lie.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell sees two Kesses. One is fake."
+          "line": "Pell sees two Kesses. One is fake.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Cira Dawn",
-          "line": "Six prisms' worth of light, walking into my eclipse. Ari would be so proud of you."
+          "line": "Six prisms' worth of light, walking into my eclipse. Ari would be so proud of you.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "You know the Sunforge keeper."
+          "line": "You know the Sunforge keeper.",
+          "mood": "neutral"
         },
         {
           "speaker": "Cira Dawn",
-          "line": "Light and Dark, Summoner. Rivals since the first sky. Ari wants the prisms forged into one crown. One realm. One light."
+          "line": "Light and Dark, Summoner. Rivals since the first sky. Ari wants the prisms forged into one crown. One realm. One light.",
+          "mood": "grave"
         },
         {
           "speaker": "Cira Dawn",
-          "line": "And you've been carrying them up the stairs like a good little courier."
+          "line": "And you've been carrying them up the stairs like a good little courier.",
+          "mood": "neutral"
         },
         {
           "speaker": "Cira Dawn",
-          "line": "I don't fight close. I'll find you from the dark and pick your formation apart. Show me what's real."
+          "line": "I don't fight close. I'll find you from the dark and pick your formation apart. Show me what's real.",
+          "mood": "grave"
         },
         {
           "speaker": "Pell",
-          "line": "Elio. The Symbol. Watch the Symbol."
+          "line": "Elio. The Symbol. Watch the Symbol.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Cira Dawn",
-          "line": "You ignored every illusion and aimed at the one thing I couldn't fake. Annoying. Brilliant."
+          "line": "You ignored every illusion and aimed at the one thing I couldn't fake. Annoying. Brilliant.",
+          "mood": "neutral"
         },
         {
           "speaker": "Cira Dawn",
-          "line": "Take the Dark Prism. I wanted them all, you know. To stop Ari. Ambition is just fear in a nicer coat."
+          "line": "Take the Dark Prism. I wanted them all, you know. To stop Ari. Ambition is just fear in a nicer coat.",
+          "mood": "grave"
         },
         {
           "speaker": "Elio",
-          "line": "Then help me stop it a different way."
+          "line": "Then help me stop it a different way.",
+          "mood": "neutral"
         },
         {
           "speaker": "Cira Dawn",
-          "line": "Maybe. Go to the Archive first. Tarin remembers what the rest of us chose to forget."
+          "line": "Maybe. Go to the Archive first. Tarin remembers what the rest of us chose to forget.",
+          "mood": "neutral"
         }
       ]
     },
@@ -551,71 +670,87 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Sunken Archive. Ruins rest under still water, and relic switches open chambers sealed for ages."
+          "line": "The Sunken Archive. Ruins rest under still water, and relic switches open chambers sealed for ages. ...I know these shelves.",
+          "mood": "hushed"
         },
         {
           "speaker": "Elio",
-          "line": "Rhea said ask the Archive. Cira said ask Tarin. Everyone keeps sending me into the past."
+          "line": "Rhea said ask the Archive. Cira said ask Tarin. Everyone keeps sending me into the past.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "I'm coming in with you this time. I want to know what I've been climbing for, too."
+          "line": "I'm coming in with you this time. I want to know what I've been climbing for, too.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Old books. Old dust. Pell sneezes."
+          "line": "Old books. Old dust. Pell sneezes.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Tarin Moss",
-          "line": "Welcome. Mind the shelves; some of them bite. I am Tarin Moss, and I remember everything that was."
+          "line": "Welcome. Mind the shelves; some of them bite. I am Tarin Moss, and I remember everything that was.",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "The Sigil did not shatter by accident. A summoner once held all twelve facets and tried to command the sky alone."
+          "line": "The Sigil did not shatter by accident. A summoner once held all twelve facets and tried to command the sky alone.",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "The Sigil refused. It broke rather than obey. That summoner was Ari Zephyr."
+          "line": "The Sigil refused. It broke rather than obey. That summoner was Ari Zephyr.",
+          "mood": "grave"
         },
         {
           "speaker": "Elio",
-          "line": "And the towers?"
+          "line": "And the towers?",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "Ari's grief. Twelve walls to keep the pieces safe until someone could carry them back up. Up to the Throne."
+          "line": "Ari's grief. Twelve walls to keep the pieces safe until someone could carry them back up. Up to the Throne.",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "I will not move from this chamber. My walls have stood for ages. If you want the rest, outlast them."
+          "line": "I will not move from this chamber. My walls have stood for ages. If you want the rest, outlast them.",
+          "mood": "determined"
         },
         {
           "speaker": "Pell",
-          "line": "Pell is patient. Pell is very patient."
+          "line": "Pell is patient. Pell is very patient.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Tarin Moss",
-          "line": "You did not break my walls. You waited until they forgot why they were standing. Well played."
+          "line": "You did not break my walls. You waited until they forgot why they were standing. Well played.",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "The Ancient Prism. Carry it gently. It remembers the sky whole."
+          "line": "The Ancient Prism. Carry it gently. It remembers the sky whole.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "If I bring all twelve to Ari, the same thing could happen again."
+          "line": "If I bring all twelve to Ari, the same thing could happen again.",
+          "mood": "neutral"
         },
         {
           "speaker": "Tarin Moss",
-          "line": "Or not. The past is a record, Summoner, not a prophecy. Ask Silas what else could happen."
+          "line": "Or not. The past is a record, Summoner, not a prophecy. Ask Silas what else could happen.",
+          "mood": "neutral"
         },
         {
           "speaker": "Narrator",
-          "line": "Eight facets. The Player Sigil is heavy now, and warm. Lowmere has risen half a span."
+          "line": "Eight facets. The Player Sigil is heavy now, and warm. Lowmere has risen half a span. I am, privately, afraid of nine.",
+          "mood": "rueful"
         }
       ]
     },
@@ -624,67 +759,82 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Astral Observatory. Platforms orbit a central spire, gravity thins near the star gates, and the stars move."
+          "line": "The Astral Observatory. Platforms orbit a central spire, gravity thins near the star gates, and the stars move. They are not meant to.",
+          "mood": "wonder"
         },
         {
           "speaker": "Silas Wren",
-          "line": "Elio. In most futures you arrive at dusk. It is dusk. Welcome back."
+          "line": "Elio. In most futures you arrive at dusk. It is dusk. Welcome back.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "You were in chamber six of the Citadel. You knew I'd come."
+          "line": "You were in chamber six of the Citadel. You knew I'd come.",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "I knew you might. Might is the most interesting word there is."
+          "line": "I knew you might. Might is the most interesting word there is.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Stars so close. Pell can almost touch them."
+          "line": "Stars so close. Pell can almost touch them.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Silas Wren",
-          "line": "I've watched a thousand endings to your climb. In most, you hand Ari twelve prisms and the sky breaks again."
+          "line": "I've watched a thousand endings to your climb. In most, you hand Ari twelve prisms and the sky breaks again.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "And in the rest?"
+          "line": "And in the rest?",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "In the rest, you do something I can't see clearly. That's why I came down to the Citadel. To check you were real."
+          "line": "In the rest, you do something I can't see clearly. That's why I came down to the Citadel. To check you were real.",
+          "mood": "grave"
         },
         {
           "speaker": "Silas Wren",
-          "line": "I shape the board as we play. Orbits shift, low ground becomes high ground. The terrain is mine."
+          "line": "I shape the board as we play. Orbits shift, low ground becomes high ground. The terrain is mine.",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "Win anyway, and maybe the future I can't see becomes the one we get."
+          "line": "Win anyway, and maybe the future I can't see becomes the one we get.",
+          "mood": "grave"
         },
         {
           "speaker": "Pell",
-          "line": "Pell picks the good future."
+          "line": "Pell picks the good future.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Silas Wren",
-          "line": "There. That move. I didn't see it coming in any version. Thank you."
+          "line": "There. That move. I didn't see it coming in any version. Thank you.",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "The Space Prism. Nine of twelve. The Sigil was never meant to be held, Summoner. It was meant to be shared."
+          "line": "The Space Prism. Nine of twelve. The Sigil was never meant to be held, Summoner. It was meant to be shared.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Shared by who?"
+          "line": "Shared by who?",
+          "mood": "neutral"
         },
         {
           "speaker": "Silas Wren",
-          "line": "Ask the Sanctum. Sera has been polishing the pieces of that answer for a long time."
+          "line": "Ask the Sanctum. Sera has been polishing the pieces of that answer for a long time.",
+          "mood": "neutral"
         }
       ]
     },
@@ -693,63 +843,77 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Crystal Sanctum. Prism bridges carry beams of light, and resonance nodes ring when power passes."
+          "line": "The Crystal Sanctum. Prism bridges carry beams of light, and resonance nodes ring when power passes. Some of that sound is old. Some is mine.",
+          "mood": "uneasy"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "The nodes ring when your Sigil goes by. Like they know it."
+          "line": "The nodes ring when your Sigil goes by. Like they know it.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Nine facets. It's starting to sound like a chord."
+          "line": "Nine facets. It's starting to sound like a chord.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pretty. Too pretty. Pell is careful."
+          "line": "Pretty. Too pretty. Pell is careful.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Sera Vale",
-          "line": "Summoner. Your Sigil is crowded. Nine prisms, every one of them shouting a different color."
+          "line": "Summoner. Your Sigil is crowded. Nine prisms, every one of them shouting a different color.",
+          "mood": "neutral"
         },
         {
           "speaker": "Sera Vale",
-          "line": "Ari believes the realms broke because they were too many things. One light, one realm. I have wondered if Ari is right."
+          "line": "Ari believes the realms broke because they were too many things. One light, one realm. I have wondered if Ari is right.",
+          "mood": "awed"
         },
         {
           "speaker": "Elio",
-          "line": "Then why fight me instead of helping Ari?"
+          "line": "Then why fight me instead of helping Ari?",
+          "mood": "neutral"
         },
         {
           "speaker": "Sera Vale",
-          "line": "Because no light passes through a bond I haven't tested. Ascension needs a clear vessel."
+          "line": "Because no light passes through a bond I haven't tested. Ascension needs a clear vessel.",
+          "mood": "neutral"
         },
         {
           "speaker": "Sera Vale",
-          "line": "I take what you rely on. Your nodes, your cores, your easy answers. What remains is what you truly are."
+          "line": "I take what you rely on. Your nodes, your cores, your easy answers. What remains is what you truly are.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell stays. Pell is not a resource."
+          "line": "Pell stays. Pell is not a resource.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Sera Vale",
-          "line": "I took everything I could reach. Your team simply gave each other the rest."
+          "line": "I took everything I could reach. Your team simply gave each other the rest.",
+          "mood": "neutral"
         },
         {
           "speaker": "Sera Vale",
-          "line": "...A prism does not purify light by making it one color. It makes it clear enough to show all of them."
+          "line": "...A prism does not purify light by making it one color. It makes it clear enough to show all of them.",
+          "mood": "sad"
         },
         {
           "speaker": "Sera Vale",
-          "line": "Ari has it backwards. Take the Crystal Prism, Summoner. Carry the colors up whole."
+          "line": "Ari has it backwards. Take the Crystal Prism, Summoner. Carry the colors up whole.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Two more."
+          "line": "Two more.",
+          "mood": "neutral"
         }
       ]
     },
@@ -758,63 +922,77 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Rift Frontier. Portals open without warning, tiles phase in and out, and the great crack fills the sky."
+          "line": "The Rift Frontier. Portals open without warning, tiles phase in and out, and the great crack fills the sky. Look at it. Please.",
+          "mood": "solemn"
         },
         {
           "speaker": "Elio",
-          "line": "That's it. The tear I've watched from Lowmere every night of my life. It's so much bigger up close."
+          "line": "That's it. The tear I've watched from Lowmere every night of my life. It's so much bigger up close.",
+          "mood": "neutral"
         },
         {
           "speaker": "Maren Oake",
-          "line": "Elio, the isle is shaking again. Whatever you're near, it's pulling harder."
+          "line": "Elio, the isle is shaking again. Whatever you're near, it's pulling harder.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell does not like the dark hole. Pell stays close."
+          "line": "Pell does not like the dark hole. Pell stays close.",
+          "mood": "grave"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Mako Reed",
-          "line": "Summoner! You're late, I'm busy, the sky's leaking. Mako Reed. Let's go, go, go!"
+          "line": "Summoner! You're late, I'm busy, the sky's leaking. Mako Reed. Let's go, go, go!",
+          "mood": "determined"
         },
         {
           "speaker": "Mako Reed",
-          "line": "I live on the edge of this thing, shoving drifting isles back. Little one with a bell tower? Lowmere? Mine."
+          "line": "I live on the edge of this thing, shoving drifting isles back. Little one with a bell tower? Lowmere? Mine.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "You've been holding up my home?"
+          "line": "You've been holding up my home?",
+          "mood": "neutral"
         },
         {
           "speaker": "Mako Reed",
-          "line": "Badly! The Aether Prism isn't strong enough alone. Nothing up here is. Out here you move before you understand."
+          "line": "Badly! The Aether Prism isn't strong enough alone. Nothing up here is. Out here you move before you understand.",
+          "mood": "determined"
         },
         {
           "speaker": "Mako Reed",
-          "line": "I hit first, I hit fast, and the floor won't wait for you to think. Ready or not!"
+          "line": "I hit first, I hit fast, and the floor won't wait for you to think. Ready or not!",
+          "mood": "determined"
         },
         {
           "speaker": "Pell",
-          "line": "Not ready. Go anyway."
+          "line": "Not ready. Go anyway.",
+          "mood": "determined"
         }
       ],
       "post_boss": [
         {
           "speaker": "Mako Reed",
-          "line": "Ha! You jumped through a portal without seeing the other side. That's the only way anything gets done out here."
+          "line": "Ha! You jumped through a portal without seeing the other side. That's the only way anything gets done out here.",
+          "mood": "amused"
         },
         {
           "speaker": "Mako Reed",
-          "line": "Take the Aether Prism. Lowmere will hold a few days without me. Then it's on you."
+          "line": "Take the Aether Prism. Lowmere will hold a few days without me. Then it's on you.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Come to the Throne. All of you. If the Sigil is meant to be shared, the keepers should be there."
+          "line": "Come to the Throne. All of you. If the Sigil is meant to be shared, the keepers should be there.",
+          "mood": "neutral"
         },
         {
           "speaker": "Mako Reed",
-          "line": "A keeper leaving their tower? In this sky? ...Yeah. Alright. I'll spread the word."
+          "line": "A keeper leaving their tower? In this sky? ...Yeah. Alright. I'll spread the word.",
+          "mood": "sad"
         }
       ]
     },
@@ -823,71 +1001,87 @@
       "arrival": [
         {
           "speaker": "Narrator",
-          "line": "The Sunforge Throne. Roots, lava, glass, ice, rails, wind, shadow, ruins, stars, crystal and rifts, all at once."
+          "line": "The Sunforge Throne. Roots, lava, glass, ice, rails, wind, shadow, ruins, stars, crystal and rifts, all at once. The margin ends here, Summoner.",
+          "mood": "solemn"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Eleven towers stacked into one. Of course the last one is all of them."
+          "line": "Eleven towers stacked into one. Of course the last one is all of them.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Kess. Thanks for climbing with me."
+          "line": "Kess. Thanks for climbing with me.",
+          "mood": "neutral"
         },
         {
           "speaker": "Kess Varrow",
-          "line": "Don't. I'll get emotional, and then I'll lose. Go."
+          "line": "Don't. I'll get emotional, and then I'll lose. Go.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Warm here. Like the shard. Like home."
+          "line": "Warm here. Like the shard. Like home.",
+          "mood": "neutral"
         }
       ],
       "pre_boss": [
         {
           "speaker": "Ari Zephyr",
-          "line": "Elio of Lowmere. Eleven prisms in one Sigil. No one has carried that much light since me."
+          "line": "Elio of Lowmere. Eleven prisms in one Sigil. No one has carried that much light since me.",
+          "mood": "neutral"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "I held the whole sky once. I tried to make it one realm, one light, and it broke in my hands."
+          "line": "I held the whole sky once. I tried to make it one realm, one light, and it broke in my hands.",
+          "mood": "grave"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "Since then I have waited for someone strong enough to bring the pieces home, so I could finish it right."
+          "line": "Since then I have waited for someone strong enough to bring the pieces home, so I could finish it right.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "Finish it by making everything the same? That's what broke it."
+          "line": "Finish it by making everything the same? That's what broke it.",
+          "mood": "grave"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "It broke because I was alone. With twelve prisms and a summoner's bond, I can forge it whole. A crown for the sky."
+          "line": "It broke because I was alone. With twelve prisms and a summoner's bond, I can forge it whole. A crown for the sky.",
+          "mood": "grave"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "Show me your legacy, then. I move across every realm I ever touched. Keep up."
+          "line": "Show me your legacy, then. I move across every realm I ever touched. Keep up.",
+          "mood": "neutral"
         },
         {
           "speaker": "Pell",
-          "line": "Pell is not scared. Pell is a little scared."
+          "line": "Pell is not scared. Pell is a little scared.",
+          "mood": "neutral"
         }
       ],
       "post_boss": [
         {
           "speaker": "Ari Zephyr",
-          "line": "Your Sigil was never alone on the field. Every one of your monsters could reach it, and every one protected it."
+          "line": "Your Sigil was never alone on the field. Every one of your monsters could reach it, and every one protected it.",
+          "mood": "neutral"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "I commanded. You answered. That is the difference I could not see for so very long."
+          "line": "I commanded. You answered. That is the difference I could not see for so very long.",
+          "mood": "neutral"
         },
         {
           "speaker": "Elio",
-          "line": "The Sigil isn't a crown. It never was."
+          "line": "The Sigil isn't a crown. It never was.",
+          "mood": "neutral"
         },
         {
           "speaker": "Ari Zephyr",
-          "line": "Then take the last prism, Summoner, and show me what it is."
+          "line": "Then take the last prism, Summoner, and show me what it is.",
+          "mood": "neutral"
         }
       ]
     }
@@ -895,89 +1089,110 @@
   "finale": [
     {
       "speaker": "Narrator",
-      "line": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Mixed Prism, rises in every color at once."
+      "line": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Mixed Prism, rises in every color at once. I did not write this.",
+      "mood": "wonder"
     },
     {
       "speaker": "Narrator",
-      "line": "One by one, the keepers arrive: Lyra, Varen, Niko, Rhea, Renn, Zara, Cira, Tarin, Silas, Sera and Mako."
+      "line": "One by one, the keepers arrive: Lyra, Varen, Niko, Rhea, Renn, Zara, Cira, Tarin, Silas, Sera and Mako. Unrehearsed. Delightful.",
+      "mood": "delighted"
     },
     {
       "speaker": "Cira Dawn",
-      "line": "Don't look so surprised, Ari. Light and Dark have always been rivals. Rivals show up."
+      "line": "Don't look so surprised, Ari. Light and Dark have always been rivals. Rivals show up.",
+      "mood": "grave"
     },
     {
       "speaker": "Ari Zephyr",
-      "line": "Cira. ...You came."
+      "line": "Cira. ...You came.",
+      "mood": "sad"
     },
     {
       "speaker": "Elio",
-      "line": "Ari wanted one light. But a prism doesn't make one light. It splits it into every color there is."
+      "line": "Ari wanted one light. But a prism doesn't make one light. It splits it into every color there is.",
+      "mood": "neutral"
     },
     {
       "speaker": "Sera Vale",
-      "line": "Clear enough to show all of them."
+      "line": "Clear enough to show all of them.",
+      "mood": "neutral"
     },
     {
       "speaker": "Elio",
-      "line": "So the Sigil can't sit on a throne. It has to be held by everyone it holds together."
+      "line": "So the Sigil can't sit on a throne. It has to be held by everyone it holds together.",
+      "mood": "grave"
     },
     {
       "speaker": "Elio",
-      "line": "Keepers, put a hand to your prism. Not to give it up. To hold it with me."
+      "line": "Keepers, put a hand to your prism. Not to give it up. To hold it with me.",
+      "mood": "neutral"
     },
     {
       "speaker": "Rhea Volt",
-      "line": "Twelve of us at one table again. ...Fine. Just this once."
+      "line": "Twelve of us at one table again. ...Fine. Just this once.",
+      "mood": "amused"
     },
     {
       "speaker": "Varen Lux",
-      "line": "On my count, then. Discipline to the last."
+      "line": "On my count, then. Discipline to the last.",
+      "mood": "neutral"
     },
     {
       "speaker": "Pell",
-      "line": "Pell too! Pell holds too!"
+      "line": "Pell too! Pell holds too!",
+      "mood": "amused"
     },
     {
       "speaker": "Ari Zephyr",
-      "line": "I spent an age building a legacy to finish alone. Perhaps a legacy is only what you hand to others."
+      "line": "I spent an age building a legacy to finish alone. Perhaps a legacy is only what you hand to others.",
+      "mood": "neutral"
     },
     {
       "speaker": "Narrator",
-      "line": "Twelve facets, twelve keepers, one Summoner. The Aether Sigil reforms, not as a crown, but as a ring of light."
+      "line": "I wrote the first ending, you see. It was perfect, and so it broke. This one I did not write: a ring of light, and the Sigil whole.",
+      "mood": "solemn"
     },
     {
       "speaker": "Narrator",
-      "line": "Above them, the crack in the sky begins, slowly, to close."
+      "line": "Above them, the crack in the sky begins, slowly, to close. And I am out of things to say. Thank you, Elio.",
+      "mood": "fond"
     },
     {
       "speaker": "Elio",
-      "line": "Worlds called. We answered."
+      "line": "Worlds called. We answered.",
+      "mood": "determined"
     }
   ],
   "epilogue": [
     {
       "speaker": "Narrator",
-      "line": "The Prism Realms still float apart. But now they drift together, held by twelve towers whose doors stay open."
+      "line": "The Prism Realms still float apart. But now they drift together, held by twelve towers whose doors stay open. A new page begins.",
+      "mood": "fond"
     },
     {
       "speaker": "Maren Oake",
-      "line": "Lowmere's skystone glows again. The bell rang this morning by itself. I'm choosing to call that a good sign."
+      "line": "Lowmere's skystone glows again. The bell rang this morning by itself. I'm choosing to call that a good sign.",
+      "mood": "amused"
     },
     {
       "speaker": "Kess Varrow",
-      "line": "Rematch. Verdant Spire, tomorrow, noon. I've been training a fusion you've never seen."
+      "line": "Rematch. Verdant Spire, tomorrow, noon. I've been training a fusion you've never seen.",
+      "mood": "amused"
     },
     {
       "speaker": "Elio",
-      "line": "You're on. Bring your whole team. I'll bring mine."
+      "line": "You're on. Bring your whole team. I'll bring mine.",
+      "mood": "amused"
     },
     {
       "speaker": "Pell",
-      "line": "Pell is evolving! ...Pell thinks Pell is evolving."
+      "line": "Pell is evolving! ...Pell thinks Pell is evolving.",
+      "mood": "sad"
     },
     {
       "speaker": "Narrator",
-      "line": "Collect. Command. Evolve. Conquer. And when the worlds call again, answer."
+      "line": "Collect. Command. Evolve. Conquer. And when the worlds call again, answer. I will be here, pen down, listening.",
+      "mood": "fond"
     }
   ]
 }

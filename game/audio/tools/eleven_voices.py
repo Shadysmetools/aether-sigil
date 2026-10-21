@@ -101,6 +101,11 @@ def inventory(rival_globals="per-rival"):
             for i, ln in enumerate(tw.get(part, []), 1):
                 add(f"{part}_{tid}_{i:02d}", ln["speaker"], ln["line"], f"story.towers[{tid}].{part}[{i - 1}]", "story")
 
+    nar = DATA / "narrator.json"
+    if nar.exists():  # Vellum's reactive barks (data/narrator.json); ids are the bark ids
+        for b in load_json(nar).get("barks", []):
+            add(b["id"], "Narrator", b["line"], f"narrator.{b['id']}", "narrator_bark")
+
     samples = bible["dialogue_system"]["sample_lines"]
     for n in (1, 3, 5):  # Hero barks
         who, text = split_line(samples[n - 1], "")
@@ -144,8 +149,10 @@ def inventory(rival_globals="per-rival"):
 # ------------------------------------------------------------------ casting
 
 MAIN = {
-    "Narrator": ("narrator", "adult", "male", "warm, wonder-filled storyteller; unhurried, gentle gravitas",
-                 "neutral / british", ["narration", "calm", "deep", "warm", "storyteller"]),
+    "Narrator": ("Vellum, the Narrator: archivist spirit bound to the Aether Sigil", "adult, ageless (reads mid-40s)", "male",
+                 "dry, exact, fond; a measured 'reading to a quiet room' voice with a small lift on punchlines; "
+                 "tender and unhurried when serious, never theatrical",
+                 "light british, received", ["narration", "calm", "warm", "storyteller", "mature"]),
     "Elio": ("protagonist summoner", "young (17-20)", "male", "earnest, brave, kind; quietly determined, never smug",
              "neutral american", ["young", "friendly", "conversational", "warm"]),
     "Pell": ("Elio's small hatchling monster companion", "child-like creature", "female",

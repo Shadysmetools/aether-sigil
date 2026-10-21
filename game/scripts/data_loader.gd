@@ -10,6 +10,7 @@ const PROGRESSION_PATH := "res://data/progression.json"
 const RESERVED_PATH := "res://data/reserved_names.json"
 const STORY_PATH := "res://data/story.json"
 const TRIGGERS_PATH := "res://data/dialogue_triggers.json"
+const NARRATOR_PATH := "res://data/narrator.json"
 const SIZE := 12
 
 static var _bible: Dictionary = {}
@@ -18,6 +19,7 @@ static var _progression: Dictionary = {}
 static var _reserved: Dictionary = {}
 static var _story: Dictionary = {}
 static var _triggers: Dictionary = {}
+static var _narrator: Dictionary = {}
 static var _stages: Array = []          ## level dicts in play order, each with tower_id/tower_name/index added
 static var _stage_by_id: Dictionary = {}
 static var _monsters: Dictionary = {}   ## id -> monster dict (numbers converted to int)
@@ -44,6 +46,7 @@ static func ensure_loaded() -> bool:
 	_reserved = _parse(RESERVED_PATH)
 	_story = _parse(STORY_PATH)
 	_triggers = _parse(TRIGGERS_PATH)
+	_narrator = _parse(NARRATOR_PATH)
 	if _bible.is_empty() or _rules.is_empty():
 		return false
 	var i := 0
@@ -178,3 +181,9 @@ static func vec(a: Variant) -> Vector2i:
 	if a is Array and a.size() >= 2:
 		return Vector2i(int(a[0]), int(a[1]))
 	return Vector2i(-1, -1)
+
+
+## The Narrator character (Vellum): name, mood->expression table, reactive barks (data/narrator.json).
+static func narrator() -> Dictionary:
+	ensure_loaded()
+	return _narrator

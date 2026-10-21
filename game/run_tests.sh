@@ -46,6 +46,7 @@ run cards  yes --script res://tests/test_ui_cards.gd
 run sim    yes --script res://tests/test_sim.gd
 run intro  yes --script res://tests/test_intro.gd
 run assets yes --script res://tests/test_assets.gd
+run scene  yes --script res://tests/test_scene.gd
 run board3d yes --script res://tests/test_board3d.gd
 run audio  yes --script res://tests/test_audio.gd
 run anim   yes --script res://tests/test_anim.gd

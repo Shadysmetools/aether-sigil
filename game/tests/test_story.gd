@@ -54,6 +54,10 @@ func test_schema() -> void:
 		eq(JSON.stringify(j.data), JSON.stringify(Data.story()), "game/data/story.json is an exact copy of data/story.json")
 	else:
 		print("  NOTE  data/story.json not present yet; the placeholder is in use")
+	var root_nar := ProjectSettings.globalize_path("res://").path_join("../data/narrator.json")
+	if FileAccess.file_exists(root_nar):
+		eq(FileAccess.get_file_as_string(root_nar), FileAccess.get_file_as_string("res://data/narrator.json"), "game/data/narrator.json is an exact copy of data/narrator.json")
+	eq(str(Data.narrator().get("name", "")), "Vellum", "narrator.json names the Narrator")
 	var bad: Dictionary = JSON.parse_string(JSON.stringify(Data.story()))
 	bad.version = 2
 	check(Story.validate(bad).any(func(e): return e.begins_with("version")), "wrong version rejected")

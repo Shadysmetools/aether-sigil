@@ -1,0 +1,444 @@
+{
+ "version": 1,
+ "speaker_id": "Narrator",
+ "name": "Vellum",
+ "title": "the Archivist of the Aether Sigil",
+ "expressions": [
+  "neutral",
+  "amused",
+  "grave",
+  "awed",
+  "angry",
+  "determined",
+  "sad"
+ ],
+ "mood_expression": {
+  "neutral": "neutral",
+  "dry": "neutral",
+  "calm": "neutral",
+  "wistful": "neutral",
+  "amused": "amused",
+  "wry": "amused",
+  "delighted": "amused",
+  "fond": "amused",
+  "proud": "amused",
+  "grave": "grave",
+  "solemn": "grave",
+  "ominous": "grave",
+  "rueful": "grave",
+  "uneasy": "grave",
+  "tense": "grave",
+  "awed": "awed",
+  "wonder": "awed",
+  "hushed": "awed",
+  "stunned": "awed",
+  "angry": "angry",
+  "determined": "determined",
+  "resolute": "determined",
+  "sad": "sad",
+  "sorrow": "sad"
+ },
+ "phases": [
+  {
+   "id": "early",
+   "towers": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "mid",
+   "towers": [
+    5,
+    8
+   ]
+  },
+  {
+   "id": "late",
+   "towers": [
+    9,
+    12
+   ]
+  }
+ ],
+ "barks": [
+  {
+   "id": "bark_battle_start_early",
+   "event": "battle_start",
+   "phase": "early",
+   "mood": "wry",
+   "line": "Another page begins. Do try to survive it, Summoner."
+  },
+  {
+   "id": "bark_battle_start_mid",
+   "event": "battle_start",
+   "phase": "mid",
+   "mood": "dry",
+   "line": "Positions, everyone. I shall keep the margins clear."
+  },
+  {
+   "id": "bark_battle_start_late",
+   "event": "battle_start",
+   "phase": "late",
+   "mood": "fond",
+   "line": "Begin, Elio. I have stopped predicting how this ends."
+  },
+  {
+   "id": "bark_first_crack_early",
+   "event": "first_crack",
+   "phase": "early",
+   "mood": "wry",
+   "line": "A Vessel cracks. A frightful word, 'crack'. Carry on."
+  },
+  {
+   "id": "bark_first_crack_mid",
+   "event": "first_crack",
+   "phase": "mid",
+   "mood": "delighted",
+   "line": "There. A Vessel opens, and something steps out. Lovely."
+  },
+  {
+   "id": "bark_first_crack_late",
+   "event": "first_crack",
+   "phase": "late",
+   "mood": "wonder",
+   "line": "Cracked, and still whole. I did not know that was possible."
+  },
+  {
+   "id": "bark_big_hit_early",
+   "event": "big_hit",
+   "phase": "early",
+   "mood": "uneasy",
+   "line": "Ah. That will leave a mark in the margin."
+  },
+  {
+   "id": "bark_big_hit_mid",
+   "event": "big_hit",
+   "phase": "mid",
+   "mood": "tense",
+   "line": "A heavy blow. Breathe. The page is not torn."
+  },
+  {
+   "id": "bark_big_hit_late",
+   "event": "big_hit",
+   "phase": "late",
+   "mood": "tense",
+   "line": "That hurt to watch. Steady, Elio."
+  },
+  {
+   "id": "bark_ko_early",
+   "event": "ko",
+   "phase": "early",
+   "mood": "rueful",
+   "line": "A monster falls. Noted. Gently noted."
+  },
+  {
+   "id": "bark_ko_mid",
+   "event": "ko",
+   "phase": "mid",
+   "mood": "rueful",
+   "line": "One of them down. The story permits second drafts."
+  },
+  {
+   "id": "bark_ko_late",
+   "event": "ko",
+   "phase": "late",
+   "mood": "resolute",
+   "line": "Down, not out. Nothing ends on a single line."
+  },
+  {
+   "id": "bark_vessel_broken_early",
+   "event": "vessel_broken",
+   "phase": "early",
+   "mood": "solemn",
+   "line": "A Vessel breaks. It is only a Vessel. ...Noted."
+  },
+  {
+   "id": "bark_vessel_broken_mid",
+   "event": "vessel_broken",
+   "phase": "mid",
+   "mood": "solemn",
+   "line": "A Vessel breaks. It is never only a Vessel."
+  },
+  {
+   "id": "bark_vessel_broken_late",
+   "event": "vessel_broken",
+   "phase": "late",
+   "mood": "rueful",
+   "line": "Broken things can be mended. I speak from experience."
+  },
+  {
+   "id": "bark_low_sigil_hp_early",
+   "event": "low_sigil_hp",
+   "phase": "early",
+   "mood": "solemn",
+   "line": "The Sigil dims, Summoner. I would rather not narrate that ending."
+  },
+  {
+   "id": "bark_low_sigil_hp_mid",
+   "event": "low_sigil_hp",
+   "phase": "mid",
+   "mood": "tense",
+   "line": "The Sigil is low. Elio, please. I have written that ending once."
+  },
+  {
+   "id": "bark_low_sigil_hp_late",
+   "event": "low_sigil_hp",
+   "phase": "late",
+   "mood": "resolute",
+   "line": "Hold the light, Elio. Hold it for all of us."
+  },
+  {
+   "id": "bark_victory_early",
+   "event": "victory",
+   "phase": "early",
+   "mood": "amused",
+   "line": "Victory. I shall pretend I expected it."
+  },
+  {
+   "id": "bark_victory_mid",
+   "event": "victory",
+   "phase": "mid",
+   "mood": "amused",
+   "line": "Well fought. I have stopped pretending to expect it."
+  },
+  {
+   "id": "bark_victory_late",
+   "event": "victory",
+   "phase": "late",
+   "mood": "delighted",
+   "line": "Won, and not a word of it mine. Splendid."
+  },
+  {
+   "id": "bark_defeat_early",
+   "event": "defeat",
+   "phase": "early",
+   "mood": "rueful",
+   "line": "A page lost. Turn it, and try again."
+  },
+  {
+   "id": "bark_defeat_mid",
+   "event": "defeat",
+   "phase": "mid",
+   "mood": "resolute",
+   "line": "Defeat is only a draft. Revise."
+  },
+  {
+   "id": "bark_defeat_late",
+   "event": "defeat",
+   "phase": "late",
+   "mood": "resolute",
+   "line": "We lose this page, not the book. Again, Elio."
+  },
+  {
+   "id": "bark_evolution_early",
+   "event": "evolution",
+   "phase": "early",
+   "mood": "wonder",
+   "line": "A new form. Growth is the least predictable chapter."
+  },
+  {
+   "id": "bark_evolution_mid",
+   "event": "evolution",
+   "phase": "mid",
+   "mood": "wonder",
+   "line": "It changes, and is still itself. How wonderful."
+  },
+  {
+   "id": "bark_evolution_late",
+   "event": "evolution",
+   "phase": "late",
+   "mood": "wonder",
+   "line": "Look at it. Not a word of that was mine either."
+  },
+  {
+   "id": "bark_fusion_early",
+   "event": "fusion",
+   "phase": "early",
+   "mood": "stunned",
+   "line": "Two into one. I would not have written that."
+  },
+  {
+   "id": "bark_fusion_mid",
+   "event": "fusion",
+   "phase": "mid",
+   "mood": "delighted",
+   "line": "Two margins, one page. Ink everywhere. I love it."
+  },
+  {
+   "id": "bark_fusion_late",
+   "event": "fusion",
+   "phase": "late",
+   "mood": "fond",
+   "line": "Fused, and better for it. Remember that, all of you."
+  },
+  {
+   "id": "bark_arrival_01",
+   "event": "arrival",
+   "tower": "01",
+   "mood": "wry",
+   "line": "Verdant Spire. Mind the pollen."
+  },
+  {
+   "id": "bark_arrival_02",
+   "event": "arrival",
+   "tower": "02",
+   "mood": "dry",
+   "line": "Ember Bastion. Count the vents; they count you."
+  },
+  {
+   "id": "bark_arrival_03",
+   "event": "arrival",
+   "tower": "03",
+   "mood": "dry",
+   "line": "Tideglass Citadel. Watch the glass."
+  },
+  {
+   "id": "bark_arrival_04",
+   "event": "arrival",
+   "tower": "04",
+   "mood": "tense",
+   "line": "Frost Meridian. The cold is the least of it."
+  },
+  {
+   "id": "bark_arrival_05",
+   "event": "arrival",
+   "tower": "05",
+   "mood": "dry",
+   "line": "Iron Labyrinth. The walls will move. Move with them."
+  },
+  {
+   "id": "bark_arrival_06",
+   "event": "arrival",
+   "tower": "06",
+   "mood": "wonder",
+   "line": "Storm Crown. You have a head for heights, I trust."
+  },
+  {
+   "id": "bark_arrival_07",
+   "event": "arrival",
+   "tower": "07",
+   "mood": "uneasy",
+   "line": "Obsidian Eclipse. Stay near the light. I will stay near you."
+  },
+  {
+   "id": "bark_arrival_08",
+   "event": "arrival",
+   "tower": "08",
+   "mood": "hushed",
+   "line": "The Sunken Archive. Touch nothing on the shelves. Please."
+  },
+  {
+   "id": "bark_arrival_09",
+   "event": "arrival",
+   "tower": "09",
+   "mood": "wonder",
+   "line": "Astral Observatory. The stars are listening, Elio."
+  },
+  {
+   "id": "bark_arrival_10",
+   "event": "arrival",
+   "tower": "10",
+   "mood": "hushed",
+   "line": "Crystal Sanctum. Everything here rings. Let it."
+  },
+  {
+   "id": "bark_arrival_11",
+   "event": "arrival",
+   "tower": "11",
+   "mood": "solemn",
+   "line": "Rift Frontier. Nearly there. I can hear the crack from here."
+  },
+  {
+   "id": "bark_arrival_12",
+   "event": "arrival",
+   "tower": "12",
+   "mood": "solemn",
+   "line": "Sunforge Throne. This is the last page I know. Walk, Elio."
+  },
+  {
+   "id": "bark_clear_01",
+   "event": "clear",
+   "tower": "01",
+   "mood": "fond",
+   "line": "One facet lit; eleven to go."
+  },
+  {
+   "id": "bark_clear_02",
+   "event": "clear",
+   "tower": "02",
+   "mood": "proud",
+   "line": "Discipline, rewarded. Two."
+  },
+  {
+   "id": "bark_clear_03",
+   "event": "clear",
+   "tower": "03",
+   "mood": "fond",
+   "line": "Three. The tide turns your way."
+  },
+  {
+   "id": "bark_clear_04",
+   "event": "clear",
+   "tower": "04",
+   "mood": "fond",
+   "line": "Four. Lowmere breathes easier."
+  },
+  {
+   "id": "bark_clear_05",
+   "event": "clear",
+   "tower": "05",
+   "mood": "amused",
+   "line": "Five. Even the timers were on time."
+  },
+  {
+   "id": "bark_clear_06",
+   "event": "clear",
+   "tower": "06",
+   "mood": "proud",
+   "line": "Six. Half the sky, mended."
+  },
+  {
+   "id": "bark_clear_07",
+   "event": "clear",
+   "tower": "07",
+   "mood": "fond",
+   "line": "Seven. Even shadows keep faith."
+  },
+  {
+   "id": "bark_clear_08",
+   "event": "clear",
+   "tower": "08",
+   "mood": "rueful",
+   "line": "Eight. Do not ask what I read there."
+  },
+  {
+   "id": "bark_clear_09",
+   "event": "clear",
+   "tower": "09",
+   "mood": "wonder",
+   "line": "Nine. The stars forgive you."
+  },
+  {
+   "id": "bark_clear_10",
+   "event": "clear",
+   "tower": "10",
+   "mood": "fond",
+   "line": "Ten. Ring the bell, Elio."
+  },
+  {
+   "id": "bark_clear_11",
+   "event": "clear",
+   "tower": "11",
+   "mood": "solemn",
+   "line": "Eleven. One left. Only one."
+  },
+  {
+   "id": "bark_clear_12",
+   "event": "clear",
+   "tower": "12",
+   "mood": "fond",
+   "line": "Twelve. The pen is yours, Elio."
+  }
+ ]
+}

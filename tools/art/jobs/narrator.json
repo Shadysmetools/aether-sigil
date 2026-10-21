@@ -1,0 +1,68 @@
+{
+ "defaults": {
+  "prompt_suffix": "fantasy, intricate details, high contrast, dramatic lighting, glowing magic, deep navy blue and gold and violet color scheme, painterly, masterpiece, high score, great score, absurdres",
+  "negative": "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, low score, bad score, average score, signature, watermark, username, blurry, logo, frame, border, chibi, pastel colors, washed out, flat color, simple shading, monochrome",
+  "ipa_weight": 1.0,
+  "ipa_weight_type": "style transfer",
+  "steps": 28,
+  "cfg": 5.0
+ },
+ "jobs": [
+  {
+   "id": "narrator__neutral",
+   "prompt": "1other, androgynous, solo, upper body, portrait, looking at viewer, young ethereal archivist spirit, long flowing silver-white hair with thin gold ribbon strands, glowing amber eyes, delicate anime face, pale luminous skin, hooded mantle of black and gold with parchment scroll trim and glowing gold script, ornate gold embroidery, scroll rolls at the shoulders, broken golden halo ring floating above the head with one gap, floating glowing silver quill shard beside the shoulder, drifting glowing gold glyph motes, violet aura, polished anime key visual, deep navy blue starry background, calm composed expression, level amber eyes, closed mouth",
+   "negative": "scenery, landscape, multiple views, reference sheet, text, letters, lowres, bad anatomy, bad hands, cropped, watermark, logo, chibi, photorealistic, 3d render, extra limbs",
+   "width": 1024,
+   "height": 1024,
+   "style_ref": "../refs/ref_elio.png",
+   "ipa_weight": 0.7,
+   "seed": 4207,
+   "out": "../../../art/ai/portraits/narrator__neutral.png"
+  },
+  {
+   "id": "narrator__amused",
+   "prompt": "1other, androgynous, solo, upper body, portrait, looking at viewer, young ethereal archivist spirit, long flowing silver-white hair with thin gold ribbon strands, glowing amber eyes, delicate anime face, pale luminous skin, hooded mantle of black and gold with parchment scroll trim and glowing gold script, ornate gold embroidery, scroll rolls at the shoulders, broken golden halo ring floating above the head with one gap, floating glowing silver quill shard beside the shoulder, drifting glowing gold glyph motes, violet aura, polished anime key visual, deep navy blue starry background, amused expression, eyes curved into happy arcs, one raised eyebrow, faint wry smile",
+   "negative": "scenery, landscape, multiple views, reference sheet, text, letters, lowres, bad anatomy, bad hands, cropped, watermark, logo, chibi, photorealistic, 3d render, extra limbs",
+   "width": 1024,
+   "height": 1024,
+   "style_ref": "../refs/ref_elio.png",
+   "ipa_weight": 0.7,
+   "seed": 4207,
+   "out": "../../../art/ai/portraits/narrator__amused.png"
+  },
+  {
+   "id": "narrator__grave",
+   "prompt": "1other, androgynous, solo, upper body, portrait, looking at viewer, young ethereal archivist spirit, long flowing silver-white hair with thin gold ribbon strands, glowing amber eyes, delicate anime face, pale luminous skin, hooded mantle of black and gold with parchment scroll trim and glowing gold script, ornate gold embroidery, scroll rolls at the shoulders, broken golden halo ring floating above the head with one gap, floating glowing silver quill shard beside the shoulder, drifting glowing gold glyph motes, violet aura, polished anime key visual, deep navy blue starry background, grave solemn expression, half-lidded amber eyes, eyebrows drawn together and slightly raised, downturned lips",
+   "negative": "scenery, landscape, multiple views, reference sheet, text, letters, lowres, bad anatomy, bad hands, cropped, watermark, logo, chibi, photorealistic, 3d render, extra limbs",
+   "width": 1024,
+   "height": 1024,
+   "style_ref": "../refs/ref_elio.png",
+   "ipa_weight": 0.7,
+   "seed": 4207,
+   "out": "../../../art/ai/portraits/narrator__grave.png"
+  },
+  {
+   "id": "narrator__awed",
+   "prompt": "1other, androgynous, solo, upper body, portrait, looking at viewer, young ethereal archivist spirit, long flowing silver-white hair with thin gold ribbon strands, glowing amber eyes, delicate anime face, pale luminous skin, hooded mantle of black and gold with parchment scroll trim and glowing gold script, ornate gold embroidery, scroll rolls at the shoulders, broken golden halo ring floating above the head with one gap, floating glowing silver quill shard beside the shoulder, drifting glowing gold glyph motes, violet aura, polished anime key visual, deep navy blue starry background, awed expression, wide round amber eyes with bright highlights, raised eyebrows, small open mouth in wonder",
+   "negative": "scenery, landscape, multiple views, reference sheet, text, letters, lowres, bad anatomy, bad hands, cropped, watermark, logo, chibi, photorealistic, 3d render, extra limbs",
+   "width": 1024,
+   "height": 1024,
+   "style_ref": "../refs/ref_elio.png",
+   "ipa_weight": 0.7,
+   "seed": 4207,
+   "out": "../../../art/ai/portraits/narrator__awed.png"
+  },
+  {
+   "id": "narrator_full",
+   "prompt": "1other, androgynous, solo, full body, standing, robe tapering into drifting glyph motes, no feet, looking at viewer, young ethereal archivist spirit, long flowing silver-white hair with thin gold ribbon strands, glowing amber eyes, delicate anime face, pale luminous skin, hooded mantle of black and gold with parchment scroll trim and glowing gold script, ornate gold embroidery, scroll rolls at the shoulders, broken golden halo ring floating above the head with one gap, floating glowing silver quill shard beside the shoulder, drifting glowing gold glyph motes, violet aura, polished anime key visual, simple background, white background, calm composed expression",
+   "negative": "scenery, landscape, multiple views, reference sheet, text, letters, lowres, bad anatomy, bad hands, cropped, watermark, logo, chibi, photorealistic, 3d render, extra limbs, sky, clouds",
+   "width": 832,
+   "height": 1216,
+   "style_ref": "../refs/ref_elio_full.png",
+   "ipa_weight": 0.7,
+   "seed": 4207,
+   "transparent": true,
+   "out": "../../../art/ai/characters/narrator.png"
+  }
+ ]
+}

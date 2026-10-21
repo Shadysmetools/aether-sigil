@@ -63,7 +63,7 @@
       "source": "template",
       "mode": "scene",
       "when": "first clear of a tower's L10: the bible's tower_reward is granted and saved",
-      "template": "You obtained the {reward}!"
+      "template": "Entered in the ledger, with some satisfaction: the {reward}. Yours."
     }
   },
   "story": {

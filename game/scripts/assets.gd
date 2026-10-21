@@ -49,6 +49,7 @@ static var _concept_tex: Dictionary = {}    ## Texture2D -> true for rectangular
 
 
 static func clear_cache() -> void:
+	_legacy_narrator = -1
 	_cache = {}
 	_concepts = {}
 	_concept_tex = {}
@@ -305,12 +306,101 @@ static func element_icon(element_family: String) -> Texture2D:
 
 ## Dialogue portrait for a speaker NAME (e.g. "Kess Varrow" -> portraits/kess_varrow). null = procedural.
 static func portrait(speaker: String) -> Texture2D:
+	if speaker == "Narrator":
+		return narrator_art("neutral")
 	var t := _resolve(["portraits/%s" % slug(speaker)], [])
 	if t == null:
 		t = concept("champions", slug(speaker))
 	if t == null and speaker == str(Data.story().get("protagonist", {}).get("name", "")):
 		t = concept("protagonist", "summoner_closeup")
+	if t == null:
+		t = _resolve(["characters/%s" % slug(speaker)], [])
 	return t
+
+
+## Character art resolver chain (first hit wins), docs/NARRATOR.md and art/NARRATOR-PROMPTS.md:
+##   portraits/<id>__<mood>  ->  portraits/<id>  ->  characters/<id> (full body)  ->  from-concepts crops
+##   ->  a recoloured tower champion portrait (borrowed())  ->  procedural figure (ui_art.gd).
+## The seven moods; every speaker may ship any subset, missing moods fall back to portraits/<id>.
+const MOODS := ["neutral", "amused", "grave", "awed", "angry", "determined", "sad"]
+## Cast with no painted art yet who borrow a tower champion's portrait (stage rivals borrow their own tower's).
+const BORROW_TOWER := {"Kess Varrow": "06", "Maren Oake": "01"}
+const NARRATOR_EXPR := ["neutral", "amused", "grave", "awed"]
+static var _legacy_narrator := -1
+
+
+## Vellum portrait by mood: portraits/narrator__<mood>; angry/sad fold into grave, determined into neutral.
+## The old logo-emblem restore at portraits/narrator (manifest kind "restore") is NOT a character and is ignored.
+static func narrator_art(expr: String = "neutral") -> Texture2D:
+	var t := _resolve(["portraits/narrator__%s" % expr], [])
+	if t == null:
+		var folded := "grave" if expr == "angry" or expr == "sad" else ("neutral" if expr == "determined" else expr)
+		if folded != expr:
+			t = _resolve(["portraits/narrator__%s" % folded], [])
+	if t == null and not _narrator_is_legacy_emblem():
+		t = _resolve(["portraits/narrator"], [])
+	return t
+
+
+## Portrait by speaker and mood along the chain above (null = borrowed / procedural).
+static func portrait_mood(speaker: String, mood: String = "neutral") -> Texture2D:
+	if speaker == "Narrator":
+		return narrator_art(mood)
+	var t := _resolve(["portraits/%s__%s" % [slug(speaker), mood]], []) if mood != "" else null
+	return t if t != null else portrait(speaker)
+
+
+## Full-body cut-out: characters/<id> (the concept sheet crops carry labels, so they are not used). null = bust card.
+static func full_body(speaker: String) -> Texture2D:
+	return _resolve(["characters/%s" % slug(speaker)], [])
+
+
+static func narrator_full() -> Texture2D:
+	return full_body("Narrator")
+
+
+## Recolour for a borrowed portrait: a stable hue per name, softened toward white (a cheap palette shift).
+static func tint_for(who: String) -> Color:
+	return Color.from_hsv(float(absi(hash(who)) % 360) / 360.0, 0.5, 1.0).lerp(Color.WHITE, 0.45)
+
+
+## {tex, tint, from} for a speaker with no art of their own: their tower's champion portrait, recoloured.
+## {} when the speaker has art, is the Narrator, or no champion art exists.
+static func borrowed(speaker: String) -> Dictionary:
+	if speaker == "" or speaker == "Narrator" or portrait(speaker) != null:
+		return {}
+	var tid: String = str(BORROW_TOWER.get(speaker, ""))
+	if tid == "":
+		for st in Data.stages():
+			if str(st.opponent) == speaker:
+				tid = str(st.tower_id)
+				break
+	if tid == "":
+		return {}
+	for t in Data.towers():
+		if str(t.tower_id) == tid and str(t.tower_boss) != speaker:
+			var tex := portrait(str(t.tower_boss))
+			if tex != null:
+				return {"tex": tex, "tint": tint_for(speaker), "from": str(t.tower_boss)}
+	return {}
+
+
+static func _narrator_is_legacy_emblem() -> bool:
+	if _legacy_narrator >= 0:
+		return _legacy_narrator == 1
+	_legacy_narrator = 0
+	for root in ai_roots():
+		if root.ends_with(CONCEPTS):
+			continue
+		var mf: String = root.path_join("manifest.json")
+		if not FileAccess.file_exists(mf):
+			continue
+		var j := JSON.new()
+		if j.parse(FileAccess.get_file_as_string(mf)) == OK and typeof(j.data) == TYPE_DICTIONARY:
+			for it in j.data.get("items", []):
+				if typeof(it) == TYPE_DICTIONARY and str(it.get("slot", "")) == "portraits/narrator" and str(it.get("kind", "")) == "restore":
+					_legacy_narrator = 1
+	return _legacy_narrator == 1
 
 
 ## Painted tower card scene (600x800) for the world map. null = procedural card.

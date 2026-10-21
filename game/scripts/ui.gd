@@ -23,6 +23,9 @@ const Cinematic = preload("res://scripts/cinematic.gd")
 # Meta screens (title hub, compendium, cards): scripts/ui/. The section "meta screens" below wires them.
 const MonsterCard = preload("res://scripts/ui/monster_card.gd")
 const Kit = preload("res://scripts/ui/menu_kit.gd")
+const Narrator = preload("res://scripts/narrator.gd")
+const SceneDialogue = preload("res://scripts/ui/scene_dialogue.gd")
+const BarkBubble = preload("res://scripts/ui/bark_bubble.gd")
 const Widgets = preload("res://scripts/ui/squad_widgets.gd")
 const TitleHub = preload("res://scripts/ui/title_hub.gd")
 const CollectionScreen = preload("res://scripts/ui/collection_screen.gd")
@@ -123,6 +126,13 @@ var tower_list: VBoxContainer
 var current_tower := ""
 var portrait: Portrait
 var dialogue_skip: Button
+var scene: SceneDialogue                       ## scene_dialogue.gd: characters standing in the scene
+var dialogue_panel: PanelContainer
+var auto_button: Button
+var fast_button: Button
+var narrator_bubble: BarkBubble             ## bark_bubble.gd: Vellum, floating, in battle and on meta screens
+var rival_bubble: BarkBubble                ## the stage rival taunt beside the turn order
+var narr_dir: Narrator.BarkDirector
 var bark_label: Label
 var barks: Dictionary = {}
 var last_stars := 0
@@ -527,6 +537,7 @@ func _on_evolve(uid: String) -> void:
 		return
 	evolved.emit(uid, line)
 	show_evolution(line)
+	narrator_say("evolution", true)
 	var after := progress.get_inst(uid)
 	Cinematic.play(self, "evolution", {"from_tex": Cinematic.art(str(before.get("form_id", ""))), "to_tex": Cinematic.art(str(after.get("form_id", ""))),
 		"from_name": str(before.get("name", "")), "to_name": str(after.get("name", "")),
@@ -623,6 +634,7 @@ func _on_fusion_confirm() -> void:
 		"family": str(res.get("element_family", "Arcane"))})
 	fused.emit(str(res.uid))
 	show_fusion()
+	narrator_say("fusion", true)
 	fusion_preview_label.text = Story.template("new_monster").format({"name": res.name})
 
 
@@ -685,7 +697,8 @@ func _on_tower_pressed(tid: String) -> void:
 	if not progress.tower_unlocked(tid):
 		return
 	show_tower(tid)
-	_play_story("arrival_" + tid, func(): pass)
+	if not _play_story("arrival_" + tid, func(): pass):
+		narrator_say("arrival")
 
 
 ## Plays a story sequence once (seen-flag in the save); skipping counts as seen.
@@ -694,7 +707,9 @@ func _play_story(key: String, done: Callable) -> bool:
 		done.call()
 		return false
 	progress.mark_seen(key)
-	show_dialogue(Story.lines(key), done)
+	var cut := key.rfind("_")
+	var tid := key.substr(cut + 1) if cut > 0 and key.substr(cut + 1).is_valid_int() else ""
+	show_dialogue(Story.lines(key), done, tid, true)
 	return true
 
 
@@ -709,6 +724,7 @@ func _on_dialogue_skip() -> void:
 
 
 func _finish_dialogue() -> void:
+	scene.end()
 	dialogue_box.visible = false
 	if _dialogue_done.is_valid():
 		var cb := _dialogue_done
@@ -735,6 +751,42 @@ func _check_barks() -> void:
 		fire.call("rival_ko", 4)
 	if state.symbol_hp[E] * 2 <= state.symbol_max:
 		fire.call("boss_phase", 5)
+	# the rival taunts from a pop-up beside the turn order (bible sample lines 2 and 6); Vellum reacts to events
+	var taunt := func(key: String, n: int) -> void:
+		if not barks.has(key):
+			barks[key] = true
+			var d := Story.global_line(n, rival)
+			rival_bubble.place_at(Vector2(maxf(16.0, turn_panel.get_rect().end.x + 16.0), top_panel.get_rect().end.y + 10.0))
+			rival_bubble.say(rival, str(d.line), SceneDialogue.infer_mood(rival, str(d.line)), "rival_%s" % key)
+	taunt.call("rival_start", 2)
+	if state.symbol_hp[E] * 10 < 3 * state.symbol_max:
+		taunt.call("rival_low", 6)
+	if narr_dir != null:
+		var evs: Array = narr_dir.update(state)
+		if not evs.is_empty():
+			narrator_say(str(evs[0]))
+
+
+## Which tower the arc phase (early / mid / late) and per-tower barks follow.
+func _narr_tower() -> String:
+	if not state.stage.is_empty() and (hud.visible or result_box.visible):
+		return str(state.stage.tower_id)
+	if current_tower != "":
+		return current_tower
+	return str(state.stage.tower_id) if not state.stage.is_empty() else "01"
+
+
+## Vellum reactive bark (non-blocking bubble; tap to skip). Opt out: aether_sigil/accessibility/narrator_barks = false.
+func narrator_say(event: String, urgent: bool = false) -> void:
+	if narrator_bubble == null or not bool(ProjectSettings.get_setting("aether_sigil/accessibility/narrator_barks", true)):
+		return
+	var b := Narrator.bark(event, _narr_tower())
+	if b.is_empty():
+		return
+	var vp := ui_root.size if ui_root.size.x > 10 else Vector2(1080, 1920)
+	var y := (bottom_panel.get_rect().position.y - 150.0) if hud.visible and bottom_panel.size.y > 1.0 else 24.0
+	narrator_bubble.place_at(Vector2(maxf(16.0, vp.x - BarkBubble.WIDTH - 16.0), maxf(16.0, y)))
+	narrator_bubble.say(Narrator.SPEAKER, str(b.line), str(b.mood), str(b.id), urgent)
 
 
 func _build_hud() -> void:
@@ -833,7 +885,12 @@ func _build_dialogue() -> void:
 	dim.color = Color(Palette.BG, 0.42)
 	dim.gui_input.connect(_on_dialogue_tap)  # tap anywhere to advance
 	dialogue_box.add_child(dim)
+	scene = SceneDialogue.new()              # characters stand in the scene, behind the panel
+	scene.advance_requested.connect(_on_dialogue_next)
+	dialogue_box.add_child(scene)
 	var pnl := PanelContainer.new()
+	dialogue_panel = pnl
+	scene.panel = pnl
 	pnl.add_theme_stylebox_override("panel", UIArt.panel_style(Palette.SIGIL_GOLD, 1.0))
 	pnl.gui_input.connect(_on_dialogue_tap)
 	dialogue_box.add_child(pnl)
@@ -847,6 +904,7 @@ func _build_dialogue() -> void:
 	portrait.custom_minimum_size = Vector2(230, 230)
 	portrait.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portrait.visible = false                 # the scene layer shows the speaker; kept for the data (portrait.who)
 	row.add_child(portrait)
 	var tv := VBoxContainer.new()
 	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -863,14 +921,28 @@ func _build_dialogue() -> void:
 	dialogue_text.custom_minimum_size = Vector2(0, 150)
 	dialogue_text.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING  # typewriter keeps the layout
 	tv.add_child(dialogue_text)
+	scene.text_label = dialogue_text
 	var brow := HBoxContainer.new()
 	brow.add_theme_constant_override("separation", 12)
 	v.add_child(brow)
 	dialogue_skip = _button("Skip", _on_dialogue_skip, 80)
 	brow.add_child(dialogue_skip)
+	auto_button = _button("Auto", func(): scene.auto = auto_button.button_pressed, 80)
+	auto_button.toggle_mode = true
+	brow.add_child(auto_button)
+	fast_button = _button("Fast", func(): scene.fast = fast_button.button_pressed, 80)
+	fast_button.toggle_mode = true
+	brow.add_child(fast_button)
+	brow.add_child(_button("Log", func(): scene.toggle_log(ui_root), 80))
 	brow.add_child(_button("Continue", _on_dialogue_next, 80))
 	_dock(pnl, true, 24.0)
 	dialogue_box.visible = false
+	narrator_bubble = BarkBubble.new()
+	narrator_bubble.blocked = func() -> bool: return dialogue_box.visible
+	ui_root.add_child(narrator_bubble)
+	rival_bubble = BarkBubble.new()
+	rival_bubble.blocked = func() -> bool: return dialogue_box.visible
+	ui_root.add_child(rival_bubble)
 
 
 func _build_result() -> void:
@@ -1030,6 +1102,9 @@ func _open_battle() -> void:
 	mode = Mode.NONE
 	midbattle_shown = false
 	barks = {}
+	narr_dir = Narrator.BarkDirector.new()
+	narrator_bubble.clear_all()
+	rival_bubble.clear_all()
 	bark_label.text = ""
 	board.visible = true
 	hud.visible = true
@@ -1046,10 +1121,12 @@ func _open_battle() -> void:
 	if bool(st.get("boss", false)) and st.dialogue.has("boss_intro"):
 		seq.append(str(st.dialogue.boss_intro))                       # boss_phase
 	show_dialogue(seq, _continue)
+	if str(st.stage_id).right(3) == "L10":   # champion cut-in (non-modal banner over the first lines)
+		scene.cut_in(ui_root, str(st.opponent), "Keeper of the %s" % str(_tower(tid).get("name", "Tower")), 1.8)
 
 
 ## lines: "Speaker: text" strings or {speaker, line} dicts.
-func show_dialogue(lines: Array, done: Callable) -> void:
+func show_dialogue(lines: Array, done: Callable, scene_tower: String = "", scene_backdrop: bool = false) -> void:
 	var rival := str(state.stage.get("opponent", "")) if not state.stage.is_empty() else ""
 	_dialogue_queue = []
 	for l in lines:
@@ -1062,22 +1139,50 @@ func show_dialogue(lines: Array, done: Callable) -> void:
 		done.call()
 		return
 	dialogue_box.visible = true
+	scene.begin(_dialogue_queue, scene_tower, scene_backdrop)
 	_show_line()
 
 
 func _show_line() -> void:
 	var d: Dictionary = _dialogue_queue[0]
-	dialogue_speaker.text = str(d.speaker)
+	var info := scene.show_line(d)
+	dialogue_speaker.text = Narrator.plate_name(str(d.speaker))
 	dialogue_text.text = str(d.line)
 	portrait.who = str(d.speaker)
 	portrait.queue_redraw()
+	_style_dialogue(str(d.speaker), info)
 	# Typewriter: the full text is set (tests and taps read it); only the reveal is animated, and
 	# fast enough that the longest line is out well before a tap or the demo's 3 s per line.
 	if _type_tween != null:
 		_type_tween.kill()
 	dialogue_text.visible_ratio = 0.0
 	_type_tween = create_tween()
-	_type_tween.tween_property(dialogue_text, "visible_ratio", 1.0, clampf(dialogue_text.text.length() * 0.014, 0.2, 1.6))
+	_type_tween.tween_property(dialogue_text, "visible_ratio", 1.0, scene.type_time(dialogue_text.text.length()))
+
+
+## Name plate colour from the character, bubble style (speech / thought / shout) from the line mood.
+func _style_dialogue(who: String, info: Dictionary) -> void:
+	var col: Color = info.color
+	var vellum := Narrator.is_narrator(who)
+	var plate_col := Palette.CRYSTAL_VIOLET.lerp(Palette.SIGIL_GOLD, 0.35).lightened(0.35) if vellum else col.lerp(Palette.SIGIL_GOLD, 0.35).lightened(0.2)
+	dialogue_speaker.add_theme_color_override("font_color", plate_col)
+	dialogue_speaker.add_theme_font_size_override("font_size", FONT - 2 if vellum else FONT)
+	var edge := col.lerp(Palette.SIGIL_GOLD, 0.5)
+	var txt := Palette.TEXT
+	var fsize := FONT - 4
+	match str(info.style):
+		"thought":
+			edge = Palette.CRYSTAL_VIOLET
+			txt = Palette.TEXT.lerp(Palette.CRYSTAL_VIOLET, 0.3)
+		"shout":
+			edge = Palette.EMBER
+			txt = Color.WHITE
+			fsize = FONT - 1
+	if vellum and str(info.style) == "speech":
+		edge = Palette.CRYSTAL_VIOLET.lerp(Palette.SIGIL_GOLD, 0.55)
+	dialogue_panel.add_theme_stylebox_override("panel", UIArt.panel_style(edge, 0.93))
+	dialogue_text.add_theme_color_override("font_color", txt)
+	dialogue_text.add_theme_font_size_override("font_size", fsize)
 
 
 func _on_dialogue_next() -> void:
@@ -1108,6 +1213,7 @@ func _show_result() -> void:
 	if last_xp_text != "":
 		result_sub.text += "\n" + last_xp_text
 	result_box.visible = true
+	narrator_say(("clear" if stage_id.right(3) == "L10" else "victory") if won else "defeat", true)
 
 
 # ---------------------------------------------------------------- HUD refresh
@@ -1340,7 +1446,7 @@ func _end_battle() -> void:
 			seq.append(Story.global_line(6, rival))
 			var reward := progress.grant_reward(stage_id)          # rare_drop
 			if reward != "":
-				seq.append({"speaker": Story.hero(), "line": Story.template("rare_drop").format({"reward": reward})})
+				seq.append({"speaker": Narrator.SPEAKER, "mood": "fond", "line": Story.template("rare_drop").format({"reward": reward})})
 			for key in ["post_boss_" + tid] + (["finale", "epilogue"] if tid == "12" else []):
 				if not progress.is_seen(key):
 					progress.mark_seen(key)

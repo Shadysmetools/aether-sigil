@@ -4,8 +4,8 @@
   {
    "line_id": "prologue_01",
    "speaker": "Narrator",
-   "text": "Long ago, one crystal held every realm under a single sky. It was called the Aether Sigil.",
-   "key": "6388f65ff3d2a63f4ddacc0acd49ed61",
+   "text": "Allow me. There was one crystal, once, holding every realm under a single sky. It was called the Aether Sigil.",
+   "key": "080f68ce1981f2aa16963413343b9fb6",
    "aliases": [],
    "sources": [
     "story.prologue[0]"
@@ -15,8 +15,8 @@
   {
    "line_id": "prologue_02",
    "speaker": "Narrator",
-   "text": "Then it broke. Twelve prisms scattered, the realms drifted apart, and the sky has been cracking ever since.",
-   "key": "8a205b299549f945e570afcc149f6296",
+   "text": "Then it was broken. Twelve prisms scattered, the realms drifted apart, and the sky has been cracking ever since.",
+   "key": "9b64c4137f3d12e200241350e9d652e8",
    "aliases": [],
    "sources": [
     "story.prologue[1]"
@@ -26,8 +26,8 @@
   {
    "line_id": "prologue_03",
    "speaker": "Narrator",
-   "text": "Twelve keepers raised twelve towers around the prisms. That was an age ago. The towers are tired now.",
-   "key": "3585283ee5bcefa246cc01dbe78f5b58",
+   "text": "Twelve keepers raised twelve towers around the prisms. An age ago. The towers are tired now. So, if I may say, am I.",
+   "key": "94bce65d6b90682311b4ec7a3c96fecd",
    "aliases": [],
    "sources": [
     "story.prologue[2]"
@@ -136,8 +136,8 @@
   {
    "line_id": "prologue_13",
    "speaker": "Narrator",
-   "text": "Twelve towers. Twelve keepers. One Summoner who means to awaken the world through what he summons.",
-   "key": "0866c512d34f6e9082386552f4ce5841",
+   "text": "Twelve towers, twelve keepers, and one Summoner who means to wake the world through what he summons. Noted.",
+   "key": "c9ea37199b438dc4418ea06251a6d2f3",
    "aliases": [],
    "sources": [
     "story.prologue[12]"
@@ -147,8 +147,8 @@
   {
    "line_id": "finale_01",
    "speaker": "Narrator",
-   "text": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Mixed Prism, rises in every color at once.",
-   "key": "3e98451b84ae38c74e9cbfa96c0ed3a0",
+   "text": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Mixed Prism, rises in every color at once. I did not write this.",
+   "key": "7c1ff3ec47b7fa914ef0ff19770fa4b4",
    "aliases": [],
    "sources": [
     "story.finale[0]"
@@ -158,8 +158,8 @@
   {
    "line_id": "finale_02",
    "speaker": "Narrator",
-   "text": "One by one, the keepers arrive: Lyra, Varen, Niko, Rhea, Renn, Zara, Cira, Tarin, Silas, Sera and Mako.",
-   "key": "be7728aff903a59ee483bd620d766660",
+   "text": "One by one, the keepers arrive: Lyra, Varen, Niko, Rhea, Renn, Zara, Cira, Tarin, Silas, Sera and Mako. Unrehearsed. Delightful.",
+   "key": "9e60706f71644edfc64d15e4f51aa29c",
    "aliases": [],
    "sources": [
     "story.finale[1]"
@@ -279,8 +279,8 @@
   {
    "line_id": "finale_13",
    "speaker": "Narrator",
-   "text": "Twelve facets, twelve keepers, one Summoner. The Aether Sigil reforms, not as a crown, but as a ring of light.",
-   "key": "5331584c379248e5e9931bc1b37615dd",
+   "text": "I wrote the first ending, you see. It was perfect, and so it broke. This one I did not write: a ring of light, and the Sigil whole.",
+   "key": "803a3fba6583129ee78ec4ce3d2837f1",
    "aliases": [],
    "sources": [
     "story.finale[12]"
@@ -290,8 +290,8 @@
   {
    "line_id": "finale_14",
    "speaker": "Narrator",
-   "text": "Above them, the crack in the sky begins, slowly, to close.",
-   "key": "d9a8de392e422b1489d897e4ac22f595",
+   "text": "Above them, the crack in the sky begins, slowly, to close. And I am out of things to say. Thank you, Elio.",
+   "key": "484d0860b5c6f640731c126a192651b0",
    "aliases": [],
    "sources": [
     "story.finale[13]"
@@ -312,8 +312,8 @@
   {
    "line_id": "epilogue_01",
    "speaker": "Narrator",
-   "text": "The Prism Realms still float apart. But now they drift together, held by twelve towers whose doors stay open.",
-   "key": "e34131f2b4690a92a55342e4f89e3dcf",
+   "text": "The Prism Realms still float apart. But now they drift together, held by twelve towers whose doors stay open. A new page begins.",
+   "key": "76505d5e3788d26a7a86569363dca8c7",
    "aliases": [],
    "sources": [
     "story.epilogue[0]"
@@ -367,8 +367,8 @@
   {
    "line_id": "epilogue_06",
    "speaker": "Narrator",
-   "text": "Collect. Command. Evolve. Conquer. And when the worlds call again, answer.",
-   "key": "60aae7a47aaa63c3dd4a742ce6e3a827",
+   "text": "Collect. Command. Evolve. Conquer. And when the worlds call again, answer. I will be here, pen down, listening.",
+   "key": "8e9bd35184bd89796dd542dc84837e3b",
    "aliases": [],
    "sources": [
     "story.epilogue[5]"
@@ -378,8 +378,8 @@
   {
    "line_id": "arrival_01_01",
    "speaker": "Narrator",
-   "text": "The Verdant Spire. Living bridges creak between terraces, and pollen storms roll up the stairs like weather.",
-   "key": "d3fd13025d121f081c982e6b41fd5053",
+   "text": "The Verdant Spire. Living bridges creak between terraces, and pollen storms climb the stairs like weather. Mind the sneezing.",
+   "key": "11afc6be31357dd818e9245ab0643055",
    "aliases": [],
    "sources": [
     "story.towers[01].arrival[0]"
@@ -543,8 +543,8 @@
   {
    "line_id": "post_boss_01_05",
    "speaker": "Narrator",
-   "text": "The Nature Prism settles into the Player Sigil. A new facet lights, green as new leaves.",
-   "key": "a31c27200b85415f61805fdcb1d6cb87",
+   "text": "The Nature Prism settles into the Player Sigil. A new facet lights, green as new leaves. One of twelve. Noted, with relief.",
+   "key": "5d23f388841edd80b91e3b1ea4c78d11",
    "aliases": [],
    "sources": [
     "story.towers[01].post_boss[4]"
@@ -554,8 +554,8 @@
   {
    "line_id": "arrival_02_01",
    "speaker": "Narrator",
-   "text": "The Ember Bastion. Lava runs in channels under collapsing platforms, and the heat vents breathe on a count.",
-   "key": "118825403f3ebf5f7de6e830f9af8afd",
+   "text": "The Ember Bastion. Lava runs in channels under collapsing platforms, and the heat vents breathe on a count. Count along.",
+   "key": "8805f1ff3c8073cff92b89a137dc1689",
    "aliases": [],
    "sources": [
     "story.towers[02].arrival[0]"
@@ -719,8 +719,8 @@
   {
    "line_id": "arrival_03_01",
    "speaker": "Narrator",
-   "text": "The Tideglass Citadel. Flood gates turn with the tide, and every corridor is a glass tunnel under moving water.",
-   "key": "4dd7d4362c143bc3d5c8713107ff48a4",
+   "text": "The Tideglass Citadel. Flood gates turn with the tide, and every corridor is glass beneath moving water. Do not look down. Do look down.",
+   "key": "79671aa70d19a64e65be8c345a4398c6",
    "aliases": [],
    "sources": [
     "story.towers[03].arrival[0]"
@@ -884,8 +884,8 @@
   {
    "line_id": "arrival_04_01",
    "speaker": "Narrator",
-   "text": "The Frost Meridian. Frozen stairs climb through blizzard zones, and brittle ice cracks under anything that waits.",
-   "key": "18afb0c259e98f6c52c0dd468bd31de7",
+   "text": "The Frost Meridian. Frozen stairs climb through blizzard zones, and brittle ice cracks under anything that waits. So, do not wait.",
+   "key": "fbc343c0369b9e4c5a8c3b252dbfb1d5",
    "aliases": [],
    "sources": [
     "story.towers[04].arrival[0]"
@@ -1049,8 +1049,8 @@
   {
    "line_id": "post_boss_04_05",
    "speaker": "Narrator",
-   "text": "Four facets glow in the Player Sigil. Far below, Lowmere stops sinking. For now.",
-   "key": "ba09ce2ffce76eea5d03faa8c59fa784",
+   "text": "Four facets glow in the Player Sigil. Far below, Lowmere stops sinking. For now. I shall allow myself to be glad.",
+   "key": "b540b14572b85a9df477487b44398f12",
    "aliases": [],
    "sources": [
     "story.towers[04].post_boss[4]"
@@ -1060,8 +1060,8 @@
   {
    "line_id": "arrival_05_01",
    "speaker": "Narrator",
-   "text": "The Iron Labyrinth. Walls slide on rails, magnetic fields drag at metal, and every corridor resets on a timer.",
-   "key": "94e50de2c14c9a65cc090abf60a3effd",
+   "text": "The Iron Labyrinth. Walls slide on rails, magnetic fields drag at metal, and every corridor resets on a timer. I have never trusted timers.",
+   "key": "91d2068104145939145190171617b961",
    "aliases": [],
    "sources": [
     "story.towers[05].arrival[0]"
@@ -1225,8 +1225,8 @@
   {
    "line_id": "arrival_06_01",
    "speaker": "Narrator",
-   "text": "The Storm Crown. Floating platforms drift along gust lanes, and lightning rods hum before every strike.",
-   "key": "a4e2df4f6fb086f0019fbfb4a8dcd39c",
+   "text": "The Storm Crown. Platforms drift along gust lanes, and lightning rods hum before every strike. Listen for the hum, Summoner.",
+   "key": "6593085838990d9ad9fbb131601ed5cc",
    "aliases": [],
    "sources": [
     "story.towers[06].arrival[0]"
@@ -1390,8 +1390,8 @@
   {
    "line_id": "arrival_07_01",
    "speaker": "Narrator",
-   "text": "The Obsidian Eclipse. Shadow tiles swallow the light, teleport gates blink open, and nothing is where it looks.",
-   "key": "690785690928e97688127847c69486b3",
+   "text": "The Obsidian Eclipse. Shadow tiles swallow the light, teleport gates blink open, and nothing is where it looks. I dislike this place.",
+   "key": "7b609e5e55d62a9ab3ad78b3482c2128",
    "aliases": [],
    "sources": [
     "story.towers[07].arrival[0]"
@@ -1544,8 +1544,8 @@
   {
    "line_id": "arrival_08_01",
    "speaker": "Narrator",
-   "text": "The Sunken Archive. Ruins rest under still water, and relic switches open chambers sealed for ages.",
-   "key": "d41329637604fa7998210ae134f5206b",
+   "text": "The Sunken Archive. Ruins rest under still water, and relic switches open chambers sealed for ages. ...I know these shelves.",
+   "key": "82ff67c9e483efdf1a7a0bbbae4c629e",
    "aliases": [],
    "sources": [
     "story.towers[08].arrival[0]"
@@ -1709,8 +1709,8 @@
   {
    "line_id": "post_boss_08_05",
    "speaker": "Narrator",
-   "text": "Eight facets. The Player Sigil is heavy now, and warm. Lowmere has risen half a span.",
-   "key": "838e17b2d37190e30ee57d735cc8fa55",
+   "text": "Eight facets. The Player Sigil is heavy now, and warm. Lowmere has risen half a span. I am, privately, afraid of nine.",
+   "key": "228b00d0bb763d1ed7848a10829ceb84",
    "aliases": [],
    "sources": [
     "story.towers[08].post_boss[4]"
@@ -1720,8 +1720,8 @@
   {
    "line_id": "arrival_09_01",
    "speaker": "Narrator",
-   "text": "The Astral Observatory. Platforms orbit a central spire, gravity thins near the star gates, and the stars move.",
-   "key": "866909b73dcc4af4dcdb9c54f5708a7e",
+   "text": "The Astral Observatory. Platforms orbit a central spire, gravity thins near the star gates, and the stars move. They are not meant to.",
+   "key": "5de70ecd2255b74e98adc8202c4b5ea7",
    "aliases": [],
    "sources": [
     "story.towers[09].arrival[0]"
@@ -1885,8 +1885,8 @@
   {
    "line_id": "arrival_10_01",
    "speaker": "Narrator",
-   "text": "The Crystal Sanctum. Prism bridges carry beams of light, and resonance nodes ring when power passes.",
-   "key": "740ac5221563e45736651752c9b5105d",
+   "text": "The Crystal Sanctum. Prism bridges carry beams of light, and resonance nodes ring when power passes. Some of that sound is old. Some is mine.",
+   "key": "42420bb7e451cee417838f74a46612a9",
    "aliases": [],
    "sources": [
     "story.towers[10].arrival[0]"
@@ -2039,8 +2039,8 @@
   {
    "line_id": "arrival_11_01",
    "speaker": "Narrator",
-   "text": "The Rift Frontier. Portals open without warning, tiles phase in and out, and the great crack fills the sky.",
-   "key": "aed9edee8cf79f304b4ec4fe53ec1c92",
+   "text": "The Rift Frontier. Portals open without warning, tiles phase in and out, and the great crack fills the sky. Look at it. Please.",
+   "key": "26d5ba253630276d155db530d6c4221c",
    "aliases": [],
    "sources": [
     "story.towers[11].arrival[0]"
@@ -2193,8 +2193,8 @@
   {
    "line_id": "arrival_12_01",
    "speaker": "Narrator",
-   "text": "The Sunforge Throne. Roots, lava, glass, ice, rails, wind, shadow, ruins, stars, crystal and rifts, all at once.",
-   "key": "b6d9650ff9672c96183c7007959c7ea9",
+   "text": "The Sunforge Throne. Roots, lava, glass, ice, rails, wind, shadow, ruins, stars, crystal and rifts, all at once. The margin ends here, Summoner.",
+   "key": "a5c9774304e14c9acd2762bdf0083577",
    "aliases": [],
    "sources": [
     "story.towers[12].arrival[0]"
@@ -2365,6 +2365,600 @@
     "story.towers[12].post_boss[3]"
    ],
    "group": "story"
+  },
+  {
+   "line_id": "bark_battle_start_early",
+   "speaker": "Narrator",
+   "text": "Another page begins. Do try to survive it, Summoner.",
+   "key": "cf378a48c1c5a9cc87681a89b50372cd",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_battle_start_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_battle_start_mid",
+   "speaker": "Narrator",
+   "text": "Positions, everyone. I shall keep the margins clear.",
+   "key": "b541b0c648c575d2271310e5b87ec153",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_battle_start_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_battle_start_late",
+   "speaker": "Narrator",
+   "text": "Begin, Elio. I have stopped predicting how this ends.",
+   "key": "a1c1f3840e508f3f17fd02b3b659d713",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_battle_start_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_first_crack_early",
+   "speaker": "Narrator",
+   "text": "A Vessel cracks. A frightful word, 'crack'. Carry on.",
+   "key": "d9091e2efb7229a34983f4dff02f1634",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_first_crack_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_first_crack_mid",
+   "speaker": "Narrator",
+   "text": "There. A Vessel opens, and something steps out. Lovely.",
+   "key": "805fd22bf71a1984806b498ac309228c",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_first_crack_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_first_crack_late",
+   "speaker": "Narrator",
+   "text": "Cracked, and still whole. I did not know that was possible.",
+   "key": "ad277e7832a8fe1f8ca71215d97a3c04",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_first_crack_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_big_hit_early",
+   "speaker": "Narrator",
+   "text": "Ah. That will leave a mark in the margin.",
+   "key": "45afec051200656effb4e548970fce7e",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_big_hit_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_big_hit_mid",
+   "speaker": "Narrator",
+   "text": "A heavy blow. Breathe. The page is not torn.",
+   "key": "1ac50fa57b7cc3f899137206a5ae038d",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_big_hit_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_big_hit_late",
+   "speaker": "Narrator",
+   "text": "That hurt to watch. Steady, Elio.",
+   "key": "24395b34446e5afa78e226a7902c960e",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_big_hit_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_ko_early",
+   "speaker": "Narrator",
+   "text": "A monster falls. Noted. Gently noted.",
+   "key": "0d881bb7fe7a9e955c9e090b2301ff0c",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_ko_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_ko_mid",
+   "speaker": "Narrator",
+   "text": "One of them down. The story permits second drafts.",
+   "key": "a1cd897a6c5d3be9ab7dc0b87d9dfd33",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_ko_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_ko_late",
+   "speaker": "Narrator",
+   "text": "Down, not out. Nothing ends on a single line.",
+   "key": "efa825cc0a8a61188f212d526b55ee74",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_ko_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_vessel_broken_early",
+   "speaker": "Narrator",
+   "text": "A Vessel breaks. It is only a Vessel. ...Noted.",
+   "key": "189aa91ef025425f42a1a60f8388e2ee",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_vessel_broken_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_vessel_broken_mid",
+   "speaker": "Narrator",
+   "text": "A Vessel breaks. It is never only a Vessel.",
+   "key": "8d3a808b5f1cee351009a8bc7251689a",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_vessel_broken_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_vessel_broken_late",
+   "speaker": "Narrator",
+   "text": "Broken things can be mended. I speak from experience.",
+   "key": "17858a715b464e109000326723221f99",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_vessel_broken_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_low_sigil_hp_early",
+   "speaker": "Narrator",
+   "text": "The Sigil dims, Summoner. I would rather not narrate that ending.",
+   "key": "f2d7646090613089e101b70a185acad8",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_low_sigil_hp_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_low_sigil_hp_mid",
+   "speaker": "Narrator",
+   "text": "The Sigil is low. Elio, please. I have written that ending once.",
+   "key": "054b039b4851d730b90b9e8548c0bc55",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_low_sigil_hp_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_low_sigil_hp_late",
+   "speaker": "Narrator",
+   "text": "Hold the light, Elio. Hold it for all of us.",
+   "key": "1a9bf8bcce18751b8ef3b1869e2395e3",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_low_sigil_hp_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_victory_early",
+   "speaker": "Narrator",
+   "text": "Victory. I shall pretend I expected it.",
+   "key": "c3d1063cd23aa5af40f38437df3d01e8",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_victory_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_victory_mid",
+   "speaker": "Narrator",
+   "text": "Well fought. I have stopped pretending to expect it.",
+   "key": "b828840978201171e30281ca1c37f1d8",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_victory_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_victory_late",
+   "speaker": "Narrator",
+   "text": "Won, and not a word of it mine. Splendid.",
+   "key": "5e0f4eaf37c9db33fb046e1699d3c8f1",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_victory_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_defeat_early",
+   "speaker": "Narrator",
+   "text": "A page lost. Turn it, and try again.",
+   "key": "a1234e1e5e767e6ec304b7730c20feaa",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_defeat_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_defeat_mid",
+   "speaker": "Narrator",
+   "text": "Defeat is only a draft. Revise.",
+   "key": "270072093caa545539b320d0eaade875",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_defeat_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_defeat_late",
+   "speaker": "Narrator",
+   "text": "We lose this page, not the book. Again, Elio.",
+   "key": "dae35882cb776a052cbfed0646580c7b",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_defeat_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_evolution_early",
+   "speaker": "Narrator",
+   "text": "A new form. Growth is the least predictable chapter.",
+   "key": "060ffcd04814466f511729cba3fab825",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_evolution_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_evolution_mid",
+   "speaker": "Narrator",
+   "text": "It changes, and is still itself. How wonderful.",
+   "key": "cebb995bec0e7a57d1655bbd1c909d6e",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_evolution_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_evolution_late",
+   "speaker": "Narrator",
+   "text": "Look at it. Not a word of that was mine either.",
+   "key": "4b7c48b9ded5972c0a31d77031eddc06",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_evolution_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_fusion_early",
+   "speaker": "Narrator",
+   "text": "Two into one. I would not have written that.",
+   "key": "439236ab1a34ff65d4685af37c6c43e4",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_fusion_early"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_fusion_mid",
+   "speaker": "Narrator",
+   "text": "Two margins, one page. Ink everywhere. I love it.",
+   "key": "abb85ffc0431c7d4b3d2ad7b473d2aa5",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_fusion_mid"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_fusion_late",
+   "speaker": "Narrator",
+   "text": "Fused, and better for it. Remember that, all of you.",
+   "key": "7baa3b5504812ffb6108f5bb4993e1f5",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_fusion_late"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_01",
+   "speaker": "Narrator",
+   "text": "Verdant Spire. Mind the pollen.",
+   "key": "b3ddad7d7306abddb9ea3c413a001710",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_01"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_02",
+   "speaker": "Narrator",
+   "text": "Ember Bastion. Count the vents; they count you.",
+   "key": "41b41cfa6b6a016c9c0882188eae1363",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_02"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_03",
+   "speaker": "Narrator",
+   "text": "Tideglass Citadel. Watch the glass.",
+   "key": "e61e7e81b363b4ce274ffb645a611d9b",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_03"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_04",
+   "speaker": "Narrator",
+   "text": "Frost Meridian. The cold is the least of it.",
+   "key": "36b233849fd546e929af10b9db42a37a",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_04"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_05",
+   "speaker": "Narrator",
+   "text": "Iron Labyrinth. The walls will move. Move with them.",
+   "key": "af255b55e81d285838362ec64c5b3440",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_05"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_06",
+   "speaker": "Narrator",
+   "text": "Storm Crown. You have a head for heights, I trust.",
+   "key": "82433a6cc1e5a937997c706f2c316e2f",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_06"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_07",
+   "speaker": "Narrator",
+   "text": "Obsidian Eclipse. Stay near the light. I will stay near you.",
+   "key": "5a3119e18a061195695a6286bc8a99fe",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_07"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_08",
+   "speaker": "Narrator",
+   "text": "The Sunken Archive. Touch nothing on the shelves. Please.",
+   "key": "ab631b96cb026aae6a10c49ddd049408",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_08"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_09",
+   "speaker": "Narrator",
+   "text": "Astral Observatory. The stars are listening, Elio.",
+   "key": "0ddbccbcf4d5b698a9664abd26660b97",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_09"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_10",
+   "speaker": "Narrator",
+   "text": "Crystal Sanctum. Everything here rings. Let it.",
+   "key": "bce68f14c8987c6f7fac437b37e9a4a8",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_10"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_11",
+   "speaker": "Narrator",
+   "text": "Rift Frontier. Nearly there. I can hear the crack from here.",
+   "key": "f4d0b6ae0bbeac9ee1648641820f0820",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_11"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_arrival_12",
+   "speaker": "Narrator",
+   "text": "Sunforge Throne. This is the last page I know. Walk, Elio.",
+   "key": "ea732f8095d533d8747672deb32dd5f7",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_arrival_12"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_01",
+   "speaker": "Narrator",
+   "text": "One facet lit; eleven to go.",
+   "key": "0f1c59aa569ce1dae17fcc851de07ddd",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_01"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_02",
+   "speaker": "Narrator",
+   "text": "Discipline, rewarded. Two.",
+   "key": "e29b77ad4f08c115a1ac298936bfb808",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_02"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_03",
+   "speaker": "Narrator",
+   "text": "Three. The tide turns your way.",
+   "key": "f7a936bf896b9db6b036a04de1dec279",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_03"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_04",
+   "speaker": "Narrator",
+   "text": "Four. Lowmere breathes easier.",
+   "key": "2f0a87421ce3c2125fa5e73691fcf92e",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_04"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_05",
+   "speaker": "Narrator",
+   "text": "Five. Even the timers were on time.",
+   "key": "ad957d4794f015b8cd86c4569f567dca",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_05"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_06",
+   "speaker": "Narrator",
+   "text": "Six. Half the sky, mended.",
+   "key": "e692a8e79fd567c28e13fd6c4a870ab7",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_06"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_07",
+   "speaker": "Narrator",
+   "text": "Seven. Even shadows keep faith.",
+   "key": "702f34c15cb0baddea1429aa4348fdeb",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_07"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_08",
+   "speaker": "Narrator",
+   "text": "Eight. Do not ask what I read there.",
+   "key": "ebd451d272aeca01ceff6c55cdaece1e",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_08"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_09",
+   "speaker": "Narrator",
+   "text": "Nine. The stars forgive you.",
+   "key": "758699d39961b97bf4650616d8eca440",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_09"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_10",
+   "speaker": "Narrator",
+   "text": "Ten. Ring the bell, Elio.",
+   "key": "eab4697363f1f3154a0183b5765aa7cb",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_10"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_11",
+   "speaker": "Narrator",
+   "text": "Eleven. One left. Only one.",
+   "key": "f1986a87e1555b7f584284b6e2723bf3",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_11"
+   ],
+   "group": "narrator_bark"
+  },
+  {
+   "line_id": "bark_clear_12",
+   "speaker": "Narrator",
+   "text": "Twelve. The pen is yours, Elio.",
+   "key": "5f100d7e351e4f8d9195a86429a0d021",
+   "aliases": [],
+   "sources": [
+    "narrator.bark_clear_12"
+   ],
+   "group": "narrator_bark"
   },
   {
    "line_id": "global_1",
@@ -2743,8 +3337,8 @@
   {
    "line_id": "rare_drop_01",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Nature Prism!",
-   "key": "e1d3d581e8a8eb269611c33e7fbdd1f7",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Nature Prism. Yours.",
+   "key": "f6188d9b8e90c779face660375254924",
    "aliases": [],
    "sources": [
     "template.rare_drop.01"
@@ -3095,8 +3689,8 @@
   {
    "line_id": "rare_drop_02",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Fire Prism!",
-   "key": "73deac755f952673b4615af755572167",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Fire Prism. Yours.",
+   "key": "4c8ca5f52ce0cad444d653820b31ea2a",
    "aliases": [],
    "sources": [
     "template.rare_drop.02"
@@ -3449,8 +4043,8 @@
   {
    "line_id": "rare_drop_03",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Water Prism!",
-   "key": "91a9f7e5cb4176f2386112357b4940a2",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Water Prism. Yours.",
+   "key": "42ba26edbea1d4290606c09da37dbf11",
    "aliases": [],
    "sources": [
     "template.rare_drop.03"
@@ -3801,8 +4395,8 @@
   {
    "line_id": "rare_drop_04",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Ice Prism!",
-   "key": "bfe035a4a63b3acc316888a947fd229e",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Ice Prism. Yours.",
+   "key": "d4237ef5e612be954bc1de4357e7312e",
    "aliases": [],
    "sources": [
     "template.rare_drop.04"
@@ -4153,8 +4747,8 @@
   {
    "line_id": "rare_drop_05",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Metal Prism!",
-   "key": "723790e0742a8819128fc83f168d4d71",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Metal Prism. Yours.",
+   "key": "627a145b59d85e7a736dd8aac456d2d6",
    "aliases": [],
    "sources": [
     "template.rare_drop.05"
@@ -4505,8 +5099,8 @@
   {
    "line_id": "rare_drop_06",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Wind Prism!",
-   "key": "6667d3c4d6e929737d90932c82fda68f",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Wind Prism. Yours.",
+   "key": "6fdf8cbae3b3802a7960f476a072abd9",
    "aliases": [],
    "sources": [
     "template.rare_drop.06"
@@ -4857,8 +5451,8 @@
   {
    "line_id": "rare_drop_07",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Dark Prism!",
-   "key": "9815fdd4036239edc3c5f2adbf1a4943",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Dark Prism. Yours.",
+   "key": "6240df12fa520356a5dad841d9c3d851",
    "aliases": [],
    "sources": [
     "template.rare_drop.07"
@@ -5209,8 +5803,8 @@
   {
    "line_id": "rare_drop_08",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Ancient Prism!",
-   "key": "dc5a39a8a00c02dbbbcd2d9f9d0cd622",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Ancient Prism. Yours.",
+   "key": "1592b00384dfe6ecf26b7115b6934f38",
    "aliases": [],
    "sources": [
     "template.rare_drop.08"
@@ -5539,8 +6133,8 @@
   {
    "line_id": "rare_drop_09",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Space Prism!",
-   "key": "c8b76450ba09a9190bbbfc5c696f842c",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Space Prism. Yours.",
+   "key": "5de480ba9ffbf3e76f7a6871f4b6bedb",
    "aliases": [],
    "sources": [
     "template.rare_drop.09"
@@ -5891,8 +6485,8 @@
   {
    "line_id": "rare_drop_10",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Crystal Prism!",
-   "key": "742e67032f14bf138f9c3db3c4e9eafb",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Crystal Prism. Yours.",
+   "key": "db8d5c4e365a4b100a56aa0dfac200fb",
    "aliases": [],
    "sources": [
     "template.rare_drop.10"
@@ -6243,8 +6837,8 @@
   {
    "line_id": "rare_drop_11",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Aether Prism!",
-   "key": "81512eb73e9d1fe872de35797e5a8612",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Aether Prism. Yours.",
+   "key": "b72a3ed04d91d4dafbc1de3eb8082e7f",
    "aliases": [],
    "sources": [
     "template.rare_drop.11"
@@ -6595,8 +7189,8 @@
   {
    "line_id": "rare_drop_12",
    "speaker": "Narrator",
-   "text": "You obtained the Sigil Core: Mixed Prism!",
-   "key": "0ef4314aac32391df718ed1287940dbb",
+   "text": "Entered in the ledger, with some satisfaction: the Sigil Core: Mixed Prism. Yours.",
+   "key": "d542df45709e70652c0b973baf0a1032",
    "aliases": [],
    "sources": [
     "template.rare_drop.12"
