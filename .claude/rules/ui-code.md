@@ -1,6 +1,8 @@
 ---
 paths:
   - "src/ui/**"
+  - "game/scripts/ui*.gd"
+  - "game/scenes/**"
   - "Assets/**/{UI,Ui,ui}/**/*.cs"
   - "Source/**/{UI,Ui,ui}/**/*.{h,cpp}"
 ---

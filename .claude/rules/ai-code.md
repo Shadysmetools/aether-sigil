@@ -1,6 +1,7 @@
 ---
 paths:
   - "src/ai/**"
+  - "game/scripts/ai*.gd"
   - "Assets/**/{AI,Ai,ai}/**/*.cs"
   - "Source/**/{AI,Ai,ai}/**/*.{h,cpp}"
 ---

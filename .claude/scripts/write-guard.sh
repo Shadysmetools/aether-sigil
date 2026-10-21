@@ -172,6 +172,12 @@ case "$ENGINE" in
   # Unset or unknown: the three roots, so no rule is skipped for want of one.
   *) ROOTS="src Assets Source" ;;
 esac
+# LOCAL PATCH (Aether Sigil, docs/ccgs/LOCAL-PATCHES.md): explicit engine.code_root.
+_CR=""
+[ -f project.yaml ] && [ -f "$HERE/yaml-get.awk" ] && \
+  _CR=$(YG_PATH=engine.code_root awk -f "$HERE/yaml-get.awk" project.yaml)
+_CR="${_CR%/}"
+[ -n "$_CR" ] && [ -d "$_CR" ] && ROOTS="$_CR"
 
 APPLIED=""
 applied() { APPLIED="${APPLIED:+$APPLIED,}$1"; }

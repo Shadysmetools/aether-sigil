@@ -1,6 +1,7 @@
 ---
 paths:
   - "src/gameplay/**"
+  - "game/scripts/**/*.gd"
   - "Assets/**/{Gameplay,gameplay}/**/*.cs"
   - "Source/**/{Gameplay,gameplay}/**/*.{h,cpp}"
 ---

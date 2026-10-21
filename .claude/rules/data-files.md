@@ -1,6 +1,8 @@
 ---
 paths:
   - "assets/data/**/*.json"
+  - "data/**/*.json"
+  - "game/data/**/*.json"
   - "Assets/**/{Data,data}/**/*.json"
   - "Content/**/{Data,data}/**/*.json"
 ---

@@ -164,6 +164,13 @@ case "$(printf '%s' "$ENGINE" | tr '[:upper:]' '[:lower:]')" in
   unity) CODE_ROOT="Assets" ;;
   unreal*) CODE_ROOT="Source" ;;
 esac
+# LOCAL PATCH (Aether Sigil, docs/ccgs/LOCAL-PATCHES.md): explicit
+# engine.code_root wins when that directory exists, as in resolve_code_root.
+_CR=""
+[ -f project.local.yaml ] && _CR=$(yaml_get project.local.yaml engine.code_root)
+[ -z "$_CR" ] && [ -f project.yaml ] && _CR=$(yaml_get project.yaml engine.code_root)
+_CR="${_CR%/}"
+if [ -n "$_CR" ] && [ -d "$_CR" ]; then CODE_ROOT="$_CR"; CSRC="engine.code_root"; fi
 if [ -z "$CODE_ROOT" ]; then
   # No usable engine: believe the tree only when exactly one root is present.
   # Names are compared exactly against the listing, never with `[ -d Assets ]`,

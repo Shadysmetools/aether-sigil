@@ -1,6 +1,7 @@
 ---
 paths:
   - "tests/**"
+  - "game/tests/**"
   - "Assets/Tests/**/*.cs"
   - "Source/**/Tests/**/*.{h,cpp}"
 ---
