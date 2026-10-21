@@ -9,6 +9,7 @@ const Data = preload("res://scripts/data_loader.gd")
 const GameState = preload("res://scripts/game_state.gd")
 const AI = preload("res://scripts/ai.gd")
 const BoardView = preload("res://scripts/board_view.gd")
+const Board3D = preload("res://scripts/board_3d.gd")
 const Palette = preload("res://scripts/theme_colors.gd")
 const Progress = preload("res://scripts/progress.gd")
 const Art = preload("res://scripts/board_art.gd")
@@ -90,7 +91,9 @@ class Minimap extends Control:
 var save_path := Progress.DEFAULT_PATH   ## tests override before adding to the tree
 var progress: Progress
 var state: GameState
-var board: BoardView
+var board: Node2D                       ## board_3d.gd (HD-2D) or board_view.gd (2D fallback)
+## "" = auto (3D in a window, 2D when headless), "2d" or "3d" to force (tests, --board-2d / --board-3d).
+var board_mode := ""
 var stage_id := ""
 var mode: Mode = Mode.NONE
 var selected_mon := ""
@@ -167,6 +170,19 @@ func _play_intro() -> void:
 	intro.finished.connect(intro.queue_free)
 
 
+## The HD-2D 3D board unless forced off (board_mode, --board-2d, project setting
+## aether_sigil/board_3d) or running headless (tests keep the 2D board unless they force "3d").
+func use_3d_board() -> bool:
+	if board_mode != "":
+		return board_mode == "3d"
+	var args := OS.get_cmdline_user_args()
+	if "--board-2d" in args:
+		return false
+	if "--board-3d" in args:
+		return true
+	return DisplayServer.get_name() != "headless" and bool(ProjectSettings.get_setting("aether_sigil/board_3d", true))
+
+
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Palette.BG)
 	Data.ensure_loaded()
@@ -177,7 +193,7 @@ func _ready() -> void:
 	add_child(sky_layer)
 	backdrop = SkyBackdrop.new()
 	sky_layer.add_child(backdrop)
-	board = BoardView.new()
+	board = Board3D.new() if use_3d_board() else BoardView.new()
 	board.state = state
 	board.visible = false
 	add_child(board)
@@ -823,7 +839,10 @@ func _layout_board() -> void:
 		c.offset_bottom = c.offset_top
 	var band_top := top_h + 10.0 + maxf(turn_panel.get_combined_minimum_size().y, side_panel.get_combined_minimum_size().y) + 10.0
 	var band_bottom := vp.y - bottom_panel.get_combined_minimum_size().y - 16.0 - 10.0
-	var bs := board.board_size()
+	if board.has_method("fit_band"):
+		board.fit_band(Rect2(16.0, band_top, vp.x - 32.0, band_bottom - band_top))
+		return
+	var bs: Vector2 = board.board_size()
 	var fit := minf((vp.x - 32.0) / bs.x, (band_bottom - band_top) / bs.y)
 	board.scale = Vector2.ONE * clampf(fit, 0.4, 1.15)
 	board.position = Vector2(vp.x / 2.0, (band_top + band_bottom) / 2.0 + bs.y * board.scale.y * 0.04)
@@ -1273,6 +1292,13 @@ func _on_retry() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if board.has_method("handle_input"):  # 3D board: taps on release, drags pan / rotate
+		if not board.visible:
+			return
+		var picked: Variant = board.handle_input(event)
+		if picked != null and _my_turn():
+			_on_tile(picked)
+		return
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 		return
 	if not board.visible or not _my_turn():

@@ -100,9 +100,9 @@ static func palette(fam: String) -> Dictionary:
 	var V := Palette.CRYSTAL_VIOLET
 	var E := Palette.EMBER
 	var G := Palette.SIGIL_GOLD
-	var day := {"top_color": C.lerp(V, 0.35).lerp(N, 0.62), "mid_color": C.lerp(V, 0.2).lerp(S, 0.25).lerp(N, 0.28),
-		"low_color": S.lerp(C, 0.25), "cloud_color": S.lerp(Color.WHITE, 0.6), "shade_color": C.lerp(V, 0.3).lerp(N, 0.4).lerp(S, 0.3),
-		"glow_color": G.lerp(S, 0.4), "cover": 0.5}
+	var day := {"top_color": C.lerp(V, 0.3).lerp(N, 0.5), "mid_color": C.lerp(V, 0.15).lerp(S, 0.4).lerp(N, 0.18),
+		"low_color": S.lerp(C, 0.2), "cloud_color": S.lerp(Color.WHITE, 0.7), "shade_color": C.lerp(V, 0.25).lerp(N, 0.3).lerp(S, 0.4),
+		"glow_color": G.lerp(S, 0.4), "cover": 0.58}
 	match fam:
 		"Fire":
 			return {"top_color": E.lerp(N, 0.75), "mid_color": E.lerp(G, 0.25).lerp(N, 0.3), "low_color": G.lerp(E, 0.35).lerp(S, 0.2),

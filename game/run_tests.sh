@@ -45,6 +45,7 @@ run ui     yes --script res://tests/test_ui_smoke.gd
 run sim    yes --script res://tests/test_sim.gd
 run intro  yes --script res://tests/test_intro.gd
 run assets yes --script res://tests/test_assets.gd
+run board3d yes --script res://tests/test_board3d.gd
 run main   no  --quit-after 120
 echo "TOTAL: $total_pass pass / $total_fail fail  ->  $([ $status = 0 ] && echo GREEN || echo RED)   (logs: $LOG)"
 exit $status

@@ -93,3 +93,47 @@ static func family(f: String) -> Color:
 			"Space": CRYSTAL_VIOLET.lerp(AETHER_CYAN, 0.35),
 		}
 	return _families.get(f, SOFT_SILVER)
+
+
+static var _themes: Dictionary = {}
+
+## 3D board look per tower theme (bible tower `theme`): stone tints, foliage, glow accent and decor
+## flavour. Every colour is a blend of the 7 tokens. Unknown themes get the Nature look.
+##   stone = flagstone tops, cliff = block sides / island rock, moss = foliage + moss patches,
+##   accent = emissive trim (hazard cracks, runes), water = channel colour, flora = scatter kind,
+##   moss_amt 0..1, trees = small trees on the rim, snow = frosted tops.
+static func tower_theme(theme: String) -> Dictionary:
+	if _themes.is_empty():
+		var N := MIDNIGHT_NAVY
+		var S := SOFT_SILVER
+		var G := SIGIL_GOLD
+		var V := VERDANT_GREEN
+		var C := AETHER_CYAN
+		var E := EMBER
+		var P := CRYSTAL_VIOLET
+		var warm := S.lerp(G, 0.26).lerp(N, 0.42)   # sun-warmed ruin stone
+		var water := C.lerp(P, 0.18).lerp(N, 0.28)
+		var t := func(stone: Color, cliff: Color, moss: Color, accent: Color, wat: Color, flora: String, moss_amt: float, trees: bool, snow: bool) -> Dictionary:
+			return {"stone": stone, "cliff": cliff, "moss": moss, "accent": accent, "water": wat, "flora": flora,
+				"moss_amt": moss_amt, "trees": trees, "snow": snow}
+		_themes = {
+			"Nature": t.call(warm, warm.lerp(G, 0.10).lerp(N, 0.35), V.lerp(G, 0.4).lerp(N, 0.52), V.lerp(G, 0.3), water, "grass", 0.75, true, false),
+			"Fire": t.call(S.lerp(E, 0.18).lerp(N, 0.48), E.lerp(N, 0.72), E.lerp(G, 0.4).lerp(N, 0.55), E.lerp(G, 0.25), E.lerp(G, 0.35), "ember", 0.25, false, false),
+			"Water": t.call(S.lerp(C, 0.18).lerp(N, 0.32), C.lerp(N, 0.62).lerp(S, 0.12), V.lerp(C, 0.45).lerp(N, 0.55), C, water.lerp(C, 0.25), "coral", 0.55, false, false),
+			"Ice": t.call(S.lerp(C, 0.15).lerp(N, 0.12), C.lerp(S, 0.4).lerp(N, 0.45), S.lerp(C, 0.3), C.lerp(S, 0.4), C.lerp(S, 0.35).lerp(N, 0.2), "frost", 0.35, false, true),
+			"Metal": t.call(S.lerp(N, 0.45), S.lerp(N, 0.62), V.lerp(N, 0.55), C, water, "cog", 0.2, false, false),
+			"Wind": t.call(S.lerp(G, 0.10).lerp(N, 0.22), S.lerp(C, 0.15).lerp(N, 0.42), V.lerp(G, 0.3).lerp(S, 0.2).lerp(N, 0.45), C.lerp(S, 0.3), water, "grass", 0.6, true, false),
+			"Dark": t.call(P.lerp(N, 0.72).lerp(S, 0.12), P.lerp(N, 0.82), P.lerp(V, 0.3).lerp(N, 0.55), P, P.lerp(N, 0.4), "shadow", 0.35, false, false),
+			"Ancient": t.call(warm.lerp(G, 0.15), warm.lerp(N, 0.38), V.lerp(G, 0.5).lerp(N, 0.55), G, water.lerp(V, 0.15), "grass", 0.75, true, false),
+			"Space": t.call(P.lerp(S, 0.35).lerp(N, 0.55), P.lerp(N, 0.78), P.lerp(C, 0.5).lerp(N, 0.4), C.lerp(P, 0.5), P.lerp(C, 0.4).lerp(N, 0.3), "crystal", 0.2, false, false),
+			"Crystal": t.call(S.lerp(P, 0.18).lerp(N, 0.22), P.lerp(S, 0.2).lerp(N, 0.55), P.lerp(C, 0.3).lerp(S, 0.2), P.lerp(S, 0.2), C.lerp(P, 0.4).lerp(N, 0.2), "crystal", 0.3, false, false),
+			"Aether": t.call(S.lerp(P, 0.25).lerp(N, 0.40), P.lerp(E, 0.2).lerp(N, 0.65), P.lerp(V, 0.4).lerp(N, 0.4), P.lerp(E, 0.35), P.lerp(C, 0.3).lerp(N, 0.25), "crystal", 0.35, false, false),
+			"Mixed": t.call(S.lerp(G, 0.32).lerp(N, 0.24), G.lerp(N, 0.58), V.lerp(G, 0.55).lerp(N, 0.5), G, water.lerp(G, 0.15), "grass", 0.45, true, false),
+		}
+	return _themes.get(theme, _themes["Nature"])
+
+
+## All theme keys tower_theme knows (tests).
+static func tower_themes() -> Array:
+	tower_theme("Nature")
+	return _themes.keys()
