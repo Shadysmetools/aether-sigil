@@ -1,33 +1,45 @@
-# Emberwick handoff, 2026-10-20
+# Aether Sigil handoff, 2026-10-21
 
-## Where things are
-- **Repo:** https://github.com/Shadysmetools/emberwick (private, `main`)
-- **Design doc:** https://claude.ai/code/artifact/c95fe8f8-8f5f-4ebe-a95c-f0e41bd44a86
-- **Concept gallery** (anime-ink art, 18 Wicks, sigil maker): https://claude.ai/artifact/RuZforo69NoB46s47zqYsi, also at `docs/gallery/`
-- **Prototype:** `game/` (Godot 4.7.2). Tests: rules 69 pass / 0 fail, UI smoke 12 pass / 0 fail
-- **Research:** `RESEARCH-open-source.md` (licence-checked tools, assets, costs; recommended stack plus a do-not-use list)
-- **Local only (not in git):** `engine/` (Godot 4.7.2), `assets/` (Kenney Hexagon Kit, CC0), `art/incoming/` (Shady's drawings go here)
+**Repo:** https://github.com/Shadysmetools/aether-sigil (private, `main` @ b137437; renamed from emberwick).
 
-## Decisions
-- **All art and code must be original or CC0 / MIT / OFL.** No Yu-Gi-Oh or other franchise assets, characters or maps, and no reverse-engineering. Archetypes and anime style are fine.
-- **Shady draws the characters himself.** AI may be used for concepts only; finals are drawn by a human so they can be owned.
+## State
+- **Game** (`game/`, Godot 4.7.2):
+  - 12x12 isometric battle loop driven by `data/AETHER_SIGIL_MASTER_GAME_BIBLE.json`: 120 stages, 1,000 monsters, opponents, dialogue.
+  - Rules: initiative turns; Move/Attack/Skill/Defend/Wait; terrain and line of sight; multi-objectives; Player Sigil; capsule summons; squad of 4; progression with local save.
+- **Tests:** `bash game/run_tests.sh` gives 16,322 pass / 0 fail (GREEN). The gate is strict: any failing assertion makes it RED, proven with a deliberate break.
+- **Balance** (AI vs AI over 120 stages): the design squad wins 48% vs the enemy's 43%; there is no difficulty curve yet.
+- **Known data issues:** 353 contradictions in the generated bible, handled by rule fallbacks and listed in `KNOWN_DATA_ISSUES` in `game/tests/test_data.gd`.
 
-## Next steps
-1. **Prototype fixes:**
-   - AI variety and balance: the AI always plays the same game and P1 always wins.
-   - Satchels: add Bloom or Stone, so the x1.5 element bonus can actually happen.
-   - Hearth placement: they currently sit in opposite corners.
-   - Phone layout: replace fixed positions with anchors.
-2. **Integrate Shady's drawings** from `art/incoming/` as sprites, and rig them with Skeleton2D.
-3. **Original chapter maps:** terrain, Beacons and spawns.
-4. **Android export:**
-   - JDK 17
-   - SDK Platform 36
-   - release keystore
-   - AAB via Gradle
-   - Play Console ($25), then a 12-tester, 14-day closed test
-5. **iOS export:**
-   - a Mac with Xcode 26+
-   - an Apple developer account ($99/yr)
-   - StoreKit 2 plugin built for 4.7
-6. **Claude Design design-system push:** blocked until Shady runs `/design-login`.
+## Docs and assets
+| Item | Where |
+| --- | --- |
+| Balance analysis and ability specs (reproducible) | `docs/BALANCE-REPORT.md`, `docs/ABILITIES.md` |
+| Milestones M1-M7 and 41 GitHub issues | `docs/ROADMAP.md`, GitHub |
+| Name review (not legal advice) | `docs/IP-CHECK.md` |
+| 365 original placeholder art files and prompt pack | `art/generated/`, `art/PROMPTS.md` |
+| AI concept sheets (reference only) | `art/concepts/` |
+
+## Studio
+Claude Code Game Studios v1.2.0 is installed: `.claude/`, `project.yaml`, `CLAUDE.md`. Local patches are in `docs/ccgs/LOCAL-PATCHES.md`.
+
+**First run:** open this folder in Claude Code, then run, in order:
+1. `/project-stage-detect`
+2. `/adopt`
+3. `/gate-check`
+4. `/setup-engine refresh` (not the full setup)
+
+## Open decisions (owner)
+1. Rename tower "Crown of Ages" (an upcoming Steam game uses the exact name).
+2. Subtitle: drop "Capsule"? Settle it before the Android listing (M5).
+3. Approve the proposed rule values: Symbol HP 120, accuracy 90%, element chart (3 rings of 4).
+4. Element names: Nature -> Wood? Lightning -> Thunder? Should Light and Dark be mutual rivals?
+
+## Next
+- 3D view
+- difficulty curve
+- hidden traps and evolution
+- Android SDK + JDK 17 (manual; you accept the licences)
+- export preset
+- device test
+
+Export templates for 4.7.2 are installed.
