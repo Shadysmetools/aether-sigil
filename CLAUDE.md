@@ -1,18 +1,24 @@
-# Claude Code Game Studios -- Game Studio Agent Architecture
+# Aether Sigil -- Claude Code Game Studios (CCGS) configuration
 
 Indie game development managed through 49 coordinated Claude Code subagents.
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 ## Technology Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Engine**: Godot 4.7.2
+- **Language**: GDScript
 - **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+- **Build System**: SCons (engine), Godot Export Templates
+- **Asset Pipeline**: Godot Import System + custom resource pipeline
 
-> **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
-> dedicated sub-specialists. Use the set matching your engine.
+> **Aether Sigil layout (differs from the CCGS default):** the Godot project is
+> `game/` (`game/project.godot`), so `res://` = `game/`. Game code is
+> `game/scripts/`, tests are `game/tests/` (run `bash game/run_tests.sh`), and
+> there is **no** `src/` and no root `project.godot`; never create either.
+> The code root is set by `engine.code_root: game` in `project.yaml` (a local
+> patch, see `docs/ccgs/LOCAL-PATCHES.md`). Design sources: `design/game-brief.md`
+> points at the game bible in `data/`, concept art in `art/concepts/`, and
+> `docs/ROADMAP.md`.
 
 ## Project Structure
 
