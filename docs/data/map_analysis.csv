@@ -1,0 +1,121 @@
+stage_id,walkable_pct,walkable_pct_stone_blocks,path_spawn_to_enemy_symbol,path_enemy_spawn_to_player_symbol,path_with_warps,chokepoints_articulation,chokepoints_stone_blocks,bridge_tiles,elevation_tiles,water_tiles,hazard_tiles,stone_tiles,capsule_nodes,capsule_dist_diffs_player_minus_enemy,capsule_diff_sum,relic_tiles,warp_gates,player_spawn_tiles,enemy_spawn_tiles,player_symbol_tiles,flags,capsule_diff_sum_mirrored_spawns,path_enemy_to_player_symbol_mirrored,bridge_tiles_that_are_chokepoints,bridge_chokepoints_stone_blocks
+T01-L01,87.5,81.9,15,16,15,1,9,3,1,0,2,8,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T01-L02,96.5,96.5,15,16,15,0,0,19,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T01-L03,93.8,93.8,15,16,15,1,1,2,1,12,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T01-L04,93.8,93.8,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T01-L05,92.4,92.4,15,16,15,0,0,3,0,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T01-L06,88.2,88.2,15,16,15,5,5,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T01-L07,92.4,92.4,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T01-L08,91.0,91.0,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'obstacle'",0,15,0,0
+T01-L09,91.7,91.7,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T01-L10,91.0,91.0,15,,15,3,3,2,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T02-L01,91.7,80.6,15,16,15,3,7,2,1,0,2,16,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T02-L02,95.8,95.8,15,16,15,0,0,16,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T02-L03,95.8,95.8,15,16,15,0,0,2,1,13,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'mixed'",0,15,0,0
+T02-L04,89.6,89.6,15,17,15,2,2,2,1,0,2,0,2,-4 0,-4,0,1,3,2,1,"UNFAIR: spawn tiles player 3 vs enemy 2 || DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T02-L05,92.4,92.4,15,16,15,1,1,2,1,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T02-L06,89.6,89.6,15,16,15,2,2,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T02-L07,92.4,92.4,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,2,1,BROKEN: portal rule with 1 warp_gate (needs >=2) || UNFAIR: spawn tiles player 3 vs enemy 2,0,15,0,0
+T02-L08,92.4,92.4,15,16,15,2,2,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T02-L09,91.0,91.0,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T02-L10,89.6,89.6,15,16,15,4,4,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T03-L01,91.7,87.5,15,16,15,2,4,3,1,0,2,6,2,-3 1,-2,1,1,3,3,1,,0,15,0,1
+T03-L02,93.8,93.8,15,16,15,1,1,11,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T03-L03,93.1,93.1,15,16,15,4,4,2,1,13,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'water'",0,15,0,0
+T03-L04,90.3,90.3,15,16,15,1,1,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'obstacle'",0,15,0,0
+T03-L05,91.0,91.0,15,18,15,1,1,2,1,0,1,0,2,-3 0,-3,1,1,3,3,1,"UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || UNFAIR: Symbol path asymmetry 15 vs 17 (mirrored spawns) || DATA: objective list disagrees with grid: elevation@(7, 6) is 'obstacle'",-2,17,0,0
+T03-L06,94.4,94.4,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T03-L07,95.8,95.8,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T03-L08,95.8,95.8,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T03-L09,95.8,95.8,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T03-L10,94.4,94.4,15,,15,1,1,2,1,0,1,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T04-L01,93.1,85.4,15,16,15,1,5,2,1,0,2,11,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T04-L02,91.0,91.0,15,16,15,5,5,12,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,1,1
+T04-L03,91.0,91.0,15,16,15,2,2,3,1,15,2,0,2,-3 1,-2,1,1,2,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || UNFAIR: spawn tiles player 2 vs enemy 3 || DATA: objective list disagrees with grid: relic@(6, 3) is 'water'",0,15,0,0
+T04-L04,88.2,88.2,15,16,15,3,3,3,1,0,2,0,2,-3 1,-2,0,0,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T04-L05,91.0,91.0,15,16,15,4,4,2,1,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T04-L06,93.1,93.1,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T04-L07,95.1,95.1,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T04-L08,92.4,92.4,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T04-L09,93.1,93.1,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T04-L10,95.8,95.8,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T05-L01,94.4,87.5,15,16,15,1,2,3,1,0,2,10,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T05-L02,86.8,86.8,15,16,15,2,2,16,1,0,2,0,1,1,1,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour ENEMY by 2 tiles (mirrored spawns; raw sum +1) || DATA: objective list disagrees with grid: capsule_node@(5, 5) is 'hazard'",2,15,0,0
+T05-L03,94.4,94.4,15,16,15,1,1,1,1,13,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T05-L04,90.3,90.3,15,16,15,1,1,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'mixed'",0,15,0,0
+T05-L05,93.1,93.1,15,16,15,1,1,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T05-L06,96.5,96.5,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T05-L07,88.9,88.9,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T05-L08,92.4,92.4,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T05-L09,93.1,93.1,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T05-L10,91.7,91.7,15,,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T06-L01,94.4,90.3,15,16,15,0,1,3,1,0,2,6,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T06-L02,94.4,94.4,15,16,15,1,1,8,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T06-L03,89.6,89.6,15,16,15,3,3,1,1,18,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T06-L04,94.4,94.4,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,0,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T06-L05,94.4,94.4,15,16,15,2,2,2,0,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T06-L06,97.2,97.2,15,16,15,0,0,0,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T06-L07,87.5,87.5,15,16,15,5,5,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T06-L08,95.1,95.1,15,16,15,2,2,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T06-L09,92.4,92.4,15,16,15,3,3,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'mixed'",0,15,0,0
+T06-L10,95.1,95.1,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T07-L01,92.4,83.3,15,16,15,0,4,1,1,0,2,13,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T07-L02,90.3,90.3,15,16,15,3,3,11,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T07-L03,93.8,93.8,15,16,15,5,5,3,1,11,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T07-L04,93.1,93.1,15,17,15,0,0,2,1,0,2,0,2,-4 0,-4,1,1,3,2,1,"UNFAIR: spawn tiles player 3 vs enemy 2 || DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T07-L05,92.4,92.4,15,16,15,2,2,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'lava'",0,15,0,0
+T07-L06,95.1,95.1,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T07-L07,94.4,94.4,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,2,1,BROKEN: portal rule with 1 warp_gate (needs >=2) || UNFAIR: spawn tiles player 3 vs enemy 2,0,15,0,0
+T07-L08,90.3,90.3,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T07-L09,90.3,90.3,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T07-L10,97.9,97.9,15,,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T08-L01,93.8,83.3,15,16,15,1,3,3,1,0,2,15,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T08-L02,93.1,93.1,15,16,15,0,0,9,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T08-L03,92.4,92.4,15,16,15,2,2,3,1,7,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T08-L04,89.6,89.6,15,16,15,4,4,3,1,0,2,0,2,-3 1,-2,0,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'mixed'",0,15,0,0
+T08-L05,93.8,93.8,15,16,15,0,0,3,1,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T08-L06,96.5,96.5,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T08-L07,96.5,96.5,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T08-L08,93.1,93.1,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T08-L09,95.1,95.1,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T08-L10,90.3,90.3,15,,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T09-L01,92.4,84.0,15,16,15,0,8,2,1,0,2,12,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T09-L02,92.4,92.4,15,16,15,2,2,7,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T09-L03,93.8,93.8,16,16,16,0,0,2,1,11,2,0,2,-1 2,1,1,1,2,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || UNFAIR: spawn tiles player 2 vs enemy 3 || UNFAIR: capsule nodes favour ENEMY by 3 tiles (mirrored spawns; raw sum +1) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",3,15,0,0
+T09-L04,92.4,92.4,15,16,15,3,3,2,1,0,2,0,2,-3 1,-2,1,0,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T09-L05,89.6,89.6,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T09-L06,96.5,96.5,15,16,15,0,0,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T09-L07,88.9,88.9,15,16,15,3,3,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T09-L08,93.1,93.1,15,18,15,5,5,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"UNFAIR: Symbol path asymmetry 15 vs 17 (mirrored spawns) || DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,17,0,0
+T09-L09,93.1,93.1,15,16,15,3,3,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T09-L10,90.3,90.3,15,,15,2,2,2,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T10-L01,92.4,88.2,15,16,15,0,1,3,1,0,2,6,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T10-L02,93.8,93.8,15,16,15,2,2,10,1,0,2,0,1,1,1,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour ENEMY by 2 tiles (mirrored spawns; raw sum +1) || DATA: objective list disagrees with grid: capsule_node@(5, 5) is 'hazard'",2,15,0,0
+T10-L03,93.1,93.1,15,16,15,3,3,3,1,14,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T10-L04,89.6,89.6,15,16,15,1,1,1,1,0,2,0,2,-3 1,-2,0,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T10-L05,89.6,89.6,15,16,15,2,2,1,1,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T10-L06,93.1,93.1,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'obstacle'",0,15,0,0
+T10-L07,93.1,93.1,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T10-L08,92.4,92.4,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T10-L09,93.8,93.8,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T10-L10,93.8,93.8,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'ground'",0,15,0,0
+T11-L01,92.4,83.3,15,16,15,3,10,1,1,0,2,13,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T11-L02,95.1,95.1,15,16,15,2,2,12,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,1,1
+T11-L03,92.4,92.4,15,16,15,0,0,1,1,8,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T11-L04,91.7,91.7,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'forest'",0,15,0,0
+T11-L05,95.8,95.8,15,16,15,0,0,2,0,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'lava'",0,15,0,0
+T11-L06,93.8,93.8,15,16,15,1,1,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T11-L07,97.2,97.2,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,BROKEN: portal rule with 1 warp_gate (needs >=2),0,15,0,0
+T11-L08,93.8,93.8,15,16,15,2,2,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'shadow'",0,15,0,0
+T11-L09,97.2,97.2,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'mixed'",0,15,0,0
+T11-L10,95.8,95.8,15,,15,3,3,3,1,0,2,0,2,-3 1,-2,1,1,3,3,0,"BROKEN: no player_symbol tile on grid || DATA: objective list disagrees with grid: player_symbol@(1, 1) is 'hazard'; elevation@(7, 6) is 'ground'",0,,0,0
+T12-L01,95.8,86.1,15,16,15,0,2,2,1,0,2,14,2,-3 1,-2,1,1,3,3,1,,0,15,0,1
+T12-L02,94.4,94.4,15,16,15,2,2,11,1,0,2,0,2,-3 1,-2,1,1,3,3,1,,0,15,0,0
+T12-L03,90.3,90.3,15,16,15,1,1,2,1,8,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || BROKEN: portal rule with 1 warp_gate (needs >=2) || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T12-L04,93.1,93.1,15,17,15,2,2,3,1,0,2,0,2,-4 0,-4,0,1,3,2,1,"UNFAIR: spawn tiles player 3 vs enemy 2 || DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T12-L05,96.5,96.5,15,16,15,0,0,3,1,0,2,0,1,-3,-3,1,1,3,3,1,"UNFAIR: only 1 capsule node || UNFAIR: capsule nodes favour PLAYER by 2 tiles (mirrored spawns; raw sum -3) || DATA: objective list disagrees with grid: capsule_node@(6, 6) is 'hazard'; elevation@(7, 6) is 'ground'",-2,15,0,0
+T12-L06,94.4,94.4,15,16,15,0,0,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T12-L07,95.8,95.8,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,2,1,BROKEN: portal rule with 1 warp_gate (needs >=2) || UNFAIR: spawn tiles player 3 vs enemy 2,0,15,0,0
+T12-L08,87.5,87.5,15,16,15,7,7,2,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: warp_gate@(3, 9) is 'ground'",0,15,0,0
+T12-L09,95.8,95.8,15,16,15,1,1,1,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"BROKEN: relic win needs 3 relic nodes, grid has 1 || DATA: objective list disagrees with grid: relic@(6, 3) is 'ground'",0,15,0,0
+T12-L10,92.4,92.4,15,16,15,1,1,3,1,0,2,0,2,-3 1,-2,1,1,3,3,1,"DATA: objective list disagrees with grid: elevation@(7, 6) is 'obstacle'",0,15,0,0
