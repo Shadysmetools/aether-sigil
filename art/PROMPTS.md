@@ -115,7 +115,7 @@ Use the shared style block and add: *"waist-up character portrait, dramatic rim 
 - **Pose:** reaching through a small tear in the air.
 - **Background:** an unstable swirling violet portal and floating rock shards.
 
-**Ari Zephyr (Crown of Ages, Light/Legacy).**
+**Ari Zephyr (Sunforge Throne, Light/Legacy).**
 - **Look:** a regal young woman with long golden-blonde hair braided with gold ribbons and warm gold eyes.
 - **Outfit:** a white and sigil-gold ceremonial gown with sun-ray collar plates and a radiant sun sigil on a circlet.
 - **Pose:** a soft benevolent expression, holding a sceptre topped with a compass star.
@@ -216,7 +216,7 @@ Use the shared style block and add: *"isometric tactical battle arena, 12x12 til
 9. **Astral Observatory:** deep violet star-speckled floor tiles with gold constellation inlays, orbiting stone platforms, a giant brass orrery and planets in a starfield sky.
 10. **Crystal Sanctum:** pale violet crystal-faceted floor, tall violet crystal clusters, translucent prism bridges, reflective beams of light and resonance nodes glowing.
 11. **Rift Frontier:** unstable violet ground with ember-violet cracks, floating rock shards, phase-shift tiles flickering, and a huge swirling violet portal in the background.
-12. **Crown of Ages:** gilded marble tiles with gold inlay, a multi-biome patchwork (forest, lava, water and ice quarters) separated by gold borders, and a golden citadel and sun rays in the background.
+12. **Sunforge Throne:** gilded marble tiles with gold inlay, a multi-biome patchwork (forest, lava, water and ice quarters) separated by gold borders, and a golden citadel and sun rays in the background.
 
 ---
 

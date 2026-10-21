@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
-<title>tiles/T12_crown_of_ages/enemy_spawn</title>
+<title>tiles/T12_sunforge_throne/ground</title>
 <polygon points="0,118 64,150 64,156 0,124" fill="#76756C"/>
 <polygon points="64,150 128,118 128,124 64,156" fill="#545654"/>
 <polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#A6966A"/>
@@ -8,11 +8,4 @@
 <polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
 <polygon points="64,92.4 115.2,118 64,143.6 12.8,118" fill="none" stroke="#F6C445" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.75"/>
 <polygon points="71.68,114.16 71.68,121.84 56.32,121.84 56.32,114.16" fill="#F6C445" opacity="0.6"/>
-<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="#FF6B3D" opacity="0.22"/>
-<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="none" stroke="#FF6B3D" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
-<ellipse cx="64" cy="91.12" rx="2" ry="1.3" fill="#F6C445"/>
-<ellipse cx="117.76" cy="118" rx="2" ry="1.3" fill="#F6C445"/>
-<ellipse cx="64" cy="144.88" rx="2" ry="1.3" fill="#F6C445"/>
-<ellipse cx="10.24" cy="118" rx="2" ry="1.3" fill="#F6C445"/>
-<polygon points="55.04,122.48 75.52,119.92 60.16,112.24" fill="#FF6B3D" opacity="0.75"/>
 </svg>

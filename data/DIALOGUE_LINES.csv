@@ -35,10 +35,10 @@ T01-L09,Verdant Spire,Tarin Slate,intro,Tarin Slate: The Verdant Spire tests mor
 T01-L09,Verdant Spire,Tarin Slate,midbattle,Tarin Slate: You're learning the terrain. Then I'll change the tempo.
 T01-L09,Verdant Spire,Tarin Slate,defeat,"Tarin Slate: I lost the field, not the lesson. Climb higher and face the next keeper."
 T01-L09,Verdant Spire,Tarin Slate,boss_intro,Tarin Slate: This is the final chamber. Your Symbol stands against mine.
-T01-L10,Verdant Spire,Zane Lux,intro,Zane Lux: The Verdant Spire tests more than strength. It tests whether your team can adapt.
-T01-L10,Verdant Spire,Zane Lux,midbattle,Zane Lux: You're learning the terrain. Then I'll change the tempo.
-T01-L10,Verdant Spire,Zane Lux,defeat,"Zane Lux: I lost the field, not the lesson. Climb higher and face the next keeper."
-T01-L10,Verdant Spire,Zane Lux,boss_intro,Zane Lux: This is the final chamber. Your Symbol stands against mine.
+T01-L10,Verdant Spire,Lyra Quill,intro,Lyra Quill: The Verdant Spire tests more than strength. It tests whether your team can adapt.
+T01-L10,Verdant Spire,Lyra Quill,midbattle,Lyra Quill: You're learning the terrain. Then I'll change the tempo.
+T01-L10,Verdant Spire,Lyra Quill,defeat,"Lyra Quill: I lost the field, not the lesson. Climb higher and face the next keeper."
+T01-L10,Verdant Spire,Lyra Quill,boss_intro,Lyra Quill: This is the final chamber. Your Symbol stands against mine.
 T02-L01,Ember Bastion,Cira Grave,intro,Cira Grave: The Ember Bastion tests more than strength. It tests whether your team can adapt.
 T02-L01,Ember Bastion,Cira Grave,midbattle,Cira Grave: You're learning the terrain. Then I'll change the tempo.
 T02-L01,Ember Bastion,Cira Grave,defeat,"Cira Grave: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -75,10 +75,10 @@ T02-L09,Ember Bastion,Dax Nyx,intro,Dax Nyx: The Ember Bastion tests more than s
 T02-L09,Ember Bastion,Dax Nyx,midbattle,Dax Nyx: You're learning the terrain. Then I'll change the tempo.
 T02-L09,Ember Bastion,Dax Nyx,defeat,"Dax Nyx: I lost the field, not the lesson. Climb higher and face the next keeper."
 T02-L09,Ember Bastion,Dax Nyx,boss_intro,Dax Nyx: This is the final chamber. Your Symbol stands against mine.
-T02-L10,Ember Bastion,Yuna Reed,intro,Yuna Reed: The Ember Bastion tests more than strength. It tests whether your team can adapt.
-T02-L10,Ember Bastion,Yuna Reed,midbattle,Yuna Reed: You're learning the terrain. Then I'll change the tempo.
-T02-L10,Ember Bastion,Yuna Reed,defeat,"Yuna Reed: I lost the field, not the lesson. Climb higher and face the next keeper."
-T02-L10,Ember Bastion,Yuna Reed,boss_intro,Yuna Reed: This is the final chamber. Your Symbol stands against mine.
+T02-L10,Ember Bastion,Varen Lux,intro,Varen Lux: The Ember Bastion tests more than strength. It tests whether your team can adapt.
+T02-L10,Ember Bastion,Varen Lux,midbattle,Varen Lux: You're learning the terrain. Then I'll change the tempo.
+T02-L10,Ember Bastion,Varen Lux,defeat,"Varen Lux: I lost the field, not the lesson. Climb higher and face the next keeper."
+T02-L10,Ember Bastion,Varen Lux,boss_intro,Varen Lux: This is the final chamber. Your Symbol stands against mine.
 T03-L01,Tideglass Citadel,Milo Bloom,intro,Milo Bloom: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.
 T03-L01,Tideglass Citadel,Milo Bloom,midbattle,Milo Bloom: You're learning the terrain. Then I'll change the tempo.
 T03-L01,Tideglass Citadel,Milo Bloom,defeat,"Milo Bloom: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -115,10 +115,10 @@ T03-L09,Tideglass Citadel,Rex Moss,intro,Rex Moss: The Tideglass Citadel tests m
 T03-L09,Tideglass Citadel,Rex Moss,midbattle,Rex Moss: You're learning the terrain. Then I'll change the tempo.
 T03-L09,Tideglass Citadel,Rex Moss,defeat,"Rex Moss: I lost the field, not the lesson. Climb higher and face the next keeper."
 T03-L09,Tideglass Citadel,Rex Moss,boss_intro,Rex Moss: This is the final chamber. Your Symbol stands against mine.
-T03-L10,Tideglass Citadel,Nyla Ardent,intro,Nyla Ardent: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.
-T03-L10,Tideglass Citadel,Nyla Ardent,midbattle,Nyla Ardent: You're learning the terrain. Then I'll change the tempo.
-T03-L10,Tideglass Citadel,Nyla Ardent,defeat,"Nyla Ardent: I lost the field, not the lesson. Climb higher and face the next keeper."
-T03-L10,Tideglass Citadel,Nyla Ardent,boss_intro,Nyla Ardent: This is the final chamber. Your Symbol stands against mine.
+T03-L10,Tideglass Citadel,Niko Ardent,intro,Niko Ardent: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.
+T03-L10,Tideglass Citadel,Niko Ardent,midbattle,Niko Ardent: You're learning the terrain. Then I'll change the tempo.
+T03-L10,Tideglass Citadel,Niko Ardent,defeat,"Niko Ardent: I lost the field, not the lesson. Climb higher and face the next keeper."
+T03-L10,Tideglass Citadel,Niko Ardent,boss_intro,Niko Ardent: This is the final chamber. Your Symbol stands against mine.
 T04-L01,Frost Meridian,Ari Rook,intro,Ari Rook: The Frost Meridian tests more than strength. It tests whether your team can adapt.
 T04-L01,Frost Meridian,Ari Rook,midbattle,Ari Rook: You're learning the terrain. Then I'll change the tempo.
 T04-L01,Frost Meridian,Ari Rook,defeat,"Ari Rook: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -155,10 +155,10 @@ T04-L09,Frost Meridian,Tarin Quill,intro,Tarin Quill: The Frost Meridian tests m
 T04-L09,Frost Meridian,Tarin Quill,midbattle,Tarin Quill: You're learning the terrain. Then I'll change the tempo.
 T04-L09,Frost Meridian,Tarin Quill,defeat,"Tarin Quill: I lost the field, not the lesson. Climb higher and face the next keeper."
 T04-L09,Frost Meridian,Tarin Quill,boss_intro,Tarin Quill: This is the final chamber. Your Symbol stands against mine.
-T04-L10,Frost Meridian,Zane Cross,intro,Zane Cross: The Frost Meridian tests more than strength. It tests whether your team can adapt.
-T04-L10,Frost Meridian,Zane Cross,midbattle,Zane Cross: You're learning the terrain. Then I'll change the tempo.
-T04-L10,Frost Meridian,Zane Cross,defeat,"Zane Cross: I lost the field, not the lesson. Climb higher and face the next keeper."
-T04-L10,Frost Meridian,Zane Cross,boss_intro,Zane Cross: This is the final chamber. Your Symbol stands against mine.
+T04-L10,Frost Meridian,Rhea Volt,intro,Rhea Volt: The Frost Meridian tests more than strength. It tests whether your team can adapt.
+T04-L10,Frost Meridian,Rhea Volt,midbattle,Rhea Volt: You're learning the terrain. Then I'll change the tempo.
+T04-L10,Frost Meridian,Rhea Volt,defeat,"Rhea Volt: I lost the field, not the lesson. Climb higher and face the next keeper."
+T04-L10,Frost Meridian,Rhea Volt,boss_intro,Rhea Volt: This is the final chamber. Your Symbol stands against mine.
 T05-L01,Iron Labyrinth,Cira Ashen,intro,Cira Ashen: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.
 T05-L01,Iron Labyrinth,Cira Ashen,midbattle,Cira Ashen: You're learning the terrain. Then I'll change the tempo.
 T05-L01,Iron Labyrinth,Cira Ashen,defeat,"Cira Ashen: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -195,10 +195,10 @@ T05-L09,Iron Labyrinth,Dax Dray,intro,Dax Dray: The Iron Labyrinth tests more th
 T05-L09,Iron Labyrinth,Dax Dray,midbattle,Dax Dray: You're learning the terrain. Then I'll change the tempo.
 T05-L09,Iron Labyrinth,Dax Dray,defeat,"Dax Dray: I lost the field, not the lesson. Climb higher and face the next keeper."
 T05-L09,Iron Labyrinth,Dax Dray,boss_intro,Dax Dray: This is the final chamber. Your Symbol stands against mine.
-T05-L10,Iron Labyrinth,Yuna Flint,intro,Yuna Flint: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.
-T05-L10,Iron Labyrinth,Yuna Flint,midbattle,Yuna Flint: You're learning the terrain. Then I'll change the tempo.
-T05-L10,Iron Labyrinth,Yuna Flint,defeat,"Yuna Flint: I lost the field, not the lesson. Climb higher and face the next keeper."
-T05-L10,Iron Labyrinth,Yuna Flint,boss_intro,Yuna Flint: This is the final chamber. Your Symbol stands against mine.
+T05-L10,Iron Labyrinth,Renn Calder,intro,Renn Calder: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.
+T05-L10,Iron Labyrinth,Renn Calder,midbattle,Renn Calder: You're learning the terrain. Then I'll change the tempo.
+T05-L10,Iron Labyrinth,Renn Calder,defeat,"Renn Calder: I lost the field, not the lesson. Climb higher and face the next keeper."
+T05-L10,Iron Labyrinth,Renn Calder,boss_intro,Renn Calder: This is the final chamber. Your Symbol stands against mine.
 T06-L01,Storm Crown,Milo Frost,intro,Milo Frost: The Storm Crown tests more than strength. It tests whether your team can adapt.
 T06-L01,Storm Crown,Milo Frost,midbattle,Milo Frost: You're learning the terrain. Then I'll change the tempo.
 T06-L01,Storm Crown,Milo Frost,defeat,"Milo Frost: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -235,10 +235,10 @@ T06-L09,Storm Crown,Rex Rune,intro,Rex Rune: The Storm Crown tests more than str
 T06-L09,Storm Crown,Rex Rune,midbattle,Rex Rune: You're learning the terrain. Then I'll change the tempo.
 T06-L09,Storm Crown,Rex Rune,defeat,"Rex Rune: I lost the field, not the lesson. Climb higher and face the next keeper."
 T06-L09,Storm Crown,Rex Rune,boss_intro,Rex Rune: This is the final chamber. Your Symbol stands against mine.
-T06-L10,Storm Crown,Nyla Dawn,intro,Nyla Dawn: The Storm Crown tests more than strength. It tests whether your team can adapt.
-T06-L10,Storm Crown,Nyla Dawn,midbattle,Nyla Dawn: You're learning the terrain. Then I'll change the tempo.
-T06-L10,Storm Crown,Nyla Dawn,defeat,"Nyla Dawn: I lost the field, not the lesson. Climb higher and face the next keeper."
-T06-L10,Storm Crown,Nyla Dawn,boss_intro,Nyla Dawn: This is the final chamber. Your Symbol stands against mine.
+T06-L10,Storm Crown,Zara Nyx,intro,Zara Nyx: The Storm Crown tests more than strength. It tests whether your team can adapt.
+T06-L10,Storm Crown,Zara Nyx,midbattle,Zara Nyx: You're learning the terrain. Then I'll change the tempo.
+T06-L10,Storm Crown,Zara Nyx,defeat,"Zara Nyx: I lost the field, not the lesson. Climb higher and face the next keeper."
+T06-L10,Storm Crown,Zara Nyx,boss_intro,Zara Nyx: This is the final chamber. Your Symbol stands against mine.
 T07-L01,Obsidian Eclipse,Ari Storm,intro,Ari Storm: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.
 T07-L01,Obsidian Eclipse,Ari Storm,midbattle,Ari Storm: You're learning the terrain. Then I'll change the tempo.
 T07-L01,Obsidian Eclipse,Ari Storm,defeat,"Ari Storm: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -275,10 +275,10 @@ T07-L09,Obsidian Eclipse,Tarin Vale,intro,Tarin Vale: The Obsidian Eclipse tests
 T07-L09,Obsidian Eclipse,Tarin Vale,midbattle,Tarin Vale: You're learning the terrain. Then I'll change the tempo.
 T07-L09,Obsidian Eclipse,Tarin Vale,defeat,"Tarin Vale: I lost the field, not the lesson. Climb higher and face the next keeper."
 T07-L09,Obsidian Eclipse,Tarin Vale,boss_intro,Tarin Vale: This is the final chamber. Your Symbol stands against mine.
-T07-L10,Obsidian Eclipse,Zane Wren,intro,Zane Wren: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.
-T07-L10,Obsidian Eclipse,Zane Wren,midbattle,Zane Wren: You're learning the terrain. Then I'll change the tempo.
-T07-L10,Obsidian Eclipse,Zane Wren,defeat,"Zane Wren: I lost the field, not the lesson. Climb higher and face the next keeper."
-T07-L10,Obsidian Eclipse,Zane Wren,boss_intro,Zane Wren: This is the final chamber. Your Symbol stands against mine.
+T07-L10,Obsidian Eclipse,Cira Dawn,intro,Cira Dawn: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.
+T07-L10,Obsidian Eclipse,Cira Dawn,midbattle,Cira Dawn: You're learning the terrain. Then I'll change the tempo.
+T07-L10,Obsidian Eclipse,Cira Dawn,defeat,"Cira Dawn: I lost the field, not the lesson. Climb higher and face the next keeper."
+T07-L10,Obsidian Eclipse,Cira Dawn,boss_intro,Cira Dawn: This is the final chamber. Your Symbol stands against mine.
 T08-L01,Sunken Archive,Cira Zephyr,intro,Cira Zephyr: The Sunken Archive tests more than strength. It tests whether your team can adapt.
 T08-L01,Sunken Archive,Cira Zephyr,midbattle,Cira Zephyr: You're learning the terrain. Then I'll change the tempo.
 T08-L01,Sunken Archive,Cira Zephyr,defeat,"Cira Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -315,10 +315,10 @@ T08-L09,Sunken Archive,Dax Calder,intro,Dax Calder: The Sunken Archive tests mor
 T08-L09,Sunken Archive,Dax Calder,midbattle,Dax Calder: You're learning the terrain. Then I'll change the tempo.
 T08-L09,Sunken Archive,Dax Calder,defeat,"Dax Calder: I lost the field, not the lesson. Climb higher and face the next keeper."
 T08-L09,Sunken Archive,Dax Calder,boss_intro,Dax Calder: This is the final chamber. Your Symbol stands against mine.
-T08-L10,Sunken Archive,Yuna Slate,intro,Yuna Slate: The Sunken Archive tests more than strength. It tests whether your team can adapt.
-T08-L10,Sunken Archive,Yuna Slate,midbattle,Yuna Slate: You're learning the terrain. Then I'll change the tempo.
-T08-L10,Sunken Archive,Yuna Slate,defeat,"Yuna Slate: I lost the field, not the lesson. Climb higher and face the next keeper."
-T08-L10,Sunken Archive,Yuna Slate,boss_intro,Yuna Slate: This is the final chamber. Your Symbol stands against mine.
+T08-L10,Sunken Archive,Tarin Moss,intro,Tarin Moss: The Sunken Archive tests more than strength. It tests whether your team can adapt.
+T08-L10,Sunken Archive,Tarin Moss,midbattle,Tarin Moss: You're learning the terrain. Then I'll change the tempo.
+T08-L10,Sunken Archive,Tarin Moss,defeat,"Tarin Moss: I lost the field, not the lesson. Climb higher and face the next keeper."
+T08-L10,Sunken Archive,Tarin Moss,boss_intro,Tarin Moss: This is the final chamber. Your Symbol stands against mine.
 T09-L01,Astral Observatory,Milo Hollow,intro,Milo Hollow: The Astral Observatory tests more than strength. It tests whether your team can adapt.
 T09-L01,Astral Observatory,Milo Hollow,midbattle,Milo Hollow: You're learning the terrain. Then I'll change the tempo.
 T09-L01,Astral Observatory,Milo Hollow,defeat,"Milo Hollow: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -355,10 +355,10 @@ T09-L09,Astral Observatory,Rex Voss,intro,Rex Voss: The Astral Observatory tests
 T09-L09,Astral Observatory,Rex Voss,midbattle,Rex Voss: You're learning the terrain. Then I'll change the tempo.
 T09-L09,Astral Observatory,Rex Voss,defeat,"Rex Voss: I lost the field, not the lesson. Climb higher and face the next keeper."
 T09-L09,Astral Observatory,Rex Voss,boss_intro,Rex Voss: This is the final chamber. Your Symbol stands against mine.
-T09-L10,Astral Observatory,Nyla Nyx,intro,Nyla Nyx: The Astral Observatory tests more than strength. It tests whether your team can adapt.
-T09-L10,Astral Observatory,Nyla Nyx,midbattle,Nyla Nyx: You're learning the terrain. Then I'll change the tempo.
-T09-L10,Astral Observatory,Nyla Nyx,defeat,"Nyla Nyx: I lost the field, not the lesson. Climb higher and face the next keeper."
-T09-L10,Astral Observatory,Nyla Nyx,boss_intro,Nyla Nyx: This is the final chamber. Your Symbol stands against mine.
+T09-L10,Astral Observatory,Silas Wren,intro,Silas Wren: The Astral Observatory tests more than strength. It tests whether your team can adapt.
+T09-L10,Astral Observatory,Silas Wren,midbattle,Silas Wren: You're learning the terrain. Then I'll change the tempo.
+T09-L10,Astral Observatory,Silas Wren,defeat,"Silas Wren: I lost the field, not the lesson. Climb higher and face the next keeper."
+T09-L10,Astral Observatory,Silas Wren,boss_intro,Silas Wren: This is the final chamber. Your Symbol stands against mine.
 T10-L01,Crystal Sanctum,Ari Lux,intro,Ari Lux: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.
 T10-L01,Crystal Sanctum,Ari Lux,midbattle,Ari Lux: You're learning the terrain. Then I'll change the tempo.
 T10-L01,Crystal Sanctum,Ari Lux,defeat,"Ari Lux: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -395,10 +395,10 @@ T10-L09,Crystal Sanctum,Tarin Grave,intro,Tarin Grave: The Crystal Sanctum tests
 T10-L09,Crystal Sanctum,Tarin Grave,midbattle,Tarin Grave: You're learning the terrain. Then I'll change the tempo.
 T10-L09,Crystal Sanctum,Tarin Grave,defeat,"Tarin Grave: I lost the field, not the lesson. Climb higher and face the next keeper."
 T10-L09,Crystal Sanctum,Tarin Grave,boss_intro,Tarin Grave: This is the final chamber. Your Symbol stands against mine.
-T10-L10,Crystal Sanctum,Zane Moss,intro,Zane Moss: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.
-T10-L10,Crystal Sanctum,Zane Moss,midbattle,Zane Moss: You're learning the terrain. Then I'll change the tempo.
-T10-L10,Crystal Sanctum,Zane Moss,defeat,"Zane Moss: I lost the field, not the lesson. Climb higher and face the next keeper."
-T10-L10,Crystal Sanctum,Zane Moss,boss_intro,Zane Moss: This is the final chamber. Your Symbol stands against mine.
+T10-L10,Crystal Sanctum,Sera Vale,intro,Sera Vale: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.
+T10-L10,Crystal Sanctum,Sera Vale,midbattle,Sera Vale: You're learning the terrain. Then I'll change the tempo.
+T10-L10,Crystal Sanctum,Sera Vale,defeat,"Sera Vale: I lost the field, not the lesson. Climb higher and face the next keeper."
+T10-L10,Crystal Sanctum,Sera Vale,boss_intro,Sera Vale: This is the final chamber. Your Symbol stands against mine.
 T11-L01,Rift Frontier,Cira Reed,intro,Cira Reed: The Rift Frontier tests more than strength. It tests whether your team can adapt.
 T11-L01,Rift Frontier,Cira Reed,midbattle,Cira Reed: You're learning the terrain. Then I'll change the tempo.
 T11-L01,Rift Frontier,Cira Reed,defeat,"Cira Reed: I lost the field, not the lesson. Climb higher and face the next keeper."
@@ -435,50 +435,50 @@ T11-L09,Rift Frontier,Dax Bloom,intro,Dax Bloom: The Rift Frontier tests more th
 T11-L09,Rift Frontier,Dax Bloom,midbattle,Dax Bloom: You're learning the terrain. Then I'll change the tempo.
 T11-L09,Rift Frontier,Dax Bloom,defeat,"Dax Bloom: I lost the field, not the lesson. Climb higher and face the next keeper."
 T11-L09,Rift Frontier,Dax Bloom,boss_intro,Dax Bloom: This is the final chamber. Your Symbol stands against mine.
-T11-L10,Rift Frontier,Yuna Quill,intro,Yuna Quill: The Rift Frontier tests more than strength. It tests whether your team can adapt.
-T11-L10,Rift Frontier,Yuna Quill,midbattle,Yuna Quill: You're learning the terrain. Then I'll change the tempo.
-T11-L10,Rift Frontier,Yuna Quill,defeat,"Yuna Quill: I lost the field, not the lesson. Climb higher and face the next keeper."
-T11-L10,Rift Frontier,Yuna Quill,boss_intro,Yuna Quill: This is the final chamber. Your Symbol stands against mine.
-T12-L01,Crown of Ages,Milo Ardent,intro,Milo Ardent: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L01,Crown of Ages,Milo Ardent,midbattle,Milo Ardent: You're learning the terrain. Then I'll change the tempo.
-T12-L01,Crown of Ages,Milo Ardent,defeat,"Milo Ardent: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L01,Crown of Ages,Milo Ardent,boss_intro,Milo Ardent: This is the final chamber. Your Symbol stands against mine.
-T12-L02,Crown of Ages,Zara Ashen,intro,Zara Ashen: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L02,Crown of Ages,Zara Ashen,midbattle,Zara Ashen: You're learning the terrain. Then I'll change the tempo.
-T12-L02,Crown of Ages,Zara Ashen,defeat,"Zara Ashen: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L02,Crown of Ages,Zara Ashen,boss_intro,Zara Ashen: This is the final chamber. Your Symbol stands against mine.
-T12-L03,Crown of Ages,Eren Rune,intro,Eren Rune: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L03,Crown of Ages,Eren Rune,midbattle,Eren Rune: You're learning the terrain. Then I'll change the tempo.
-T12-L03,Crown of Ages,Eren Rune,defeat,"Eren Rune: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L03,Crown of Ages,Eren Rune,boss_intro,Eren Rune: This is the final chamber. Your Symbol stands against mine.
-T12-L04,Crown of Ages,Lyra Dawn,intro,Lyra Dawn: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L04,Crown of Ages,Lyra Dawn,midbattle,Lyra Dawn: You're learning the terrain. Then I'll change the tempo.
-T12-L04,Crown of Ages,Lyra Dawn,defeat,"Lyra Dawn: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L04,Crown of Ages,Lyra Dawn,boss_intro,Lyra Dawn: This is the final chamber. Your Symbol stands against mine.
-T12-L05,Crown of Ages,Tessa Zephyr,intro,Tessa Zephyr: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L05,Crown of Ages,Tessa Zephyr,midbattle,Tessa Zephyr: You're learning the terrain. Then I'll change the tempo.
-T12-L05,Crown of Ages,Tessa Zephyr,defeat,"Tessa Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L05,Crown of Ages,Tessa Zephyr,boss_intro,Tessa Zephyr: This is the final chamber. Your Symbol stands against mine.
-T12-L06,Crown of Ages,Silas Voss,intro,Silas Voss: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L06,Crown of Ages,Silas Voss,midbattle,Silas Voss: You're learning the terrain. Then I'll change the tempo.
-T12-L06,Crown of Ages,Silas Voss,defeat,"Silas Voss: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L06,Crown of Ages,Silas Voss,boss_intro,Silas Voss: This is the final chamber. Your Symbol stands against mine.
-T12-L07,Crown of Ages,Mako Nyx,intro,Mako Nyx: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L07,Crown of Ages,Mako Nyx,midbattle,Mako Nyx: You're learning the terrain. Then I'll change the tempo.
-T12-L07,Crown of Ages,Mako Nyx,defeat,"Mako Nyx: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L07,Crown of Ages,Mako Nyx,boss_intro,Mako Nyx: This is the final chamber. Your Symbol stands against mine.
-T12-L08,Crown of Ages,Ayla Reed,intro,Ayla Reed: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L08,Crown of Ages,Ayla Reed,midbattle,Ayla Reed: You're learning the terrain. Then I'll change the tempo.
-T12-L08,Crown of Ages,Ayla Reed,defeat,"Ayla Reed: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L08,Crown of Ages,Ayla Reed,boss_intro,Ayla Reed: This is the final chamber. Your Symbol stands against mine.
-T12-L09,Crown of Ages,Rex Rook,intro,Rex Rook: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L09,Crown of Ages,Rex Rook,midbattle,Rex Rook: You're learning the terrain. Then I'll change the tempo.
-T12-L09,Crown of Ages,Rex Rook,defeat,"Rex Rook: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L09,Crown of Ages,Rex Rook,boss_intro,Rex Rook: This is the final chamber. Your Symbol stands against mine.
-T12-L10,Crown of Ages,Nyla Dray,intro,Nyla Dray: The Crown of Ages tests more than strength. It tests whether your team can adapt.
-T12-L10,Crown of Ages,Nyla Dray,midbattle,Nyla Dray: You're learning the terrain. Then I'll change the tempo.
-T12-L10,Crown of Ages,Nyla Dray,defeat,"Nyla Dray: I lost the field, not the lesson. Climb higher and face the next keeper."
-T12-L10,Crown of Ages,Nyla Dray,boss_intro,Nyla Dray: This is the final chamber. Your Symbol stands against mine.
+T11-L10,Rift Frontier,Mako Reed,intro,Mako Reed: The Rift Frontier tests more than strength. It tests whether your team can adapt.
+T11-L10,Rift Frontier,Mako Reed,midbattle,Mako Reed: You're learning the terrain. Then I'll change the tempo.
+T11-L10,Rift Frontier,Mako Reed,defeat,"Mako Reed: I lost the field, not the lesson. Climb higher and face the next keeper."
+T11-L10,Rift Frontier,Mako Reed,boss_intro,Mako Reed: This is the final chamber. Your Symbol stands against mine.
+T12-L01,Sunforge Throne,Milo Ardent,intro,Milo Ardent: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L01,Sunforge Throne,Milo Ardent,midbattle,Milo Ardent: You're learning the terrain. Then I'll change the tempo.
+T12-L01,Sunforge Throne,Milo Ardent,defeat,"Milo Ardent: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L01,Sunforge Throne,Milo Ardent,boss_intro,Milo Ardent: This is the final chamber. Your Symbol stands against mine.
+T12-L02,Sunforge Throne,Zara Ashen,intro,Zara Ashen: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L02,Sunforge Throne,Zara Ashen,midbattle,Zara Ashen: You're learning the terrain. Then I'll change the tempo.
+T12-L02,Sunforge Throne,Zara Ashen,defeat,"Zara Ashen: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L02,Sunforge Throne,Zara Ashen,boss_intro,Zara Ashen: This is the final chamber. Your Symbol stands against mine.
+T12-L03,Sunforge Throne,Eren Rune,intro,Eren Rune: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L03,Sunforge Throne,Eren Rune,midbattle,Eren Rune: You're learning the terrain. Then I'll change the tempo.
+T12-L03,Sunforge Throne,Eren Rune,defeat,"Eren Rune: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L03,Sunforge Throne,Eren Rune,boss_intro,Eren Rune: This is the final chamber. Your Symbol stands against mine.
+T12-L04,Sunforge Throne,Lyra Dawn,intro,Lyra Dawn: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L04,Sunforge Throne,Lyra Dawn,midbattle,Lyra Dawn: You're learning the terrain. Then I'll change the tempo.
+T12-L04,Sunforge Throne,Lyra Dawn,defeat,"Lyra Dawn: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L04,Sunforge Throne,Lyra Dawn,boss_intro,Lyra Dawn: This is the final chamber. Your Symbol stands against mine.
+T12-L05,Sunforge Throne,Tessa Zephyr,intro,Tessa Zephyr: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L05,Sunforge Throne,Tessa Zephyr,midbattle,Tessa Zephyr: You're learning the terrain. Then I'll change the tempo.
+T12-L05,Sunforge Throne,Tessa Zephyr,defeat,"Tessa Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L05,Sunforge Throne,Tessa Zephyr,boss_intro,Tessa Zephyr: This is the final chamber. Your Symbol stands against mine.
+T12-L06,Sunforge Throne,Silas Voss,intro,Silas Voss: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L06,Sunforge Throne,Silas Voss,midbattle,Silas Voss: You're learning the terrain. Then I'll change the tempo.
+T12-L06,Sunforge Throne,Silas Voss,defeat,"Silas Voss: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L06,Sunforge Throne,Silas Voss,boss_intro,Silas Voss: This is the final chamber. Your Symbol stands against mine.
+T12-L07,Sunforge Throne,Mako Nyx,intro,Mako Nyx: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L07,Sunforge Throne,Mako Nyx,midbattle,Mako Nyx: You're learning the terrain. Then I'll change the tempo.
+T12-L07,Sunforge Throne,Mako Nyx,defeat,"Mako Nyx: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L07,Sunforge Throne,Mako Nyx,boss_intro,Mako Nyx: This is the final chamber. Your Symbol stands against mine.
+T12-L08,Sunforge Throne,Ayla Reed,intro,Ayla Reed: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L08,Sunforge Throne,Ayla Reed,midbattle,Ayla Reed: You're learning the terrain. Then I'll change the tempo.
+T12-L08,Sunforge Throne,Ayla Reed,defeat,"Ayla Reed: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L08,Sunforge Throne,Ayla Reed,boss_intro,Ayla Reed: This is the final chamber. Your Symbol stands against mine.
+T12-L09,Sunforge Throne,Rex Rook,intro,Rex Rook: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L09,Sunforge Throne,Rex Rook,midbattle,Rex Rook: You're learning the terrain. Then I'll change the tempo.
+T12-L09,Sunforge Throne,Rex Rook,defeat,"Rex Rook: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L09,Sunforge Throne,Rex Rook,boss_intro,Rex Rook: This is the final chamber. Your Symbol stands against mine.
+T12-L10,Sunforge Throne,Ari Zephyr,intro,Ari Zephyr: The Sunforge Throne tests more than strength. It tests whether your team can adapt.
+T12-L10,Sunforge Throne,Ari Zephyr,midbattle,Ari Zephyr: You're learning the terrain. Then I'll change the tempo.
+T12-L10,Sunforge Throne,Ari Zephyr,defeat,"Ari Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper."
+T12-L10,Sunforge Throne,Ari Zephyr,boss_intro,Ari Zephyr: This is the final chamber. Your Symbol stands against mine.
 GLOBAL,ALL,SYSTEM,sample_1,Hero: Capsule ready. Let's see what answers the battlefield gives us.
 GLOBAL,ALL,SYSTEM,sample_2,Rival: You brought power. I brought a plan.
 GLOBAL,ALL,SYSTEM,sample_3,Hero: Terrain is changing—switch formation!

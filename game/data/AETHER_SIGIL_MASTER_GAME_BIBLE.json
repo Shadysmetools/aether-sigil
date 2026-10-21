@@ -1,5 +1,5 @@
 {
- "title": "AETHER SIGIL: CHRONICLES OF THE CAPSULE REALMS",
+ "title": "AETHER SIGIL: CHRONICLES OF THE PRISM REALMS",
  "tagline": "Collect. Command. Evolve. Conquer.",
  "creative_direction": "Original 3D anime tactical monster-board adventure with capsule deployment, terrain strategy, evolving creatures, rival towers, Symbols, exploration, and cinematic battles.",
  "ip_note": "All names, creatures, characters, symbols, maps, dialogue, mechanics terminology, and visual directions in this package are original concepts intended to avoid copying Yu-Gi-Oh! characters, monsters, artwork, logos, or exact maps.",
@@ -2734,7 +2734,7 @@
        ]
       }
      ],
-     "opponent": "Zane Lux",
+     "opponent": "Lyra Quill",
      "opponent_style": "rush attacker",
      "enemy_roster": [
       "MON-0171",
@@ -2748,10 +2748,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Zane Lux: The Verdant Spire tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Zane Lux: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Zane Lux: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Zane Lux: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Lyra Quill: The Verdant Spire tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Lyra Quill: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Lyra Quill: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Lyra Quill: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -3009,7 +3009,7 @@
      "stage_id": "T01-L09"
     },
     {
-     "name": "Zane Lux",
+     "name": "Lyra Quill",
      "style": "rush attacker",
      "signature": "Nature counter-plan",
      "stage_id": "T01-L10"
@@ -5715,7 +5715,7 @@
        ]
       }
      ],
-     "opponent": "Yuna Reed",
+     "opponent": "Varen Lux",
      "opponent_style": "mobility specialist",
      "enemy_roster": [
       "MON-0254",
@@ -5729,10 +5729,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Yuna Reed: The Ember Bastion tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Yuna Reed: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Yuna Reed: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Yuna Reed: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Varen Lux: The Ember Bastion tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Varen Lux: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Varen Lux: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Varen Lux: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -5990,7 +5990,7 @@
      "stage_id": "T02-L09"
     },
     {
-     "name": "Yuna Reed",
+     "name": "Varen Lux",
      "style": "mobility specialist",
      "signature": "Fire counter-plan",
      "stage_id": "T02-L10"
@@ -8696,7 +8696,7 @@
        ]
       }
      ],
-     "opponent": "Nyla Ardent",
+     "opponent": "Niko Ardent",
      "opponent_style": "counter-attacker",
      "enemy_roster": [
       "MON-0337",
@@ -8710,10 +8710,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Nyla Ardent: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Nyla Ardent: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Nyla Ardent: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Nyla Ardent: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Niko Ardent: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Niko Ardent: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Niko Ardent: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Niko Ardent: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -8971,7 +8971,7 @@
      "stage_id": "T03-L09"
     },
     {
-     "name": "Nyla Ardent",
+     "name": "Niko Ardent",
      "style": "counter-attacker",
      "signature": "Water counter-plan",
      "stage_id": "T03-L10"
@@ -11677,7 +11677,7 @@
        ]
       }
      ],
-     "opponent": "Zane Cross",
+     "opponent": "Rhea Volt",
      "opponent_style": "status-effect strategist",
      "enemy_roster": [
       "MON-0420",
@@ -11691,10 +11691,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Zane Cross: The Frost Meridian tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Zane Cross: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Zane Cross: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Zane Cross: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Rhea Volt: The Frost Meridian tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Rhea Volt: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Rhea Volt: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Rhea Volt: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -11952,7 +11952,7 @@
      "stage_id": "T04-L09"
     },
     {
-     "name": "Zane Cross",
+     "name": "Rhea Volt",
      "style": "status-effect strategist",
      "signature": "Ice counter-plan",
      "stage_id": "T04-L10"
@@ -14658,7 +14658,7 @@
        ]
       }
      ],
-     "opponent": "Yuna Flint",
+     "opponent": "Renn Calder",
      "opponent_style": "trap engineer",
      "enemy_roster": [
       "MON-0503",
@@ -14672,10 +14672,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Yuna Flint: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Yuna Flint: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Yuna Flint: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Yuna Flint: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Renn Calder: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Renn Calder: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Renn Calder: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Renn Calder: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -14933,7 +14933,7 @@
      "stage_id": "T05-L09"
     },
     {
-     "name": "Yuna Flint",
+     "name": "Renn Calder",
      "style": "trap engineer",
      "signature": "Metal counter-plan",
      "stage_id": "T05-L10"
@@ -17639,7 +17639,7 @@
        ]
       }
      ],
-     "opponent": "Nyla Dawn",
+     "opponent": "Zara Nyx",
      "opponent_style": "summoner",
      "enemy_roster": [
       "MON-0586",
@@ -17653,10 +17653,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Nyla Dawn: The Storm Crown tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Nyla Dawn: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Nyla Dawn: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Nyla Dawn: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Zara Nyx: The Storm Crown tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Zara Nyx: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Zara Nyx: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Zara Nyx: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -17914,7 +17914,7 @@
      "stage_id": "T06-L09"
     },
     {
-     "name": "Nyla Dawn",
+     "name": "Zara Nyx",
      "style": "summoner",
      "signature": "Wind counter-plan",
      "stage_id": "T06-L10"
@@ -20620,7 +20620,7 @@
        ]
       }
      ],
-     "opponent": "Zane Wren",
+     "opponent": "Cira Dawn",
      "opponent_style": "long-range sniper",
      "enemy_roster": [
       "MON-0669",
@@ -20634,10 +20634,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Zane Wren: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Zane Wren: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Zane Wren: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Zane Wren: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Cira Dawn: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Cira Dawn: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Cira Dawn: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Cira Dawn: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -20895,7 +20895,7 @@
      "stage_id": "T07-L09"
     },
     {
-     "name": "Zane Wren",
+     "name": "Cira Dawn",
      "style": "long-range sniper",
      "signature": "Dark counter-plan",
      "stage_id": "T07-L10"
@@ -23601,7 +23601,7 @@
        ]
       }
      ],
-     "opponent": "Yuna Slate",
+     "opponent": "Tarin Moss",
      "opponent_style": "defensive fortress",
      "enemy_roster": [
       "MON-0752",
@@ -23615,10 +23615,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Yuna Slate: The Sunken Archive tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Yuna Slate: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Yuna Slate: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Yuna Slate: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Tarin Moss: The Sunken Archive tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Tarin Moss: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Tarin Moss: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Tarin Moss: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -23876,7 +23876,7 @@
      "stage_id": "T08-L09"
     },
     {
-     "name": "Yuna Slate",
+     "name": "Tarin Moss",
      "style": "defensive fortress",
      "signature": "Ancient counter-plan",
      "stage_id": "T08-L10"
@@ -26582,7 +26582,7 @@
        ]
       }
      ],
-     "opponent": "Nyla Nyx",
+     "opponent": "Silas Wren",
      "opponent_style": "terrain controller",
      "enemy_roster": [
       "MON-0835",
@@ -26596,10 +26596,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Nyla Nyx: The Astral Observatory tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Nyla Nyx: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Nyla Nyx: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Nyla Nyx: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Silas Wren: The Astral Observatory tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Silas Wren: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Silas Wren: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Silas Wren: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -26857,7 +26857,7 @@
      "stage_id": "T09-L09"
     },
     {
-     "name": "Nyla Nyx",
+     "name": "Silas Wren",
      "style": "terrain controller",
      "signature": "Space counter-plan",
      "stage_id": "T09-L10"
@@ -29563,7 +29563,7 @@
        ]
       }
      ],
-     "opponent": "Zane Moss",
+     "opponent": "Sera Vale",
      "opponent_style": "resource thief",
      "enemy_roster": [
       "MON-0918",
@@ -29577,10 +29577,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Zane Moss: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Zane Moss: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Zane Moss: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Zane Moss: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Sera Vale: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Sera Vale: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Sera Vale: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Sera Vale: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -29838,7 +29838,7 @@
      "stage_id": "T10-L09"
     },
     {
-     "name": "Zane Moss",
+     "name": "Sera Vale",
      "style": "resource thief",
      "signature": "Crystal counter-plan",
      "stage_id": "T10-L10"
@@ -32544,7 +32544,7 @@
        ]
       }
      ],
-     "opponent": "Yuna Quill",
+     "opponent": "Mako Reed",
      "opponent_style": "rush attacker",
      "enemy_roster": [
       "MON-0001",
@@ -32558,10 +32558,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Yuna Quill: The Rift Frontier tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Yuna Quill: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Yuna Quill: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Yuna Quill: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Mako Reed: The Rift Frontier tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Mako Reed: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Mako Reed: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Mako Reed: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -32819,7 +32819,7 @@
      "stage_id": "T11-L09"
     },
     {
-     "name": "Yuna Quill",
+     "name": "Mako Reed",
      "style": "rush attacker",
      "signature": "Aether counter-plan",
      "stage_id": "T11-L10"
@@ -32828,13 +32828,13 @@
   },
   {
    "tower_id": "12",
-   "name": "Crown of Ages",
+   "name": "Sunforge Throne",
    "theme": "Mixed",
    "visual_direction": "A multi-biome gauntlet combining earlier mechanics",
    "levels": [
     {
      "stage_id": "T12-L01",
-     "name": "Crown of Ages — Chamber 1",
+     "name": "Sunforge Throne — Chamber 1",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -32916,7 +32916,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Terrain bonuses are doubled",
      "dialogue": {
-      "intro": "Milo Ardent: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Milo Ardent: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Milo Ardent: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Milo Ardent: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Milo Ardent: This is the final chamber. Your Symbol stands against mine."
@@ -33120,7 +33120,7 @@
     },
     {
      "stage_id": "T12-L02",
-     "name": "Crown of Ages — Chamber 2",
+     "name": "Sunforge Throne — Chamber 2",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -33203,7 +33203,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Zara Ashen: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Zara Ashen: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Zara Ashen: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Zara Ashen: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Zara Ashen: This is the final chamber. Your Symbol stands against mine."
@@ -33407,7 +33407,7 @@
     },
     {
      "stage_id": "T12-L03",
-     "name": "Crown of Ages — Chamber 3",
+     "name": "Sunforge Throne — Chamber 3",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -33495,7 +33495,7 @@
      "win_condition": "Defeat the enemy Symbol or secure 3 relic nodes",
      "special_rule": "One random portal activates each round",
      "dialogue": {
-      "intro": "Eren Rune: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Eren Rune: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Eren Rune: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Eren Rune: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Eren Rune: This is the final chamber. Your Symbol stands against mine."
@@ -33699,7 +33699,7 @@
     },
     {
      "stage_id": "T12-L04",
-     "name": "Crown of Ages — Chamber 4",
+     "name": "Sunforge Throne — Chamber 4",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -33788,7 +33788,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Capsules cost 1 AP to deploy",
      "dialogue": {
-      "intro": "Lyra Dawn: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Lyra Dawn: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lyra Dawn: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Lyra Dawn: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Lyra Dawn: This is the final chamber. Your Symbol stands against mine."
@@ -33992,7 +33992,7 @@
     },
     {
      "stage_id": "T12-L05",
-     "name": "Crown of Ages — Chamber 5",
+     "name": "Sunforge Throne — Chamber 5",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -34082,7 +34082,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Terrain bonuses are doubled",
      "dialogue": {
-      "intro": "Tessa Zephyr: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Tessa Zephyr: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Tessa Zephyr: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Tessa Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Tessa Zephyr: This is the final chamber. Your Symbol stands against mine."
@@ -34286,7 +34286,7 @@
     },
     {
      "stage_id": "T12-L06",
-     "name": "Crown of Ages — Chamber 6",
+     "name": "Sunforge Throne — Chamber 6",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -34374,7 +34374,7 @@
      "win_condition": "Defeat the enemy Symbol or secure 3 relic nodes",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Silas Voss: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Silas Voss: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Silas Voss: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Silas Voss: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Silas Voss: This is the final chamber. Your Symbol stands against mine."
@@ -34578,7 +34578,7 @@
     },
     {
      "stage_id": "T12-L07",
-     "name": "Crown of Ages — Chamber 7",
+     "name": "Sunforge Throne — Chamber 7",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -34660,7 +34660,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "One random portal activates each round",
      "dialogue": {
-      "intro": "Mako Nyx: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Mako Nyx: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Mako Nyx: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Mako Nyx: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Mako Nyx: This is the final chamber. Your Symbol stands against mine."
@@ -34864,7 +34864,7 @@
     },
     {
      "stage_id": "T12-L08",
-     "name": "Crown of Ages — Chamber 8",
+     "name": "Sunforge Throne — Chamber 8",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -34954,7 +34954,7 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Capsules cost 1 AP to deploy",
      "dialogue": {
-      "intro": "Ayla Reed: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Ayla Reed: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Ayla Reed: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Ayla Reed: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Ayla Reed: This is the final chamber. Your Symbol stands against mine."
@@ -35158,7 +35158,7 @@
     },
     {
      "stage_id": "T12-L09",
-     "name": "Crown of Ages — Chamber 9",
+     "name": "Sunforge Throne — Chamber 9",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -35246,7 +35246,7 @@
      "win_condition": "Defeat the enemy Symbol or secure 3 relic nodes",
      "special_rule": "Terrain bonuses are doubled",
      "dialogue": {
-      "intro": "Rex Rook: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
+      "intro": "Rex Rook: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rex Rook: You're learning the terrain. Then I'll change the tempo.",
       "defeat": "Rex Rook: I lost the field, not the lesson. Climb higher and face the next keeper.",
       "boss_intro": "Rex Rook: This is the final chamber. Your Symbol stands against mine."
@@ -35450,7 +35450,7 @@
     },
     {
      "stage_id": "T12-L10",
-     "name": "Crown of Ages — Chamber 10",
+     "name": "Sunforge Throne — Chamber 10",
      "map_size": "12x12",
      "camera": "3D isometric",
      "terrain": "Mixed",
@@ -35525,7 +35525,7 @@
        ]
       }
      ],
-     "opponent": "Nyla Dray",
+     "opponent": "Ari Zephyr",
      "opponent_style": "mobility specialist",
      "enemy_roster": [
       "MON-0084",
@@ -35539,10 +35539,10 @@
      "win_condition": "Defeat the enemy Symbol",
      "special_rule": "Movement after a knockout is +1",
      "dialogue": {
-      "intro": "Nyla Dray: The Crown of Ages tests more than strength. It tests whether your team can adapt.",
-      "midbattle": "Nyla Dray: You're learning the terrain. Then I'll change the tempo.",
-      "defeat": "Nyla Dray: I lost the field, not the lesson. Climb higher and face the next keeper.",
-      "boss_intro": "Nyla Dray: This is the final chamber. Your Symbol stands against mine."
+      "intro": "Ari Zephyr: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
+      "midbattle": "Ari Zephyr: You're learning the terrain. Then I'll change the tempo.",
+      "defeat": "Ari Zephyr: I lost the field, not the lesson. Climb higher and face the next keeper.",
+      "boss_intro": "Ari Zephyr: This is the final chamber. Your Symbol stands against mine."
      },
      "map_grid": [
       [
@@ -35800,7 +35800,7 @@
      "stage_id": "T12-L09"
     },
     {
-     "name": "Nyla Dray",
+     "name": "Ari Zephyr",
      "style": "mobility specialist",
      "signature": "Mixed counter-plan",
      "stage_id": "T12-L10"
@@ -35865,7 +35865,7 @@
    "id": "MON-0004",
    "name": "Titanwyrmix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 34,
@@ -36035,7 +36035,7 @@
    "id": "MON-0014",
    "name": "Obsidhopperix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 44,
@@ -36137,7 +36137,7 @@
    "id": "MON-0020",
    "name": "Quillphoenix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 50,
@@ -36307,7 +36307,7 @@
    "id": "MON-0030",
    "name": "Glimstag",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 39,
@@ -36409,7 +36409,7 @@
    "id": "MON-0036",
    "name": "Hollowcolossusen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 45,
@@ -36579,7 +36579,7 @@
    "id": "MON-0046",
    "name": "Cinderimpen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 34,
@@ -36681,7 +36681,7 @@
    "id": "MON-0052",
    "name": "Duskowlis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 40,
@@ -36851,7 +36851,7 @@
    "id": "MON-0062",
    "name": "Driftwyrmis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 50,
@@ -36953,7 +36953,7 @@
    "id": "MON-0068",
    "name": "Feralweaverum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 35,
@@ -37087,7 +37087,7 @@
   },
   {
    "id": "MON-0076",
-   "name": "Ironmonarchen",
+   "name": "Ironmonarch",
    "element": "Magma",
    "element_family": "Fire",
    "role": "Scout",
@@ -37123,7 +37123,7 @@
    "id": "MON-0078",
    "name": "Thornhydraum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 45,
@@ -37225,7 +37225,7 @@
    "id": "MON-0084",
    "name": "Volttuskix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 30,
@@ -37395,7 +37395,7 @@
    "id": "MON-0094",
    "name": "Quillskimmerix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 40,
@@ -37497,7 +37497,7 @@
    "id": "MON-0100",
    "name": "Runehare",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 46,
@@ -37667,7 +37667,7 @@
    "id": "MON-0110",
    "name": "Hollowowl",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 35,
@@ -37769,7 +37769,7 @@
    "id": "MON-0116",
    "name": "Jadedrakeen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 41,
@@ -37939,7 +37939,7 @@
    "id": "MON-0126",
    "name": "Duskhounden",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 30,
@@ -38041,7 +38041,7 @@
    "id": "MON-0132",
    "name": "Fangcrabis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 36,
@@ -38211,7 +38211,7 @@
    "id": "MON-0142",
    "name": "Feralbeetleis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Legendary",
    "level_cap": 46,
@@ -38313,7 +38313,7 @@
    "id": "MON-0148",
    "name": "Glinthopperum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 31,
@@ -38483,7 +38483,7 @@
    "id": "MON-0158",
    "name": "Vesperhareum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 41,
@@ -38585,7 +38585,7 @@
    "id": "MON-0164",
    "name": "Zephyrstagix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Legendary",
    "level_cap": 47,
@@ -38755,7 +38755,7 @@
    "id": "MON-0174",
    "name": "Runedrakeix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 36,
@@ -38857,7 +38857,7 @@
    "id": "MON-0180",
    "name": "Solarsaur",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 42,
@@ -39027,7 +39027,7 @@
    "id": "MON-0190",
    "name": "Jadetiger",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 31,
@@ -39129,7 +39129,7 @@
    "id": "MON-0196",
    "name": "Mirewyrmen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 37,
@@ -39299,7 +39299,7 @@
    "id": "MON-0206",
    "name": "Fanghopperen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 47,
@@ -39401,7 +39401,7 @@
    "id": "MON-0212",
    "name": "Frosthydrais",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 32,
@@ -39571,7 +39571,7 @@
    "id": "MON-0222",
    "name": "Glintstagis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 42,
@@ -39673,7 +39673,7 @@
    "id": "MON-0228",
    "name": "Astracolossusum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 48,
@@ -39843,7 +39843,7 @@
    "id": "MON-0238",
    "name": "Wispimpum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 37,
@@ -39945,7 +39945,7 @@
    "id": "MON-0244",
    "name": "Bloomowlix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 43,
@@ -40115,7 +40115,7 @@
    "id": "MON-0254",
    "name": "Solarspriteix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 32,
@@ -40217,7 +40217,7 @@
    "id": "MON-0260",
    "name": "Tempesthound",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 38,
@@ -40387,7 +40387,7 @@
    "id": "MON-0270",
    "name": "Mirehydra",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 48,
@@ -40489,7 +40489,7 @@
    "id": "MON-0276",
    "name": "Obsidbeetleen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 33,
@@ -40659,7 +40659,7 @@
    "id": "MON-0286",
    "name": "Frostskimmeren",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 43,
@@ -40761,7 +40761,7 @@
    "id": "MON-0292",
    "name": "Gravhareis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 49,
@@ -40931,7 +40931,7 @@
    "id": "MON-0302",
    "name": "Astramantisis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 38,
@@ -41033,7 +41033,7 @@
    "id": "MON-0308",
    "name": "Cinderdrakeum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 44,
@@ -41203,7 +41203,7 @@
    "id": "MON-0318",
    "name": "Blazehoundum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Legendary",
    "level_cap": 33,
@@ -41305,7 +41305,7 @@
    "id": "MON-0324",
    "name": "Echotigerix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 39,
@@ -41475,7 +41475,7 @@
    "id": "MON-0334",
    "name": "Tempestbeetleix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 49,
@@ -41577,7 +41577,7 @@
    "id": "MON-0340",
    "name": "Titanhopper",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Legendary",
    "level_cap": 34,
@@ -41747,7 +41747,7 @@
    "id": "MON-0350",
    "name": "Obsidpanther",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 44,
@@ -41849,7 +41849,7 @@
    "id": "MON-0356",
    "name": "Quillstagen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 50,
@@ -42019,7 +42019,7 @@
    "id": "MON-0366",
    "name": "Gravdrakeen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 39,
@@ -42121,7 +42121,7 @@
    "id": "MON-0372",
    "name": "Ironimpis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 45,
@@ -42291,7 +42291,7 @@
    "id": "MON-0382",
    "name": "Cindertigeris",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 34,
@@ -42393,7 +42393,7 @@
    "id": "MON-0388",
    "name": "Duskwyrmum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 40,
@@ -42563,7 +42563,7 @@
    "id": "MON-0398",
    "name": "Driftreaverum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 50,
@@ -42665,7 +42665,7 @@
    "id": "MON-0404",
    "name": "Galehydraix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 35,
@@ -42835,7 +42835,7 @@
    "id": "MON-0414",
    "name": "Titangolemix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 45,
@@ -42937,7 +42937,7 @@
    "id": "MON-0420",
    "name": "Voltskimmer",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 30,
@@ -43107,7 +43107,7 @@
    "id": "MON-0430",
    "name": "Quillimp",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 40,
@@ -43209,7 +43209,7 @@
    "id": "MON-0436",
    "name": "Runeowlen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 46,
@@ -43379,7 +43379,7 @@
    "id": "MON-0446",
    "name": "Ironspriteen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 35,
@@ -43481,7 +43481,7 @@
    "id": "MON-0452",
    "name": "Lumenhoundis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 41,
@@ -43651,7 +43651,7 @@
    "id": "MON-0462",
    "name": "Duskscorpionis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 30,
@@ -43753,7 +43753,7 @@
    "id": "MON-0468",
    "name": "Fangbeetleum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 36,
@@ -43923,7 +43923,7 @@
    "id": "MON-0478",
    "name": "Feralskimmerum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 46,
@@ -44025,7 +44025,7 @@
    "id": "MON-0484",
    "name": "Aeropantherix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 31,
@@ -44195,7 +44195,7 @@
    "id": "MON-0494",
    "name": "Voltmantisix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Legendary",
    "level_cap": 41,
@@ -44297,7 +44297,7 @@
    "id": "MON-0500",
    "name": "Zephyrdrake",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 47,
@@ -44467,7 +44467,7 @@
    "id": "MON-0510",
    "name": "Runefin",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 36,
@@ -44569,7 +44569,7 @@
    "id": "MON-0516",
    "name": "Solartigeren",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Legendary",
    "level_cap": 42,
@@ -44739,7 +44739,7 @@
    "id": "MON-0526",
    "name": "Lumenbeetleen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 31,
@@ -44841,7 +44841,7 @@
    "id": "MON-0532",
    "name": "Novareaveris",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 37,
@@ -44907,7 +44907,7 @@
   },
   {
    "id": "MON-0536",
-   "name": "Duskmonarchen",
+   "name": "Duskmonarch",
    "element": "Umbral",
    "element_family": "Dark",
    "role": "Striker",
@@ -45011,7 +45011,7 @@
    "id": "MON-0542",
    "name": "Fangpantheris",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 47,
@@ -45113,7 +45113,7 @@
    "id": "MON-0548",
    "name": "Froststagum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 32,
@@ -45283,7 +45283,7 @@
    "id": "MON-0558",
    "name": "Glinthornum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 42,
@@ -45385,7 +45385,7 @@
    "id": "MON-0564",
    "name": "Brambleimpix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 48,
@@ -45555,7 +45555,7 @@
    "id": "MON-0574",
    "name": "Zephyrtigerix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 37,
@@ -45657,7 +45657,7 @@
    "id": "MON-0580",
    "name": "Bloomsprite",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 43,
@@ -45827,7 +45827,7 @@
    "id": "MON-0590",
    "name": "Solarreaver",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 32,
@@ -45929,7 +45929,7 @@
    "id": "MON-0596",
    "name": "Tempesthydraen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 38,
@@ -46099,7 +46099,7 @@
    "id": "MON-0606",
    "name": "Novagolemen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 48,
@@ -46201,7 +46201,7 @@
    "id": "MON-0612",
    "name": "Pyraskimmeris",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 33,
@@ -46371,7 +46371,7 @@
    "id": "MON-0622",
    "name": "Frostorbis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 43,
@@ -46473,7 +46473,7 @@
    "id": "MON-0628",
    "name": "Gravmantisum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 49,
@@ -46643,7 +46643,7 @@
    "id": "MON-0638",
    "name": "Astraspriteum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 38,
@@ -46745,7 +46745,7 @@
    "id": "MON-0644",
    "name": "Coralfinix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 44,
@@ -46915,7 +46915,7 @@
    "id": "MON-0654",
    "name": "Bloomscorpionix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 33,
@@ -47017,7 +47017,7 @@
    "id": "MON-0660",
    "name": "Echobeetle",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 39,
@@ -47187,7 +47187,7 @@
    "id": "MON-0670",
    "name": "Tempestmonarch",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Legendary",
    "level_cap": 49,
@@ -47289,7 +47289,7 @@
    "id": "MON-0676",
    "name": "Titanpantheren",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 34,
@@ -47459,7 +47459,7 @@
    "id": "MON-0686",
    "name": "Pyramantisen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 44,
@@ -47561,7 +47561,7 @@
    "id": "MON-0692",
    "name": "Rifthornis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Legendary",
    "level_cap": 50,
@@ -47731,7 +47731,7 @@
    "id": "MON-0702",
    "name": "Gravfinis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 39,
@@ -47833,7 +47833,7 @@
    "id": "MON-0708",
    "name": "Irontigerum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 45,
@@ -48003,7 +48003,7 @@
    "id": "MON-0718",
    "name": "Cinderserpentum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 34,
@@ -48105,7 +48105,7 @@
    "id": "MON-0724",
    "name": "Emberreaverix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 40,
@@ -48275,7 +48275,7 @@
    "id": "MON-0734",
    "name": "Echopantherix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 50,
@@ -48377,7 +48377,7 @@
    "id": "MON-0740",
    "name": "Galegolem",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 35,
@@ -48547,7 +48547,7 @@
    "id": "MON-0750",
    "name": "Titanhorn",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 45,
@@ -48649,7 +48649,7 @@
    "id": "MON-0756",
    "name": "Voltimpen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 30,
@@ -48819,7 +48819,7 @@
    "id": "MON-0766",
    "name": "Riftramen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 40,
@@ -48921,7 +48921,7 @@
    "id": "MON-0772",
    "name": "Shardspriteis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 46,
@@ -49091,7 +49091,7 @@
    "id": "MON-0782",
    "name": "Ironspriteis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 35,
@@ -49193,7 +49193,7 @@
    "id": "MON-0788",
    "name": "Lumenscorpionum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 41,
@@ -49363,7 +49363,7 @@
    "id": "MON-0798",
    "name": "Duskgolemum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 30,
@@ -49465,7 +49465,7 @@
    "id": "MON-0804",
    "name": "Flareskimmerix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 36,
@@ -49635,7 +49635,7 @@
    "id": "MON-0814",
    "name": "Galeorbix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 46,
@@ -49737,7 +49737,7 @@
    "id": "MON-0820",
    "name": "Aeromantis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 31,
@@ -49907,7 +49907,7 @@
    "id": "MON-0830",
    "name": "Voltraptor",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 41,
@@ -50009,7 +50009,7 @@
    "id": "MON-0836",
    "name": "Zephyrfinen",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 47,
@@ -50179,7 +50179,7 @@
    "id": "MON-0846",
    "name": "Shardscorpionen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Legendary",
    "level_cap": 36,
@@ -50281,7 +50281,7 @@
    "id": "MON-0852",
    "name": "Spectraserpentis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 42,
@@ -50451,7 +50451,7 @@
    "id": "MON-0862",
    "name": "Lumenmonarchis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Rare",
    "level_cap": 31,
@@ -50553,7 +50553,7 @@
    "id": "MON-0868",
    "name": "Novapantherum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Legendary",
    "level_cap": 37,
@@ -50723,7 +50723,7 @@
    "id": "MON-0878",
    "name": "Fangwolfum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 47,
@@ -50825,7 +50825,7 @@
    "id": "MON-0884",
    "name": "Glimhornix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Rare",
    "level_cap": 32,
@@ -50995,7 +50995,7 @@
    "id": "MON-0894",
    "name": "Aerofinix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 42,
@@ -51097,7 +51097,7 @@
    "id": "MON-0900",
    "name": "Brambleram",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 48,
@@ -51267,7 +51267,7 @@
    "id": "MON-0910",
    "name": "Zephyrserpent",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Mythic",
    "level_cap": 37,
@@ -51369,7 +51369,7 @@
    "id": "MON-0916",
    "name": "Bloomreaveren",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 43,
@@ -51539,7 +51539,7 @@
    "id": "MON-0926",
    "name": "Spectrarayen",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Uncommon",
    "level_cap": 32,
@@ -51641,7 +51641,7 @@
    "id": "MON-0932",
    "name": "Thorngolemis",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Mythic",
    "level_cap": 38,
@@ -51811,7 +51811,7 @@
    "id": "MON-0942",
    "name": "Novahornis",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 48,
@@ -51913,7 +51913,7 @@
    "id": "MON-0948",
    "name": "Pyraorbum",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Uncommon",
    "level_cap": 33,
@@ -52083,7 +52083,7 @@
    "id": "MON-0958",
    "name": "Frostramum",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 43,
@@ -52185,7 +52185,7 @@
    "id": "MON-0964",
    "name": "Hollowspriteix",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 49,
@@ -52355,7 +52355,7 @@
    "id": "MON-0974",
    "name": "Bramblespriteix",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Epic",
    "level_cap": 38,
@@ -52457,7 +52457,7 @@
    "id": "MON-0980",
    "name": "Coralscorpion",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Common",
    "level_cap": 44,
@@ -52627,7 +52627,7 @@
    "id": "MON-0990",
    "name": "Bloombat",
    "element": "Volt",
-   "element_family": "Lightning",
+   "element_family": "Thunder",
    "role": "Assassin",
    "rarity": "Common",
    "level_cap": 33,
@@ -52727,9 +52727,9 @@
   },
   {
    "id": "MON-0996",
-   "name": "Echomonarchen",
+   "name": "Echomonarch",
    "element": "Verdant",
-   "element_family": "Nature",
+   "element_family": "Wood",
    "role": "Scout",
    "rarity": "Epic",
    "level_cap": 39,

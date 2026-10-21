@@ -59,7 +59,7 @@ blend of the 7 brand tokens (same maths as `game/scripts/theme_colors.gd`). Re-r
 
 ### Element icons: `png/icons/elements/*.png` - 256x256 (SVG 64x64 at 4x)
 
-One per `element_family` in the bible (Fire, Water, Wind, Earth, Nature, Ice, Lightning, Light, Dark, Tech, Space,
+One per `element_family` in the bible (Fire, Water, Wind, Earth, Wood, Ice, Thunder, Light, Dark, Tech, Space,
 Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRect with expand mode
 *Keep Aspect Centered*; they read cleanly down to 24 px.
 
@@ -90,7 +90,7 @@ Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRec
   but in no `map_legend`.
 - `sky`, `ruins`, `space` and `rift` are legend-only: they never appear on a map, so no art was made for them.
   The generator can add them.
-- Tower folders: `T01_verdant_spire`, `T02_ember_bastion`, `T03_tideglass_citadel`, `T04_frost_meridian`, `T05_iron_labyrinth`, `T06_storm_crown`, `T07_obsidian_eclipse`, `T08_sunken_archive`, `T09_astral_observatory`, `T10_crystal_sanctum`, `T11_rift_frontier`, `T12_crown_of_ages`.
+- Tower folders: `T01_verdant_spire`, `T02_ember_bastion`, `T03_tideglass_citadel`, `T04_frost_meridian`, `T05_iron_labyrinth`, `T06_storm_crown`, `T07_obsidian_eclipse`, `T08_sunken_archive`, `T09_astral_observatory`, `T10_crystal_sanctum`, `T11_rift_frontier`, `T12_sunforge_throne`.
 
 ## Review previews (`previews/`, not game assets)
 
@@ -109,7 +109,7 @@ Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRec
 | `previews/sheet_tiles_T09_astral_observatory.png` | 109269 | contact sheet |
 | `previews/sheet_tiles_T10_crystal_sanctum.png` | 100009 | contact sheet |
 | `previews/sheet_tiles_T11_rift_frontier.png` | 99659 | contact sheet |
-| `previews/sheet_tiles_T12_crown_of_ages.png` | 96245 | contact sheet |
+| `previews/sheet_tiles_T12_sunforge_throne.png` | 96245 | contact sheet |
 | `previews/sheet_token_frames.png` | 191925 | contact sheet |
 | `previews/sheet_tokens_silhouettes.png` | 265114 | contact sheet |
 | `previews/sheet_towers_ground_obstacle.png` | 93972 | contact sheet |
@@ -135,8 +135,8 @@ Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRec
 | `png/icons/elements/fire.png` | 256x256 | 37927 | 1674 | Element family icon: Fire |
 | `png/icons/elements/ice.png` | 256x256 | 51153 | 4979 | Element family icon: Ice |
 | `png/icons/elements/light.png` | 256x256 | 44131 | 1883 | Element family icon: Light |
-| `png/icons/elements/lightning.png` | 256x256 | 37547 | 934 | Element family icon: Lightning |
-| `png/icons/elements/nature.png` | 256x256 | 40289 | 1763 | Element family icon: Nature |
+| `png/icons/elements/thunder.png` | 256x256 | 37547 | 934 | Element family icon: Thunder |
+| `png/icons/elements/wood.png` | 256x256 | 40289 | 1763 | Element family icon: Wood |
 | `png/icons/elements/space.png` | 256x256 | 49340 | 2322 | Element family icon: Space |
 | `png/icons/elements/tech.png` | 256x256 | 42793 | 1277 | Element family icon: Tech |
 | `png/icons/elements/water.png` | 256x256 | 40683 | 1382 | Element family icon: Water |
@@ -410,38 +410,38 @@ Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRec
 | `png/tiles/T11_rift_frontier/stone.png` | 256x320 | 7775 | 2760 | T11_rift_frontier - raised stone cover, raise 0.35 (not in any map_legend; used on maps) |
 | `png/tiles/T11_rift_frontier/warp_gate.png` | 256x320 | 18182 | 5396 | T11_rift_frontier - teleport tile floor ring (stand prop portal on it) |
 | `png/tiles/T11_rift_frontier/water.png` | 256x320 | 5657 | 1790 | T11_rift_frontier - water terrain |
-| `png/tiles/T12_crown_of_ages/bridge.png` | 256x320 | 14601 | 3100 | T12_crown_of_ages - crossable chokepoint, deck runs along the board X axis |
-| `png/tiles/T12_crown_of_ages/bridge_y.png` | 256x320 | 13843 | 3099 | T12_crown_of_ages - same bridge, deck runs along the board Y axis |
-| `png/tiles/T12_crown_of_ages/capsule_node.png` | 256x320 | 13706 | 3122 | T12_crown_of_ages - deployment/recharge node floor socket (stand prop capsule_node on it) |
-| `png/tiles/T12_crown_of_ages/crystal.png` | 256x320 | 12171 | 2585 | T12_crown_of_ages - crystal terrain |
-| `png/tiles/T12_crown_of_ages/elevation.png` | 256x320 | 6159 | 2138 | T12_crown_of_ages - high-ground tile, raise 0.6 |
-| `png/tiles/T12_crown_of_ages/enemy_spawn.png` | 256x320 | 5696 | 1669 | T12_crown_of_ages - enemy deployment zone (ember) |
-| `png/tiles/T12_crown_of_ages/enemy_symbol.png` | 256x320 | 19035 | 3572 | T12_crown_of_ages - enemy victory anchor floor seal (stand prop enemy_sigil on it) |
-| `png/tiles/T12_crown_of_ages/forest.png` | 256x320 | 14369 | 3795 | T12_crown_of_ages - nature terrain |
-| `png/tiles/T12_crown_of_ages/ground.png` | 256x320 | 3791 | 1061 | T12_crown_of_ages - standard movement tile (3 variants: ground, ground_v2, ground_v3 - pick by hash to break repetition) |
-| `png/tiles/T12_crown_of_ages/ground_v2.png` | 256x320 | 3791 | 1064 | T12_crown_of_ages - ground variant 2 |
-| `png/tiles/T12_crown_of_ages/ground_v3.png` | 256x320 | 3791 | 1064 | T12_crown_of_ages - ground variant 3 |
-| `png/tiles/T12_crown_of_ages/hazard.png` | 256x320 | 9813 | 2915 | T12_crown_of_ages - environmental damage/status tile |
-| `png/tiles/T12_crown_of_ages/ice.png` | 256x320 | 5500 | 1433 | T12_crown_of_ages - ice terrain |
-| `png/tiles/T12_crown_of_ages/lava.png` | 256x320 | 9715 | 1986 | T12_crown_of_ages - fire terrain |
-| `png/tiles/T12_crown_of_ages/metal.png` | 256x320 | 5530 | 1899 | T12_crown_of_ages - technology terrain |
-| `png/tiles/T12_crown_of_ages/mixed.png` | 256x320 | 4197 | 1681 | T12_crown_of_ages - mixed terrain |
-| `png/tiles/T12_crown_of_ages/obstacle.png` | 256x320 | 10016 | 2772 | T12_crown_of_ages - blocked tile, raise 0.8, tower-themed topper |
-| `png/tiles/T12_crown_of_ages/player_spawn.png` | 256x320 | 6051 | 1670 | T12_crown_of_ages - player deployment zone (cyan) |
-| `png/tiles/T12_crown_of_ages/player_symbol.png` | 256x320 | 20717 | 3573 | T12_crown_of_ages - player victory anchor floor seal (stand prop player_sigil on it) |
-| `png/tiles/T12_crown_of_ages/relic.png` | 256x320 | 11457 | 2559 | T12_crown_of_ages - optional scoring objective floor seal (stand prop relic on it) |
-| `png/tiles/T12_crown_of_ages/shadow.png` | 256x320 | 13064 | 3700 | T12_crown_of_ages - dark terrain |
-| `png/tiles/T12_crown_of_ages/stone.png` | 256x320 | 9159 | 2076 | T12_crown_of_ages - raised stone cover, raise 0.35 (not in any map_legend; used on maps) |
-| `png/tiles/T12_crown_of_ages/warp_gate.png` | 256x320 | 17835 | 4698 | T12_crown_of_ages - teleport tile floor ring (stand prop portal on it) |
-| `png/tiles/T12_crown_of_ages/water.png` | 256x320 | 5822 | 1790 | T12_crown_of_ages - water terrain |
+| `png/tiles/T12_sunforge_throne/bridge.png` | 256x320 | 14601 | 3100 | T12_sunforge_throne - crossable chokepoint, deck runs along the board X axis |
+| `png/tiles/T12_sunforge_throne/bridge_y.png` | 256x320 | 13843 | 3099 | T12_sunforge_throne - same bridge, deck runs along the board Y axis |
+| `png/tiles/T12_sunforge_throne/capsule_node.png` | 256x320 | 13706 | 3122 | T12_sunforge_throne - deployment/recharge node floor socket (stand prop capsule_node on it) |
+| `png/tiles/T12_sunforge_throne/crystal.png` | 256x320 | 12171 | 2585 | T12_sunforge_throne - crystal terrain |
+| `png/tiles/T12_sunforge_throne/elevation.png` | 256x320 | 6159 | 2138 | T12_sunforge_throne - high-ground tile, raise 0.6 |
+| `png/tiles/T12_sunforge_throne/enemy_spawn.png` | 256x320 | 5696 | 1669 | T12_sunforge_throne - enemy deployment zone (ember) |
+| `png/tiles/T12_sunforge_throne/enemy_symbol.png` | 256x320 | 19035 | 3572 | T12_sunforge_throne - enemy victory anchor floor seal (stand prop enemy_sigil on it) |
+| `png/tiles/T12_sunforge_throne/forest.png` | 256x320 | 14369 | 3795 | T12_sunforge_throne - nature terrain |
+| `png/tiles/T12_sunforge_throne/ground.png` | 256x320 | 3791 | 1061 | T12_sunforge_throne - standard movement tile (3 variants: ground, ground_v2, ground_v3 - pick by hash to break repetition) |
+| `png/tiles/T12_sunforge_throne/ground_v2.png` | 256x320 | 3791 | 1064 | T12_sunforge_throne - ground variant 2 |
+| `png/tiles/T12_sunforge_throne/ground_v3.png` | 256x320 | 3791 | 1064 | T12_sunforge_throne - ground variant 3 |
+| `png/tiles/T12_sunforge_throne/hazard.png` | 256x320 | 9813 | 2915 | T12_sunforge_throne - environmental damage/status tile |
+| `png/tiles/T12_sunforge_throne/ice.png` | 256x320 | 5500 | 1433 | T12_sunforge_throne - ice terrain |
+| `png/tiles/T12_sunforge_throne/lava.png` | 256x320 | 9715 | 1986 | T12_sunforge_throne - fire terrain |
+| `png/tiles/T12_sunforge_throne/metal.png` | 256x320 | 5530 | 1899 | T12_sunforge_throne - technology terrain |
+| `png/tiles/T12_sunforge_throne/mixed.png` | 256x320 | 4197 | 1681 | T12_sunforge_throne - mixed terrain |
+| `png/tiles/T12_sunforge_throne/obstacle.png` | 256x320 | 10016 | 2772 | T12_sunforge_throne - blocked tile, raise 0.8, tower-themed topper |
+| `png/tiles/T12_sunforge_throne/player_spawn.png` | 256x320 | 6051 | 1670 | T12_sunforge_throne - player deployment zone (cyan) |
+| `png/tiles/T12_sunforge_throne/player_symbol.png` | 256x320 | 20717 | 3573 | T12_sunforge_throne - player victory anchor floor seal (stand prop player_sigil on it) |
+| `png/tiles/T12_sunforge_throne/relic.png` | 256x320 | 11457 | 2559 | T12_sunforge_throne - optional scoring objective floor seal (stand prop relic on it) |
+| `png/tiles/T12_sunforge_throne/shadow.png` | 256x320 | 13064 | 3700 | T12_sunforge_throne - dark terrain |
+| `png/tiles/T12_sunforge_throne/stone.png` | 256x320 | 9159 | 2076 | T12_sunforge_throne - raised stone cover, raise 0.35 (not in any map_legend; used on maps) |
+| `png/tiles/T12_sunforge_throne/warp_gate.png` | 256x320 | 17835 | 4698 | T12_sunforge_throne - teleport tile floor ring (stand prop portal on it) |
+| `png/tiles/T12_sunforge_throne/water.png` | 256x320 | 5822 | 1790 | T12_sunforge_throne - water terrain |
 | `png/tokens/frames/ally_arcane.png` | 256x256 | 53941 | 3343 | Unit token frame, ally team, Arcane family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_dark.png` | 256x256 | 49889 | 3903 | Unit token frame, ally team, Dark family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_earth.png` | 256x256 | 50746 | 3111 | Unit token frame, ally team, Earth family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_fire.png` | 256x256 | 51426 | 3668 | Unit token frame, ally team, Fire family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_ice.png` | 256x256 | 54627 | 6956 | Unit token frame, ally team, Ice family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_light.png` | 256x256 | 53114 | 3862 | Unit token frame, ally team, Light family (creature slot r=41 @ (64,60) in SVG units) |
-| `png/tokens/frames/ally_lightning.png` | 256x256 | 52489 | 2890 | Unit token frame, ally team, Lightning family (creature slot r=41 @ (64,60) in SVG units) |
-| `png/tokens/frames/ally_nature.png` | 256x256 | 51168 | 3743 | Unit token frame, ally team, Nature family (creature slot r=41 @ (64,60) in SVG units) |
+| `png/tokens/frames/ally_thunder.png` | 256x256 | 52489 | 2890 | Unit token frame, ally team, Thunder family (creature slot r=41 @ (64,60) in SVG units) |
+| `png/tokens/frames/ally_wood.png` | 256x256 | 51168 | 3743 | Unit token frame, ally team, Wood family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_space.png` | 256x256 | 53038 | 4376 | Unit token frame, ally team, Space family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_tech.png` | 256x256 | 50938 | 3267 | Unit token frame, ally team, Tech family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/ally_water.png` | 256x256 | 52882 | 3347 | Unit token frame, ally team, Water family (creature slot r=41 @ (64,60) in SVG units) |
@@ -452,14 +452,14 @@ Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRec
 | `png/tokens/frames/enemy_fire.png` | 256x256 | 49481 | 3669 | Unit token frame, enemy team, Fire family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_ice.png` | 256x256 | 52903 | 6957 | Unit token frame, enemy team, Ice family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_light.png` | 256x256 | 51290 | 3863 | Unit token frame, enemy team, Light family (creature slot r=41 @ (64,60) in SVG units) |
-| `png/tokens/frames/enemy_lightning.png` | 256x256 | 50645 | 2891 | Unit token frame, enemy team, Lightning family (creature slot r=41 @ (64,60) in SVG units) |
-| `png/tokens/frames/enemy_nature.png` | 256x256 | 49239 | 3744 | Unit token frame, enemy team, Nature family (creature slot r=41 @ (64,60) in SVG units) |
+| `png/tokens/frames/enemy_thunder.png` | 256x256 | 50645 | 2891 | Unit token frame, enemy team, Thunder family (creature slot r=41 @ (64,60) in SVG units) |
+| `png/tokens/frames/enemy_wood.png` | 256x256 | 49239 | 3744 | Unit token frame, enemy team, Wood family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_space.png` | 256x256 | 51252 | 4377 | Unit token frame, enemy team, Space family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_tech.png` | 256x256 | 49105 | 3268 | Unit token frame, enemy team, Tech family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_water.png` | 256x256 | 51102 | 3348 | Unit token frame, enemy team, Water family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/frames/enemy_wind.png` | 256x256 | 52041 | 4679 | Unit token frame, enemy team, Wind family (creature slot r=41 @ (64,60) in SVG units) |
 | `png/tokens/samples/ally_light_phoenix.png` | 256x256 | 63534 | 5353 | Composited sample token (frame + silhouette) for review |
-| `png/tokens/samples/ally_nature_stag.png` | 256x256 | 59969 | 6149 | Composited sample token (frame + silhouette) for review |
+| `png/tokens/samples/ally_wood_stag.png` | 256x256 | 59969 | 6149 | Composited sample token (frame + silhouette) for review |
 | `png/tokens/samples/ally_tech_hopper.png` | 256x256 | 58577 | 4394 | Composited sample token (frame + silhouette) for review |
 | `png/tokens/samples/enemy_dark_beetle.png` | 256x256 | 61447 | 6397 | Composited sample token (frame + silhouette) for review |
 | `png/tokens/samples/enemy_fire_drake.png` | 256x256 | 60400 | 4983 | Composited sample token (frame + silhouette) for review |

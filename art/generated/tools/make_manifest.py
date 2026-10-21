@@ -139,7 +139,7 @@ w("  It deliberately has **no** equator band, no front button and no two-tone sp
 w("")
 w("### Element icons: `png/icons/elements/*.png` - 256x256 (SVG 64x64 at 4x)")
 w("")
-w("One per `element_family` in the bible (Fire, Water, Wind, Earth, Nature, Ice, Lightning, Light, Dark, Tech, Space,")
+w("One per `element_family` in the bible (Fire, Water, Wind, Earth, Wood, Ice, Thunder, Light, Dark, Tech, Space,")
 w("Arcane). The ring colour is `theme_colors.gd family()`. Use them in a TextureRect with expand mode")
 w("*Keep Aspect Centered*; they read cleanly down to 24 px.")
 w("")

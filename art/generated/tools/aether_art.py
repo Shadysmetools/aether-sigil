@@ -49,12 +49,12 @@ K = {k: Col(_h2t(v)) for k, v in TOKENS.items()}
 N, Cy, G, E, V, Au, S = (K[k] for k in ("N", "Cy", "G", "E", "V", "Au", "S"))
 
 FAMILY = {  # identical to game/scripts/theme_colors.gd family()
-    "Water": Cy.lerp(V, 0.35), "Fire": E, "Nature": G, "Earth": Au.lerp(N, 0.35),
-    "Lightning": Au, "Wind": Cy.lerp(S, 0.5), "Ice": S.lerp(Cy, 0.25),
+    "Water": Cy.lerp(V, 0.35), "Fire": E, "Wood": G, "Earth": Au.lerp(N, 0.35),
+    "Thunder": Au, "Wind": Cy.lerp(S, 0.5), "Ice": S.lerp(Cy, 0.25),
     "Tech": S.lerp(N, 0.35), "Light": S, "Dark": V.lerp(N, 0.55), "Arcane": V,
     "Space": V.lerp(Cy, 0.35),
 }
-FAMILIES = ["Fire", "Water", "Wind", "Earth", "Nature", "Ice", "Lightning", "Light", "Dark",
+FAMILIES = ["Fire", "Water", "Wind", "Earth", "Wood", "Ice", "Thunder", "Light", "Dark",
             "Tech", "Space", "Arcane"]
 TEAM = {"ally": Cy, "enemy": E}
 
@@ -300,7 +300,7 @@ TOWERS = [
     ("T09", "astral_observatory", "Astral Observatory", V.lerp(N, 0.66).lerp(Cy, 0.08), N.lerp(S, 0.3).lerp(V, 0.15), Au, "stars", "orrery"),
     ("T10", "crystal_sanctum", "Crystal Sanctum", V.lerp(S, 0.35).lerp(N, 0.35), V.lerp(N, 0.5), V.lerp(S, 0.4), "facets", "crystals"),
     ("T11", "rift_frontier", "Rift Frontier", V.lerp(N, 0.62).lerp(E, 0.08), N.lerp(V, 0.36), V.lerp(E, 0.35), "rift", "floatrock"),
-    ("T12", "crown_of_ages", "Crown of Ages", Au.lerp(S, 0.42).lerp(N, 0.3), S.lerp(Au, 0.3).lerp(N, 0.28), Au, "gilded", "goldcolumn"),
+    ("T12", "sunforge_throne", "Sunforge Throne", Au.lerp(S, 0.42).lerp(N, 0.3), S.lerp(Au, 0.3).lerp(N, 0.28), Au, "gilded", "goldcolumn"),
 ]
 TILE_TYPES = ["ground", "stone", "obstacle", "bridge", "capsule_node", "player_symbol", "enemy_symbol",
               "player_spawn", "enemy_spawn", "relic", "warp_gate", "elevation", "hazard", "forest",
@@ -869,7 +869,7 @@ def glyph(fam):
         P([(38, 14), (55, 50), (38, 50), (34, 30)], c.lerp(N, .35), 1, None, 0)
         P([(22, 26), (29, 31), (24, 50), (9, 50)], hi, .7, None, 0)
         L([(9, 50), (55, 50)], N, 1.5)
-    elif fam == "Nature":
+    elif fam == "Wood":
         L([(32, 56), (32, 38)], N, 5)
         L([(32, 56), (32, 38)], c.lerp(N, .2), 3)
         P(chaikin([(31, 46), (20, 40), (13, 26), (25, 27), (31, 37)], 2))
@@ -897,7 +897,7 @@ def glyph(fam):
                 r2 = r + s * math.radians(45)
                 L([(bx, by), (bx + 7 * math.cos(r2), by + 7 * math.sin(r2))], c, 2.4)
         I.append(("ell", 32, 32, 3.5, 3.5, S, 1, N, 1))
-    elif fam == "Lightning":
+    elif fam == "Thunder":
         P([(37, 7), (17, 35), (29, 35), (23, 57), (47, 26), (34, 26), (42, 7)])
         P([(37, 7), (42, 7), (34, 26), (29, 26)], hi, .8, None, 0)
     elif fam == "Light":
@@ -1265,7 +1265,7 @@ def main(only_first_tower=False):
     for fam in FAMILIES:
         for team in ("ally", "enemy"):
             save(token(fam, team), "tokens/frames/%s_%s" % (team, fam.lower()), 2, "token:%s:%s" % (team, fam))
-    samples = [("Nature", "ally", "stag"), ("Tech", "ally", "hopper"), ("Light", "ally", "phoenix"),
+    samples = [("Wood", "ally", "stag"), ("Tech", "ally", "hopper"), ("Light", "ally", "phoenix"),
                ("Ice", "enemy", "colossus"), ("Dark", "enemy", "beetle"), ("Fire", "enemy", "drake")]
     for fam, team, cr in samples:
         save(token(fam, team, cr), "tokens/samples/%s_%s_%s" % (team, fam.lower(), cr), 2, "token-sample")
