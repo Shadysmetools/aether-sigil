@@ -1,18 +1,157 @@
-## Validates all 120 stages of the bible. map_grid is the source of truth (game_rules.json map_policy). Two kinds of check:
+## Validates all 120 stages of the bible. map_grid is the source of truth (game_rules.json map_policy).
 ##   ENGINE  must pass: the game can load and play the stage (grid, tile types, deploy tiles,
 ##           roster ids, Symbols, paths). Failures here are code or fatal data bugs.
-##   DATA    contradictions inside the bible itself. Reported as data findings, never "fixed"
-##           in the data; the rules engine applies the documented policy in game_rules.json.
-## Prints "N pass / M fail" (M counts both kinds) and exits with the ENGINE failure count.
+##   DATA    contradictions inside the bible itself. Each one must be a KNOWN data issue: listed in
+##           KNOWN_DATA_ISSUES below by stage id + issue key, with the documented rule fallback that
+##           handles it (REASONS). An unlisted finding FAILS; a listed issue that no longer occurs
+##           FAILS too (stale allowlist), so the list stays honest.
+## Prints "N pass / M fail" and exits with M (0 = green).
 extends SceneTree
 
 const Data = preload("res://scripts/data_loader.gd")
 const GameState = preload("res://scripts/game_state.gd")
 
+## Why each known issue is safe to play. Sources: data/game_rules.json and docs/BALANCE-REPORT.md.
+const REASONS := {
+	"stone_not_in_legend": "'stone' painted but missing from map_legend -> game_rules.json tiles.stone (walkable, no LOS block, +2 def cover)",
+	"objective_tile_repainted": "JSON objective tile painted as another type in map_grid -> map_policy: map_grid is the source of truth",
+	"no_player_symbol": "map paints no player_symbol -> map_policy.missing_symbol: placed on the first player_spawn",
+	"json_spawn_on_symbol": "JSON spawn list names the Symbol tile -> map_policy: spawns come from the grid's *_spawn tiles",
+	"json_spawn_unwalkable": "JSON spawn list names an obstacle -> map_policy: spawns come from the grid's *_spawn tiles",
+	"relic_win_under_3_relics": "'secure 3 relic nodes' with 1 relic -> map_policy.relic_counts_capsule_nodes",
+	"portal_rule_single_gate": "portal rule with 1 warp gate -> special_rules: active gate teleports to the mirror tile (11-x, 11-y)",
+}
+
+## stage id -> known issue keys. Generated from the 2026-10-21 run and reviewed; edit by hand.
+const KNOWN_DATA_ISSUES := {
+	"T01-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T01-L02": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T01-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T01-L04": ["json_spawn_on_symbol"],
+	"T01-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T01-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T01-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T01-L08": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T01-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T01-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T02-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T02-L02": ["json_spawn_on_symbol"],
+	"T02-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T02-L04": ["json_spawn_on_symbol"],
+	"T02-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T02-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T02-L07": ["json_spawn_on_symbol", "json_spawn_unwalkable", "portal_rule_single_gate"],
+	"T02-L08": ["json_spawn_on_symbol"],
+	"T02-L09": ["json_spawn_on_symbol", "json_spawn_unwalkable", "relic_win_under_3_relics"],
+	"T02-L10": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T03-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T03-L02": ["json_spawn_on_symbol"],
+	"T03-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T03-L04": ["json_spawn_on_symbol"],
+	"T03-L05": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T03-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T03-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T03-L08": ["json_spawn_on_symbol"],
+	"T03-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T03-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_unwalkable", "json_spawn_on_symbol"],
+	"T04-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T04-L02": ["json_spawn_on_symbol"],
+	"T04-L03": ["json_spawn_on_symbol", "json_spawn_unwalkable", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T04-L04": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T04-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T04-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T04-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T04-L08": ["json_spawn_on_symbol"],
+	"T04-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T04-L10": ["json_spawn_on_symbol"],
+	"T05-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T05-L02": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T05-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T05-L04": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T05-L05": ["json_spawn_on_symbol"],
+	"T05-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T05-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T05-L08": ["json_spawn_on_symbol"],
+	"T05-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T05-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T06-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T06-L02": ["json_spawn_on_symbol"],
+	"T06-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T06-L04": ["json_spawn_on_symbol"],
+	"T06-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T06-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T06-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T06-L08": ["json_spawn_on_symbol"],
+	"T06-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T06-L10": ["json_spawn_on_symbol"],
+	"T07-L01": ["stone_not_in_legend", "json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T07-L02": ["json_spawn_on_symbol"],
+	"T07-L03": ["json_spawn_on_symbol", "json_spawn_unwalkable", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T07-L04": ["json_spawn_on_symbol"],
+	"T07-L05": ["json_spawn_on_symbol"],
+	"T07-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T07-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T07-L08": ["json_spawn_on_symbol"],
+	"T07-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T07-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T08-L01": ["stone_not_in_legend", "json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T08-L02": ["json_spawn_on_symbol"],
+	"T08-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T08-L04": ["json_spawn_on_symbol"],
+	"T08-L05": ["objective_tile_repainted", "json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T08-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T08-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T08-L08": ["json_spawn_on_symbol"],
+	"T08-L09": ["json_spawn_on_symbol", "json_spawn_unwalkable", "relic_win_under_3_relics"],
+	"T08-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T09-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T09-L02": ["json_spawn_on_symbol"],
+	"T09-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T09-L04": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T09-L05": ["json_spawn_on_symbol"],
+	"T09-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T09-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T09-L08": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T09-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T09-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T10-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T10-L02": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T10-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T10-L04": ["json_spawn_on_symbol"],
+	"T10-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T10-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T10-L07": ["json_spawn_on_symbol", "json_spawn_unwalkable", "portal_rule_single_gate"],
+	"T10-L08": ["json_spawn_on_symbol"],
+	"T10-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T10-L10": ["json_spawn_on_symbol"],
+	"T11-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T11-L02": ["json_spawn_on_symbol"],
+	"T11-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T11-L04": ["json_spawn_on_symbol"],
+	"T11-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T11-L06": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T11-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T11-L08": ["json_spawn_on_symbol"],
+	"T11-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T11-L10": ["objective_tile_repainted", "no_player_symbol", "json_spawn_on_symbol"],
+	"T12-L01": ["stone_not_in_legend", "json_spawn_on_symbol"],
+	"T12-L02": ["json_spawn_on_symbol"],
+	"T12-L03": ["json_spawn_on_symbol", "relic_win_under_3_relics", "portal_rule_single_gate"],
+	"T12-L04": ["json_spawn_on_symbol"],
+	"T12-L05": ["objective_tile_repainted", "json_spawn_on_symbol"],
+	"T12-L06": ["json_spawn_on_symbol", "json_spawn_unwalkable", "relic_win_under_3_relics"],
+	"T12-L07": ["json_spawn_on_symbol", "portal_rule_single_gate"],
+	"T12-L08": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+	"T12-L09": ["json_spawn_on_symbol", "relic_win_under_3_relics"],
+	"T12-L10": ["json_spawn_on_symbol", "json_spawn_unwalkable"],
+}
+
 var passed := 0
 var failed := 0
 var engine_failed := 0
-var findings: Dictionary = {}   ## category -> Array of "stage: detail"
+var known := 0
+var known_seen: Dictionary = {}  ## "stage|key" -> true
+var findings: Dictionary = {}    ## key -> Array of "stage detail" (UNLISTED findings only)
 
 
 func engine(cond: bool, stage_id: String, label: String) -> void:
@@ -24,14 +163,20 @@ func engine(cond: bool, stage_id: String, label: String) -> void:
 		print("  FAIL  ENGINE %s: %s" % [stage_id, label])
 
 
-func data(cond: bool, category: String, stage_id: String, detail: String) -> void:
+func data(cond: bool, key: String, stage_id: String, detail: String) -> void:
 	if cond:
 		passed += 1
-	else:
-		failed += 1
-		if not findings.has(category):
-			findings[category] = []
-		findings[category].append("%s %s" % [stage_id, detail])
+		return
+	if OS.get_cmdline_user_args().has("--dump-findings"):
+		print("FINDING|%s|%s" % [stage_id, key])
+	if Array(KNOWN_DATA_ISSUES.get(stage_id, [])).has(key):
+		known += 1
+		known_seen["%s|%s" % [stage_id, key]] = true
+		return
+	failed += 1
+	if not findings.has(key):
+		findings[key] = []
+	findings[key].append("%s %s" % [stage_id, detail])
 
 
 func _initialize() -> void:
@@ -56,7 +201,21 @@ func _initialize() -> void:
 	print("Tile types seen on the 120 maps (%d): %s" % [tiles_seen.size(), ", ".join(tiles_seen.keys())])
 	engine(unhandled.is_empty(), "ALL", "every tile type has a rule (unhandled: %s)" % str(unhandled))
 	print("")
-	print("DATA FINDINGS (contradictions in the bible; engine policy in data/game_rules.json):")
+	var stale := []
+	for sid in KNOWN_DATA_ISSUES:
+		for key in KNOWN_DATA_ISSUES[sid]:
+			if not known_seen.has("%s|%s" % [sid, key]):
+				stale.append("%s %s" % [sid, key])
+	failed += stale.size()
+	var per_key := {}
+	for k in known_seen:
+		var key: String = k.split("|")[1]
+		per_key[key] = per_key.get(key, 0) + 1
+	print("KNOWN DATA ISSUES (allowlisted with a rule fallback): %d occurrences across %d stages" % [known, KNOWN_DATA_ISSUES.size()])
+	for key in per_key:
+		print("  %-26s %3d stages  %s" % [key, per_key[key], REASONS.get(key, "")])
+	print("STALE allowlist entries (listed but no longer found): %d %s" % [stale.size(), str(stale.slice(0, 8))])
+	print("UNLISTED DATA FINDINGS (fail):")
 	if findings.is_empty():
 		print("  none")
 	for cat in findings:
@@ -67,7 +226,7 @@ func _initialize() -> void:
 	print("")
 	print("ENGINE failures: %d" % engine_failed)
 	print("%d pass / %d fail" % [passed, failed])
-	quit(engine_failed)
+	quit(mini(failed, 255))  # exit codes wrap at 256
 
 
 func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
@@ -90,7 +249,7 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 	for t in st.get("map_legend", {}):
 		engine(Data.tile_handled(t), id, "legend type '%s' handled" % t)
 	for t in used:
-		data(st.get("map_legend", {}).has(t), "tile used but missing from map_legend", id, "'%s'" % t)
+		data(st.get("map_legend", {}).has(t), "stone_not_in_legend" if t == "stone" else "tile_not_in_legend", id, "'%s'" % t)
 
 	# Objectives vs painted grid.
 	var syms := {"player_symbol": 0, "enemy_symbol": 0}
@@ -102,15 +261,15 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 		if syms.has(o.type):
 			syms[o.type] += 1
 		if inb:
-			data(g[c.y][c.x] == o.type, "objective tile painted as another type in map_grid", id, "%s %s is '%s'" % [o.type, c, g[c.y][c.x]])
+			data(g[c.y][c.x] == o.type, "objective_tile_repainted", id, "%s %s is '%s'" % [o.type, c, g[c.y][c.x]])
 	engine(syms.player_symbol == 1 and syms.enemy_symbol == 1, id, "exactly one Symbol per side in objectives")
 	var painted := {"player_symbol": 0, "enemy_symbol": 0}
 	for row in g:
 		for t in row:
 			if painted.has(t):
 				painted[t] += 1
-	data(painted.player_symbol == 1, "map paints no player_symbol (placed on the first player_spawn)", id, "%d painted" % painted.player_symbol)
-	data(painted.enemy_symbol == 1, "map paints no enemy_symbol (placed on the first enemy_spawn)", id, "%d painted" % painted.enemy_symbol)
+	data(painted.player_symbol == 1, "no_player_symbol", id, "%d painted" % painted.player_symbol)
+	data(painted.enemy_symbol == 1, "no_enemy_symbol", id, "%d painted" % painted.enemy_symbol)
 
 	var s := GameState.new()
 	engine(s.setup(id), id, "GameState.setup")
@@ -131,9 +290,9 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 				continue
 			var t := s.tile_type(c)
 			if t.ends_with("_symbol"):
-				data(false, "listed spawn sits ON a Symbol (Symbol tile excluded from deploy)", id, "%s %s" % [key, c])
+				data(false, "json_spawn_on_symbol", id, "%s %s" % [key, c])
 			else:
-				data(s.is_walkable(c), "listed spawn on an unwalkable tile", id, "%s %s is '%s'" % [key, c, t])
+				data(s.is_walkable(c), "json_spawn_unwalkable", id, "%s %s is '%s'" % [key, c, t])
 
 	# Paths: from each player spawn (listed and effective) to the enemy Symbol, and back.
 	var to_enemy := s.distance_field(s.symbol_pos[GameState.ENEMY])
@@ -161,9 +320,9 @@ func check_stage(st: Dictionary, tiles_seen: Dictionary) -> void:
 	var win := str(st.get("win_condition", ""))
 	engine(win.contains("Defeat the enemy Symbol"), id, "win condition includes 'Defeat the enemy Symbol'")
 	if s.relic_win:
-		data(s.relics.size() >= int(Data.rules().relics_to_win), "'secure 3 relic nodes' but fewer than 3 relics (policy: capsule nodes count)", id, "%d relic(s)" % s.relics.size())
+		data(s.relics.size() >= int(Data.rules().relics_to_win), "relic_win_under_3_relics", id, "%d relic(s)" % s.relics.size())
 	if s.rule.get("random_portal", false):
-		data(s.portals.size() >= 2, "portal rule but fewer than 2 warp gates (policy: mirror-tile teleport)", id, "%d gate(s)" % s.portals.size())
+		data(s.portals.size() >= 2, "portal_rule_single_gate", id, "%d gate(s)" % s.portals.size())
 	var dlg: Dictionary = st.get("dialogue", {})
 	for k in ["intro", "midbattle", "defeat"]:
 		engine(str(dlg.get(k, "")) != "", id, "dialogue '%s' present" % k)

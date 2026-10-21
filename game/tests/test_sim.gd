@@ -31,7 +31,7 @@ func _initialize() -> void:
 	run(avg, false)
 	check(Data.stage_count() == 120, "simulated all 120 stages")
 	print("%d pass / %d fail" % [passed, failed])
-	quit(failed)
+	quit(mini(failed, 255))  # exit codes wrap at 256
 
 
 ## One Common per role (Guardian, Striker, Artillery, Scout) nearest the Common mean stats.

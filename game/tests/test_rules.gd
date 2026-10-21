@@ -53,7 +53,7 @@ func _initialize() -> void:
 		test_ai_legal()
 		test_progress()
 	print("%d pass / %d fail" % [passed, failed])
-	quit(failed)
+	quit(mini(failed, 255))  # exit codes wrap at 256
 
 
 func stage_with_rule(text: String) -> String:
