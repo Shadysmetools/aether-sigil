@@ -81,9 +81,9 @@ static func family(f: String) -> Color:
 		_families = {
 			"Water": AETHER_CYAN.lerp(CRYSTAL_VIOLET, 0.35),
 			"Fire": EMBER,
-			"Nature": VERDANT_GREEN,
+			"Wood": VERDANT_GREEN,
 			"Earth": SIGIL_GOLD.lerp(MIDNIGHT_NAVY, 0.35),
-			"Lightning": SIGIL_GOLD,
+			"Thunder": SIGIL_GOLD,
 			"Wind": AETHER_CYAN.lerp(SOFT_SILVER, 0.5),
 			"Ice": SOFT_SILVER.lerp(AETHER_CYAN, 0.25),
 			"Tech": SOFT_SILVER.lerp(MIDNIGHT_NAVY, 0.35),

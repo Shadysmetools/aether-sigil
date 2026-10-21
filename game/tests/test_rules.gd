@@ -50,6 +50,7 @@ func _initialize() -> void:
 		test_skills()
 		test_wins_and_objectives()
 		test_dormant()
+		test_difficulty_curve()
 		test_ai_legal()
 		test_progress()
 	print("%d pass / %d fail" % [passed, failed])
@@ -194,7 +195,7 @@ func test_commands() -> void:
 	var s := flat_state()
 	var a := s.place_unit(P, mon_of_family("Tech"), Vector2i(4, 4))
 	var b := s.place_unit(P, mon_of_family("Tech"), Vector2i(0, 0))
-	var d := s.place_unit(E, mon_of_family("Nature"), Vector2i(6, 4))
+	var d := s.place_unit(E, mon_of_family("Wood"), Vector2i(6, 4))
 	a.attack_range = 3
 	s.activate(a.id)
 	eq(s.attack(P, b.id, d.pos), GameState.R_NOT_ACTIVE, "only the active monster can act")
@@ -224,13 +225,17 @@ func test_commands() -> void:
 
 func test_damage() -> void:
 	print("[damage formula + element chart]")
-	eq(GameState.compute_damage(30, 20, "Tech", "Nature"), 27, "neutral: round(1.5*30*30/50) = 27")
-	eq(GameState.compute_damage(10, 40, "Tech", "Nature"), 3, "high defense still hurts: round(1.5*100/50) = 3")
-	eq(GameState.compute_damage(1, 50, "Tech", "Nature"), 1, "floor of 1")
+	eq(GameState.compute_damage(30, 20, "Tech", "Wood"), 27, "neutral: round(1.5*30*30/50) = 27")
+	eq(GameState.compute_damage(10, 40, "Tech", "Wood"), 3, "high defense still hurts: round(1.5*100/50) = 3")
+	eq(GameState.compute_damage(1, 50, "Tech", "Wood"), 1, "floor of 1")
 	eq(GameState.compute_damage(30, 20, "Water", "Fire"), 34, "ring Water>Fire: 27 x1.25 = 34")
 	eq(GameState.compute_damage(30, 20, "Fire", "Water"), 22, "reverse Fire vs Water: 27 x0.8 = 22")
 	eq(GameState.compute_damage(30, 20, "Light", "Dark"), 34, "Light beats Dark")
-	eq(GameState.compute_damage(30, 20, "Dark", "Light"), 22, "Dark vs Light is the reverse (x0.8)")
+	eq(GameState.compute_damage(30, 20, "Dark", "Light"), 34, "Dark beats Light too: mutual rivals (x1.25 each way)")
+	eq(GameState.compute_damage(30, 20, "Space", "Light"), 34, "Space beats Light")
+	eq(GameState.compute_damage(30, 20, "Light", "Space"), 22, "Light vs Space is the reverse (x0.8)")
+	eq(GameState.compute_damage(30, 20, "Thunder", "Tech"), 34, "Thunder beats Tech")
+	eq(GameState.compute_damage(30, 20, "Wood", "Thunder"), 34, "Wood beats Thunder")
 	eq(GameState.compute_damage(30, 20, "Fire", "Earth"), 27, "opposite in a ring: neutral")
 	eq(GameState.compute_damage(30, 20, "Fire", "Tech"), 27, "different rings: neutral")
 	eq(GameState.compute_damage(30, 20, "Water", ""), 27, "Symbols have no element")
@@ -240,14 +245,15 @@ func test_damage() -> void:
 	for f in chart:
 		if f.begins_with("_"):
 			continue
-		if Array(chart[f]).size() != 1:
+		if Array(chart[f]).size() != (2 if f == "Dark" else 1):
 			ok = false
 		for g in chart[f]:
 			ins[g] = ins.get(g, 0) + 1
 	for f in ins:
-		if ins[f] != 1:
+		if ins[f] != (2 if f == "Light" else 1):
 			ok = false
-	check(ok and ins.size() == 12, "element chart: 3 rings of 4, each family beats 1 and is beaten by 1")
+	check(ok and ins.size() == 12, "element chart: 3 rings of 4; only Dark beats 2 and only Light is beaten by 2 (Light<->Dark mutual)")
+	check(not chart.has("Nature") and not chart.has("Lightning") and chart.has("Wood") and chart.has("Thunder"), "families renamed: Wood, Thunder")
 
 
 func test_accuracy_and_high_ground() -> void:
@@ -333,7 +339,7 @@ func test_terrain_rule() -> void:
 	for s: GameState in [off, on]:
 		s.grid[4][5] = "forest"
 		var atk := s.place_unit(P, mon_of_family("Tech"), Vector2i(4, 4))
-		var nat := s.place_unit(E, mon_of_family("Nature"), Vector2i(5, 4))
+		var nat := s.place_unit(E, mon_of_family("Wood"), Vector2i(5, 4))
 		atk.attack = 40
 		nat.defense = 30
 		var row := [s.defense_of(nat, nat.pos) - nat.defense, s.damage_preview(atk, nat.pos)]
@@ -341,13 +347,13 @@ func test_terrain_rule() -> void:
 		row.append(s.damage_preview(atk, nat.pos))
 		row.append(s.hit_chance(atk, nat.pos))
 		results.append(row)
-	eq(results[0][0], 4, "Nature on forest: +4 defense normally")
-	eq(results[1][0], 8, "Nature on forest: +8 defense when doubled")
-	eq(results[0][1], GameState.compute_damage(40, 34, "Tech", "Nature"), "normal: vs defense 34")
-	eq(results[1][1], GameState.compute_damage(40, 38, "Tech", "Nature"), "doubled: vs defense 38")
+	eq(results[0][0], 4, "Wood on forest: +4 defense normally")
+	eq(results[1][0], 8, "Wood on forest: +8 defense when doubled")
+	eq(results[0][1], GameState.compute_damage(40, 34, "Tech", "Wood"), "normal: vs defense 34")
+	eq(results[1][1], GameState.compute_damage(40, 38, "Tech", "Wood"), "doubled: vs defense 38")
 	check(results[1][1] < results[0][1], "doubled terrain lowers the damage taken (%d -> %d)" % [results[0][1], results[1][1]])
-	eq(results[0][2], GameState.compute_damage(40, 34, "Tech", "Nature", 1.3), "high ground normal: x1.3")
-	eq(results[1][2], GameState.compute_damage(40, 38, "Tech", "Nature", 1.6), "high ground doubled: x1.6")
+	eq(results[0][2], GameState.compute_damage(40, 34, "Tech", "Wood", 1.3), "high ground normal: x1.3")
+	eq(results[1][2], GameState.compute_damage(40, 38, "Tech", "Wood", 1.6), "high ground doubled: x1.6")
 	eq(results[1][3], 100, "doubled accuracy bonus +30 (capped 100)")
 
 
@@ -505,7 +511,7 @@ func test_skills() -> void:
 	u.hp = 10
 	s.grid[u.pos.y][u.pos.x] = "forest"
 	s.skill(P, u.id, u.pos)
-	eq(u.hp, 10 + u.max_hp * 20 / 100 * 2, "heal 20% max HP, doubled on Nature terrain")
+	eq(u.hp, 10 + u.max_hp * 20 / 100 * 2, "heal 20% max HP, doubled on Wood (forest) terrain")
 	s = _skill_state("Prism Guard")
 	u = s.get_meta("u")
 	t = s.get_meta("t")
@@ -595,6 +601,23 @@ func test_wins_and_objectives() -> void:
 	var texts := real.objectives().map(func(o): return o.text)
 	check(texts.has("Activate capsule nodes") and texts.has("Obtain the golden relic"), "T01-L01 lists capsule-node and golden-relic objectives")
 	eq(real.objectives()[3].progress, "0/2", "capsule nodes start 0/2")
+
+
+func test_difficulty_curve() -> void:
+	print("[difficulty curve]")
+	var shipped = Data.rules().difficulty.enemy_stat_pct_per_tower
+	Data.rules().difficulty.enemy_stat_pct_per_tower = 3  # exercise the curve even if shipped at 0
+	var pct := 3.0
+	var s1 := GameState.new()
+	s1.setup("T01-L02")
+	var s12 := GameState.new()
+	s12.setup("T12-L02")
+	var id := sq(0)
+	var base := int(Data.monster(id).hp)
+	eq(s1.place_unit(E, id, Vector2i(6, 6)).max_hp, base, "T01 enemies are unscaled")
+	eq(s12.place_unit(E, id, Vector2i(6, 6)).max_hp, roundi(base * (1.0 + pct / 100.0 * 11)), "T12 enemies x(1 + 11 x %d%%)" % int(pct))
+	eq(s12.place_unit(P, id, Vector2i(7, 7)).max_hp, base, "player monsters are never scaled")
+	Data.rules().difficulty.enemy_stat_pct_per_tower = shipped
 
 
 func test_dormant() -> void:

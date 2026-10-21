@@ -190,6 +190,18 @@ func _initialize() -> void:
 	engine(stages.size() == 120, "ALL", "120 stages (got %d)" % stages.size())
 	engine(Data.towers().size() == 12, "ALL", "12 towers")
 	engine(Data.monster_ids().size() == int(Data.bible().monster_count), "ALL", "monster_count matches the list")
+	# Issue #16: one canonical champion per tower; the L10 opponent IS the tower_boss.
+	for t in Data.towers():
+		var l10: Dictionary = t.levels[-1]
+		engine(str(l10.opponent) == str(t.tower_boss), str(l10.stage_id), "L10 opponent '%s' is the tower champion '%s'" % [l10.opponent, t.tower_boss])
+		for line in l10.dialogue.values():
+			engine(str(line).begins_with(str(t.tower_boss) + ":"), str(l10.stage_id), "L10 dialogue spoken by the champion")
+	var names := {}
+	for id in Data.monster_ids():
+		var nm := str(Data.monster(id).name)
+		engine(not names.has(nm), id, "monster name '%s' is unique" % nm)
+		engine(not nm.to_lower().contains("archen"), id, "no 'archen' in monster names")
+		names[nm] = true
 	var tiles_seen := {}
 	for st in stages:
 		check_stage(st, tiles_seen)

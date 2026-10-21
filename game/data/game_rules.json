@@ -12,7 +12,7 @@
     "disadvantage_mult": 0.8
   },
   "element_chart": {
-    "_doc": "Three rings of four (BALANCE-REPORT element section). Each family beats the next in its ring (x1.25) and takes x0.8 from the one before; families in different rings, or opposite in a ring, are neutral. Rings: Fire>Wind>Earth>Water>Fire; Lightning>Tech>Ice>Nature>Lightning; Light>Dark>Arcane>Space>Light. Source: docs/BALANCE-REPORT.md (design agent, 2026-10-21).",
+    "_doc": "Decided 2026-10-21 (owner, via coordinator). Three rings; each family beats the next in its ring (x1.25) and takes x0.8 from the one before; cross-ring and opposite-in-ring matchups are neutral. Elemental: Fire>Wind>Earth>Water>Fire. Wild: Thunder>Tech>Ice>Wood>Thunder. Mystic: Light<->Dark are MUTUAL rivals (each deals x1.25 to the other), Dark>Arcane>Space>Light. Family names Nature->Wood and Lightning->Thunder. Ring design: docs/BALANCE-REPORT.md section 10.",
     "Fire": [
       "Wind"
     ],
@@ -25,23 +25,24 @@
     "Water": [
       "Fire"
     ],
-    "Lightning": [
+    "Thunder": [
       "Tech"
     ],
     "Tech": [
       "Ice"
     ],
     "Ice": [
-      "Nature"
+      "Wood"
     ],
-    "Nature": [
-      "Lightning"
+    "Wood": [
+      "Thunder"
     ],
     "Light": [
       "Dark"
     ],
     "Dark": [
-      "Arcane"
+      "Arcane",
+      "Light"
     ],
     "Arcane": [
       "Space"
@@ -133,7 +134,7 @@
       "walkable": true,
       "move_cost": 1,
       "family": [
-        "Nature"
+        "Wood"
       ]
     },
     "lava": {
@@ -217,8 +218,8 @@
     }
   },
   "symbol": {
-    "_doc": "The Player Sigil / enemy Symbol: a crystal on a pedestal on the *_symbol tile, the side's commander. HP/defense are not in the data. It blocks movement and is attacked like a unit with no element; if it falls, its side loses.",
-    "hp": 120,
+    "_doc": "The Player Sigil / enemy Symbol: a crystal on a pedestal on the *_symbol tile, the side's commander; it blocks movement and is attacked like a unit with no element; if it falls, its side loses. Defense 10 (design proposal, accepted 2026-10-21). HP tuned by simulation on 2026-10-21 (game/tests/tune_sigil.gd, default squad, 120 stages, 60-round cap): tried 120/180/240/300/360 with no difficulty curve: 120 -> 48% player / 9% capped / median 12; 180 -> 47% / 9% / 13; 240 -> 46% / 10% / 14; 300 -> 46% / 10% / 15; 360 -> 45% / 11% / 16. Chose 180: inside every target (45-55% player wins, median 12-20 rounds, <=10% capped) with margin on all three. HP barely moves the win rate; it mostly sets battle length. See HANDOFF.md 'Open decisions'.",
+    "hp": 180,
     "defense": 10
   },
   "recharge_pct": 20,
@@ -251,7 +252,7 @@
   "turn_cap_rounds": 60,
   "water_family_immune": false,
   "accuracy": {
-    "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG.",
+    "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15).",
     "base": 90,
     "min": 5,
     "max": 100,
@@ -315,7 +316,7 @@
     ]
   },
   "abilities": {
-    "_doc": "Skill effect per ability. The bible's descriptions are mostly passives; each is SIMPLIFIED to one active effect type: strike (damage x mult), pull (strike, then drag target 1 tile toward user), chain (strike, then chain_mult to the nearest other enemy within radius), mark (next hit on target x mult; radius>0 marks all enemies within radius), root (damage x mult if mult>0; target cannot move on its next activation), pulse (damage x mult to every enemy within radius, ignores line of sight), heal (pct of max HP, x nature_mult on Nature terrain), guard (defend at mult, reflect% of damage back to attackers), ward (an adjacent ally defends), blink (teleport to a free tile within range; nodes_only = capsule node/relic/warp gate; once = once per battle), veil (-veil_penalty enemy accuracy until this unit attacks).",
+    "_doc": "Skill effect per ability. The bible's descriptions are mostly passives; each is SIMPLIFIED to one active effect type: strike (damage x mult), pull (strike, then drag target 1 tile toward user), chain (strike, then chain_mult to the nearest other enemy within radius), mark (next hit on target x mult; radius>0 marks all enemies within radius), root (damage x mult if mult>0; target cannot move on its next activation), pulse (damage x mult to every enemy within radius, ignores line of sight), heal (pct of max HP, x nature_mult on Wood terrain), guard (defend at mult, reflect% of damage back to attackers), ward (an adjacent ally defends), blink (teleport to a free tile within range; nodes_only = capsule node/relic/warp gate; once = once per battle), veil (-veil_penalty enemy accuracy until this unit attacks).",
     "Phase Step": {
       "type": "blink",
       "range": 3,
@@ -333,7 +334,7 @@
       "type": "heal",
       "pct": 20,
       "nature_mult": 2,
-      "simplified": "Regen when ending on Nature -> active heal, doubled on Nature terrain."
+      "simplified": "Regen when ending on Wood -> active heal, doubled on Wood terrain."
     },
     "Storm Dash": {
       "type": "strike",
@@ -427,5 +428,9 @@
     "relic_counts_capsule_nodes": true,
     "relic_doc": "The 36 'secure 3 relic nodes' stages have 1 relic tile, so activated capsule nodes count as relic nodes toward the 3.",
     "portal_doc": "Portal rule (24 stages, 1 gate each): the active gate teleports to the mirror-image tile (11-x, 11-y); see special_rules."
+  },
+  "difficulty": {
+    "_doc": "Difficulty curve parameter (decided 2026-10-21): enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1)); player monsters are unscaled. Shipped at 0: with Sigil HP 240 the simulation gave player wins 46% at 0%, 37% at +1%, 27% at +2%, 22% at +3% per tower (T07-T12 0-2 wins per tower at +3%), because the player squad has no progression yet (no evolution or levels). Raise it once progression exists; game/tests/tune_sigil.gd -- HP PCT measures it.",
+    "enemy_stat_pct_per_tower": 0
   }
 }

@@ -605,8 +605,21 @@ func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
 	u.move = int(d.get("move", 1))
 	u.attack_range = int(d.get("range", 1))
 	u.ability = str(d.get("ability", ""))
+	if p == ENEMY:
+		var f := enemy_scale()
+		u.hp = roundi(u.hp * f)
+		u.max_hp = u.hp
+		u.attack = roundi(u.attack * f)
+		u.defense = roundi(u.defense * f)
 	units.append(u)
 	return u
+
+
+## Difficulty curve (game_rules.json difficulty): enemy stats x (1 + pct/100 x (tower - 1)).
+func enemy_scale() -> float:
+	var pct := float(Data.rules().get("difficulty", {}).get("enemy_stat_pct_per_tower", 0))
+	var tower := maxi(1, int(str(stage.get("tower_id", "1"))))
+	return 1.0 + pct / 100.0 * (tower - 1)
 
 
 # ---------------------------------------------------------------- Move
@@ -854,7 +867,7 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 					_hit(u, e.pos, mult)
 		"heal":
 			var amount := u.max_hp * int(sd.pct) / 100
-			if Array(tile_def(u.pos).get("family", [])).has("Nature"):
+			if Array(tile_def(u.pos).get("family", [])).has("Wood"):
 				amount *= int(sd.get("nature_mult", 1))
 			u.hp = mini(u.max_hp, u.hp + amount)
 		"guard":

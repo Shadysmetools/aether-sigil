@@ -188,6 +188,9 @@ func _build_select() -> void:
 	vb.add_theme_constant_override("separation", 16)
 	select_screen.add_child(vb)
 	vb.add_child(_label("AETHER SIGIL", 72, Palette.SIGIL_GOLD))
+	var full_title := str(Data.bible().get("title", ""))
+	if full_title.contains(": "):
+		vb.add_child(_label(full_title.split(": ", true, 1)[1], FONT - 6, Palette.SOFT_SILVER))
 	vb.add_child(_label(str(Data.bible().get("tagline", "")), FONT - 4, Palette.AETHER_CYAN))
 	vb.add_child(_button("Build Your Squad", show_squad_builder, 90))
 	var scroll := ScrollContainer.new()
