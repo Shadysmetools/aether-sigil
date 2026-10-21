@@ -71,15 +71,48 @@ func _run() -> void:
 	check(missing.is_empty(), "every tile type has a colour")
 	# Build Your Squad.
 	main.show_squad_builder()
-	check(main.squad_screen.visible and main.squad_buttons.size() == Data.squad_collection().size(), "squad builder lists the collection (%d)" % main.squad_buttons.size())
-	var coll := Data.squad_collection()
-	main._on_squad_toggle(coll[0])
+	check(main.squad_screen.visible and main.squad_buttons.size() == main.progress.roster.size(), "squad builder lists the owned roster (%d)" % main.squad_buttons.size())
+	var coll: Array = main.progress.roster.map(func(i): return str(i.uid))
+	var default_uids: Array = main.progress.squad.duplicate()
+	var out_uid: String = default_uids[0]
+	var in_uid: String = coll.filter(func(u): return not default_uids.has(u))[0]
+	main._on_squad_toggle(out_uid)
 	check(main.squad_confirm.disabled, "confirm disabled with 3 selected")
-	main._on_squad_toggle(coll[4])
+	main._on_squad_toggle(in_uid)
 	check(not main.squad_confirm.disabled, "confirm enabled with 4")
 	main._on_squad_confirm()
-	check(main.progress.squad.has(coll[4]) and main.progress.squad.size() == 4, "squad saved: %s" % str(main.progress.squad))
-	main.progress.set_squad(Data.default_squad())
+	check(main.progress.squad.has(in_uid) and main.progress.squad.size() == 4, "squad saved: %s" % str(main.progress.squad))
+	main.progress.set_squad(default_uids)
+	# Evolution screen.
+	var evo_uid: String = default_uids[1]
+	main.show_evolution()
+	check(main.evo_screen.visible and main.evo_list.get_child_count() == main.progress.roster.size(), "evolution screen lists the roster")
+	var hooked := []
+	main.evolved.connect(func(uid, line): hooked.append(line))
+	main._on_evolve(evo_uid)
+	check(main.progress.get_inst(evo_uid).evo_stage == 0, "Evolve refused below the threshold")
+	main.progress.get_inst(evo_uid).level = int(Data.progression().evolution.thresholds[0])
+	var old_name: String = main.progress.get_inst(evo_uid).name
+	main.show_evolution()
+	main._on_evolve(evo_uid)
+	check(main.progress.get_inst(evo_uid).evo_stage == 1 and main.progress.get_inst(evo_uid).name != old_name, "Evolve: %s -> %s" % [old_name, main.progress.get_inst(evo_uid).name])
+	check(hooked.size() == 1 and main.evo_label.text == hooked[0], "evolution hook fired with the dialogue line: '%s'" % (hooked[0] if hooked.size() > 0 else ""))
+	# Fusion screen: preview, then confirm.
+	var bench: Array = coll.filter(func(u): return not default_uids.has(u))
+	main.progress.get_inst(bench[0]).level = 12
+	main.progress.get_inst(bench[1]).level = 11
+	main.show_fusion()
+	main._on_fusion_toggle(bench[0])
+	check(main.fusion_confirm.disabled, "fusion confirm disabled with 1 pick")
+	main._on_fusion_toggle(bench[1])
+	var expected: Dictionary = main.progress.fusion_preview(bench[0], bench[1])
+	check(not main.fusion_confirm.disabled and main.fusion_preview_label.text.contains(str(expected.name)), "Preview Fusion shows %s" % expected.name)
+	var before: int = main.progress.roster.size()
+	main._on_fusion_confirm()
+	check(main.progress.roster.size() == before - 1 and not main.progress.get_inst(str(expected.uid)).is_empty(), "Confirm: parents consumed, %s added" % expected.name)
+	main.show_squad_builder()
+	check(main.squad_buttons.has(str(expected.uid)), "fused monster appears in the squad builder")
+	main.progress.set_squad(default_uids)
 	# Battle.
 	main._on_stage_pressed("T01-L01")
 	await process_frame
@@ -159,6 +192,7 @@ func _run() -> void:
 	check(main.dialogue_box.visible and main.dialogue_text.text == defeat_line.substr(defeat_line.find(": ") + 2), "rival's defeat line after the win")
 	main._on_dialogue_next()
 	check(main.result_box.visible and main.result_title.text == "Victory" and main.next_button.visible, "victory panel with Next stage")
+	check(main.result_sub.text.contains("XP"), "result shows XP earned: %s" % main.result_sub.text.replace("\n", " | "))
 	check(main.progress.is_unlocked("T01-L02"), "win unlocked T01-L02")
 	main._on_next()
 	await process_frame

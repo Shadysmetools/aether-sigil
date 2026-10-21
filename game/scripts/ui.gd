@@ -12,6 +12,10 @@ const BoardView = preload("res://scripts/board_view.gd")
 const Palette = preload("res://scripts/theme_colors.gd")
 const Progress = preload("res://scripts/progress.gd")
 const Art = preload("res://scripts/board_art.gd")
+const Prog = preload("res://scripts/progression.gd")
+
+signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
+signal fused(uid: String)
 
 const AI_DELAY := 0.35
 const FONT := 34
@@ -49,6 +53,17 @@ var ui_root: Control
 var select_screen: Control
 var stage_buttons: Dictionary = {}
 var squad_screen: Control
+var squad_list: VBoxContainer
+var evo_screen: Control
+var evo_list: VBoxContainer
+var evo_label: Label
+var fusion_screen: Control
+var fusion_list: VBoxContainer
+var fusion_pick: Array = []
+var fusion_buttons: Dictionary = {}
+var fusion_preview_label: Label
+var fusion_confirm: Button
+var last_xp_text := ""
 var squad_buttons: Dictionary = {}
 var squad_pick: Array = []
 var squad_label: Label
@@ -174,6 +189,8 @@ func _build_ui() -> void:
 	layer.add_child(ui_root)
 	_build_select()
 	_build_squad()
+	_build_evolution()
+	_build_fusion()
 	_build_hud()
 	_build_dialogue()
 	_build_result()
@@ -192,7 +209,12 @@ func _build_select() -> void:
 	if full_title.contains(": "):
 		vb.add_child(_label(full_title.split(": ", true, 1)[1], FONT - 6, Palette.SOFT_SILVER))
 	vb.add_child(_label(str(Data.bible().get("tagline", "")), FONT - 4, Palette.AETHER_CYAN))
-	vb.add_child(_button("Build Your Squad", show_squad_builder, 90))
+	var meta_row := HBoxContainer.new()
+	meta_row.add_theme_constant_override("separation", 10)
+	vb.add_child(meta_row)
+	meta_row.add_child(_button("Squad", show_squad_builder, 90))
+	meta_row.add_child(_button("Evolution", show_evolution, 90))
+	meta_row.add_child(_button("Fusion", show_fusion, 90))
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -235,18 +257,10 @@ func _build_squad() -> void:
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	vb.add_child(scroll)
-	var list := VBoxContainer.new()
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	list.add_theme_constant_override("separation", 10)
-	scroll.add_child(list)
-	for id in Data.squad_collection():
-		var m := Data.monster(id)
-		var b := _button("%s  (%s %s %s)\nHP %d  ATK %d  DEF %d  MOVE %d  RANGE %d  Skill: %s" % [m.name, m.element, m.element_family, m.role,
-			m.hp, m.attack, m.defense, m.move, m.range, m.ability], _on_squad_toggle.bind(str(id)), 110)
-		b.toggle_mode = true
-		b.add_theme_font_size_override("font_size", SMALL + 2)
-		squad_buttons[str(id)] = b
-		list.add_child(b)
+	squad_list = VBoxContainer.new()
+	squad_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	squad_list.add_theme_constant_override("separation", 10)
+	scroll.add_child(squad_list)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
 	vb.add_child(row)
@@ -254,6 +268,146 @@ func _build_squad() -> void:
 	squad_confirm = _button("Confirm squad", _on_squad_confirm)
 	row.add_child(squad_confirm)
 	squad_screen.visible = false
+
+
+func _meta_screen(title: String) -> Array:
+	var screen := _full(MarginContainer.new())
+	for side in ["left", "right", "top", "bottom"]:
+		screen.add_theme_constant_override("margin_" + side, 32)
+	ui_root.add_child(screen)
+	var vb := VBoxContainer.new()
+	vb.add_theme_constant_override("separation", 14)
+	screen.add_child(vb)
+	vb.add_child(_label(title, 56, Palette.SIGIL_GOLD))
+	var note := _label("", FONT - 8, Palette.AETHER_CYAN)
+	vb.add_child(note)
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	vb.add_child(scroll)
+	var list := VBoxContainer.new()
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	list.add_theme_constant_override("separation", 10)
+	scroll.add_child(list)
+	screen.visible = false
+	return [screen, vb, list, note]
+
+
+func _build_evolution() -> void:
+	var parts := _meta_screen("EVOLUTION")
+	evo_screen = parts[0]
+	evo_list = parts[2]
+	evo_label = parts[3]
+	parts[1].add_child(_button("Back", show_stage_select, 90))
+
+
+func show_evolution(msg: String = "") -> void:
+	_hide_all()
+	evo_screen.visible = true
+	evo_label.text = msg if msg != "" else "Monsters evolve at Lv%s into the next form of their family." % "/".join(Data.progression().evolution.thresholds.map(func(x): return str(int(x))))
+	for c in evo_list.get_children():
+		c.queue_free()
+	for inst in progress.roster:
+		var row := _panel()
+		evo_list.add_child(row)
+		var v := VBoxContainer.new()
+		row.add_child(v)
+		v.add_child(_label(_inst_text(inst), SMALL + 2, Palette.TEXT, false))
+		var why := Prog.can_evolve(inst)
+		var nxt := Prog.next_form(inst)
+		var need := Prog.evolve_level(inst)
+		var req := "Next: %s at Lv%d" % [Data.monster(nxt).name, need] if nxt != "" and need > 0 else ("Final form" if not Prog.is_fused(inst) else "Fused monsters do not evolve")
+		v.add_child(_label(req, SMALL, Palette.SIGIL_GOLD, false))
+		var b := _button("Evolve" if why == Prog.OK else "Evolve (%s)" % why.replace("_", " "), _on_evolve.bind(str(inst.uid)), 76)
+		b.disabled = why != Prog.OK
+		v.add_child(b)
+
+
+func _on_evolve(uid: String) -> void:
+	var line := progress.evolve(uid)
+	if line == "":
+		return
+	evolved.emit(uid, line)
+	show_evolution(line)
+	var tw := create_tween()  # evolution animation hook: a gold flash on the screen
+	evo_screen.modulate = Palette.SIGIL_GOLD
+	tw.tween_property(evo_screen, "modulate", Color.WHITE, 0.6)
+
+
+func _build_fusion() -> void:
+	var parts := _meta_screen("FUSION")
+	fusion_screen = parts[0]
+	fusion_list = parts[2]
+	var vb: VBoxContainer = parts[1]
+	parts[3].text = "Pick 2 monsters (both are consumed). Preview first, then confirm."
+	var pnl := _panel(Palette.CRYSTAL_VIOLET)
+	vb.add_child(pnl)
+	fusion_preview_label = _label("", SMALL + 2, Palette.TEXT, false)
+	pnl.add_child(fusion_preview_label)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 12)
+	vb.add_child(row)
+	row.add_child(_button("Back", show_stage_select, 90))
+	fusion_confirm = _button("Confirm fusion", _on_fusion_confirm, 90)
+	row.add_child(fusion_confirm)
+
+
+func show_fusion() -> void:
+	_hide_all()
+	fusion_screen.visible = true
+	fusion_pick = []
+	for c in fusion_list.get_children():
+		c.queue_free()
+	fusion_buttons = {}
+	for inst in progress.roster:
+		var b := _button(_inst_text(inst), _on_fusion_toggle.bind(str(inst.uid)), 100)
+		b.toggle_mode = true
+		b.add_theme_font_size_override("font_size", SMALL + 2)
+		fusion_buttons[str(inst.uid)] = b
+		fusion_list.add_child(b)
+	_refresh_fusion()
+
+
+func _on_fusion_toggle(uid: String) -> void:
+	if fusion_pick.has(uid):
+		fusion_pick.erase(uid)
+	elif fusion_pick.size() < 2:
+		fusion_pick.append(uid)
+	_refresh_fusion()
+
+
+## Preview Fusion: the exact monster Confirm will create.
+func _refresh_fusion() -> void:
+	for uid in fusion_buttons:
+		fusion_buttons[uid].set_pressed_no_signal(fusion_pick.has(uid))
+	fusion_confirm.disabled = true
+	if fusion_pick.size() < 2:
+		fusion_preview_label.text = "Preview: pick %d more." % (2 - fusion_pick.size())
+		return
+	var res := progress.fusion_preview(fusion_pick[0], fusion_pick[1])
+	if res.has("error"):
+		fusion_preview_label.text = "Can't fuse: %s" % str(res.error).replace("_", " ")
+		return
+	fusion_preview_label.text = "Preview:  %s + %s  ->  %s\n%s" % [res.parent_names[0], res.parent_names[1], res.name, _inst_text(res)]
+	fusion_confirm.disabled = false
+
+
+func _on_fusion_confirm() -> void:
+	if fusion_pick.size() != 2:
+		return
+	var res := progress.fuse(fusion_pick[0], fusion_pick[1])
+	if res.has("error"):
+		fusion_preview_label.text = "Can't fuse: %s" % res.error
+		return
+	fused.emit(str(res.uid))
+	show_fusion()
+	fusion_preview_label.text = "Fused: %s joined your roster." % res.name
+
+
+func _notification(what: int) -> void:
+	# Autosave when the app is paused, backgrounded or closed.
+	if progress != null and what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_CLOSE_REQUEST]:
+		progress.save()
 
 
 func _build_hud() -> void:
@@ -398,6 +552,8 @@ func _hide_all() -> void:
 	result_box.visible = false
 	select_screen.visible = false
 	squad_screen.visible = false
+	evo_screen.visible = false
+	fusion_screen.visible = false
 
 
 func show_stage_select() -> void:
@@ -414,9 +570,29 @@ func show_stage_select() -> void:
 			b.text += " Boss"
 
 
+## One line describing an owned monster (level, evolution, stats, skill).
+func _inst_text(inst: Dictionary) -> String:
+	var r := Prog.battle_record(inst)
+	var extra := ""
+	if Prog.is_fused(inst):
+		extra = "  Fused (+%s affinity, also %s)" % [inst.secondary_family, inst.secondary_ability]
+	return "%s  Lv%d/%d  %s %s %s %s\nHP %d  ATK %d  DEF %d  MOVE %d  RANGE %d  Skill: %s%s%s" % [inst.name, inst.level, Prog.level_cap(inst),
+		r.rarity, r.element, r.element_family, r.role, r.hp, r.attack, r.defense, r.move, r.range, r.ability,
+		"+%d" % r.skill_tier if r.skill_tier > 0 else "", extra]
+
+
 func show_squad_builder() -> void:
 	_hide_all()
 	squad_screen.visible = true
+	for c in squad_list.get_children():
+		c.queue_free()
+	squad_buttons = {}
+	for inst in progress.roster:
+		var b := _button(_inst_text(inst), _on_squad_toggle.bind(str(inst.uid)), 110)
+		b.toggle_mode = true
+		b.add_theme_font_size_override("font_size", SMALL + 2)
+		squad_buttons[str(inst.uid)] = b
+		squad_list.add_child(b)
 	squad_pick = progress.squad.duplicate()
 	_refresh_squad()
 
@@ -445,7 +621,7 @@ func _on_squad_confirm() -> void:
 func start_stage(id: String) -> void:
 	_hide_all()
 	stage_id = id
-	state.setup(id, progress.squad)
+	state.setup(id, progress.squad, -1, progress.squad_records())
 	mode = Mode.NONE
 	midbattle_shown = false
 	board.visible = true
@@ -500,6 +676,8 @@ func _show_result() -> void:
 		result_title.text = "Defeat" if state.winner == E else "Stalemate"
 		result_sub.text = "Your Sigil fell" if state.winner == E else "Round cap reached"
 		next_button.visible = false
+	if last_xp_text != "":
+		result_sub.text += "\n" + last_xp_text
 	result_box.visible = true
 
 
@@ -549,7 +727,7 @@ func _refresh(msg: String = "") -> void:
 			b.visible = false
 			continue
 		var id: String = squad[idx]
-		var d := Data.monster(id)
+		var d: Dictionary = state.custom.get(id, Data.monster(id))
 		var waiting: bool = state.reserve[P].has(id)
 		var can := sigil_turn and waiting and state.legal_deploys(P).any(func(a): return a.mon == id)
 		b.text = "%s\n%s %d/%d/%d" % [str(d.name).left(10), str(d.element_family).left(5), d.hp, d.attack, d.defense] if waiting else "%s\n%s" % [str(d.name).left(10), "on board" if state.units_of(P).any(func(u): return u.mon_id == id) else "KO"]
@@ -648,6 +826,12 @@ func _show_midbattle() -> void:
 
 func _end_battle() -> void:
 	_refresh()
+	var gains := progress.award_battle(state, state.winner == P)
+	var parts := []
+	for uid in gains:
+		var inst := progress.get_inst(uid)
+		parts.append("%s +%d XP%s" % [inst.name, gains[uid].xp, (" (Lv%d)" % inst.level) if gains[uid].levels > 0 else ""])
+	last_xp_text = ", ".join(parts)
 	if state.winner == P:
 		show_dialogue([str(state.stage.dialogue.get("defeat", ""))], _show_result)
 	else:
@@ -683,7 +867,7 @@ func _on_team(idx: int) -> void:
 		return
 	mode = Mode.DEPLOY
 	selected_mon = progress.squad[idx]
-	_refresh("Tap a cyan tile to summon %s (spawn tiles and capsule nodes you activated)." % Data.monster(selected_mon).name)
+	_refresh("Tap a cyan tile to summon %s (spawn tiles and capsule nodes you activated)." % state.custom.get(selected_mon, Data.monster(selected_mon)).get("name", selected_mon))
 
 
 func _on_cmd(c: String) -> void:
