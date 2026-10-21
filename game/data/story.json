@@ -82,7 +82,7 @@
       "pre_boss": [
         {
           "speaker": "Lyra Quill",
-          "line": "You made it up all ten chambers! Oh, your monsters look tired. Good. Tired means they tried."
+          "line": "All the way to the tenth chamber! Oh, your monsters look tired. Good. Tired means they tried."
         },
         {
           "speaker": "Lyra Quill",
@@ -218,7 +218,7 @@
         },
         {
           "speaker": "Silas Wren",
-          "line": "Sooner than I expected. Good. We'll meet again at the Observatory, Summoner, in one of the futures."
+          "line": "Chamber six is mine today, Summoner. Don't keep me waiting. I came a long way to see if you're real."
         },
         {
           "speaker": "Pell",
@@ -352,7 +352,7 @@
         },
         {
           "speaker": "Maren Oake",
-          "line": "Elio, can you hear me? Four facets is enough. Your Sigil can hold a fusion now. Two monsters, one bond."
+          "line": "Elio, can you hear me? Your team is strong enough now to try a fusion. Two monsters, one bond."
         },
         {
           "speaker": "Elio",
@@ -895,7 +895,7 @@
   "finale": [
     {
       "speaker": "Narrator",
-      "line": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Light Prism, rises from the Throne."
+      "line": "In the Sunforge, eleven facets burn in the Player Sigil. The twelfth, the Mixed Prism, rises in every color at once."
     },
     {
       "speaker": "Narrator",
