@@ -13,6 +13,7 @@ const Palette = preload("res://scripts/theme_colors.gd")
 const Progress = preload("res://scripts/progress.gd")
 const Art = preload("res://scripts/board_art.gd")
 const Prog = preload("res://scripts/progression.gd")
+const Story = preload("res://scripts/story.gd")
 
 signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
 signal fused(uid: String)
@@ -25,6 +26,15 @@ const E := GameState.ENEMY
 const COMMANDS := ["Attack", "Skill", "Defend", "Wait"]
 
 enum Mode { NONE, DEPLOY, UNIT, SKILL }
+
+
+## Story portrait (coloured initials for now): drawing lives in board_art.gd.
+class Portrait extends Control:
+	const PortraitArt = preload("res://scripts/board_art.gd")
+	var who := ""
+
+	func _draw() -> void:
+		PortraitArt.draw_portrait(self, Rect2(Vector2.ZERO, size), who)
 
 
 ## Tactical minimap: drawing lives in board_art.gd.
@@ -51,7 +61,18 @@ var _dialogue_done: Callable
 
 var ui_root: Control
 var select_screen: Control
-var stage_buttons: Dictionary = {}
+var stage_buttons: Dictionary = {}       ## stage id -> Button (the open tower's 10 stages)
+var tower_cards: Dictionary = {}         ## tower id -> Button on the world map
+var tower_screen: Control
+var tower_title: Label
+var tower_note: Label
+var tower_list: VBoxContainer
+var current_tower := ""
+var portrait: Portrait
+var dialogue_skip: Button
+var bark_label: Label
+var barks: Dictionary = {}
+var last_stars := 0
 var squad_screen: Control
 var squad_list: VBoxContainer
 var evo_screen: Control
@@ -191,6 +212,7 @@ func _build_ui() -> void:
 	_build_squad()
 	_build_evolution()
 	_build_fusion()
+	_build_tower_screen()
 	_build_hud()
 	_build_dialogue()
 	_build_result()
@@ -202,7 +224,7 @@ func _build_select() -> void:
 		select_screen.add_theme_constant_override("margin_" + side, 32)
 	ui_root.add_child(select_screen)
 	var vb := VBoxContainer.new()
-	vb.add_theme_constant_override("separation", 16)
+	vb.add_theme_constant_override("separation", 14)
 	select_screen.add_child(vb)
 	vb.add_child(_label("AETHER SIGIL", 72, Palette.SIGIL_GOLD))
 	var full_title := str(Data.bible().get("title", ""))
@@ -215,30 +237,34 @@ func _build_select() -> void:
 	meta_row.add_child(_button("Squad", show_squad_builder, 90))
 	meta_row.add_child(_button("Evolution", show_evolution, 90))
 	meta_row.add_child(_button("Fusion", show_fusion, 90))
+	vb.add_child(_label("WORLD MAP", FONT, Palette.SIGIL_GOLD))
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	vb.add_child(scroll)
-	var list := VBoxContainer.new()
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	list.add_theme_constant_override("separation", 14)
-	scroll.add_child(list)
+	var grid := GridContainer.new()
+	grid.columns = 3
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	grid.add_theme_constant_override("h_separation", 12)
+	grid.add_theme_constant_override("v_separation", 12)
+	scroll.add_child(grid)
 	for t in Data.towers():
-		var pnl := _panel()
-		list.add_child(pnl)
-		var tv := VBoxContainer.new()
-		pnl.add_child(tv)
-		tv.add_child(_label("Tower %s  %s  (%s)" % [t.tower_id, t.name, t.theme], FONT, Palette.SIGIL_GOLD))
-		tv.add_child(_label(str(t.visual_direction), FONT - 12, Palette.TEXT.darkened(0.25)))
-		var grid := GridContainer.new()
-		grid.columns = 5
-		grid.add_theme_constant_override("h_separation", 10)
-		grid.add_theme_constant_override("v_separation", 10)
-		tv.add_child(grid)
-		for l in t.levels:
-			var b := _button("", _on_stage_pressed.bind(str(l.stage_id)), 86)
-			stage_buttons[str(l.stage_id)] = b
-			grid.add_child(b)
+		var tid := str(t.tower_id)
+		var b := _button("", _on_tower_pressed.bind(tid), 230)
+		b.add_theme_font_size_override("font_size", SMALL)
+		b.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		b.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
+		b.add_theme_constant_override("icon_max_width", 72)
+		var fam := tower_family(t)
+		var tex_path := "res://art/elements/%s.png" % fam.to_lower()
+		if ResourceLoader.exists(tex_path):
+			b.icon = load(tex_path)
+		var col := Palette.family(fam)
+		b.add_theme_stylebox_override("normal", _style(Palette.panel(), col))
+		b.add_theme_stylebox_override("hover", _style(Palette.panel().lightened(0.06), col.lightened(0.3)))
+		b.add_theme_stylebox_override("disabled", _style(Palette.BG, col.darkened(0.6)))
+		tower_cards[tid] = b
+		grid.add_child(b)
 	vb.add_child(_button("Reset progress", _on_reset_progress, 76))
 
 
@@ -401,13 +427,110 @@ func _on_fusion_confirm() -> void:
 		return
 	fused.emit(str(res.uid))
 	show_fusion()
-	fusion_preview_label.text = "Fused: %s joined your roster." % res.name
+	fusion_preview_label.text = Story.template("new_monster").format({"name": res.name})
 
 
 func _notification(what: int) -> void:
 	# Autosave when the app is paused, backgrounded or closed.
 	if progress != null and what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_CLOSE_REQUEST]:
 		progress.save()
+
+
+## Tower theme -> element family for its icon and colour (game_rules.json tower_theme_family).
+static func tower_family(t: Dictionary) -> String:
+	return str(Data.rules().get("tower_theme_family", {}).get(str(t.theme), "Light"))
+
+
+func _build_tower_screen() -> void:
+	var parts := _meta_screen("TOWER")
+	tower_screen = parts[0]
+	tower_title = parts[0].get_child(0).get_child(0)
+	tower_note = parts[3]
+	tower_list = parts[2]
+	parts[1].add_child(_button("World map", show_stage_select, 90))
+
+
+func show_tower(tid: String) -> void:
+	_hide_all()
+	tower_screen.visible = true
+	current_tower = tid
+	var t: Dictionary = {}
+	for tw in Data.towers():
+		if str(tw.tower_id) == tid:
+			t = tw
+	var pr := progress.tower_progress(tid)
+	tower_title.text = "TOWER %s  %s" % [tid, str(t.name).to_upper()]
+	tower_note.text = "%s  |  %d/10 cleared  |  Stars %d/%d\nChampion: %s  |  Reward: %s" % [t.theme, pr.cleared, pr.stars, pr.max_stars, t.tower_boss, t.tower_reward]
+	for c in tower_list.get_children():
+		c.queue_free()
+	stage_buttons = {}
+	for l in t.levels:
+		var sid := str(l.stage_id)
+		var open := progress.is_unlocked(sid)
+		var stars := int(progress.stars.get(sid, 0))
+		var txt := "%s  %s\nvs %s (%s)  |  %s%s" % [sid.right(3), l.name, l.opponent, l.opponent_style,
+			("Stars %d/3" % stars) if progress.cleared.has(sid) else "Not cleared", "  |  BOSS" if bool(l.get("boss", false)) else ""]
+		var b := _button(txt if open else "%s  Locked" % sid.right(3), _on_stage_pressed.bind(sid), 100)
+		b.add_theme_font_size_override("font_size", SMALL + 2)
+		b.disabled = not open
+		stage_buttons[sid] = b
+		tower_list.add_child(b)
+
+
+func _on_tower_pressed(tid: String) -> void:
+	if not progress.tower_unlocked(tid):
+		return
+	show_tower(tid)
+	_play_story("arrival_" + tid, func(): pass)
+
+
+## Plays a story sequence once (seen-flag in the save); skipping counts as seen.
+func _play_story(key: String, done: Callable) -> bool:
+	if progress.is_seen(key):
+		done.call()
+		return false
+	progress.mark_seen(key)
+	show_dialogue(Story.lines(key), done)
+	return true
+
+
+func _on_dialogue_tap(ev: InputEvent) -> void:
+	if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT:
+		_on_dialogue_next()
+
+
+func _on_dialogue_skip() -> void:
+	_dialogue_queue = []
+	_finish_dialogue()
+
+
+func _finish_dialogue() -> void:
+	dialogue_box.visible = false
+	if _dialogue_done.is_valid():
+		var cb := _dialogue_done
+		_dialogue_done = Callable()
+		cb.call()
+
+
+## Battle barks (one-line toasts): battle_start, low_hp, rival knockout, enemy Symbol exposed.
+func _check_barks() -> void:
+	if state.stage.is_empty() or state.winner != GameState.NONE:
+		return
+	var rival := str(state.stage.opponent)
+	var low := int(Data.triggers().get("low_hp_pct", 50))
+	var fire := func(key: String, n: int) -> void:
+		if not barks.has(key):
+			barks[key] = true
+			var d := Story.global_line(n, rival)
+			bark_label.text = "%s: %s" % [d.speaker, d.line]
+	if not barks.has("battle_start") and state.current == P:
+		fire.call("battle_start", 1)
+	if state.symbol_hp[P] * 100 < low * state.symbol_max:
+		fire.call("low_hp", 3)
+	if state.kos[P] > 0:
+		fire.call("rival_ko", 4)
+	if state.symbol_hp[E] * 2 <= state.symbol_max:
+		fire.call("boss_phase", 5)
 
 
 func _build_hud() -> void:
@@ -423,6 +546,8 @@ func _build_hud() -> void:
 	tv.add_child(stage_label)
 	status_label = _label("", SMALL + 2)
 	tv.add_child(status_label)
+	bark_label = _label("", SMALL, Palette.AETHER_CYAN)
+	tv.add_child(bark_label)
 	# Left: Turn Order.
 	turn_panel = _panel()
 	hud.add_child(turn_panel)
@@ -487,19 +612,36 @@ func _build_dialogue() -> void:
 	dialogue_box = _full(Control.new())
 	ui_root.add_child(dialogue_box)
 	var dim := _full(ColorRect.new())
-	dim.color = Color(Palette.BG, 0.55)
+	dim.color = Color(Palette.BG, 0.6)
+	dim.gui_input.connect(_on_dialogue_tap)  # tap anywhere to advance
 	dialogue_box.add_child(dim)
 	var pnl := _panel(Palette.SIGIL_GOLD)
+	pnl.gui_input.connect(_on_dialogue_tap)
 	dialogue_box.add_child(pnl)
 	var v := VBoxContainer.new()
-	v.add_theme_constant_override("separation", 14)
+	v.add_theme_constant_override("separation", 12)
 	pnl.add_child(v)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 18)
+	v.add_child(row)
+	portrait = Portrait.new()
+	portrait.custom_minimum_size = Vector2(150, 150)
+	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	row.add_child(portrait)
+	var tv := VBoxContainer.new()
+	tv.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(tv)
 	dialogue_speaker = _label("", FONT, Palette.SIGIL_GOLD, false)
-	v.add_child(dialogue_speaker)
-	dialogue_text = _label("", FONT - 2, Palette.TEXT, false)
+	tv.add_child(dialogue_speaker)
+	dialogue_text = _label("", FONT - 4, Palette.TEXT, false)
 	dialogue_text.custom_minimum_size = Vector2(0, 120)
-	v.add_child(dialogue_text)
-	v.add_child(_button("Continue", _on_dialogue_next))
+	tv.add_child(dialogue_text)
+	var brow := HBoxContainer.new()
+	brow.add_theme_constant_override("separation", 12)
+	v.add_child(brow)
+	dialogue_skip = _button("Skip", _on_dialogue_skip, 80)
+	brow.add_child(dialogue_skip)
+	brow.add_child(_button("Continue", _on_dialogue_next, 80))
 	_dock(pnl, true, 24.0)
 	dialogue_box.visible = false
 
@@ -554,20 +696,21 @@ func _hide_all() -> void:
 	squad_screen.visible = false
 	evo_screen.visible = false
 	fusion_screen.visible = false
+	tower_screen.visible = false
 
 
+## World map (title screen): 12 towers with lock state, x/10 and stars. Plays the prologue once.
 func show_stage_select() -> void:
 	_hide_all()
 	select_screen.visible = true
-	for id in stage_buttons:
-		var st := Data.stage(id)
-		var b: Button = stage_buttons[id]
-		var n := int(str(st.stage_id).right(2))
-		var open := progress.is_unlocked(id)
+	for t in Data.towers():
+		var tid := str(t.tower_id)
+		var b: Button = tower_cards[tid]
+		var pr := progress.tower_progress(tid)
+		var open := progress.tower_unlocked(tid)
 		b.disabled = not open
-		b.text = ("%d%s" % [n, " won" if progress.cleared.has(id) else ""]) if open else "Locked"
-		if bool(st.get("boss", false)) and open:
-			b.text += " Boss"
+		b.text = "%s\n%s\n%d/10  Stars %d/%d" % [tid, t.name, pr.cleared, pr.stars, pr.max_stars] if open else "%s\n%s\nLocked" % [tid, t.name]
+	_play_story("prologue", func(): pass)
 
 
 ## One line describing an owned monster (level, evolution, stats, skill).
@@ -624,19 +767,32 @@ func start_stage(id: String) -> void:
 	state.setup(id, progress.squad, -1, progress.squad_records())
 	mode = Mode.NONE
 	midbattle_shown = false
+	barks = {}
+	bark_label.text = ""
 	board.visible = true
 	hud.visible = true
 	_refresh("")
 	_layout_board.call_deferred()
 	var st := state.stage
-	var lines: Array = [str(st.dialogue.get("intro", ""))]
+	var seq: Array = []
+	var tid := str(st.tower_id)
+	if str(st.stage_id).right(3) == "L10" and not progress.is_seen("pre_boss_" + tid):
+		progress.mark_seen("pre_boss_" + tid)
+		seq += Story.lines("pre_boss_" + tid)
+	seq.append(str(st.dialogue.get("intro", "")))                     # stage_intro
 	if bool(st.get("boss", false)) and st.dialogue.has("boss_intro"):
-		lines.append(str(st.dialogue.boss_intro))
-	show_dialogue(lines, _continue)
+		seq.append(str(st.dialogue.boss_intro))                       # boss_phase
+	show_dialogue(seq, _continue)
 
 
+## lines: "Speaker: text" strings or {speaker, line} dicts.
 func show_dialogue(lines: Array, done: Callable) -> void:
-	_dialogue_queue = lines.filter(func(l): return str(l) != "")
+	var rival := str(state.stage.get("opponent", "")) if not state.stage.is_empty() else ""
+	_dialogue_queue = []
+	for l in lines:
+		var d: Dictionary = l if typeof(l) == TYPE_DICTIONARY else Story.split_line(str(l), rival)
+		if str(d.get("line", "")) != "":
+			_dialogue_queue.append(d)
 	_dialogue_done = done
 	if _dialogue_queue.is_empty():
 		dialogue_box.visible = false
@@ -647,19 +803,20 @@ func show_dialogue(lines: Array, done: Callable) -> void:
 
 
 func _show_line() -> void:
-	var line := str(_dialogue_queue[0])
-	var cut := line.find(": ")
-	dialogue_speaker.text = line.substr(0, cut) if cut > 0 else str(state.stage.get("opponent", ""))
-	dialogue_text.text = line.substr(cut + 2) if cut > 0 else line
+	var d: Dictionary = _dialogue_queue[0]
+	dialogue_speaker.text = str(d.speaker)
+	dialogue_text.text = str(d.line)
+	portrait.who = str(d.speaker)
+	portrait.queue_redraw()
 
 
 func _on_dialogue_next() -> void:
+	if not dialogue_box.visible:
+		return
 	if not _dialogue_queue.is_empty():
 		_dialogue_queue.pop_front()
 	if _dialogue_queue.is_empty():
-		dialogue_box.visible = false
-		if _dialogue_done.is_valid():
-			_dialogue_done.call()
+		_finish_dialogue()
 		return
 	_show_line()
 
@@ -670,7 +827,7 @@ func _show_result() -> void:
 	if won:
 		var nxt := progress.record_win(stage_id)
 		result_title.text = "Victory"
-		result_sub.text = "%s. %s" % [how.get(state.win_reason, state.win_reason), ("Next: " + nxt) if nxt != "" else "All 120 stages cleared!"]
+		result_sub.text = "%s. Stars %d/3. %s" % [how.get(state.win_reason, state.win_reason), last_stars, ("Next: " + nxt) if nxt != "" else "All 120 stages cleared!"]
 		next_button.visible = nxt != ""
 	else:
 		result_title.text = "Defeat" if state.winner == E else "Stalemate"
@@ -778,13 +935,13 @@ func _update_highlights() -> void:
 
 # ---------------------------------------------------------------- flow
 
-## Hands control to whoever acts next: the enemy AI (paced) or the player's active actor.
 func _continue() -> void:
 	if dialogue_box.visible or result_box.visible or not board.visible:
 		return
 	if state.winner != GameState.NONE or state.round_num > int(Data.rules().turn_cap_rounds):
 		_end_battle()
 		return
+	_check_barks()
 	if state.current == E:
 		_run_ai()
 		return
@@ -807,6 +964,7 @@ func _run_ai() -> void:
 			return
 		AI.take_activation(state, E, str(state.stage.opponent_style))
 		_refresh()
+		_check_barks()
 		if _midbattle_due():
 			ai_running = false
 			_show_midbattle()
@@ -815,8 +973,9 @@ func _run_ai() -> void:
 	_continue()
 
 
+## knockout trigger: the stage's midbattle scene at the first knockout of the battle.
 func _midbattle_due() -> bool:
-	return not midbattle_shown and (state.kos[P] + state.kos[E] > 0 or state.symbol_hp[E] * 2 <= state.symbol_max)
+	return not midbattle_shown and state.kos[P] + state.kos[E] > 0
 
 
 func _show_midbattle() -> void:
@@ -824,18 +983,35 @@ func _show_midbattle() -> void:
 	show_dialogue([str(state.stage.dialogue.get("midbattle", ""))], _continue)
 
 
+## victory / defeat / rare_drop / post_boss / finale / epilogue.
 func _end_battle() -> void:
 	_refresh()
-	var gains := progress.award_battle(state, state.winner == P)
+	var won := state.winner == P
+	var gains := progress.award_battle(state, won)
 	var parts := []
 	for uid in gains:
 		var inst := progress.get_inst(uid)
 		parts.append("%s +%d XP%s" % [inst.name, gains[uid].xp, (" (Lv%d)" % inst.level) if gains[uid].levels > 0 else ""])
 	last_xp_text = ", ".join(parts)
-	if state.winner == P:
-		show_dialogue([str(state.stage.dialogue.get("defeat", ""))], _show_result)
+	var rival := str(state.stage.opponent)
+	var seq: Array = []
+	if won:
+		last_stars = Progress.battle_stars(state)
+		progress.record_stars(stage_id, last_stars)
+		seq.append(str(state.stage.dialogue.get("defeat", "")))      # victory: the rival concedes
+		var tid := str(state.stage.tower_id)
+		if stage_id.right(3) == "L10":
+			seq.append(Story.global_line(6, rival))
+			var reward := progress.grant_reward(stage_id)          # rare_drop
+			if reward != "":
+				seq.append({"speaker": Story.hero(), "line": Story.template("rare_drop").format({"reward": reward})})
+			for key in ["post_boss_" + tid] + (["finale", "epilogue"] if tid == "12" else []):
+				if not progress.is_seen(key):
+					progress.mark_seen(key)
+					seq += Story.lines(key)
 	else:
-		_show_result()
+		seq.append(Story.global_line(2, rival))                     # defeat: the rival gloats
+	show_dialogue(seq, _show_result)
 
 
 ## After any player action: end, midbattle line, or carry on.

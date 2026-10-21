@@ -435,5 +435,20 @@
     "tower_adjust_pct": {
       "03": 10
     }
+  },
+  "tower_theme_family": {
+    "_doc": "Tower theme -> element family, for the world map's tower colour and element icon (game/art/elements/<family>.png, copied from art/generated/png/icons/elements). Mapping follows docs/BALANCE-REPORT.md (Metal->Tech, Ancient->Earth, Aether->Arcane, Crystal->Earth); Mixed (Sunforge Throne, gold and sun rays) -> Light.",
+    "Nature": "Wood",
+    "Fire": "Fire",
+    "Water": "Water",
+    "Ice": "Ice",
+    "Metal": "Tech",
+    "Wind": "Wind",
+    "Dark": "Dark",
+    "Ancient": "Earth",
+    "Space": "Space",
+    "Crystal": "Earth",
+    "Aether": "Arcane",
+    "Mixed": "Light"
   }
 }

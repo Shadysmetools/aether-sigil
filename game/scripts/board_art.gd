@@ -204,3 +204,24 @@ static func draw_minimap(ci: CanvasItem, rect: Rect2, state) -> void:
 		ci.draw_arc(sp, cell * 0.45, 0, TAU, 16, Palette.side(side), 2.5)
 	for u in state.units:
 		ci.draw_circle(at.call(u.pos) + Vector2(cell, cell) / 2, cell * 0.32, Palette.side(u.owner))
+
+
+## Story portrait placeholder: a ringed disc in a colour picked from the speaker's name, with
+## their initials. Replace with character art later (same signature).
+static func draw_portrait(ci: CanvasItem, rect: Rect2, who: String) -> void:
+	var accents := [Palette.AETHER_CYAN, Palette.VERDANT_GREEN, Palette.EMBER, Palette.CRYSTAL_VIOLET, Palette.SIGIL_GOLD]
+	var col: Color = Palette.SOFT_SILVER if who == "Narrator" or who == "" else accents[absi(hash(who)) % accents.size()]
+	var c := rect.get_center()
+	var r := minf(rect.size.x, rect.size.y) * 0.46
+	ci.draw_circle(c, r, col.lerp(Palette.MIDNIGHT_NAVY, 0.55))
+	ci.draw_arc(c, r, 0, TAU, 48, col, 4.0)
+	var parts := who.split(" ", false)
+	var initials := ""
+	for w in parts.slice(0, 2):
+		initials += w.substr(0, 1).to_upper()
+	if initials == "":
+		initials = "?"
+	var f := font()
+	var fs := int(r * 0.8)
+	var tw := f.get_string_size(initials, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+	ci.draw_string(f, c + Vector2(-tw / 2, fs * 0.35), initials, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Palette.SOFT_SILVER)
