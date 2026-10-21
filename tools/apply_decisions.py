@@ -213,12 +213,14 @@ def apply_rules():
                            "the win rate; it mostly sets battle length. See HANDOFF.md 'Open decisions'.")
     r["difficulty"] = {"_doc": "Difficulty curve parameter (decided 2026-10-21): enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1)); player monsters are unscaled. Shipped at 0: with Sigil HP 240 the simulation gave player wins 46% at 0%, 37% at +1%, 27% at +2%, 22% at +3% per tower (T07-T12 0-2 wins per tower at +3%), because the player squad has no progression yet (no evolution or levels). Raise it once progression exists; game/tests/tune_sigil.gd -- HP PCT measures it.",
                        "enemy_stat_pct_per_tower": ENEMY_PCT_PER_TOWER}
-    r["accuracy"]["_doc"] = r["accuracy"]["_doc"] + " Values approved 2026-10-21 (design proposal: base 90, high ground +15)."
+    r["accuracy"]["_doc"] = ("Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the "
+                             "battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15).")
     new = json.dumps(r, indent=2, ensure_ascii=False)
     report("Nature/Lightning mentions in the rules table", before, len(re.findall(r"\b(Nature|Lightning)\b", new)))
     report("symbol.hp (Sigil HP)", json.loads(raw)["symbol"]["hp"], SIGIL_HP)
     report("difficulty.enemy_stat_pct_per_tower", json.loads(raw).get("difficulty", {}).get("enemy_stat_pct_per_tower", 0), ENEMY_PCT_PER_TOWER)
     report("Dark beats Light (mutual rivals)", int("Light" in json.loads(raw)["element_chart"].get("Dark", [])), int("Light" in CHART["Dark"]))
+    report("rules file rewritten (any other drift)", int(new != raw), 0)
     if new != raw:
         write(RULES, new)
 

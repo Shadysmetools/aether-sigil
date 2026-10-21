@@ -252,7 +252,7 @@
   "turn_cap_rounds": 60,
   "water_family_immune": false,
   "accuracy": {
-    "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15). Values approved 2026-10-21 (design proposal: base 90, high ground +15).",
+    "_doc": "Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15).",
     "base": 90,
     "min": 5,
     "max": 100,
