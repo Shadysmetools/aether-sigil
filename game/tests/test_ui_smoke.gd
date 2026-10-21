@@ -281,6 +281,10 @@ func _run() -> void:
 	check(main.progress.is_unlocked("T01-L02"), "win unlocked T01-L02")
 	main._on_next()
 	await process_frame
+	check(main.draft_screen.visible and main.draft_stage == "T01-L02", "Next stage opens the T01-L02 draft")
+	main._on_draft_confirm()
+	main._on_cmd("Wait")  # Start battle (auto-places what is left)
+	await process_frame
 	check(main.stage_id == "T01-L02" and main.dialogue_box.visible, "Next stage starts T01-L02 with its intro")
 	main._on_dialogue_next()
 	main.ai_running = false
@@ -290,7 +294,12 @@ func _run() -> void:
 	check(main.dialogue_box.visible and main.dialogue_text.text == str(Story.global_line(2, str(s.stage.opponent)).line), "defeat: the rival gloats (global line 2)")
 	main._on_dialogue_next()
 	check(main.result_box.visible and main.result_title.text == "Defeat" and not main.next_button.visible, "defeat panel with Retry only")
+	var last_team: Array = s.team.duplicate()
 	main._on_retry()
+	await process_frame
+	check(main.draft_screen.visible and main.draft_pick == last_team, "Retry reopens the draft with the last team preselected")
+	main._on_draft_confirm()
+	main._on_cmd("Wait")
 	await process_frame
 	check(main.stage_id == "T01-L02" and s.winner == GameState.NONE and s.units.is_empty(), "Retry restarts the stage")
 	main.show_tower("01")

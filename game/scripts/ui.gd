@@ -1022,7 +1022,7 @@ func _on_dialogue_next() -> void:
 
 func _show_result() -> void:
 	var won := state.winner == P
-	var how := {"symbol": "Symbol destroyed", "relics": "Relic nodes secured"}
+	var how := {"symbol": "Symbol destroyed", "relics": "Relic nodes secured", "rout": "Enemy routed: no monster or %s left" % Summon.term("vessel"), "time": "Round limit: your Sigil held more HP"}
 	if won:
 		var nxt := progress.record_win(stage_id)
 		result_title.text = "Victory"
@@ -1030,7 +1030,8 @@ func _show_result() -> void:
 		next_button.visible = nxt != ""
 	else:
 		result_title.text = "Defeat" if state.winner == E else "Stalemate"
-		result_sub.text = "Your Sigil fell" if state.winner == E else "Round cap reached"
+		var lost := {"symbol": "Your Sigil fell", "relics": "The enemy secured the relic nodes", "rout": "Routed: no monster or %s left" % Summon.term("vessel"), "time": "Round limit: the enemy Sigil held more HP"}
+		result_sub.text = str(lost.get(state.win_reason, state.win_reason)) if state.winner == E else "Round limit reached with equal Sigil HP (draw)"
 		next_button.visible = false
 	if last_xp_text != "":
 		result_sub.text += "\n" + last_xp_text
@@ -1325,11 +1326,16 @@ func _on_cmd(c: String) -> void:
 func _on_next() -> void:
 	var nxt := Progress.next_stage_id(stage_id)
 	if nxt != "" and progress.is_unlocked(nxt):
-		start_stage(nxt)
+		show_prematch(nxt)
 
 
+## Retry: back to the pre-match with this match's draft preselected.
 func _on_retry() -> void:
-	start_stage(stage_id)
+	var last: Array = state.team.duplicate()
+	show_prematch(stage_id)
+	if Summon.draft_check(last, Data.stage(stage_id), _roster_records()) == Summon.OK:
+		draft_pick = last
+		_refresh_draft()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -1364,9 +1370,7 @@ func _on_tile(c: Vector2i) -> void:
 			mode = Mode.NONE
 			if r == GameState.OK:
 				var cracked: GameState.Unit = state.get_unit(int(state.last_crack.unit))
-				if board.has_method("play_summon"):  # animation hook: the Vessel cracks into a statue
-					board.play_summon(cracked, int(state.last_crack.cost))
-				_after_action("Cracked! %s joins the end of this round." % cracked.name)
+				_after_action("Cracked! %s joins the end of this round." % cracked.name)  # _refresh fires board.play_summon
 			else:
 				_refresh("Can't Crack there: " + r)
 			return
@@ -1571,8 +1575,14 @@ func _vessel_text(cap: Dictionary) -> String:
 		("  Crack: %d %s" % [state.summon_cost(P, str(cap.mon)), Summon.term("sp")]) if mine else ""]
 
 
-## Animation hook for broken Vessels (board.play_vessel_break), fired once per break.
+## Animation hooks, fired once each from every _refresh (player and AI actions alike):
+## board.play_summon(unit, sp_cost) for a new crack, board.play_vessel_break(vessel) for a break.
 func _vessel_hooks() -> void:
+	if not state.last_crack.is_empty() and not _break_seen.has("crack_%d" % int(state.last_crack.unit)):
+		_break_seen["crack_%d" % int(state.last_crack.unit)] = true
+		var u: GameState.Unit = state.get_unit(int(state.last_crack.unit))
+		if u != null and board.has_method("play_summon"):
+			board.play_summon(u, int(state.last_crack.cost))
 	if state.last_break.is_empty() or _break_seen.has(state.last_break.hash()):
 		return
 	_break_seen[state.last_break.hash()] = true

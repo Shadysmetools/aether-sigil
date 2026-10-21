@@ -336,9 +336,9 @@
       "random_portal": true,
       "_doc": "Each round one warp gate (seeded RNG) is active; a unit ending a move on it warps to the mirrored tile (11-x, 11-y) or the nearest free tile. Every map has 1 gate, so the destination is invented and 'random' has nothing to choose between."
     },
-    "Capsules cost +1 SP to summon": {
+    "Vessels cost +1 SP to crack": {
       "sp_surcharge": 1,
-      "_doc": "Every summon on this stage costs 1 SP more (replaces the pre-SP 'Capsules cost 1 AP to deploy'; renamed in the bible by tools/apply_summon_points.py)."
+      "_doc": "Every crack on this stage costs 1 SP more. Replaces the pre-SP 'Capsules cost 1 AP to deploy' (renamed in the bible by tools/apply_summon_points.py; 'Vessel' is the player-facing shell name)."
     }
   },
   "turn_cap_rounds": 30,

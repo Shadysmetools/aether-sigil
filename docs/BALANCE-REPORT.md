@@ -42,7 +42,7 @@ Sources: `data/AETHER_SIGIL_MASTER_GAME_BIBLE.json` (primary), `data/1000_MONSTE
 | Bridges | `bridge` tiles are ordinary walkable tiles. Because the maps make them 1-wide, the rule needs no code: a unit on a bridge blocks passage. Units cannot swap places. |
 | Terrain-family mapping | forest->Nature, lava->Fire, water->Water, ice->Ice, metal->Tech, sky->Wind, shadow->Dark, stone/ruins->Earth, crystal->Earth, space->Space, rift->Arcane. `mixed`, `ground` and the rest are neutral. Tower themes map the same way (Metal->Tech, Ancient->Earth, Aether->Arcane, Crystal->Earth). |
 | Terrain bonus (base) | A unit standing on a tile whose family equals its `element_family` deals +20% damage and takes -10% damage. |
-| Action points (AP) | Each side gains 2 AP at the start of its first unit's turn each round (max 4). AP is spent only by rules that say so (see 'Capsules cost +1 SP to summon'). |
+| Action points (AP) | Each side gains 2 AP at the start of its first unit's turn each round (max 4). AP is spent only by rules that say so (see 'Vessels cost +1 SP to crack'). |
 | Squad and deployment | Player brings 4 monsters. The 3 `player_spawn` tiles hold the first 3. The 4th, plus any KO'd-and-revivable unit, sits in a capsule and can deploy onto an owned `capsule_node` or a free spawn tile instead of acting. Enemies deploy their roster the same way (the first 3 on `enemy_spawn`, the rest from capsules, one per round). |
 | Symbols | A Symbol is a static, untargetable-by-skills object: HP = 150 + 25*(tower-1), DEF = 10 + 2*(tower-1). It is attacked like a unit and cannot act. The player Symbol has the same HP at the stage's tower number. |
 
@@ -73,7 +73,7 @@ Sources: `data/AETHER_SIGIL_MASTER_GAME_BIBLE.json` (primary), `data/1000_MONSTE
 - Range by role: Artillery=2, Assassin=3, Controller=3, Guardian=2, Scout=1, Striker=1, Summoner=4, Support=4. Artillery has range 2, shorter than Assassins and Controllers.
 - Abilities repeat every 20 IDs. Each element therefore only ever carries 5 of the 20 abilities.
 - Enemy rosters are sliding ID windows (470 unique monsters fill 720 roster slots). 60 stage pairs share 3+ monsters, e.g. T01-L01/T12-L06 (3), T01-L02/T12-L07 (4), T01-L03/T12-L08 (5), T01-L04/T12-L09 (3), T01-L05/T12-L10 (4), T01-L06/T02-L01 (4).
-- Level-slot locking (distinct values per L-slot across the 12 towers): special_rule [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], win_condition [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], opponent_style [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]. Rule and win condition are identical in every tower: rules cycle with period 4 (Terrain bonuses are doubled / Movement after a knockout is +1 / One random portal activates each round / Capsules cost +1 SP to summon) and the relic win sits on L03, L06, L09. Style is not slot-locked: each style appears once per tower (section 6).
+- Level-slot locking (distinct values per L-slot across the 12 towers): special_rule [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], win_condition [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], opponent_style [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]. Rule and win condition are identical in every tower: rules cycle with period 4 (Terrain bonuses are doubled / Movement after a knockout is +1 / One random portal activates each round / Vessels cost +1 SP to crack) and the relic win sits on L03, L06, L09. Style is not slot-locked: each style appears once per tower (section 6).
 
 ## 3. Stat distributions
 
@@ -373,7 +373,7 @@ Shared AI scoring for every style: `score(action) = w_dmg*expected_damage + w_ko
 | Terrain bonuses are doubled | 36 | L01 L05 L09 | Every POSITIVE terrain modifier is doubled for both sides: high ground becomes +60% damage, +30 accuracy, +2 range, and terrain-family match becomes +40% damage dealt / -20% taken. Penalties (water move cost, water/hazard damage) are unchanged. Implement as `terrainBonusMult = 2` applied to the bonus delta, not to the total. |
 | Movement after a knockout is +1 | 36 | L02 L06 L10 | When a unit KOs an enemy (or the Symbol takes its final hit), that unit gets `move + 1` on its NEXT turn only, for both sides. It does not stack with itself; multiple KOs in one turn still give +1. It stacks with Storm Dash, which grants an immediate extra move. |
 | One random portal activates each round | 24 | L03 L07 | At the start of each round, pick one `warp_gate` tile uniformly at random (seeded RNG). A unit that ENTERS the active gate may teleport, as a free action, to any other warp gate or, if the map has only one gate, to the mirrored tile `(11-r, 11-c)` (or the nearest free walkable tile to it). The active gate glows. Inactive gates are plain ground. |
-| Capsules cost +1 SP to summon | 24 | L04 L08 | Deploying from a capsule costs 1 AP from the side's pool (see Action points) in addition to the unit's action. With 2 AP per round, at most 2 deploys per round. When this rule is absent, deploys cost 0 AP. |
+| Vessels cost +1 SP to crack | 24 | L04 L08 | Deploying from a capsule costs 1 AP from the side's pool (see Action points) in addition to the unit's action. With 2 AP per round, at most 2 deploys per round. When this rule is absent, deploys cost 0 AP. |
 
 Data support: the portal rule appears on 24 stages, which have Counter({1: 24}) warp gates (count: stages). With one gate it can't pair, hence the mirrored-tile fallback above. Better: add a second gate. 'Terrain bonuses are doubled' runs on maps where 120/120 have at most 1 elevation tile, so it is mostly a no-op until terrain is added (see section 9).
 
@@ -697,5 +697,5 @@ Squad power 15.94 (Common/Uncommon pool mean x4 = 10.30). Element rings covered:
 
 ## Addendum (2026-10-21): Vessels and Summon Points
 
-Action Points are gone. Summoning now means cracking a pre-placed **Vessel** with **Summon Points**. The squad is 6, and the Sigil acts at mid initiative. The stage rule "Capsules cost 1 AP to deploy" became "Capsules cost +1 SP to summon" (renamed in the text above and in the bible by `tools/apply_summon_points.py`). The rules, numbers, AI policy and the re-tuned difficulty curve (now 52% player wins, every tower 3-7/10) are in `docs/SUMMON-POINTS.md`. The AP and 2-summons-per-turn statements above describe the pre-SP rules.
+Action Points are gone. Summoning now means cracking a pre-placed **Vessel** with **Summon Points**. The squad is 6, and the Sigil acts at mid initiative. The stage rule "Capsules cost 1 AP to deploy" became "Vessels cost +1 SP to crack" (renamed in the text above and in the bible by `tools/apply_summon_points.py`). The rules, numbers, AI policy and the re-tuned difficulty curve (now 52% player wins, every tower 3-7/10) are in `docs/SUMMON-POINTS.md`. The AP and 2-summons-per-turn statements above describe the pre-SP rules.
 

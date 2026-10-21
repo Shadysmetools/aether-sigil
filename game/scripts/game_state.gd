@@ -930,7 +930,7 @@ func move_sigil(p: int, c: Vector2i) -> String:
 	return OK
 
 
-## Stage rule surcharge on every crack ('Capsules cost +1 SP to summon').
+## Stage rule surcharge on every crack ('Vessels cost +1 SP to crack').
 func sp_surcharge() -> int:
 	return int(rule.get("sp_surcharge", 0))
 

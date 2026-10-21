@@ -458,7 +458,7 @@ func test_sp_economy() -> void:
 	eq(Summon.bond({"rarity": "Rare", "evo_stage": 2}), 32, "Bond +5 per evolution stage")
 	eq(Summon.fusion_bond({"rarity": "Common"}, {"rarity": "Uncommon", "evo_stage": 1}), 24, "fusion Bond = 80% of the parts (10 + 20)")
 	eq(Summon.crack_cost({"rarity": "Uncommon", "fused": true, "bond": 24}), 4, "fused counts as evolved (+1 SP)")
-	var r := flat_state("Capsules cost +1 SP to summon")
+	var r := flat_state("Vessels cost +1 SP to crack")
 	eq(r.summon_cost(P, Data.default_squad()[0]), 3, "rule stage: a Common costs 2 + 1")
 	eq(Summon.draft_cap({"tower_id": "01"}), 60, "Bond cap 60 in T01")
 	eq(Summon.draft_cap({"tower_id": "12"}), 120, "Bond cap 120 in T12")
@@ -471,7 +471,7 @@ func test_sp_economy() -> void:
 
 
 func test_sp_rule() -> void:
-	print("[stage rule: Capsules cost +1 SP to summon]")
+	print("[stage rule: Vessels cost +1 SP to crack]")
 	var texts := {}
 	for st in Data.stages():
 		texts[str(st.special_rule)] = true
@@ -481,7 +481,7 @@ func test_sp_rule() -> void:
 		if str(t).contains("SP"):
 			check(int(Data.special_rule(str(t)).get("sp_surcharge", 0)) > 0, "SP rule '%s' has a surcharge" % t)
 	var off := flat_state()
-	var on := flat_state("Capsules cost +1 SP to summon")
+	var on := flat_state("Vessels cost +1 SP to crack")
 	var sq6: Array = Data.default_squad()
 	vessel(off, P, sq6[0], Vector2i(2, 2))
 	vessel(on, P, sq6[0], Vector2i(2, 2))
@@ -819,8 +819,10 @@ func test_difficulty_curve() -> void:
 	s12.setup("T12-L02")
 	var id := sq(0)
 	var base := int(Data.monster(id).hp)
-	eq(s1.place_unit(E, id, Vector2i(6, 6)).max_hp, base, "T01 enemies are unscaled")
-	eq(s12.place_unit(E, id, Vector2i(6, 6)).max_hp, roundi(base * (1.0 + pct / 100.0 * 11)), "T12 enemies x(1 + 11 x %d%%)" % int(pct))
+	var flat := float(Data.rules().difficulty.get("enemy_stat_base_pct", 0))
+	var adj12 := float(Data.rules().difficulty.tower_adjust_pct.get("12", 0))
+	eq(s1.place_unit(E, id, Vector2i(6, 6)).max_hp, roundi(base * (1.0 + flat / 100.0 + float(Data.rules().difficulty.tower_adjust_pct.get("01", 0)) / 100.0)), "T01 enemies x(1 + base %d%%)" % int(flat))
+	eq(s12.place_unit(E, id, Vector2i(6, 6)).max_hp, roundi(base * (1.0 + flat / 100.0 + pct / 100.0 * 11 + adj12 / 100.0)), "T12 enemies x(1 + base + 11 x %d%%)" % int(pct))
 	eq(s12.place_unit(P, id, Vector2i(7, 7)).max_hp, base, "player monsters are never scaled")
 	Data.rules().difficulty.enemy_stat_pct_per_tower = shipped
 

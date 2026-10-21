@@ -995,7 +995,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rin Rook: The Verdant Spire tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rin Rook: You're learning the terrain. Then I'll change the tempo.",
@@ -2161,7 +2161,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lira Calder: The Verdant Spire tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lira Calder: You're learning the terrain. Then I'll change the tempo.",
@@ -3976,7 +3976,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rhea Ashen: The Ember Bastion tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rhea Ashen: You're learning the terrain. Then I'll change the tempo.",
@@ -5142,7 +5142,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Kira Voss: The Ember Bastion tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Kira Voss: You're learning the terrain. Then I'll change the tempo.",
@@ -6957,7 +6957,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lyra Frost: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lyra Frost: You're learning the terrain. Then I'll change the tempo.",
@@ -8123,7 +8123,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Ayla Grave: The Tideglass Citadel tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Ayla Grave: You're learning the terrain. Then I'll change the tempo.",
@@ -9938,7 +9938,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rin Storm: The Frost Meridian tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rin Storm: You're learning the terrain. Then I'll change the tempo.",
@@ -11104,7 +11104,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lira Bloom: The Frost Meridian tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lira Bloom: You're learning the terrain. Then I'll change the tempo.",
@@ -12919,7 +12919,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rhea Zephyr: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rhea Zephyr: You're learning the terrain. Then I'll change the tempo.",
@@ -14085,7 +14085,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Kira Rook: The Iron Labyrinth tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Kira Rook: You're learning the terrain. Then I'll change the tempo.",
@@ -15900,7 +15900,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lyra Hollow: The Storm Crown tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lyra Hollow: You're learning the terrain. Then I'll change the tempo.",
@@ -17066,7 +17066,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Ayla Ashen: The Storm Crown tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Ayla Ashen: You're learning the terrain. Then I'll change the tempo.",
@@ -18881,7 +18881,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rin Lux: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rin Lux: You're learning the terrain. Then I'll change the tempo.",
@@ -20047,7 +20047,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lira Frost: The Obsidian Eclipse tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lira Frost: You're learning the terrain. Then I'll change the tempo.",
@@ -21862,7 +21862,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rhea Reed: The Sunken Archive tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rhea Reed: You're learning the terrain. Then I'll change the tempo.",
@@ -23028,7 +23028,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Kira Storm: The Sunken Archive tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Kira Storm: You're learning the terrain. Then I'll change the tempo.",
@@ -24843,7 +24843,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lyra Ardent: The Astral Observatory tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lyra Ardent: You're learning the terrain. Then I'll change the tempo.",
@@ -26009,7 +26009,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Ayla Zephyr: The Astral Observatory tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Ayla Zephyr: You're learning the terrain. Then I'll change the tempo.",
@@ -27824,7 +27824,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rin Cross: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rin Cross: You're learning the terrain. Then I'll change the tempo.",
@@ -28990,7 +28990,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lira Hollow: The Crystal Sanctum tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lira Hollow: You're learning the terrain. Then I'll change the tempo.",
@@ -30805,7 +30805,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Rhea Flint: The Rift Frontier tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Rhea Flint: You're learning the terrain. Then I'll change the tempo.",
@@ -31971,7 +31971,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Kira Lux: The Rift Frontier tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Kira Lux: You're learning the terrain. Then I'll change the tempo.",
@@ -33786,7 +33786,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Lyra Dawn: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Lyra Dawn: You're learning the terrain. Then I'll change the tempo.",
@@ -34952,7 +34952,7 @@
      ],
      "boss": false,
      "win_condition": "Defeat the enemy Symbol",
-     "special_rule": "Capsules cost +1 SP to summon",
+     "special_rule": "Vessels cost +1 SP to crack",
      "dialogue": {
       "intro": "Ayla Reed: The Sunforge Throne tests more than strength. It tests whether your team can adapt.",
       "midbattle": "Ayla Reed: You're learning the terrain. Then I'll change the tempo.",
