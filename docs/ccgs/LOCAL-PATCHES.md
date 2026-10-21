@@ -35,4 +35,7 @@ as **NOT ASSESSED**, not as a pass:
 - `.claude/scripts/godot-parse-check.gd`: invoked as `res://.claude/scripts/...`; `.claude/` is not under `res://` (= `game/`). Copy it or pass an absolute path.
 - `/setup-engine` §7.5 offers to create a root `project.godot`. **Decline it.**
 - Skills that say `tests/unit/...`: the test root here is `game/tests/`, run by `bash game/run_tests.sh` (no gdUnit4).
+- `commands.test` (`bash game/run_tests.sh`) exits 0 when a suite reports failures (it checks exit codes and script errors only; on 2026-10-21 the data suite printed `15644 pass / 353 fail` and the run still exited 0). CCGS test gates read that exit code, so they will treat it as green until run_tests.sh fails on a non-zero fail count.
+- `UPGRADING.md` and `CHANGELOG.md` live in `docs/ccgs/`, not the root. Upstream's `git checkout template/main -- .claude UPGRADING.md CHANGELOG.md ...` recreates them at the root; move them back or delete them.
+- Do NOT re-run `/setup-engine godot 4.7` in full: it would rewrite `commands.*` to `--path .` and the gdUnit4 runner, propose Forward+ (the project is gl_compatibility) and offer a root `project.godot`. Use `/setup-engine refresh`, or decline those steps.
 - `project-state.sh` reports `origin_url absent` inside a git worktree (it reads `.git/config`; a worktree's `.git` is a file).
