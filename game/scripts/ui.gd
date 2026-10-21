@@ -112,6 +112,18 @@ var next_button: Button
 var retry_button: Button
 
 
+## Studio ident + title on a CanvasLayer over the built UI; it swallows input until tapped through.
+## Only when this is the running main scene (tests and the demo recorder instantiate us themselves).
+func _play_intro() -> void:
+	var skip := get_tree().current_scene != self or DisplayServer.get_name() == "headless"
+	if skip or "--no-intro" in OS.get_cmdline_user_args():
+		return
+	var intro: Node = preload("res://scenes/intro/intro_sequence.tscn").instantiate()
+	intro.next_scene = ""
+	add_child(intro)
+	intro.finished.connect(intro.queue_free)
+
+
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Palette.BG)
 	Data.ensure_loaded()
@@ -123,6 +135,7 @@ func _ready() -> void:
 	add_child(board)
 	_build_ui()
 	get_viewport().size_changed.connect(_layout_board)
+	_play_intro()
 	show_stage_select()
 
 

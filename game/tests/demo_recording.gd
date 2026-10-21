@@ -50,8 +50,10 @@ func _run() -> void:
 		mark("intro")
 		var intro: Node = load(INTRO).instantiate()
 		root.add_child(intro)
-		if intro.has_signal("finished"):
-			await intro.finished
+		await wait(6.5)  # let the full ident and title build play, then tap through like a player
+		while intro.step != "done":
+			intro.skip()
+			await wait(0.4)
 		intro.queue_free()
 	main = load("res://scenes/main.tscn").instantiate()
 	main.save_path = SAVE

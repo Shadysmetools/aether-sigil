@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/intro/title_intro.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://audio/intro/title_riser.wav" id="2_riser"]
+
+[node name="TitleIntro" type="CanvasLayer"]
+layer = 90
+script = ExtResource("1_script")
+riser = ExtResource("2_riser")
