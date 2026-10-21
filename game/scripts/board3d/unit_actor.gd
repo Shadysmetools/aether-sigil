@@ -107,7 +107,8 @@ func setup(u, tex_override: Texture2D = null) -> void:
 	family = str(u.family)
 	unit_name = str(u.name)
 	mon_id = str(u.mon_id)
-	dormant = u.dormant
+	# cold grey only for ruins guardians; a freshly cracked monster is a team statue (dormant by rule)
+	dormant = u.dormant and (int(u.cracked_round) if "cracked_round" in u else -1) < 0
 	max_hp = maxi(1, int(u.max_hp))
 	shown_hp = int(u.hp)
 	seed = personal_seed(mon_id if mon_id != "" else unit_name)

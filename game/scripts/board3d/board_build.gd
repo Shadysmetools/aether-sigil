@@ -686,12 +686,20 @@ func _portal(K: Kit, c: Vector2i, p: Vector3, t: float) -> void:
 
 ## Sigil monument (Symbol): two-tier rune pedestal, a large floating crystal in the side's colour,
 ## three orbiting shards.
+## The Sigil monument: pedestals + crystal in one node, so the board can glide it when the Sigil
+## moves in battle (the grid is edited in place; the island mesh is not rebuilt).
 func _sigil(K: Kit, c: Vector2i, p: Vector3, t: float, side: int) -> void:
 	var o := p + Vector3(0, t, 0)
-	_pedestal(K, o, 0.46, 0.12, false)
-	_pedestal(K, o + Vector3(0, 0.12, 0), 0.34, 0.12, true)
+	var P := Kit.new()
+	_pedestal(P, Vector3.ZERO, 0.46, 0.12, false)
+	_pedestal(P, Vector3(0, 0.12, 0), 0.34, 0.12, true)
 	var col := Palette.side(side)
 	var g := _gem_node(o, crystal_mesh(0.17, 0.5, 0.32, 6), col, 1.0, 1.9, 0.6)
+	var ped := MeshInstance3D.new()
+	ped.name = "Pedestal"
+	ped.mesh = P.commit()
+	ped.material_override = _stone_mat
+	g.node.add_child(ped)
 	for i in 3:
 		var shard := MeshInstance3D.new()
 		shard.mesh = crystal_mesh(0.045, 0.1, 0.07, 4)

@@ -97,7 +97,7 @@ func _run() -> void:
 	var used_skill := false
 	var summoned_node := false
 	var did_ko := false
-	while s.winner == GameState.NONE and s.round_num <= 3:
+	while s.winner == GameState.NONE and s.round_num <= 4:
 		if main.dialogue_box.visible:
 			await advance_dialogue(3.0)
 			main._continue()

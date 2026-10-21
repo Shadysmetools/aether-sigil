@@ -45,6 +45,7 @@ func _run() -> void:
 	await test_ko_orphans()
 	await test_reduced_motion()
 	await test_summon_and_vessel()
+	await test_vessels_and_sigil()
 	test_personal()
 	print("%d pass / %d fail" % [passed, failed])
 	quit(mini(failed, 255))
@@ -357,6 +358,70 @@ func test_summon_and_vessel() -> void:
 	b.play_vessel_break(null)
 	_drain(b)
 	check(not b.anim_busy(), "vessel break tolerates partial / null data")
+	b.queue_free()
+	await process_frame
+
+
+func test_vessels_and_sigil() -> void:
+	print("[Vessels on the board, crack, break, Sigil glide]")
+	var b = Board3D.new()
+	root.add_child(b)
+	await process_frame
+	var s := GameState.new()
+	s.setup("T01-L01")
+	b.state = s
+	b.anim.instant = false
+	b.manual_step = true
+	b.fit_band(BAND)
+	b.sync()
+	var on_board: int = s.capsules_on_board(0).size() + s.capsules_on_board(1).size()
+	check(on_board > 0 and b.vessels.size() == on_board, "every sealed Vessel on the board has a crystal (%d of %d)" % [b.vessels.size(), on_board])
+	# crack: the Vessel opens into a statue on its tile
+	var cap: Dictionary = s.capsules_on_board(0)[0]
+	var key: String = Board3D.vessel_key(cap)
+	var node: Node3D = b.vessels[key].node
+	s.capsules[0].erase(cap)
+	var u := s.place_unit(0, str(cap.mon), cap.pos)
+	u.dormant = true
+	u.cracked_round = s.round_num
+	b.play_summon(u, 3)
+	var sp := [false]
+	_drain(b, func():
+		for p in b._popups:
+			if p.text == "-3 SP":
+				sp[0] = true)
+	await process_frame
+	check(not b.vessels.has(key) and not is_instance_valid(node), "a cracked Vessel's crystal is gone (cracked in place, then freed)")
+	var a: Actor = b.actors.get(u.id)
+	check(a != null and a.visible and a.is_statue() and not a.dormant, "its monster stands as a team statue (not a cold guardian)")
+	check(sp[0] and b.juice.summons == 1, "the crack shows its SP cost once")
+	# break: a Vessel shattered by an attack
+	var cap2: Dictionary = s.capsules_on_board(1)[0]
+	var key2: String = Board3D.vessel_key(cap2)
+	var node2: Node3D = b.vessels[key2].node
+	s.capsules[1].erase(cap2)
+	s.events.append("P1 Vessel breaks: x is lost")
+	var broke := [false]
+	_drain(b, func():
+		if b.anim.now_playing() == "vessel_break":
+			broke[0] = true)
+	b.play_vessel_break(cap2)
+	_drain(b)
+	await process_frame
+	check(broke[0] and not is_instance_valid(node2), "a broken Vessel bursts and its crystal is freed")
+	check(b._broken.has(key2) and not b.anim_busy(), "the play_vessel_break hook does not replay a break the sync already played")
+	# the Sigil moves: the monument glides to the new tile
+	var from: Vector2i = s.symbol_pos[0]
+	var to := from
+	for d in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
+		if GameState.in_bounds(from + d) and s.is_walkable(from + d) and s.unit_at(from + d) == null:
+			to = from + d
+			break
+	s.symbol_pos[0] = to
+	_drain(b)
+	var sg: Node3D = b.builder.sigils[0].node
+	var want: Vector3 = b.tile_world(to)
+	check(to != from and absf(sg.position.x - want.x) < 0.01 and absf(sg.position.z - want.z) < 0.01, "the Sigil monument glides to %s" % str(to))
 	b.queue_free()
 	await process_frame
 

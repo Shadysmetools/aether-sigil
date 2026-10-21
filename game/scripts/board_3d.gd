@@ -72,6 +72,10 @@ var _re_def := RegEx.create_from_string("^(.+) defends$")
 var _re_reflect := RegEx.create_from_string("^(.+) reflects (\\d+)$")
 var _re_recharge := RegEx.create_from_string("^(.+) recharges (\\d+) HP$")
 var _re_takes := RegEx.create_from_string("^(.+) takes (\\d+) from (.+)$")
+var _re_vessel_hit := RegEx.create_from_string("^P(\\d) (?!Symbol$)(\\S+)$")
+var _re_summon := RegEx.create_from_string("^P(\\d) summons (.+) at \\((-?\\d+), (-?\\d+)\\) for (\\d+) SP$")
+var _re_sig_def := RegEx.create_from_string("^P(\\d) Sigil defends$")
+var _re_sig_takes := RegEx.create_from_string("^P(\\d) Symbol takes (\\d+)$")
 var _re_obj := RegEx.create_from_string("^P(\\d) (activates the capsule node|secures the relic) at \\((-?\\d+), (-?\\d+)\\)$")
 
 ## Presentation queue (anim_queue.gd): instant when headless, so animation never blocks the rules.
@@ -99,6 +103,11 @@ var _last_flash := -10.0
 var _focus_amt := 0.0
 var _focus_w := Vector3.ZERO
 var _target_c := Vector2.ZERO     ## where the board centre sits on screen at zoom 1
+## Sealed Vessels on the board: "side|mon" -> {node, gem, owner, mon, pos, shown_hp, max_hp}.
+var vessels: Dictionary = {}
+var _vessel_gone: Dictionary = {}  ## vessels that left the board this sync (cracked or broken)
+var _broken: Dictionary = {}       ## vessel keys whose break already played
+var _sigil_cell: Array = [Vector2i(-1, -1), Vector2i(-1, -1)]
 
 
 func _ready() -> void:
@@ -607,6 +616,11 @@ func _anim_advance(dt: float) -> void:
 	for p in _popups:
 		p.t += dt
 	_popups = _popups.filter(func(p): return p.t < float(p.get("life", 1.1)))
+	for k in vessels:
+		var v: Dictionary = vessels[k]
+		if is_instance_valid(v.gem):
+			v.gem.rotation.y += dt * 0.6
+			v.gem.position.y = 0.5 + sin(_time * 1.6 + float(hash(k) % 7)) * 0.04
 	_shake = maxf(0.0, _shake - dt * 30.0)
 	if not anim.instant and (_shake > 0.0 or _focus_amt > 0.0 or _breathing()):
 		_apply_view()
@@ -705,6 +719,7 @@ func sync() -> void:
 	if not is_same(state.grid, _grid_ref) or str(state.stage_id) != _stage:
 		_rebuild()
 	_sync_objectives()
+	_sync_vessels(false)
 	_sync_units(false)
 	_sync_highlights()
 
@@ -736,6 +751,9 @@ func _rebuild() -> void:
 	_acted = {}
 	_summon_cost = {}
 	_summon_shown = {}
+	vessels = {}
+	_vessel_gone = {}
+	_broken = {}
 	_focus_amt = 0.0
 	_shake = 0.0
 	for c in _fx.get_children():
@@ -757,6 +775,8 @@ func _rebuild() -> void:
 	_sym_hp = [state.symbol_hp[0], state.symbol_hp[1]]
 	_ev_idx = state.events.size()
 	_hl_key = "?"
+	_sigil_cell = [state.symbol_pos[0], state.symbol_pos[1]]
+	_sync_vessels(true)
 	_sync_units(true)
 	_refit()
 
@@ -835,6 +855,142 @@ func _sync_objectives() -> void:
 		_sym_hp[side] = state.symbol_hp[side]
 		if builder.sigils.has(side):
 			builder.sigils[side].gem.visible = state.symbol_hp[side] > 0
+			if state.symbol_pos[side] != _sigil_cell[side] and GameState.in_bounds(state.symbol_pos[side]):
+				_beat_sigil_move(side, state.symbol_pos[side])
+				_sigil_cell[side] = state.symbol_pos[side]
+
+
+## The Sigil monument glides to its new tile (the Sigil moves 1 tile per activation).
+func _beat_sigil_move(side: int, to: Vector2i) -> void:
+	var g: Dictionary = builder.sigils[side]
+	var node: Node3D = g.node
+	var dest := Build.cell_pos(to) + Vector3(0, Build.stand_y(state, to) - 0.02, 0)
+	var src := node.position
+	anim.push({"name": "sigil_move", "dur": 0.45, "cues": [[0.0, func():
+		if is_instance_valid(node):
+			var tw := node.create_tween()
+			tw.tween_method(func(f: float):
+				if is_instance_valid(node):
+					node.position = src.lerp(dest, f) + Vector3(0, 0.25 * 4.0 * f * (1.0 - f), 0), 0.0, 1.0, 0.4).set_trans(Tween.TRANS_SINE)
+		Sfx.play("statue_hop", dest)],
+		[0.4, func(): FX.dust(_fx, dest, 9)]],
+		"end": func():
+			if is_instance_valid(node):
+				node.position = dest})
+
+
+static func vessel_key(cap: Dictionary) -> String:
+	return "%d|%s" % [int(cap.get("owner", 0)), str(cap.get("mon", ""))]
+
+
+## Sealed Vessels from state.capsules: faceted team-tinted crystals on their tiles (own side shows
+## its element emblem; enemy contents stay hidden). Vessels that left the board go to _vessel_gone
+## for the crack (summon) or break beat.
+func _sync_vessels(initial: bool) -> void:
+	if not ("capsules" in state):
+		return
+	var now := {}
+	for side in 2:
+		for cap in state.capsules[side]:
+			if cap.pos == Vector2i(-1, -1):
+				continue
+			var k := vessel_key(cap)
+			now[k] = cap
+			var v: Dictionary = vessels.get(k, {})
+			if v.is_empty():
+				v = _make_vessel(cap)
+				vessels[k] = v
+			elif v.pos != cap.pos:
+				v.pos = cap.pos
+				v.node.position = _stand(cap.pos)
+			v.max_hp = maxi(1, int(cap.get("max_hp", cap.hp)))
+	for k in vessels.keys():
+		if not now.has(k):
+			var v: Dictionary = vessels[k]
+			vessels.erase(k)
+			if initial:
+				if is_instance_valid(v.node):
+					v.node.queue_free()
+			else:
+				_vessel_gone[k] = v
+
+
+func _make_vessel(cap: Dictionary) -> Dictionary:
+	var owner := int(cap.owner)
+	var fam := ""
+	if owner == GameState.PLAYER:
+		var d: Dictionary = state.custom.get(str(cap.mon), Data.monster(str(cap.mon))) if "custom" in state else Data.monster(str(cap.mon))
+		fam = str(d.get("element_family", ""))
+	var col := Palette.side(owner)
+	var node := Node3D.new()
+	node.position = _stand(cap.pos)
+	island.add_child(node)
+	var base := MeshInstance3D.new()
+	base.mesh = Actor.plinth_mesh(col)
+	base.material_override = Mats.plinth()
+	base.scale = Vector3(0.85, 0.7, 0.85)
+	node.add_child(base)
+	var gem := MeshInstance3D.new()
+	gem.mesh = Build.crystal_mesh(0.17, 0.36, 0.24, 6)
+	gem.material_override = Mats.crystal(col.lerp(Palette.family(fam) if fam != "" else Palette.SOFT_SILVER, 0.3), 1.1)
+	gem.position = Vector3(0, 0.5, 0)
+	gem.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	node.add_child(gem)
+	var halo := MeshInstance3D.new()
+	halo.mesh = QuadMesh.new()
+	halo.material_override = Mats.halo(col, 0.35)
+	halo.scale = Vector3.ONE * 1.1
+	halo.position = Vector3(0, 0.5, 0)
+	halo.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	node.add_child(halo)
+	if fam != "":
+		var em := Sprite3D.new()
+		em.texture = Assets.element_icon(fam)
+		if em.texture != null:
+			em.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			em.pixel_size = 0.2 / maxf(1.0, float(em.texture.get_width()))
+			em.position = Vector3(0, 0.5, 0)
+			em.shaded = false
+			em.render_priority = 4
+			node.add_child(em)
+	return {"node": node, "gem": gem, "owner": owner, "mon": str(cap.mon), "pos": cap.pos,
+		"shown_hp": int(cap.hp), "max_hp": maxi(1, int(cap.get("max_hp", cap.hp)))}
+
+
+## Breaks every vessel that left the board this sync and was not cracked into a monster.
+func _flush_vessel_breaks() -> void:
+	for k in _vessel_gone.keys():
+		var v: Dictionary = _vessel_gone[k]
+		_vessel_gone.erase(k)
+		_broken[k] = true
+		_beat_vessel_break(v.node, v.node.position if is_instance_valid(v.node) else Vector3.ZERO, int(v.owner))
+
+
+func _beat_vessel_break(node: Node3D, p: Vector3, owner: int, label := "Vessel lost") -> void:
+	var col := Palette.side(owner)
+	var cues := [
+		[0.0, func():
+			if node != null and is_instance_valid(node):
+				var tw := node.create_tween()
+				tw.tween_property(node, "scale", Vector3(1.2, 0.85, 1.2), 0.12)
+			Sfx.play("stone_crack_build", p)],
+		[0.25, func():
+			if node != null and is_instance_valid(node):
+				node.visible = false
+			burst(p + Vector3(0, 0.5, 0), col, 22)
+			FX.shockwave(_fx, p, col, 1.2, 0.4)
+			screen_flash(col, 0.15)
+			shake(6.0)
+			Sfx.play("petrify_shatter", p)
+			_popup(p + Vector3(0, 1.0, 0), label, Palette.EMBER, "tag")
+			if builder.sigils.has(owner):   # the owning Sigil feels it: chip flash on the monument
+				var sg: Node3D = builder.sigils[owner].node
+				FX.flash(_fx, sg.global_position + Vector3(0, 1.0, 0), Palette.EMBER, 1.6, 1.2)
+				FX.chips(_fx, sg.global_position + Vector3(0, 0.6, 0), 8)],
+	]
+	anim.push({"name": "vessel_break", "dur": 0.85, "cues": cues, "end": func():
+		if node != null and is_instance_valid(node):
+			node.queue_free()})
 
 
 func _new_actor(u) -> Actor:
@@ -867,7 +1023,10 @@ func _sync_units(initial: bool) -> void:
 		if s.pos != u.pos:
 			moves.append([a, s.pos, u.pos])
 		if s.dormant and not u.dormant:
-			waking.append(a)
+			if a.dormant:
+				waking.append(a)       # a ruins guardian: the dramatic awakening
+			else:
+				a.shield_flare()       # a cracked statue's first activation: a quick vein glow
 		a.spent = u.moved and u.attacked
 		a.defending = u.defending
 		a.max_hp = maxi(1, u.max_hp)
@@ -889,9 +1048,15 @@ func _sync_units(initial: bool) -> void:
 	for i in range(_ev_idx, state.events.size()):
 		msgs.append(str(state.events[i]))
 	_ev_idx = state.events.size()
-	if fresh.is_empty() and moves.is_empty() and waking.is_empty() and gone.is_empty() and msgs.is_empty():
+	if fresh.is_empty() and moves.is_empty() and waking.is_empty() and gone.is_empty() and msgs.is_empty() and _vessel_gone.is_empty():
 		_settle_hp()
 		return
+	for msg in msgs:   # SP cost of each crack, from the log (the play_summon hook may come later)
+		var sm := _re_summon.search(msg)
+		if sm != null:
+			var su = state.unit_at(Vector2i(int(sm.get_string(3)), int(sm.get_string(4))))
+			if su != null and not _summon_cost.has(su.id):
+				_summon_cost[su.id] = int(sm.get_string(5))
 	var acts := _parse_acts(msgs, gone)
 	# targets moved by a hit (pull) move after the act, everything else first
 	var hit_names := {}
@@ -912,6 +1077,7 @@ func _sync_units(initial: bool) -> void:
 		_beat_act(act)
 	for m in late:
 		_beat_move(m[0], m[1], m[2])
+	_flush_vessel_breaks()
 	# removed without a knockout line (e.g. state reset): just go
 	for n in gone:
 		for a in gone[n]:
@@ -981,6 +1147,14 @@ func _parse_acts(msgs: Array, gone: Dictionary) -> Array:
 				cur.ko.append(n)
 			else:
 				acts.append({"type": "ko", "name": n})
+			continue
+		m = _re_sig_def.search(msg)
+		if m != null:
+			acts.append({"type": "sigil_defend", "side": int(m.get_string(1))})
+			continue
+		m = _re_sig_takes.search(msg)
+		if m != null:
+			acts.append({"type": "sigil_takes", "side": int(m.get_string(1)), "amount": int(m.get_string(2))})
 			continue
 		m = _re_def.search(msg)
 		if m != null:
@@ -1059,11 +1233,8 @@ func play_summon(unit, sp_cost := -1) -> void:
 	if unit == null:
 		return
 	_summon_cost[unit.id] = sp_cost
-	if _summon_shown.has(unit.id) and sp_cost > 0:
-		var a: Actor = actors.get(unit.id)
-		if a != null:
-			_popup(a.head_world() + Vector3(0, 0.3, 0), "-%d SP" % sp_cost, Palette.CRYSTAL_VIOLET.lerp(Color.WHITE, 0.3), "sp")
-		return
+	if _summon_shown.has(unit.id):
+		return   # already played (the log line carries the cost too); never a late duplicate
 	if builder != null:
 		sync()
 
@@ -1074,38 +1245,17 @@ func play_summon(unit, sp_cost := -1) -> void:
 func play_vessel_break(vessel) -> void:
 	if builder == null or vessel == null:
 		return
+	sync()
 	var cell: Variant = _field(vessel, ["pos", "tile", "cell"])
-	if not (cell is Vector2i):
-		return
 	var owner := int(_field(vessel, ["owner", "side"], 0))
-	var fam := str(_field(vessel, ["family", "element_family"], ""))
-	var col := Palette.family(fam) if fam != "" else Palette.side(owner)
-	var p := _stand(cell)
+	var key := "%d|%s" % [owner, str(_field(vessel, ["mon"], ""))]
+	if _broken.has(key):
+		return   # the sync already played this break
+	_broken[key] = true
+	if not (cell is Vector2i) or not GameState.in_bounds(cell):
+		return
 	var name := str(_field(vessel, ["name", "mon_name"], ""))
-	var holder := [null]
-	var cues := [
-		[0.0, func():
-			holder[0] = FX.capsule(_fx, p + Vector3(0, 0.35, 0), col)
-			Sfx.play("stone_crack_build", p)],
-		[0.18, func():
-			if holder[0] != null and is_instance_valid(holder[0]):
-				var v: MeshInstance3D = holder[0]
-				v.material_override = Mats.crystal(col.lerp(Color.WHITE, 0.4), 3.0)
-				var tw := v.create_tween()
-				tw.tween_property(v, "scale", Vector3(1.25, 0.85, 1.25), 0.1)],
-		[0.3, func():
-			if holder[0] != null and is_instance_valid(holder[0]):
-				holder[0].queue_free()
-			burst(p + Vector3(0, 0.4, 0), col, 22)
-			FX.shockwave(_fx, p, col, 1.2, 0.4)
-			screen_flash(col, 0.15)
-			shake(5.0)
-			Sfx.play("petrify_shatter", p)
-			_popup(p + Vector3(0, 0.9, 0), ("%s lost" % name) if name != "" else "Vessel lost", Palette.EMBER, "tag")],
-	]
-	anim.push({"name": "vessel_break", "dur": 0.9, "cues": cues, "end": func():
-		if holder[0] != null and is_instance_valid(holder[0]):
-			holder[0].queue_free()})
+	_beat_vessel_break(null, _stand(cell), owner, ("%s lost" % name) if name != "" else "Vessel lost")
 
 
 static func _field(o, keys: Array, default: Variant = null) -> Variant:
@@ -1125,6 +1275,11 @@ func _beat_summon(u, a: Actor) -> void:
 	var col := Palette.side(a.side).lerp(Palette.family(a.family), 0.35)
 	var holder := [null]
 	var uid: int = u.id
+	var vk := "%d|%s" % [int(u.owner), str(u.mon_id)]
+	if _vessel_gone.has(vk):
+		_beat_crack(u, a, _vessel_gone[vk], col)
+		_vessel_gone.erase(vk)
+		return
 	var cues := [
 		[0.0, func():
 			var v := FX.capsule(_fx, p + Vector3(0, -0.6, 0), col)
@@ -1156,6 +1311,44 @@ func _beat_summon(u, a: Actor) -> void:
 	anim.push({"name": "summon", "dur": 1.45, "cues": cues, "end": func():
 		if holder[0] != null and is_instance_valid(holder[0]):
 			holder[0].queue_free()
+		if is_instance_valid(a):
+			a.settle()})
+
+
+## Crack: the sealed Vessel on the board glows, light seams split it, it bursts and the monster's
+## statue assembles from the light (on the Vessel tile or the capsule node it was cracked onto).
+func _beat_crack(u, a: Actor, v: Dictionary, col: Color) -> void:
+	var node: Node3D = v.node
+	var vp: Vector3 = node.position if is_instance_valid(node) else a.base
+	var p: Vector3 = a.base
+	var uid: int = u.id
+	var cues := [
+		[0.0, func():
+			if is_instance_valid(node):
+				var gem: MeshInstance3D = v.gem
+				gem.material_override = Mats.crystal(col.lerp(Color.WHITE, 0.45), 3.2)
+				var tw := node.create_tween()
+				tw.tween_property(gem, "scale", Vector3(1.15, 1.3, 1.15), 0.45).set_trans(Tween.TRANS_SINE)
+				FX.flash(_fx, vp + Vector3(0, 0.5, 0), col, 1.2, 0.8)
+			var cost := int(_summon_cost.get(uid, -1))
+			if cost > 0:
+				_popup(vp + Vector3(0, 1.3, 0), "-%d SP" % cost, Palette.CRYSTAL_VIOLET.lerp(Color.WHITE, 0.3), "sp")
+			Sfx.play("stone_crack_build", vp)],
+		[0.5, func():
+			if is_instance_valid(node):
+				node.visible = false
+			burst(vp + Vector3(0, 0.5, 0), col, 20)
+			FX.shockwave(_fx, vp, col, 1.1, 0.4)
+			FX.beam_up(_fx, p, col)
+			screen_flash(col.lerp(Color.WHITE, 0.5), 0.12)
+			Sfx.play("summon_burst", p)
+			juice.summons += 1
+			if is_instance_valid(a):
+				a.materialise(0.5)],
+	]
+	anim.push({"name": "summon", "dur": 1.15, "cues": cues, "end": func():
+		if is_instance_valid(node):
+			node.queue_free()
 		if is_instance_valid(a):
 			a.settle()})
 
@@ -1268,6 +1461,25 @@ func _beat_act(act: Dictionary) -> void:
 				return
 			a.set_meta("claimed", true)
 			anim.push({"name": "ko", "dur": 1.0, "cues": [[0.0, func(): _crumble(a)]], "end": func(): _free_actor(a)})
+		"sigil_defend", "sigil_takes":
+			var side := int(act.side)
+			if not builder.sigils.has(side):
+				return
+			var node: Node3D = builder.sigils[side].node
+			var take := str(act.type) == "sigil_takes"
+			var amt := int(act.get("amount", 0))
+			anim.push({"name": str(act.type), "dur": 0.4, "cues": [[0.0, func():
+				if not is_instance_valid(node):
+					return
+				var p := node.global_position
+				if take:
+					_popup(p + Vector3(0, 1.5, 0), "-%d" % amt, Palette.EMBER, "dmg")
+					FX.flash(_fx, p + Vector3(0, 1.0, 0), Palette.EMBER, 1.4, 1.0)
+					FX.chips(_fx, p + Vector3(0, 0.6, 0), 6)
+					Sfx.play("sigil_damage", p)
+				else:
+					FX.shockwave(_fx, p, Palette.side(side).lerp(Palette.SIGIL_GOLD, 0.4), 1.0, 0.5)
+					Sfx.play("defend_shield", p)]], "end": func(): pass})
 		"objective":
 			var c: Vector2i = act.cell
 			if not GameState.in_bounds(c):
@@ -1319,7 +1531,13 @@ func _beat_attack(act: Dictionary) -> void:
 			info.actor = _nearest_foe(a)
 		else:
 			var sm := _re_sym.search(tn)
-			if sm != null:
+			var vm := _re_vessel_hit.search(tn) if sm == null else null
+			if vm != null and _find(tn, gone) == null:
+				var vv := _nearest_vessel(int(vm.get_string(1)), a.base)
+				info["vessel"] = vv
+				info["sigil"] = true   # impacts like a structure (no statue chips, no element tag)
+				info.pos = (vv.node.position + Vector3(0, 0.5, 0)) if not vv.is_empty() and is_instance_valid(vv.node) else a.base + a.facing
+			elif sm != null:
 				var sp: Vector2i = state.symbol_pos[int(sm.get_string(1))]
 				info.pos = Build.cell_pos(sp) + Vector3(0, Build.stand_y(state, sp) + 0.9, 0)
 				info["sigil"] = true
@@ -1455,6 +1673,22 @@ func _beat_attack(act: Dictionary) -> void:
 			_focus_amt = 0.0})
 
 
+## The opposing Vessel a hit most likely landed on: nearest to the attacker (still on the board, or
+## gone this sync because the hit broke it).
+func _nearest_vessel(side: int, from: Vector3) -> Dictionary:
+	var best: Dictionary = {}
+	var bd := INF
+	for pool in [vessels, _vessel_gone]:
+		for k in pool:
+			var v: Dictionary = pool[k]
+			if int(v.owner) == side and is_instance_valid(v.node):
+				var d: float = v.node.position.distance_to(from)
+				if d < bd:
+					bd = d
+					best = v
+	return best
+
+
 func _nearest_foe(a: Actor) -> Actor:
 	var best: Actor = null
 	var bd := INF
@@ -1477,6 +1711,14 @@ func _impact(a: Actor, info: Dictionary, skill: bool) -> void:
 		Sfx.play("miss_whoosh", p)
 		return
 	var dmg := int(info.dmg)
+	var vv: Dictionary = info.get("vessel", {})
+	if not vv.is_empty():
+		vv.shown_hp = maxi(0, int(vv.shown_hp) - dmg)
+		if is_instance_valid(vv.gem):
+			var tw: Tween = vv.gem.create_tween()
+			tw.tween_property(vv.gem, "scale", Vector3(1.2, 0.8, 1.2), 0.06)
+			tw.tween_property(vv.gem, "scale", Vector3.ONE, 0.2)
+		FX.chips(_fx, info.pos, 6)
 	if info.get("sigil", false):
 		_popup(info.pos + Vector3(0, 0.5, 0), "-%d" % dmg, Palette.EMBER, "big" if skill else "dmg")
 		burst(info.pos, Palette.family(a.family), 10)
@@ -1631,6 +1873,17 @@ func _draw() -> void:
 			draw_rect(r, Color(Palette.MIDNIGHT_NAVY, 0.88))
 			draw_rect(r, Palette.side(a.side), false, 2.0)
 			draw_string(f, r.position + Vector2(12, 25), a.unit_name, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Palette.SOFT_SILVER)
+	for k in vessels:
+		var v: Dictionary = vessels[k]
+		if not is_instance_valid(v.node) or not v.node.visible:
+			continue
+		var vp: Vector2 = inv * _screen(v.node.global_position + Vector3(0, 0.95, 0))
+		var pips := clampi(int(ceil(float(v.max_hp) / 10.0)), 1, 8)
+		var filled := int(ceil(float(v.shown_hp) / float(v.max_hp) * pips))
+		for i in pips:
+			var c := vp + Vector2((i - (pips - 1) / 2.0) * 11.0, 0)
+			draw_circle(c, 4.5, Palette.MIDNIGHT_NAVY)
+			draw_circle(c, 3.2, Palette.side(int(v.owner)) if i < filled else Palette.MIDNIGHT_NAVY.lightened(0.2))
 	for side in 2:
 		if builder != null and builder.sigils.has(side) and state.symbol_hp[side] > 0:
 			var sp: Vector2 = inv * _screen(builder.sigils[side].node.global_position + Vector3(0, 1.75, 0))
