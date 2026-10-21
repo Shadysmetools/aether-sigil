@@ -50,6 +50,7 @@ Game design document (Claude Docs): https://claude.ai/code/artifact/c95fe8f8-8f5
 ## Third-party assets
 Only original work, or assets under licences safe for a commercial closed-source app (CC0 / MIT / OFL).
 - Kenney Hexagon Kit, CC0: https://kenney.nl/assets/hexagon-kit (kept outside git in `assets/`)
+- Third-party: Claude Code Game Studios (MIT), v1.2.0, the AI dev-studio framework in `.claude/`, `CLAUDE.md` and `project.yaml`. Licence: `docs/ccgs/LICENSE-CCGS.txt`; upstream README: `docs/ccgs/CCGS-README.md`; local changes: `docs/ccgs/LOCAL-PATCHES.md`.
 
 ## Licence
 All rights reserved. Not open source.

@@ -8,3 +8,7 @@
 *.tscn text eol=lf
 *.godot text eol=lf
 *.sh text eol=lf
+# CCGS hooks/scripts must stay LF for Git Bash
+*.awk text eol=lf
+*.tsv text eol=lf
+.claude/**/*.md text eol=lf
