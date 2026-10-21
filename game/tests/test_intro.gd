@@ -174,12 +174,12 @@ func test_skip_walks_steps() -> void:
 	check(seq.step == "title", "1st key press skips the studio ident")
 	root.push_input(_click(true))
 	check(not seq.title.is_idle, "a 2nd press inside the debounce window is ignored (one tap = one skip)")
-	await _wait_game(Seq.SKIP_DEBOUNCE + 0.05)
+	await _wait_debounce(seq)
 	root.push_input(_click(false))
 	check(not seq.title.is_idle, "mouse release does not skip")
 	root.push_input(_click(true))
 	check(seq.title.is_idle and not got[0], "next tap jumps the title build to idle")
-	await _wait_game(Seq.SKIP_DEBOUNCE + 0.05)
+	await _wait_debounce(seq)
 	root.push_input(_key())
 	check(got[0] and seq.step == "done", "next key press finishes the sequence")
 	seq.queue_free()
@@ -205,6 +205,15 @@ func _wait(cond: Callable) -> bool:
 			return false
 		await process_frame
 	return true
+
+
+## Waits until the sequence's own debounce clock has passed (game time, not wall time: a loaded
+## machine can stall frames, so a fixed wall-clock wait was flaky), plus a margin; 3 s cap.
+func _wait_debounce(seq) -> void:
+	await _wait_game(Seq.SKIP_DEBOUNCE + 0.05)
+	var start := Time.get_ticks_msec()
+	while seq._since_skip < Seq.SKIP_DEBOUNCE + 0.02 and Time.get_ticks_msec() - start < 3000:
+		await process_frame
 
 
 func _wait_game(seconds: float) -> void:
