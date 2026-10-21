@@ -11,7 +11,7 @@
   5. Issue #16: the JSON is canonical; each tower's L10 opponent is its tower_boss (champion),
      including the opponents list and the L10 dialogue. CSVs are regenerated from the JSON.
   6. Rule values: the design agent's proposals are accepted; Symbol/Sigil HP and the enemy
-     difficulty curve are set from the simulation (SIGIL_HP / ENEMY_PCT_PER_TOWER below).
+     difficulty curve are set from the simulation (SIGIL_HP / ENEMY_PCT_PER_TOWER / TOWER_ADJUST_PCT).
 
 Edits data/AETHER_SIGIL_MASTER_GAME_BIBLE.json AND game/data/ (the shipped copy), regenerates
 data/1000_MONSTERS.csv, data/120_STAGES_AND_OPPONENTS.csv and data/DIALOGUE_LINES.csv from the
@@ -34,7 +34,8 @@ TITLE_SWAPS = [("CHRONICLES OF THE CAPSULE REALMS", "CHRONICLES OF THE PRISM REA
 FAMILY = {"Nature": "Wood", "Lightning": "Thunder"}
 MONSTERS = {"Duskmonarchen": "Duskmonarch", "Echomonarchen": "Echomonarch", "Ironmonarchen": "Ironmonarch"}
 SIGIL_HP = 180                # chosen from the simulation table (see game_rules.json symbol._doc)
-ENEMY_PCT_PER_TOWER = 0       # curve parameter exists; +1/+2/+3% all drop player wins below 45% (no player progression yet)
+ENEMY_PCT_PER_TOWER = 10      # switched on 2026-10-21 once progression (XP, evolution, fusion) landed; see the difficulty _doc
+TOWER_ADJUST_PCT = {"03": 10} # T03 alone won 7-8/10 at every curve tried
 CHART = {"Fire": ["Wind"], "Wind": ["Earth"], "Earth": ["Water"], "Water": ["Fire"],
          "Thunder": ["Tech"], "Tech": ["Ice"], "Ice": ["Wood"], "Wood": ["Thunder"],
          "Light": ["Dark"], "Dark": ["Arcane", "Light"], "Arcane": ["Space"], "Space": ["Light"]}
@@ -211,14 +212,21 @@ def apply_rules():
                            "240 -> 46% / 10% / 14; 300 -> 46% / 10% / 15; 360 -> 45% / 11% / 16. Chose 180: inside every target "
                            "(45-55% player wins, median 12-20 rounds, <=10% capped) with margin on all three. HP barely moves "
                            "the win rate; it mostly sets battle length. See HANDOFF.md 'Open decisions'.")
-    r["difficulty"] = {"_doc": "Difficulty curve parameter (decided 2026-10-21): enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1)); player monsters are unscaled. Shipped at 0: with Sigil HP 240 the simulation gave player wins 46% at 0%, 37% at +1%, 27% at +2%, 22% at +3% per tower (T07-T12 0-2 wins per tower at +3%), because the player squad has no progression yet (no evolution or levels). Raise it once progression exists; game/tests/tune_sigil.gd -- HP PCT measures it.",
-                       "enemy_stat_pct_per_tower": ENEMY_PCT_PER_TOWER}
+    r["difficulty"] = {"_doc": ("Difficulty curve: enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1) + tower_adjust_pct[tower]/100); "
+                                "player monsters are unscaled (they level, evolve and fuse instead). History: shipped at 0 on 2026-10-21 while the squad had no "
+                                "progression (+1/+2/+3% gave 37/27/22% player wins at Sigil HP 240). Switched on the same day with progression "
+                                "(game/data/progression.json) and tuned with game/tests/tune_curve.gd (progressing default squad, T01->T12 in order, one "
+                                "attempt per stage, fusions after T04 and T08): pct 6 -> 89% player wins, 8 -> 74%, 9 -> 63%, 10 -> 53% but T03/T04 8/10, "
+                                "11 -> 47% but T03 8/10; with T03 +10%: pct 9.5 -> 58% (T04/T05 8/10), 10 -> 50% with every tower 3-7/10 (chosen), "
+                                "10.5 -> 43%. The player's XP snowballs, so the result is sensitive: re-run tune_curve after changing XP or growth."),
+                       "enemy_stat_pct_per_tower": ENEMY_PCT_PER_TOWER, "tower_adjust_pct": TOWER_ADJUST_PCT}
     r["accuracy"]["_doc"] = ("Hit chance % = base + high-ground bonus - veil penalty, clamped to [min, max]. The roll uses the "
                              "battle's seeded RNG. Values approved 2026-10-21 (design proposal: base 90, high ground +15).")
     new = json.dumps(r, indent=2, ensure_ascii=False)
     report("Nature/Lightning mentions in the rules table", before, len(re.findall(r"\b(Nature|Lightning)\b", new)))
     report("symbol.hp (Sigil HP)", json.loads(raw)["symbol"]["hp"], SIGIL_HP)
     report("difficulty.enemy_stat_pct_per_tower", json.loads(raw).get("difficulty", {}).get("enemy_stat_pct_per_tower", 0), ENEMY_PCT_PER_TOWER)
+    report("difficulty.tower_adjust_pct[03]", json.loads(raw).get("difficulty", {}).get("tower_adjust_pct", {}).get("03", 0), TOWER_ADJUST_PCT.get("03", 0))
     report("Dark beats Light (mutual rivals)", int("Light" in json.loads(raw)["element_chart"].get("Dark", [])), int("Light" in CHART["Dark"]))
     report("rules file rewritten (any other drift)", int(new != raw), 0)
     if new != raw:

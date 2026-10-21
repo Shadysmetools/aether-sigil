@@ -7,6 +7,7 @@ extends SceneTree
 const Data = preload("res://scripts/data_loader.gd")
 const GameState = preload("res://scripts/game_state.gd")
 const AI = preload("res://scripts/ai.gd")
+const ProgSim = preload("res://tests/progression_sim.gd")
 
 var passed := 0
 var failed := 0
@@ -29,6 +30,22 @@ func _initialize() -> void:
 	print("")
 	print("== RUN B (control): 4 Commons closest to the Common average stats %s ==" % str(avg))
 	run(avg, false)
+	print("")
+	var pct := float(Data.rules().difficulty.enemy_stat_pct_per_tower)
+	print("== RUN C: progressing player (XP, evolution, 2 fusions; default squad; curve %s%%/tower) ==" % str(pct))
+	var r := ProgSim.run(pct, "user://sim_progression.json")
+	print(ProgSim.summary(pct, r))
+	check(r.rejected == 0, "progression run: %d illegal AI actions" % r.rejected)
+	check(r.evolutions > 0, "progression run: monsters evolved (%d)" % r.evolutions)
+	check(r.fusions.size() == 2, "progression run: fusions after T04 and T08 (%s)" % str(r.fusions))
+	var rate: float = 100.0 * r.wins / 120.0
+	check(rate >= 45.0 and rate <= 55.0, "progression run: player wins %.0f%% within 45-55%%" % rate)
+	var off := []
+	for k in r.tower:
+		var w: Array = r.tower[k]
+		if w[0] < 3 or w[0] > 7:
+			off.append("T%s %d/10" % [k, w[0]])
+	check(off.is_empty(), "progression run: every tower 30-70%% player wins (outside: %s)" % str(off))
 	check(Data.stage_count() == 120, "simulated all 120 stages")
 	print("%d pass / %d fail" % [passed, failed])
 	quit(mini(failed, 255))  # exit codes wrap at 256

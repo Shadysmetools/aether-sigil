@@ -430,7 +430,10 @@
     "portal_doc": "Portal rule (24 stages, 1 gate each): the active gate teleports to the mirror-image tile (11-x, 11-y); see special_rules."
   },
   "difficulty": {
-    "_doc": "Difficulty curve parameter (decided 2026-10-21): enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1)); player monsters are unscaled. Shipped at 0: with Sigil HP 240 the simulation gave player wins 46% at 0%, 37% at +1%, 27% at +2%, 22% at +3% per tower (T07-T12 0-2 wins per tower at +3%), because the player squad has no progression yet (no evolution or levels). Raise it once progression exists; game/tests/tune_sigil.gd -- HP PCT measures it.",
-    "enemy_stat_pct_per_tower": 0
+    "_doc": "Difficulty curve: enemy monsters' hp, attack and defense x (1 + pct/100 x (tower - 1) + tower_adjust_pct[tower]/100); player monsters are unscaled (they level, evolve and fuse instead). History: shipped at 0 on 2026-10-21 while the squad had no progression (+1/+2/+3% gave 37/27/22% player wins at Sigil HP 240). Switched on the same day with progression (game/data/progression.json) and tuned with game/tests/tune_curve.gd (progressing default squad, T01->T12 in order, one attempt per stage, fusions after T04 and T08): pct 6 -> 89% player wins, 8 -> 74%, 9 -> 63%, 10 -> 53% but T03/T04 8/10, 11 -> 47% but T03 8/10; with T03 +10%: pct 9.5 -> 58% (T04/T05 8/10), 10 -> 50% with every tower 3-7/10 (chosen), 10.5 -> 43%. The player's XP snowballs, so the result is sensitive: re-run tune_curve after changing XP or growth.",
+    "enemy_stat_pct_per_tower": 10,
+    "tower_adjust_pct": {
+      "03": 10
+    }
   }
 }
