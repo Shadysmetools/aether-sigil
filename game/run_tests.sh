@@ -39,6 +39,7 @@ run() { # name, needs_summary(yes|no), godot args...
 run import no  --import
 run data   yes --script res://tests/test_data.gd
 run rules  yes --script res://tests/test_rules.gd
+run prog   yes --script res://tests/test_progression.gd
 run ui     yes --script res://tests/test_ui_smoke.gd
 run sim    yes --script res://tests/test_sim.gd
 run main   no  --quit-after 120

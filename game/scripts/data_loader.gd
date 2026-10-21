@@ -6,10 +6,14 @@ extends RefCounted
 
 const BIBLE_PATH := "res://data/AETHER_SIGIL_MASTER_GAME_BIBLE.json"
 const RULES_PATH := "res://data/game_rules.json"
+const PROGRESSION_PATH := "res://data/progression.json"
+const RESERVED_PATH := "res://data/reserved_names.json"
 const SIZE := 12
 
 static var _bible: Dictionary = {}
 static var _rules: Dictionary = {}
+static var _progression: Dictionary = {}
+static var _reserved: Dictionary = {}
 static var _stages: Array = []          ## level dicts in play order, each with tower_id/tower_name/index added
 static var _stage_by_id: Dictionary = {}
 static var _monsters: Dictionary = {}   ## id -> monster dict (numbers converted to int)
@@ -32,6 +36,8 @@ static func ensure_loaded() -> bool:
 		return true
 	_bible = _parse(BIBLE_PATH)
 	_rules = _parse(RULES_PATH)
+	_progression = _parse(PROGRESSION_PATH)
+	_reserved = _parse(RESERVED_PATH)
 	if _bible.is_empty() or _rules.is_empty():
 		return false
 	var i := 0
@@ -61,6 +67,27 @@ static func bible() -> Dictionary:
 static func rules() -> Dictionary:
 	ensure_loaded()
 	return _rules
+
+
+static func progression() -> Dictionary:
+	ensure_loaded()
+	return _progression
+
+
+static func reserved() -> Dictionary:
+	ensure_loaded()
+	return _reserved
+
+
+## Monsters of one evolution_family, in id order.
+static func family_members(family: String) -> Array:
+	ensure_loaded()
+	var out := []
+	for id in _monsters:
+		if str(_monsters[id].get("evolution_family", "")) == family:
+			out.append(id)
+	out.sort()
+	return out
 
 
 static func towers() -> Array:

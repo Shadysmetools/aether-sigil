@@ -66,6 +66,9 @@ class Unit:
 	var skill_cd := 0
 	var once_used := false
 	var dormant := false         ## ruins statue until its first activation
+	var level := 1
+	var skill_tier := 0          ## evolutions (and fusion) upgrade the Skill (progression.json)
+	var secondary_family := ""   ## fused monsters: second element's affinity
 
 
 var stage: Dictionary = {}
@@ -100,17 +103,23 @@ var win_reason := ""
 var events: Array[String] = []
 var rng := RandomNumberGenerator.new()
 var force_hit := -1                  ## tests: 1 = always hit, 0 = always miss, -1 = roll
+var custom: Dictionary = {}          ## player-owned monster records by uid (progression.battle_record)
+var deployed: Dictionary = {}        ## player monster id/uid -> true once summoned (for XP)
+var ko_by: Dictionary = {}           ## player monster id/uid -> knockouts it scored
 var _next_id := 1
 var _field_cache: Dictionary = {}
 
 
 ## Builds a battle for a stage. squad defaults to the default squad of 4.
-func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1) -> bool:
+func setup(p_stage_id: String, squad: Array = [], seed_value: int = -1, p_custom: Dictionary = {}) -> bool:
 	stage = Data.stage(p_stage_id)
 	if stage.is_empty():
 		push_error("game_state: unknown stage %s" % p_stage_id)
 		return false
 	stage_id = p_stage_id
+	custom = p_custom
+	deployed = {}
+	ko_by = {}
 	var R := Data.rules()
 	rng.seed = hash(p_stage_id) if seed_value < 0 else seed_value
 	grid = []
@@ -507,6 +516,9 @@ func damage_preview(u: Unit, target: Vector2i, skill_mult: float = 1.0) -> int:
 	var t := unit_at(target)
 	if t != null:
 		mult *= t.marked
+		# Fusion secondary affinity: a small bonus where the second element has the advantage.
+		if u.secondary_family != "" and beats(u.secondary_family, t.family) and not beats(u.family, t.family):
+			mult *= float(Data.progression().fusion.secondary_affinity_mult)
 		if t.defending:
 			mult *= t.defend_mult
 		return compute_damage(attack_of(u, u.pos), defense_of(t, t.pos), u.family, t.family, mult)
@@ -581,13 +593,15 @@ func deploy(p: int, mon_id: String, c: Vector2i) -> String:
 	summons_left -= 1
 	reserve[p].erase(mon_id)
 	var u := place_unit(p, mon_id, c)
+	if p == PLAYER:
+		deployed[mon_id] = true
 	_log("P%d summons %s at %s" % [p, u.name, c])
 	return OK
 
 
 ## Puts a monster on the board with NO rule checks (tests, tutorials, tools).
 func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
-	var d := Data.monster(mon_id)
+	var d: Dictionary = custom[mon_id] if custom.has(mon_id) else Data.monster(mon_id)
 	var u := Unit.new()
 	u.id = _next_id
 	_next_id += 1
@@ -605,6 +619,9 @@ func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
 	u.move = int(d.get("move", 1))
 	u.attack_range = int(d.get("range", 1))
 	u.ability = str(d.get("ability", ""))
+	u.level = int(d.get("level", 1))
+	u.skill_tier = int(d.get("skill_tier", 0))
+	u.secondary_family = str(d.get("secondary_family", ""))
 	if p == ENEMY:
 		var f := enemy_scale()
 		u.hp = roundi(u.hp * f)
@@ -615,11 +632,12 @@ func place_unit(p: int, mon_id: String, c: Vector2i) -> Unit:
 	return u
 
 
-## Difficulty curve (game_rules.json difficulty): enemy stats x (1 + pct/100 x (tower - 1)).
+## Difficulty curve (game_rules.json difficulty): enemy stats x (1 + pct/100 x (tower - 1) + tower_adjust_pct/100).
 func enemy_scale() -> float:
 	var pct := float(Data.rules().get("difficulty", {}).get("enemy_stat_pct_per_tower", 0))
 	var tower := maxi(1, int(str(stage.get("tower_id", "1"))))
-	return 1.0 + pct / 100.0 * (tower - 1)
+	var adj := float(Data.rules().get("difficulty", {}).get("tower_adjust_pct", {}).get(str(stage.get("tower_id", "")), 0))
+	return 1.0 + pct / 100.0 * (tower - 1) + adj / 100.0
 
 
 # ---------------------------------------------------------------- Move
@@ -757,6 +775,8 @@ func _hit(u: Unit, target: Vector2i, mult: float) -> int:
 				_knock_out(u)
 		if t.hp <= 0:
 			_knock_out(t)
+			if u.owner == PLAYER:
+				ko_by[u.mon_id] = int(ko_by.get(u.mon_id, 0)) + 1
 			if rule.has("ko_move_bonus"):
 				momentum_until[u.owner] = round_num + 1
 	else:
@@ -827,12 +847,13 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 		return r
 	var u := get_unit(unit_id)
 	var sd := skill_def(u)
-	var mult := float(sd.get("mult", 1.0))
+	var up: Dictionary = Data.progression().evolution.skill_upgrade
+	var mult := float(sd.get("mult", 1.0)) * (1.0 + float(up.mult_bonus) * u.skill_tier)
 	_log("%s uses %s" % [u.name, u.ability])
 	match str(sd.type):
 		"strike":
 			if sd.has("portal_mult") and ["warp_gate", "hazard"].has(tile_type(target)):
-				mult = float(sd.portal_mult)
+				mult = float(sd.portal_mult) * (1.0 + float(up.mult_bonus) * u.skill_tier)
 			_hit(u, target, mult)
 		"pull":
 			var t := unit_at(target)
@@ -866,13 +887,13 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 				if manhattan(e.pos, u.pos) <= int(sd.radius) and u.hp > 0:
 					_hit(u, e.pos, mult)
 		"heal":
-			var amount := u.max_hp * int(sd.pct) / 100
+			var amount := u.max_hp * (int(sd.pct) + int(up.heal_pct_bonus) * u.skill_tier) / 100
 			if Array(tile_def(u.pos).get("family", [])).has("Wood"):
 				amount *= int(sd.get("nature_mult", 1))
 			u.hp = mini(u.max_hp, u.hp + amount)
 		"guard":
 			u.defending = true
-			u.defend_mult = mult
+			u.defend_mult = maxf(0.2, float(sd.get("mult", 1.0)) - float(up.guard_mult_cut) * u.skill_tier)
 			u.reflect = int(sd.get("reflect", 0))
 		"ward":
 			var a := unit_at(target)
@@ -882,7 +903,7 @@ func skill(p: int, unit_id: int, target: Vector2i) -> String:
 			u.pos = target
 		"veil":
 			u.veiled = true
-	u.skill_cd = int(Data.rules().skill.cooldown) + 1  # +1: ticks down at its next activation start
+	u.skill_cd = maxi(1, int(Data.rules().skill.cooldown) - int(up.cooldown_cut) * u.skill_tier) + 1  # +1: ticks down at its next activation start
 	if sd.get("once", false):
 		u.once_used = true
 	if get_unit(u.id) != null:

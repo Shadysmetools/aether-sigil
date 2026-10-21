@@ -694,28 +694,19 @@ func test_ai_legal() -> void:
 
 
 func test_progress() -> void:
-	print("[progression + squad save]")
+	print("[stage progression]")
 	var path := "user://test_progress.json"
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
 	var pr := Progress.new(path)
 	check(pr.is_unlocked("T01-L01"), "first stage unlocked")
 	check(not pr.is_unlocked("T01-L02"), "second stage locked")
-	eq(pr.squad, Data.default_squad(), "default squad of 4")
-	var coll := Data.squad_collection()
-	check(not pr.set_squad(coll.slice(0, 3)), "a squad of 3 is refused")
-	check(not pr.set_squad([coll[0], coll[0], coll[1], coll[2]]), "duplicates refused")
-	var pick := [coll[4], coll[3], coll[2], coll[1]]
-	check(pr.set_squad(pick), "a squad of 4 from the collection is accepted")
+	eq(pr.squad.size(), 4, "squad of 4 owned monsters")
+	eq(pr.roster.size(), Data.squad_collection().size(), "roster starts with the collection")
 	eq(pr.record_win("T01-L01"), "T01-L02", "winning returns the next stage")
 	var again := Progress.new(path)
 	check(again.is_unlocked("T01-L02") and not again.is_unlocked("T01-L03"), "progress persists")
-	eq(again.squad, pick, "squad persists")
-	var f := FileAccess.open(path, FileAccess.WRITE)
-	f.store_string("{\"unlocked\": 3, \"cleared\": {}}")
-	f.close()
-	var old := Progress.new(path)
-	check(old.unlocked == 3 and old.squad == Data.default_squad(), "a pre-squad save loads with the default squad")
+	eq(again.squad, pr.squad, "squad persists")
 	eq(Progress.next_stage_id("T01-L10"), "T02-L01", "tower 1 stage 10 leads to tower 2 stage 1")
 	eq(Progress.next_stage_id("T12-L10"), "", "last stage has no next")
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(path))

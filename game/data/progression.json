@@ -1,0 +1,103 @@
+{
+  "_doc": [
+    "Aether Sigil progression rules: levels and XP, evolution, fusion. ONE table; every number is tunable and documented.",
+    "Data support (bible): level_cap per monster (30-50) and evolution_family (200 families of 5 consecutive ids, FAM-001..200). The bible has NO evolution thresholds, materials, fusion recipes or per-level growth; those are defined here.",
+    "Concept sheets: monster-compendium.png shows Sproutstag Lv1 -> Leafstaga Lv16 -> Fangstaga Lv36 (3 forms); meta-screens-symbol-squad-fusion.png shows Luxine -> Luxineon Lv20 -> Auralux Lv40 -> Celestilux Lv60 and Sylpha + Terron -> Verdalux. Lv60 is above every level_cap (max 50), so the compendium's 16/36 thresholds are used. None of those sheet names except Fangstaga exist in the data."
+  ],
+  "schema_version": 2,
+  "start_level": 1,
+  "xp": {
+    "_doc": "XP per battle for each squad monster that was summoned: (participation + per_ko x its knockouts) x (win_mult or loss_mult) x (1 + tower_bonus_pct/100 x (tower - 1)), rounded. XP to go from level L to L+1 = to_next_base + to_next_per_level x L. Levels stop at the monster's level_cap. Tuned 2026-10-21 with tests/tune_curve.gd: the first values (to_next 20 + 10 x L, +10% XP per tower) levelled the squad to ~Lv45 by T12 and won 93-97% of stages whatever the enemy curve; a near-flat level cost makes levels track ~4 per tower.",
+    "participation": 30,
+    "per_ko": 15,
+    "win_mult": 1.5,
+    "loss_mult": 1.0,
+    "tower_bonus_pct": 0,
+    "to_next_base": 150,
+    "to_next_per_level": 2
+  },
+  "growth_pct_per_level": {
+    "_doc": "Stat at level L = base x (1 + pct/100 x (L - 1)) x evolution multiplier, rounded. The bible's stats are the level-1 stats. Move and range never grow.",
+    "hp": 2.0,
+    "attack": 1.5,
+    "defense": 1.5
+  },
+  "evolution": {
+    "_doc": "A monster at or above thresholds[stage] may evolve into the NEXT member of its evolution_family (by id order). The data's families mix elements and roles (0 of 200 share one element_family), so a line keeps its own element, element_family, role, ability and base stats; the family supplies the evolved form's name (and id). Each evolution multiplies hp/attack/defense by stat_mult and raises the skill tier by 1. 2 evolutions max = 3 forms per line, as on the compendium sheet; a monster that is the last member of its family cannot evolve further. Fused monsters do not evolve.",
+    "thresholds": [
+      16,
+      36
+    ],
+    "stat_mult": 1.15,
+    "skill_upgrade": {
+      "_doc": "Per skill tier: offensive multipliers x (1 + mult_bonus); heal +heal_pct_bonus % of max HP; guard damage-taken multiplier - guard_mult_cut (floor 0.2); cooldown - cooldown_cut (min 1).",
+      "mult_bonus": 0.15,
+      "heal_pct_bonus": 5,
+      "guard_mult_cut": 0.05,
+      "cooldown_cut": 1
+    },
+    "dialogue": "{old} evolved into {new}!",
+    "dialogue_doc": "Placeholder line for the bible's 'evolution' dialogue type, which has no lines in the data."
+  },
+  "fusion": {
+    "_doc": "Two owned monsters (both consumed) make one new monster. Deterministic: the parents are ordered primary/secondary by (higher level, then higher rarity, then lower uid), so A+B == B+A. Primary gives element, element_family, role and the Skill ability; the secondary's family becomes a secondary affinity (x secondary_affinity_mult when the secondary family beats the defender and the primary does not) and its ability is inherited as secondary_ability (shown; no battle effect yet). Base stats = weight_primary x primary + (1 - weight_primary) x secondary of the parents' level-1 base stats (after evolution multipliers), x (1 + bonus_pct/100); move and range use the same blend, rounded. Level = the primary's level, XP 0, level_cap = max of the parents. Rarity = max(parents) + rarity_step tiers, capped at the last tier. A recipe overrides name, element and bonus for a specific pair of base monsters.",
+    "min_level": 10,
+    "min_roster_after": 4,
+    "weight_primary": 0.6,
+    "bonus_pct": 10,
+    "secondary_affinity_mult": 1.1,
+    "rarity_order": [
+      "Common",
+      "Uncommon",
+      "Rare",
+      "Epic",
+      "Mythic",
+      "Legendary"
+    ],
+    "rarity_step": 1,
+    "name_doc": "Generated name = the primary name's first head_len letters + the secondary name from its midpoint, capitalised. If it is taken (any of the 1,000 bible names, an earlier fusion, a recipe result) or a reserved franchise name, the next head length is tried (head_len+1 .. head_len+3), then the tail starts one letter later, then the suffixes in fallback_suffixes are appended.",
+    "head_len": 4,
+    "fallback_suffixes": [
+      "ar",
+      "on",
+      "is",
+      "yx",
+      "um"
+    ],
+    "recipes": [
+      {
+        "_doc": "The concept sheet's Sylpha + Terron -> Verdalux, rebuilt on monsters that exist: a Wood scout and an Earth support from the starter collection.",
+        "parents": [
+          "MON-0596",
+          "MON-0011"
+        ],
+        "name": "Verdalux",
+        "element": "Verdant",
+        "element_family": "Wood",
+        "bonus_pct": 20
+      },
+      {
+        "_doc": "Light + Space -> a star-crowned Light form (name from the Luxine line on the concept sheet).",
+        "parents": [
+          "MON-0099",
+          "MON-0573"
+        ],
+        "name": "Celestilux",
+        "element": "Lumen",
+        "element_family": "Light",
+        "bonus_pct": 20
+      },
+      {
+        "_doc": "Water + Fire from the starter collection.",
+        "parents": [
+          "MON-0177",
+          "MON-0640"
+        ],
+        "name": "Vaporwyrm",
+        "element": "Mist",
+        "element_family": "Water",
+        "bonus_pct": 15
+      }
+    ]
+  }
+}
