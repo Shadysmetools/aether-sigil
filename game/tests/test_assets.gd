@@ -84,6 +84,15 @@ func test_tiers() -> void:
 	check(Assets.tier(Assets.tile("01", "ground")) == "concepts", "results are cached until clear_cache()")
 	Assets.clear_cache()
 	check(Assets.tier(Assets.tile("01", "ground")) == "ai", "art/ai beats from-concepts")
+	# restored art in the repo-root dev folder beats a crop in game/art/ai/from-concepts
+	Assets.dev_root = "user://assets_test/dev"
+	_png(AI + "/from-concepts/towers/T04.png", Color.RED)
+	_png("user://assets_test/dev/towers/T04.png", Color.GREEN, Vector2i(5, 5))
+	Assets.clear_cache()
+	var t4 := Assets.tower_art("04")
+	check(t4 != null and t4.get_width() == 5 and Assets.tier(t4) == "ai", "restored art (any root) beats concept crops (any root)")
+	Assets.dev_root = ""
+	Assets.clear_cache()
 	_png(AI + "/tiles/_any/lava.png", Color.ORANGE)
 	Assets.clear_cache()
 	check(Assets.tier(Assets.tile("05", "lava")) == "ai", "tiles/_any/<type> serves every tower")
@@ -236,7 +245,7 @@ func test_procedural_draws() -> void:
 	var c := Control.new()
 	c.size = Vector2(200, 200)
 	root.add_child(c)
-	var who := ["Narrator", str(Data.story().protagonist.name), "Kess Varrow", "Lyra Quill", "Ari Voss"]
+	var who := Assets.speakers()   # every speaker in story.json, stage dialogue and the bible
 	c.draw.connect(func():
 		for w in who:
 			UIArt.draw_portrait(c, Rect2(0, 0, 200, 200), w)
@@ -248,9 +257,15 @@ func test_procedural_draws() -> void:
 	c.queue_redraw()
 	await process_frame
 	await process_frame
-	check(true, "portraits, cards, chips and island underside drew")
+	check(true, "procedural portraits for all %d speakers, cards, chips and island underside drew" % who.size())
 	for w in who:
 		check(UIArt.speaker_color(w).a > 0.0, "speaker %s has a portrait colour" % w)
+	Assets.reset_roots()
+	var painted := 0
+	for w in Assets.core_speakers():
+		if Assets.portrait(w) != null:
+			painted += 1
+	print("  info: %d / %d core speakers currently have painted or concept portraits (rest: procedural)" % [painted, Assets.core_speakers().size()])
 	c.queue_free()
 	_rm("user://assets_test")
 	Assets.reset_roots()

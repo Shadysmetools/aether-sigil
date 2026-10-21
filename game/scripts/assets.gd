@@ -1,9 +1,9 @@
 ## Asset resolver: the ONE place that maps a game id to a texture. Painted art drops in with no
 ## code change. Every lookup tries, in order (first hit wins):
 ##   1. res://art/ai/<category>/<id>.png                 restored/upscaled painted art (game/art/ai/)
-##   2. res://art/ai/from-concepts/<category>/<id>.png   crops of the owner's concept sheets
-##   3. <repo>/art/ai/... and <repo>/art/ai/from-concepts/...  same two, read straight from the art
-##      agent's folder at the repo root (dev runs only; copy into game/art/ai to ship)
+##   2. <repo>/art/ai/<category>/<id>.png                the same, read straight from the art agent's
+##      repo-root folder (dev runs only; copy into game/art/ai to ship)
+##   3. res://art/ai/from-concepts/... then <repo>/art/ai/from-concepts/...  crops of the concept sheets
 ##   4. res://art/generated/png/<...>.png                vector placeholders (copied from art/generated/png)
 ##   5. bundled title art (res://art/title/: logo, key-art poster) for the logo / world backdrop slots
 ##   6. null                                             the caller draws its procedural fallback
@@ -64,9 +64,14 @@ static func reset_roots() -> void:
 
 ## Painted-art roots in priority order.
 static func ai_roots() -> Array:
-	var r := [ai_root, ai_root.path_join(CONCEPTS)]
-	if dev_root != "" and dev_root != ai_root:
-		r += [dev_root, dev_root.path_join(CONCEPTS)]
+	# Restored art beats crops wherever it lives: both restored roots first, then both crop roots.
+	var dev := dev_root != "" and dev_root != ai_root
+	var r := [ai_root]
+	if dev:
+		r.append(dev_root)
+	r.append(ai_root.path_join(CONCEPTS))
+	if dev:
+		r.append(dev_root.path_join(CONCEPTS))
 	return r
 
 
