@@ -1,0 +1,78 @@
+{
+  "_doc": [
+    "Every dialogue type in the bible's dialogue_system.types, mapped to an in-game trigger (issue #17). ONE table.",
+    "Sources: 'stage.<key>' = the stage's dialogue entry (data/DIALOGUE_LINES.csv rows); 'global.<n>' = dialogue_system.sample_lines[n-1] (the CSV's GLOBAL sample_n rows); 'story.<part>' = data/story.json; 'progression.<key>' = game/data/progression.json templates; 'template' = the text below.",
+    "Speaker 'Hero' lines are spoken by the story protagonist; 'Rival' lines by the stage opponent.",
+    "mode 'scene' = modal dialogue box (tap to advance, Skip); 'bark' = a one-line toast in the battle HUD that does not stop play; 'screen line' = shown on the Evolution/Fusion screen.",
+    "Data finding: boss_intro is the same line on all 120 stages ('This is the final chamber...'), so it only plays on the 12 boss (L10) stages; the 108 other copies are unreachable on purpose."
+  ],
+  "types": {
+    "tower_intro": {
+      "source": "story.towers[].arrival",
+      "mode": "scene",
+      "when": "first time the player opens a tower on the world map",
+      "once": true
+    },
+    "stage_intro": {
+      "source": "stage.intro",
+      "mode": "scene",
+      "when": "every battle, before the first turn"
+    },
+    "battle_start": {
+      "source": "global.1",
+      "mode": "bark",
+      "when": "every battle, as the first turn begins"
+    },
+    "low_hp": {
+      "source": "global.3",
+      "mode": "bark",
+      "when": "the first time in a battle the Player Sigil drops below low_hp_pct"
+    },
+    "knockout": {
+      "source": "stage.midbattle + global.4",
+      "mode": "scene + bark",
+      "when": "first knockout of the battle (either side) plays the stage's midbattle scene; the first time the rival knocks out one of yours, global.4 is barked"
+    },
+    "boss_phase": {
+      "source": "stage.boss_intro + global.5",
+      "mode": "scene + bark",
+      "when": "boss (L10) stages: boss_intro after the stage intro; any stage: global.5 is barked the first time the enemy Symbol drops below half"
+    },
+    "victory": {
+      "source": "stage.defeat + global.6",
+      "mode": "scene",
+      "when": "the player wins: the rival concedes (stage.defeat); after an L10 win global.6 follows"
+    },
+    "defeat": {
+      "source": "global.2",
+      "mode": "scene",
+      "when": "the player loses: the rival gloats"
+    },
+    "evolution": {
+      "source": "progression.evolution.dialogue",
+      "mode": "screen line",
+      "when": "a monster evolves (Evolution screen)"
+    },
+    "new_monster": {
+      "source": "template",
+      "mode": "screen line",
+      "when": "a fusion adds a new monster",
+      "template": "{name} joins your roster!"
+    },
+    "rare_drop": {
+      "source": "template",
+      "mode": "scene",
+      "when": "first clear of a tower's L10: the bible's tower_reward is granted and saved",
+      "template": "You obtained the {reward}!"
+    }
+  },
+  "story": {
+    "prologue": "new game: the first time the world map opens",
+    "arrival": "tower_intro (above)",
+    "pre_boss": "before the L10 stage's intro, the first time that L10 is started",
+    "post_boss": "after the first L10 win, after the rival's line and the reward",
+    "finale": "right after T12's post_boss",
+    "epilogue": "right after the finale"
+  },
+  "low_hp_pct": 50
+}

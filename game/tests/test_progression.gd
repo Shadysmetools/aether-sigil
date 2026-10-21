@@ -280,7 +280,7 @@ func test_migration() -> void:
 	eq(pr.roster.size(), Data.squad_collection().size(), "roster created for the v1 player")
 	pr.save()
 	var d: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SAVE))
-	eq(int(d.version), 2, "re-saved as schema v2")
+	eq(int(d.version), 3, "re-saved as the current schema (v3)")
 	var f2 := FileAccess.open(SAVE, FileAccess.WRITE)
 	f2.store_string("{not json")
 	f2.close()

@@ -3,12 +3,16 @@
 ## The path is injectable so tests never touch the real save.
 ##   v1 (2026-10-20/21): {unlocked, cleared, squad: [monster ids]}  (squad optional)
 ##   v2: {version: 2, unlocked, cleared, roster: [instances], squad: [uids], next_uid}
+##   v3: v2 + {story_seen: {key: true}, stars: {stage_id: 1-3}, rewards: [tower_reward strings]}
+##       Migration to v3: a player who already progressed is not shown the story they skipped past
+##       (prologue + arrivals of unlocked towers, boss scenes of cleared L10s are marked seen);
+##       every cleared stage gets 1 star; cleared L10s grant their tower_reward.
 extends RefCounted
 
 const Data = preload("res://scripts/data_loader.gd")
 const Prog = preload("res://scripts/progression.gd")
 const DEFAULT_PATH := "user://aether_sigil_save.json"
-const VERSION := 2
+const VERSION := 3
 
 var path := DEFAULT_PATH
 var unlocked := 1                ## number of stages unlocked, in play order (index < unlocked)
@@ -16,6 +20,9 @@ var cleared: Dictionary = {}     ## stage_id -> true
 var roster: Array = []           ## owned monster instances (see progression.gd)
 var squad: Array = []            ## uids of the 4 monsters taken into battle
 var next_uid := 1
+var story_seen: Dictionary = {}  ## story seen-flags (story.gd keys)
+var stars: Dictionary = {}       ## stage_id -> best stars (1-3)
+var rewards: Array = []          ## tower_reward strings granted on first L10 clears
 var load_note := ""              ## "new", "loaded", "migrated_from_v1", "corrupt_reset"
 
 
@@ -27,6 +34,9 @@ func _init(p_path: String = DEFAULT_PATH) -> void:
 func new_game() -> void:
 	unlocked = 1
 	cleared = {}
+	story_seen = {}
+	stars = {}
+	rewards = []
 	roster = []
 	next_uid = 1
 	for id in Data.squad_collection():
@@ -69,6 +79,7 @@ func load_save() -> void:
 		var ids: Array = d.get("squad", [])
 		var mapped := _uids_for_ids(ids)
 		set_squad(mapped if mapped.size() == ids.size() else [])
+		_migrate_to_v3()
 		load_note = "migrated_from_v1"
 		return
 	var r: Variant = d.get("roster", [])
@@ -88,11 +99,42 @@ func load_save() -> void:
 			roster.append(inst)
 	next_uid = maxi(int(d.get("next_uid", 1)), roster.size() + 1)
 	set_squad(d.get("squad", []))
+	if v < 3:
+		_migrate_to_v3()
+		load_note = "migrated_from_v2"
+		return
+	story_seen = d.get("story_seen", {}) if typeof(d.get("story_seen")) == TYPE_DICTIONARY else {}
+	stars = {}
+	var st: Variant = d.get("stars", {})
+	if typeof(st) == TYPE_DICTIONARY:
+		for k in st:
+			stars[k] = int(st[k])
+	rewards = d.get("rewards", []) if typeof(d.get("rewards")) == TYPE_ARRAY else []
 	load_note = "loaded"
 
 
+func _migrate_to_v3() -> void:
+	story_seen = {}
+	stars = {}
+	rewards = []
+	for sid in cleared:
+		stars[sid] = 1
+	if unlocked > 1 or not cleared.is_empty():
+		story_seen["prologue"] = true
+	for t in Data.towers():
+		var tid := str(t.tower_id)
+		if tower_unlocked(tid) and (unlocked > 1 or not cleared.is_empty()):
+			story_seen["arrival_" + tid] = true
+		var l10 := str(t.levels[-1].stage_id)
+		if cleared.has(l10):
+			story_seen["pre_boss_" + tid] = true
+			story_seen["post_boss_" + tid] = true
+			rewards.append(str(t.tower_reward))
+
+
 func to_dict() -> Dictionary:
-	return {"version": VERSION, "unlocked": unlocked, "cleared": cleared, "roster": roster, "squad": squad, "next_uid": next_uid}
+	return {"version": VERSION, "unlocked": unlocked, "cleared": cleared, "roster": roster, "squad": squad,
+		"next_uid": next_uid, "story_seen": story_seen, "stars": stars, "rewards": rewards}
 
 
 func save() -> bool:
@@ -227,6 +269,71 @@ static func next_stage_id(stage_id: String) -> String:
 	if s.is_empty() or int(s.index) + 1 >= Data.stage_count():
 		return ""
 	return str(Data.stages()[int(s.index) + 1].stage_id)
+
+
+# ---------------------------------------------------------------- story, stars, towers
+
+func is_seen(key: String) -> bool:
+	return story_seen.has(key)
+
+
+func mark_seen(key: String) -> void:
+	if not story_seen.has(key):
+		story_seen[key] = true
+		save()
+
+
+## Stars for a finished battle the player won: 1 + Sigil above stars.sigil_hp_pct + no monster lost.
+static func battle_stars(state) -> int:
+	var S: Dictionary = Data.progression().stars
+	var n := 1
+	if state.symbol_hp[0] * 100 >= int(S.sigil_hp_pct) * state.symbol_max:
+		n += 1
+	if int(state.kos[0]) == 0:
+		n += 1
+	return n
+
+
+func record_stars(stage_id: String, n: int) -> void:
+	stars[stage_id] = maxi(int(stars.get(stage_id, 0)), n)
+	save()
+
+
+func tower_unlocked(tower_id: String) -> bool:
+	for t in Data.towers():
+		if str(t.tower_id) == tower_id:
+			return is_unlocked(str(t.levels[0].stage_id))
+	return false
+
+
+## {cleared: 0-10, stars: 0-30, max_stars: 30}
+func tower_progress(tower_id: String) -> Dictionary:
+	var out := {"cleared": 0, "stars": 0, "max_stars": 0}
+	for t in Data.towers():
+		if str(t.tower_id) != tower_id:
+			continue
+		for l in t.levels:
+			out.max_stars += 3
+			if cleared.has(str(l.stage_id)):
+				out.cleared += 1
+			out.stars += int(stars.get(str(l.stage_id), 0))
+	return out
+
+
+## Grants the tower's reward on the first L10 clear. Returns the reward ("" if not new).
+func grant_reward(stage_id: String) -> String:
+	var st := Data.stage(stage_id)
+	if st.is_empty() or str(st.stage_id).right(3) != "L10":
+		return ""
+	for t in Data.towers():
+		if str(t.tower_id) == str(st.tower_id):
+			var r := str(t.tower_reward)
+			if rewards.has(r):
+				return ""
+			rewards.append(r)
+			save()
+			return r
+	return ""
 
 
 func reset() -> void:

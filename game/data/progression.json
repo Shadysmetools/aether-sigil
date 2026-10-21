@@ -4,7 +4,7 @@
     "Data support (bible): level_cap per monster (30-50) and evolution_family (200 families of 5 consecutive ids, FAM-001..200). The bible has NO evolution thresholds, materials, fusion recipes or per-level growth; those are defined here.",
     "Concept sheets: monster-compendium.png shows Sproutstag Lv1 -> Leafstaga Lv16 -> Fangstaga Lv36 (3 forms); meta-screens-symbol-squad-fusion.png shows Luxine -> Luxineon Lv20 -> Auralux Lv40 -> Celestilux Lv60 and Sylpha + Terron -> Verdalux. Lv60 is above every level_cap (max 50), so the compendium's 16/36 thresholds are used. None of those sheet names except Fangstaga exist in the data."
   ],
-  "schema_version": 2,
+  "schema_version": 3,
   "start_level": 1,
   "xp": {
     "_doc": "XP per battle for each squad monster that was summoned: (participation + per_ko x its knockouts) x (win_mult or loss_mult) x (1 + tower_bonus_pct/100 x (tower - 1)), rounded. XP to go from level L to L+1 = to_next_base + to_next_per_level x L. Levels stop at the monster's level_cap. Tuned 2026-10-21 with tests/tune_curve.gd: the first values (to_next 20 + 10 x L, +10% XP per tower) levelled the squad to ~Lv45 by T12 and won 93-97% of stages whatever the enemy curve; a near-flat level cost makes levels track ~4 per tower.",
@@ -99,5 +99,9 @@
         "bonus_pct": 15
       }
     ]
+  },
+  "stars": {
+    "_doc": "Stars for a won battle (best kept per stage; shown on the world map as x/30 per tower): 1 for the win, +1 if the Player Sigil ends at or above sigil_hp_pct of its HP, +1 if no squad monster was knocked out.",
+    "sigil_hp_pct": 50
   }
 }

@@ -8,12 +8,16 @@ const BIBLE_PATH := "res://data/AETHER_SIGIL_MASTER_GAME_BIBLE.json"
 const RULES_PATH := "res://data/game_rules.json"
 const PROGRESSION_PATH := "res://data/progression.json"
 const RESERVED_PATH := "res://data/reserved_names.json"
+const STORY_PATH := "res://data/story.json"
+const TRIGGERS_PATH := "res://data/dialogue_triggers.json"
 const SIZE := 12
 
 static var _bible: Dictionary = {}
 static var _rules: Dictionary = {}
 static var _progression: Dictionary = {}
 static var _reserved: Dictionary = {}
+static var _story: Dictionary = {}
+static var _triggers: Dictionary = {}
 static var _stages: Array = []          ## level dicts in play order, each with tower_id/tower_name/index added
 static var _stage_by_id: Dictionary = {}
 static var _monsters: Dictionary = {}   ## id -> monster dict (numbers converted to int)
@@ -38,6 +42,8 @@ static func ensure_loaded() -> bool:
 	_rules = _parse(RULES_PATH)
 	_progression = _parse(PROGRESSION_PATH)
 	_reserved = _parse(RESERVED_PATH)
+	_story = _parse(STORY_PATH)
+	_triggers = _parse(TRIGGERS_PATH)
 	if _bible.is_empty() or _rules.is_empty():
 		return false
 	var i := 0
@@ -72,6 +78,16 @@ static func rules() -> Dictionary:
 static func progression() -> Dictionary:
 	ensure_loaded()
 	return _progression
+
+
+static func story() -> Dictionary:
+	ensure_loaded()
+	return _story
+
+
+static func triggers() -> Dictionary:
+	ensure_loaded()
+	return _triggers
 
 
 static func reserved() -> Dictionary:
