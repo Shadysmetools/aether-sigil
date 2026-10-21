@@ -1,4 +1,6 @@
-# IP check: Aether Sigil: Chronicles of the Capsule Realms
+# IP check: Aether Sigil: Chronicles of the Prism Realms
+
+> **Decisions applied 2026-10-21** (owner, via coordinator; `tools/apply_decisions.py`): subtitle is now **Chronicles of the Prism Realms** ("Capsule" dropped); tower **Crown of Ages -> Sunforge Throne** (no Steam match for the new name); the 3 "archen" monsters are **Duskmonarch, Echomonarch, Ironmonarch**; champions reconciled to `tower_boss` (#16). The analysis below is kept as written on 2026-10-20 (it names the old title and tower). The manual trademark searches and a lawyer review are still open (#31).
 
 **Prepared:** 2026-10-20/21 by the producer/IP-review agent, for Shady (solo founder).
 **Scope:** the title, the subtitle, "Capsule Realms", the 12 tower names, the 12 champion names (`tower_boss` in `data/AETHER_SIGIL_MASTER_GAME_BIBLE.json`), the word "Capsule", and capsule/ball imagery.

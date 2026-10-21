@@ -1,6 +1,6 @@
 # Aether Sigil: roadmap
 
-**Game:** Aether Sigil: Chronicles of the Capsule Realms (working title; see `docs/IP-CHECK.md`). Original anime tactical monster-board game for iOS and Android, Godot 4.7.2.
+**Game:** Aether Sigil: Chronicles of the Prism Realms (working title; see `docs/IP-CHECK.md`). Original anime tactical monster-board game for iOS and Android, Godot 4.7.2.
 **Owner:** Shady (solo founder). **Repo:** https://github.com/Shadysmetools/aether-sigil (private). **Written:** 2026-10-21.
 **Tracking:** each milestone below is a GitHub milestone, and each bullet is a GitHub issue with its own acceptance criteria.
 

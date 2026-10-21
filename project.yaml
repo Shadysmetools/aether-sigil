@@ -27,7 +27,7 @@ framework:
 # precedence order.
 
 project:
-  name: "Aether Sigil: Chronicles of the Capsule Realms"
+  name: "Aether Sigil: Chronicles of the Prism Realms"
   genre: "Tactical monster-board / turn-based tactics"
   version: "0.1.0"
   kind: game

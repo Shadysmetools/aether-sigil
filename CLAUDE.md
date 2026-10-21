@@ -1,5 +1,7 @@
 # Aether Sigil -- Claude Code Game Studios (CCGS) configuration
 
+**Game:** Aether Sigil: Chronicles of the Prism Realms (subtitle decided 2026-10-21; "Capsule" dropped from the title).
+
 Indie game development managed through 49 coordinated Claude Code subagents.
 Each agent owns a specific domain, enforcing separation of concerns and quality.
 

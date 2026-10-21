@@ -1,4 +1,4 @@
-# Aether Sigil: Chronicles of the Capsule Realms
+# Aether Sigil: Chronicles of the Prism Realms
 
 > Renamed from the Emberwick prototype on 2026-10-20. Game data: `data/` (master bible JSON, 1,000 monsters, 120 stages/maps, 486 dialogue lines).
 

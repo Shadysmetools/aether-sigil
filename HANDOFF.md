@@ -28,11 +28,14 @@ Claude Code Game Studios v1.2.0 is installed: `.claude/`, `project.yaml`, `CLAUD
 3. `/gate-check`
 4. `/setup-engine refresh` (not the full setup)
 
-## Open decisions (owner)
-1. Rename tower "Crown of Ages" (an upcoming Steam game uses the exact name).
-2. Subtitle: drop "Capsule"? Settle it before the Android listing (M5).
-3. Approve the proposed rule values: Symbol HP 120, accuracy 90%, element chart (3 rings of 4).
-4. Element names: Nature -> Wood? Lightning -> Thunder? Should Light and Dark be mutual rivals?
+## Open decisions (owner): DECIDED 2026-10-21
+Delegated by the owner to the coordinator; final. Applied by `tools/apply_decisions.py` (idempotent; edits both bible copies, regenerates the CSVs, renames art/map files) plus code and tests.
+1. **Tower 12 renamed "Crown of Ages" -> "Sunforge Throne"** (an exact-name Steam game exists; no Steam match for the new name). Data, stage names ("Sunforge Throne — Chamber N"), maps `data/maps/T12-L*_Sunforge_Throne.png`, art `art/generated/{png,svg}/tiles/T12_sunforge_throne`, MANIFEST, art tools and PROMPTS.
+2. **Subtitle: "Aether Sigil: Chronicles of the Prism Realms"** ("Capsule" dropped, Konami risk). Bible title, project.yaml, CLAUDE.md, README, in-game title, design/game-brief.md. Mechanics keep their names ("capsule node") for now. Trademark searches and a lawyer review are still open (#31).
+3. **Rule values approved:** accuracy 90%, high ground +15 accuracy / +30% damage / +1 range, defend x0.5, damage max(1, round(1.5*atk^2/(atk+def))), element rings x1.25 / x0.8. **Sigil/Symbol HP = 180**, tuned by simulation (default squad, 120 stages, 60-round cap, no curve): HP 120 -> 48% player wins / 9% capped / median 12 rounds; **180 -> 47% / 9% / 13**; 240 -> 46% / 10% / 14; 300 -> 46% / 10% / 15; 360 -> 45% / 11% / 16. **Difficulty curve** `difficulty.enemy_stat_pct_per_tower` added but shipped at **0**: +1/+2/+3% per tower drop player wins to 37% / 27% / 22% (T07-T12 nearly unwinnable at +3%) because the squad has no progression yet.
+4. **Elements:** `element_family` Nature -> **Wood** (63 monsters), Lightning -> **Thunder** (62); icon/token files renamed (`wood`, `thunder`). Rings: Fire>Wind>Earth>Water>Fire; Thunder>Tech>Ice>Wood>Thunder; Mystic: **Light <-> Dark mutual rivals** (x1.25 each way), Dark>Arcane>Space>Light. Tower themes/terrain text ("Nature" tower theme, "Nature hazard") are unchanged.
+5. **Monsters renamed** (Pokémon "Archen"): Duskmonarchen -> Duskmonarch, Echomonarchen -> Echomonarch, Ironmonarchen -> Ironmonarch (no collisions in the 1,000).
+6. **Champions (#16):** the JSON's `tower_boss` is canonical; each tower's L10 opponent, opponents-list entry and L10 dialogue now use the champion (12 towers fixed); the stage and dialogue CSVs are regenerated from the JSON; `test_data.gd` asserts it.
 
 ## Next
 - 3D view

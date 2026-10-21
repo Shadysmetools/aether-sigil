@@ -1,4 +1,4 @@
-# Game Brief: Aether Sigil: Chronicles of the Capsule Realms
+# Game Brief: Aether Sigil: Chronicles of the Prism Realms
 
 <!--
 POINTER STUB. Written at CCGS install time so the `minimal`-tier skills find a
