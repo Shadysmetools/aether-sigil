@@ -9,26 +9,28 @@ Playable prototype (Godot 4.7.2, GDScript). The hex "Emberwick" prototype it rep
 
 ## Play
 1. Open `game/project.godot` in Godot 4.7.2 and press F5 (or run `engine/Godot_v4.7.2-stable_win64.exe --path game`).
-2. Stage select: pick an unlocked stage (Tower 01 stage 1 at first). Read the rival's intro, tap Continue.
-3. Your turn: tap a team monster at the bottom, then a cyan tile to deploy it (it acts next turn).
-4. Tap one of your monsters: cyan tiles = move, ember tiles = attack (enemy monsters or the enemy Symbol). Move then attack, or just attack.
-5. End Turn. The rival plays with its `opponent_style`. Destroy the enemy Symbol (or secure 3 relics where the stage says so) to win and unlock the next stage. Progress saves to `user://aether_sigil_save.json`.
+2. Optional: **Build Your Squad** picks 4 of the 9 monsters in your collection (saved).
+3. Pick an unlocked stage (T01 stage 1 at first), read the rival's intro, tap Continue.
+4. Turns follow initiative (Turn Order panel, left): both Sigils first, then every monster by speed.
+   - **Your Sigil's turn**: tap a squad monster, then a cyan tile (a spawn or a capsule node you activated) to summon it, up to 2. Then tap **End summons**. Summoned monsters act from the next round.
+   - **Your monster's turn**: it is auto-selected. Cyan tiles = move, ember = attack (line of sight needed beyond 1 tile). Then **Attack**, **Skill** (violet targets), **Defend** (half damage until its next turn) or **Wait**.
+5. Win by destroying the enemy Symbol (or securing 3 relic nodes where the stage says so; activated capsule nodes count). Lose if your Sigil falls. The Objectives panel (right) tracks bonus goals; the Tactical Map shows the whole board. Winning unlocks the next stage (saved to `user://aether_sigil_save.json`).
 
 ## Code (`game/`)
 | File | Role |
 | --- | --- |
 | `data/AETHER_SIGIL_MASTER_GAME_BIBLE.json` | Copy of the bible, shipped inside the project |
-| `data/game_rules.json` | Every number and interpretation the bible lacks: element chart, terrain bonuses, tile rules, Symbol HP, special-rule table, starter team |
+| `data/game_rules.json` | Every number and interpretation: damage formula, element rings, tile rules, initiative, accuracy, skills (20 abilities -> 11 effect types), objectives, map policy (map_grid is truth), special-rule table, squad. Each block documents its source (bible, owner battle-screen design, docs/BALANCE-REPORT.md) |
 | `scripts/data_loader.gd` | Loads both JSON files once |
 | `scripts/game_state.gd` | Rules, pure logic, legal-action API |
-| `scripts/ai.gd` | One AI, parameterised per `opponent_style` |
-| `scripts/progress.gd` | Unlocks + local save |
+| `scripts/ai.gd` | One AI, parameterised per `opponent_style`, one activation at a time |
+| `scripts/progress.gd` | Unlocks + squad + local save |
 | `scripts/theme_colors.gd` | Brand colour tokens (the only colour file) |
-| `scripts/board_art.gd` | All drawing (replace for sprites/3D) |
+| `scripts/board_art.gd` | All drawing incl. minimap (replace for sprites/3D) |
 | `scripts/board_view.gd` | Isometric projection, draw order, tap picking |
-| `scripts/ui.gd` | Stage select, dialogue, HUD, results |
+| `scripts/ui.gd` | Stage select, squad builder, dialogue, battle HUD (turn order, map, objectives, commands), results |
 
-Tests: `bash game/run_tests.sh` (import check, data validation of all 120 stages, rules, UI smoke, AI-vs-AI on all 120 stages, main scene for 120 frames).
+Tests: `bash game/run_tests.sh` runs the import check, data validation of all 120 stages (known data issues allowlisted per stage with their rule fallback), rules, UI smoke, AI-vs-AI on all 120 stages and the main scene for 120 frames. It exits 1 on any failing assertion, missing summary or script error, and prints a TOTAL line.
 
 Mobile export: check that the export includes `data/*.json` (add it to the preset's include filter if needed); the game reads the bible from `res://data/` at startup.
 
