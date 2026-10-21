@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+<title>ui/panel/panel_border</title>
+<polygon points="18,4 174,4 188,18 188,174 174,188 18,188 4,174 4,18" fill="#0B1220" opacity="0.94"/>
+<polygon points="18,4 174,4 188,18 188,174 174,188 18,188 4,174 4,18" fill="none" stroke="#F6C445" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="20,10 172,10 182,20 182,172 172,182 20,182 10,172 10,20" fill="none" stroke="#22D3EE" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polygon points="6,22 22,6 26,10 10,26" fill="#F6C445" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="16,11 16.85,15.15 21,16 16.85,16.85 16,21 15.15,16.85 11,16 15.15,15.15" fill="#D6DEE9"/>
+<polygon points="186,22 170,6 166,10 182,26" fill="#F6C445" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="176,11 176.85,15.15 181,16 176.85,16.85 176,21 175.15,16.85 171,16 175.15,15.15" fill="#D6DEE9"/>
+<polygon points="186,170 170,186 166,182 182,166" fill="#F6C445" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="176,171 176.85,175.15 181,176 176.85,176.85 176,181 175.15,176.85 171,176 175.15,175.15" fill="#D6DEE9"/>
+<polygon points="6,170 22,186 26,182 10,166" fill="#F6C445" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="16,171 16.85,175.15 21,176 16.85,176.85 16,181 15.15,176.85 11,176 15.15,175.15" fill="#D6DEE9"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>icons/elements/lightning</title>
+<ellipse cx="32" cy="32" rx="31" ry="31" fill="#0B1220" stroke="#F6C445" stroke-width="2.5"/>
+<ellipse cx="32" cy="32" rx="26.5" ry="26.5" fill="none" stroke="#F6C445" stroke-width="0.9"/>
+<ellipse cx="32" cy="32" rx="26" ry="26" fill="#F6C445" opacity="0.1"/>
+<polygon points="35.6,14 21.2,34.16 29.84,34.16 25.52,50 42.8,27.68 33.44,27.68 39.2,14" fill="#F6C445" stroke="#0B1220" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="35.6,14 39.2,14 33.44,27.68 29.84,27.68" fill="#E6D197" opacity="0.8"/>
+<polygon points="32,0.3 34.2,2.5 32,4.7 29.8,2.5" fill="#F6C445"/>
+<polygon points="61.5,29.8 63.7,32 61.5,34.2 59.3,32" fill="#F6C445"/>
+<polygon points="32,59.3 34.2,61.5 32,63.7 29.8,61.5" fill="#F6C445"/>
+<polygon points="2.5,29.8 4.7,32 2.5,34.2 0.3,32" fill="#F6C445"/>
+</svg>

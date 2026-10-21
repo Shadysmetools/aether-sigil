@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T05_iron_labyrinth/forest</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#5E6572"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#444B58"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#218552"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64,89.2 121.6,118 64,146.8 6.4,118" fill="#1C6F48" opacity="0.5"/>
+<ellipse cx="66.22" cy="104.94" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="64.62,104.94 67.82,104.94 67.82,99.94 64.62,99.94" fill="#69592F"/>
+<polygon points="58.22,100.94 66.22,82.99 67.22,102.94" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="67.22,102.94 66.22,82.99 74.22,100.94" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="64.22,91.77 66.22,84.99" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="86.1" cy="118.25" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="84.5,118.25 87.7,118.25 87.7,113.25 84.5,113.25" fill="#69592F"/>
+<polygon points="78.1,114.25 86.1,98.38 87.1,116.25" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="87.1,116.25 86.1,98.38 94.1,114.25" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="84.1,106.33 86.1,100.38" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="62.25" cy="117.44" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="60.65,117.44 63.85,117.44 63.85,112.44 60.65,112.44" fill="#69592F"/>
+<polygon points="54.25,113.44 62.25,92.82 63.25,115.44" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="63.25,115.44 62.25,92.82 70.25,113.44" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="60.25,102.67 62.25,94.82" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="39.56" cy="116.41" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="37.96,116.41 41.16,116.41 41.16,111.41 37.96,111.41" fill="#69592F"/>
+<polygon points="31.56,112.41 39.56,92.87 40.56,114.41" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="40.56,114.41 39.56,92.87 47.56,112.41" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="37.56,102.29 39.56,94.87" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="62.11" cy="129.25" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="60.51,129.25 63.71,129.25 63.71,124.25 60.51,124.25" fill="#69592F"/>
+<polygon points="54.11,125.25 62.11,103.78 63.11,127.25" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="63.11,127.25 62.11,103.78 70.11,125.25" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="60.11,113.97 62.11,105.78" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+</svg>

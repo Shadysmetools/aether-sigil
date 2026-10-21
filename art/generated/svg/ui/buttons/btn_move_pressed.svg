@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+<title>ui/buttons/btn_move_pressed</title>
+<polygon points="19,1 77,1 95,19 95,77 77,95 19,95 1,77 1,19" fill="#22D3EE" opacity="0.25"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="#0F3545" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="none" stroke="#22D3EE" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="22,9 74,9 87,22 87,74 74,87 22,87 9,74 9,22" fill="none" stroke="#22D3EE" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="22,9 74,9 87,22 87,37 87,30 9,30" fill="#D6DEE9" opacity="0.05"/>
+<polygon points="48,0 52,4 48,8 44,4" fill="#22D3EE" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="48,88 52,92 48,96 44,92" fill="#22D3EE" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="31,44.6 35.25,48 31,51.4 26.75,48" fill="#22D3EE" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round" opacity="0.5"/>
+<polygon points="39.5,44.6 43.75,48 39.5,51.4 35.25,48" fill="#22D3EE" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round" opacity="0.75"/>
+<polygon points="46.3,42.9 58.2,42.9 58.2,34.4 70.1,48 58.2,61.6 58.2,53.1 46.3,53.1" fill="#D6DEE9" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="58.2,34.4 70.1,48 58.2,48" fill="#58D6EC"/>
+</svg>

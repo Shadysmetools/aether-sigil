@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T04_frost_meridian/ground_v2</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#5C6F7D"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#435260"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#B2D0DE"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="51.72,118 52.28,119.58 54.92,119.92 52.28,120.26 51.72,121.84 51.15,120.26 48.52,119.92 51.15,119.58" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="93.03,117.9 93.59,119.48 96.23,119.82 93.59,120.16 93.03,121.74 92.46,120.16 89.83,119.82 92.46,119.48" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="68.93,100.08 69.5,101.66 72.13,102 69.5,102.34 68.93,103.92 68.37,102.34 65.73,102 68.37,101.66" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="40.01,125.6 40.58,127.18 43.21,127.52 40.58,127.86 40.01,129.44 39.45,127.86 36.81,127.52 39.45,127.18" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="71.1,110.49 71.67,112.07 74.3,112.41 71.67,112.75 71.1,114.33 70.53,112.75 67.9,112.41 70.53,112.07" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="87.28,111.35 87.84,112.93 90.48,113.27 87.84,113.61 87.28,115.19 86.71,113.61 84.08,113.27 86.71,112.93" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="50.82,128.53 51.38,130.11 54.02,130.45 51.38,130.79 50.82,132.37 50.25,130.79 47.62,130.45 50.25,130.11" fill="#D6DEE9" opacity="0.85"/>
+<polyline points="70.4,102 66.56,111.6 53.12,115.76 54.4,126" fill="none" stroke="#145F72" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+</svg>

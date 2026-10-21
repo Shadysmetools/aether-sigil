@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T10_crystal_sanctum/hazard</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#452C6E"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#332456"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#7F60AC"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="64,118 64,89.2" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 121.6,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 64,146.8" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 6.4,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polygon points="64,118 121.6,118 92.8,132.4" fill="#D6DEE9" opacity="0.08"/>
+<polygon points="64,118 6.4,118 35.2,132.4" fill="#0B1220" opacity="0.12"/>
+<polygon points="64,89.84 120.32,118 64,146.16 7.68,118" fill="#FF6B3D" opacity="0.14"/>
+<polyline points="64.18,112.13 69.29,119.18 76.98,124.93 82.06,132" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64.18,112.13 69.29,119.18 76.98,124.93 82.06,132" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="67.63,103.82 73.85,110.31 80.43,116.62 75.22,128.83" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="67.63,103.82 73.85,110.31 80.43,116.62 75.22,128.83" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="58.71,102.13 55.53,113.32 71.51,114.93 69.55,125.51" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="58.71,102.13 55.53,113.32 71.51,114.93 69.55,125.51" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<ellipse cx="64" cy="118" rx="22" ry="11" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="16.5" ry="8.25" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="11" ry="5.5" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="5.5" ry="2.75" fill="#FF6B3D" opacity="0.07"/>
+<polygon points="35.4,118 38.4,110 41.4,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="86.6,118 89.6,110 92.6,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="61,118 64,110 67,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+</svg>

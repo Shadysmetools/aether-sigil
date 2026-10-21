@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T04_frost_meridian/stone</title>
+<polygon points="0,101.6 64,133.6 64,156 0,124" fill="#5C6F7D"/>
+<polygon points="64,133.6 128,101.6 128,124 64,156" fill="#435260"/>
+<polyline points="0,115.6 64,147.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,147.6 128,115.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,69.22 128.77,101.6 64,133.98 -0.77,101.6" fill="#89A0AD"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,133.6 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="56.13,91.78 56.69,93.36 59.33,93.7 56.69,94.04 56.13,95.62 55.56,94.04 52.93,93.7 55.56,93.36" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="96.35,105.67 96.92,107.25 99.55,107.59 96.92,107.93 96.35,109.51 95.79,107.93 93.15,107.59 95.79,107.25" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="38.64,102.73 39.2,104.31 41.84,104.65 39.2,104.99 38.64,106.57 38.07,104.99 35.44,104.65 38.07,104.31" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="73.12,98.05 73.69,99.63 76.32,99.97 73.69,100.31 73.12,101.89 72.55,100.31 69.92,99.97 72.55,99.63" fill="#D6DEE9" opacity="0.85"/>
+<polyline points="70.4,85.6 66.56,95.2 53.12,99.36 54.4,109.6" fill="none" stroke="#145F72" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64,72.16 90.88,85.6 64,99.04 37.12,85.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="96,88.16 122.88,101.6 96,115.04 69.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="64,104.16 90.88,117.6 64,131.04 37.12,117.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="32,88.16 58.88,101.6 32,115.04 5.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+</svg>

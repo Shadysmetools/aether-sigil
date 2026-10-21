@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T07_obsidian_eclipse/obstacle</title>
+<polygon points="0,72.8 64,104.8 64,156 0,124" fill="#2B214B"/>
+<polygon points="64,104.8 128,72.8 128,124 64,156" fill="#211C3E"/>
+<polyline points="0,86.8 64,118.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,118.8 128,86.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="0,100.8 64,132.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,132.8 128,100.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="0,114.8 64,146.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,146.8 128,114.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,40.42 128.77,72.8 64,105.18 -0.77,72.8" fill="#39275E"/>
+<polyline points="0,72.8 64,104.8 128,72.8" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,72.8 64,104.8 128,72.8" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,104.8 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="50.15,63.55 62.42,66.87 69.16,72.04 74.2,76.02 87.02,75.83" fill="none" stroke="#B15CFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.22"/>
+<polyline points="50.15,63.55 62.42,66.87 69.16,72.04 74.2,76.02 87.02,75.83" fill="none" stroke="#BC83F8" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.8"/>
+<polyline points="49.65,70.41 54.09,75.49 58.33,79 64.83,84.4 66.97,89.44" fill="none" stroke="#B15CFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.22"/>
+<polyline points="49.65,70.41 54.09,75.49 58.33,79 64.83,84.4 66.97,89.44" fill="none" stroke="#BC83F8" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.8"/>
+<polygon points="41,74.7 48.6,44.7 51.35,77.7" fill="#452C6E" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="51.35,77.7 48.6,44.7 59,74.7" fill="#312353" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polyline points="48.6,44.7 46.85,65.7" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="56,76.5 66.2,32.5 67.5,79.5" fill="#452C6E" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="67.5,79.5 66.2,32.5 76,76.5" fill="#312353" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polyline points="66.2,32.5 62.5,63.3" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="72,74.4 81.6,48.4 81.2,77.4" fill="#452C6E" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="81.2,77.4 81.6,48.4 88,74.4" fill="#312353" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polyline points="81.6,48.4 77.2,66.6" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="53,76.2 59.6,54.2 61.05,79.2" fill="#452C6E" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="61.05,79.2 59.6,54.2 67,76.2" fill="#312353" stroke="#0B1220" stroke-width="1.2" stroke-linejoin="round"/>
+<polyline points="59.6,54.2 57.55,69.6" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+</svg>

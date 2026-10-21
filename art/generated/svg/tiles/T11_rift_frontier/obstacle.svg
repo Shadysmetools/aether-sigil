@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T11_rift_frontier/obstacle</title>
+<polygon points="0,72.8 64,104.8 64,156 0,124" fill="#352558"/>
+<polygon points="64,104.8 128,72.8 128,124 64,156" fill="#281F46"/>
+<polyline points="0,86.8 64,118.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,118.8 128,86.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="0,100.8 64,132.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,132.8 128,100.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="0,114.8 64,146.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,146.8 128,114.8" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,40.42 128.77,72.8 64,105.18 -0.77,72.8" fill="#472D70"/>
+<polyline points="0,72.8 64,104.8 128,72.8" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,72.8 64,104.8 128,72.8" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,104.8 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="77.85,73.59 78.48,74.53 80.05,74.91 78.48,75.29 77.85,76.23 77.21,75.29 75.65,74.91 77.21,74.53" fill="#C090F6" opacity="0.7"/>
+<polygon points="69.96,65.92 70.6,66.86 72.16,67.24 70.6,67.63 69.96,68.56 69.33,67.63 67.76,67.24 69.33,66.86" fill="#C090F6" opacity="0.7"/>
+<polygon points="57.87,86.71 58.51,87.65 60.07,88.03 58.51,88.42 57.87,89.35 57.24,88.42 55.67,88.03 57.24,87.65" fill="#C090F6" opacity="0.7"/>
+<polygon points="53.32,71.05 53.96,71.99 55.52,72.37 53.96,72.76 53.32,73.69 52.68,72.76 51.12,72.37 52.68,71.99" fill="#C090F6" opacity="0.7"/>
+<polyline points="44.8,66.4 58.88,68.96 58.88,76.64 76.8,79.2" fill="none" stroke="#E0658B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="44.8,66.4 58.88,68.96 58.88,76.64 76.8,79.2" fill="none" stroke="#D6DEE9" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<ellipse cx="64" cy="76.8" rx="22" ry="8" fill="#0B1220" opacity="0.35"/>
+<polygon points="40.25,64.05 41.75,59.55 43.88,55.55 46.62,52.05 50,49.05 54,46.55 58.12,44.92 62.38,44.17 66.75,44.3 71.25,45.3 75.38,47.05 79.12,49.55 82.5,52.8 85.5,56.8 87.12,60.67 87.38,64.42 86.25,68.05 83.75,71.55 80.38,74.3 76.12,76.3 71,77.55 65,78.05 59.38,77.92 54.12,77.17 49.25,75.8 44.75,73.8 41.75,71.17 40.25,67.92" fill="#573485" stroke="#0B1220" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="50,51.05 54,48.55 58,46.92 62,46.17 66,46.3 70,47.3 72.38,48.67 73.12,50.42 72.25,52.55 69.75,55.05 66.88,57.17 63.62,58.92 60,60.3 56,61.3 52.62,61.55 49.88,61.05 47.75,59.8 46.25,57.8 46.12,55.67 47.38,53.42" fill="#6B598E"/>
+<polyline points="54,62.8 66,54.8 76,64.8" fill="none" stroke="#CC61BB" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+</svg>

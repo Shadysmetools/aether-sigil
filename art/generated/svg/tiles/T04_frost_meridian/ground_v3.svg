@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T04_frost_meridian/ground_v3</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#5C6F7D"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#435260"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#B2D0DE"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="41.48,119.13 42.04,120.71 44.68,121.05 42.04,121.39 41.48,122.97 40.91,121.39 38.28,121.05 40.91,120.71" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="78.54,122.42 79.11,124 81.74,124.34 79.11,124.68 78.54,126.26 77.98,124.68 75.34,124.34 77.98,124" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="76.77,106.36 77.34,107.94 79.97,108.28 77.34,108.62 76.77,110.2 76.2,108.62 73.57,108.28 76.2,107.94" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="76.12,132.35 76.68,133.94 79.32,134.27 76.68,134.61 76.12,136.19 75.55,134.61 72.92,134.27 75.55,133.94" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="30.64,113.74 31.2,115.32 33.84,115.66 31.2,116 30.64,117.58 30.07,116 27.44,115.66 30.07,115.32" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="49.14,109.64 49.7,111.22 52.34,111.56 49.7,111.89 49.14,113.48 48.57,111.89 45.94,111.56 48.57,111.22" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="45.47,108.12 46.03,109.7 48.67,110.04 46.03,110.38 45.47,111.96 44.9,110.38 42.27,110.04 44.9,109.7" fill="#D6DEE9" opacity="0.85"/>
+<polyline points="70.4,102 66.56,111.6 53.12,115.76 54.4,126" fill="none" stroke="#145F72" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+</svg>

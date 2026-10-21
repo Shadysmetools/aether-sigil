@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T11_rift_frontier/lava</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#352558"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#281F46"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#372225"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="44.8,102.8 51.2,104.4 56.2,106.5 59.8,109.1 62,112.2 62.8,115.8 64.6,118.7 67.4,120.9 71.2,122.4 76,123.2 80,124.6 83.2,126.6 85.6,129.2 87.2,132.4 87.6,135.2 86.8,137.6 84.8,139.6 81.6,141.2 78.56,141.52 75.68,140.56 72.96,138.32 70.4,134.8 67.2,132 63.36,129.92 58.88,128.56 53.76,127.92 49.72,126.54 46.76,124.42 44.88,121.56 44.08,117.96 42.16,114.92 39.12,112.44 34.96,110.52 29.68,109.16 26.56,107.72 25.6,106.2 26.8,104.6 30.16,102.92 34.28,102.06 39.16,102.02" fill="#FF6B3D"/>
+<polygon points="42.88,106.16 51.84,108.08 56.64,112.08 57.28,118.16 55.68,118.96 51.84,114.48 47.04,110.48 41.28,106.96" fill="#F6C445" opacity="0.9"/>
+<polygon points="92.8,106.8 99.2,116.4 86.4,116.4" fill="#FF6B3D" opacity="0.8"/>
+<ellipse cx="57.6" cy="121.2" rx="30" ry="14" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="57.6" cy="121.2" rx="22.5" ry="10.5" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="57.6" cy="121.2" rx="15" ry="7" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="57.6" cy="121.2" rx="7.5" ry="3.5" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="67.2" cy="122.8" rx="1.8" ry="1.2" fill="#F6C445"/>
+<ellipse cx="73.6" cy="135.6" rx="1.8" ry="1.2" fill="#F6C445"/>
+</svg>

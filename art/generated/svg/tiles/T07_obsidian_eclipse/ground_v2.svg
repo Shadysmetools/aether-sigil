@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T07_obsidian_eclipse/ground_v2</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#2B214B"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#211C3E"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#2C214D"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="52.33,105.93 61.09,107.01 61.28,112.83 74.28,111.85 84.86,113.32" fill="none" stroke="#B15CFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.22"/>
+<polyline points="52.33,105.93 61.09,107.01 61.28,112.83 74.28,111.85 84.86,113.32" fill="none" stroke="#BC83F8" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.8"/>
+<polyline points="47.71,108.53 58.52,111.55 63.15,116.35 66.83,121.87 67.96,130" fill="none" stroke="#B15CFF" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity="0.22"/>
+<polyline points="47.71,108.53 58.52,111.55 63.15,116.35 66.83,121.87 67.96,130" fill="none" stroke="#BC83F8" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+<title>ui/buttons/btn_wait_pressed</title>
+<polygon points="19,1 77,1 95,19 95,77 77,95 19,95 1,77 1,19" fill="#22D3EE" opacity="0.25"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="#0F3545" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="none" stroke="#22D3EE" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="22,9 74,9 87,22 87,74 74,87 22,87 9,74 9,22" fill="none" stroke="#22D3EE" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="22,9 74,9 87,22 87,37 87,30 9,30" fill="#D6DEE9" opacity="0.05"/>
+<polygon points="48,0 52,4 48,8 44,4" fill="#22D3EE" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="48,88 52,92 48,96 44,92" fill="#22D3EE" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="34.4,27.6 61.6,27.6 61.6,31.85 34.4,31.85" fill="#F6C445" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="34.4,64.15 61.6,64.15 61.6,68.4 34.4,68.4" fill="#F6C445" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="37.8,31.85 58.2,31.85 49.7,48 58.2,64.15 37.8,64.15 46.3,48" fill="#C2CAD5" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="42.9,60.75 53.1,60.75 48,53.1" fill="#22D3EE"/>
+<polygon points="42.05,35.25 53.95,35.25 48,42.9" fill="#22D3EE" opacity="0.6"/>
+</svg>

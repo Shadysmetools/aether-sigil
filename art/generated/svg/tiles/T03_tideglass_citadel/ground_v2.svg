@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T03_tideglass_citadel/ground_v2</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#476472"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#344A58"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#4B8D9E"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="46.22,117.97 50.98,122.39 44.18,123.75 40.77,119.33" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="27.09,114.74 31.48,118.81 25.21,120.06 22.08,115.99" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="89.93,121.07 95.02,125.8 87.74,127.26 84.11,122.53" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="66.27,122.12 70.77,126.3 64.34,127.59 61.12,123.41" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="51,118.65 56.11,123.4 48.81,124.86 45.16,120.11" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="66.4,108.5 69.73,111.59 64.98,112.54 62.6,109.45" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="54.49,122.48 59.48,127.11 52.36,128.53 48.8,123.9" fill="#7CD8EC" opacity="0.35"/>
+<polyline points="53.29,106.52 55.33,106.09 57.44,105.76 59.6,105.52 61.79,105.38 64,105.33 66.21,105.38 68.4,105.52 70.56,105.76 72.67,106.09 74.71,106.52 76.67,107.03 78.54,107.62 80.29,108.29 81.92,109.04 83.41,109.86 84.76,110.73 85.95,111.66 86.97,112.64 87.81,113.67 88.48,114.72 88.96,115.8 89.25,116.9 89.34,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+</svg>

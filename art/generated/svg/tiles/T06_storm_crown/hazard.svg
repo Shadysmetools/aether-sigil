@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T06_storm_crown/hazard</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#6C7380"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#4D5562"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#76A3B1"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="55.62,96.59 57.18,97.21 60.3,98.45 64.98,100.31 71.22,102.79 76.86,105.37 81.9,108.05 86.34,110.83 90.18,113.71 93.78,115.91 97.14,117.43 100.26,118.27 103.14,118.43 105.3,118.55 106.74,118.63 107.46,118.67" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="43.97,105.62 45.33,106.14 48.05,107.18 52.13,108.74 57.57,110.82 62.61,113.1 67.25,115.58 71.49,118.26 75.33,121.14 78.93,123.34 82.29,124.86 85.41,125.7 88.29,125.86 90.45,125.98 91.89,126.06 92.61,126.1" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="32.12,114.74 33.28,115.16 35.6,116 39.08,117.26 43.72,118.94 48.16,120.92 52.4,123.2 56.44,125.78 60.28,128.66 63.88,130.86 67.24,132.38 70.36,133.22 73.24,133.38 75.4,133.5 76.84,133.58 77.56,133.62" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polygon points="64,89.84 120.32,118 64,146.16 7.68,118" fill="#FF6B3D" opacity="0.14"/>
+<polyline points="62.83,112.77 70.94,118.31 75.63,125.57 79.35,133.31" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="62.83,112.77 70.94,118.31 75.63,125.57 79.35,133.31" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="66.21,104.15 70.91,111.4 79.01,116.95 77.49,127.31" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="66.21,104.15 70.91,111.4 79.01,116.95 77.49,127.31" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="76.14,105.39 73.6,116.26 88.94,118.19 84.81,129.86" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="76.14,105.39 73.6,116.26 88.94,118.19 84.81,129.86" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<ellipse cx="64" cy="118" rx="22" ry="11" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="16.5" ry="8.25" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="11" ry="5.5" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="5.5" ry="2.75" fill="#FF6B3D" opacity="0.07"/>
+<polygon points="35.4,118 38.4,110 41.4,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="86.6,118 89.6,110 92.6,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="61,118 64,110 67,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+</svg>

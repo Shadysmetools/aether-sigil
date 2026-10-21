@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T12_crown_of_ages/metal</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#76756C"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#545654"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#627B89"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="#8F97A3"/>
+<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<ellipse cx="64" cy="95.6" rx="1.6" ry="1" fill="#B2DCEA"/>
+<ellipse cx="108.8" cy="118" rx="1.6" ry="1" fill="#B2DCEA"/>
+<ellipse cx="64" cy="140.4" rx="1.6" ry="1" fill="#B2DCEA"/>
+<ellipse cx="19.2" cy="118" rx="1.6" ry="1" fill="#B2DCEA"/>
+<polyline points="44.8,108.4 83.2,127.6" fill="none" stroke="#22D3EE" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.25"/>
+<polyline points="44.8,108.4 83.2,127.6" fill="none" stroke="#22D3EE" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="60.8,103.6 92.8,119.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="35.2,116.4 67.2,132.4" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+</svg>

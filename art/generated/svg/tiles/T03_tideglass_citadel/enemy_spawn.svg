@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T03_tideglass_citadel/enemy_spawn</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#476472"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#344A58"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#4B8D9E"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="84.53,114.04 89.68,118.82 82.33,120.29 78.65,115.51" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="89.17,108.57 94.49,113.51 86.88,115.04 83.08,110.09" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="65.98,130.02 70.79,134.49 63.91,135.86 60.47,131.39" fill="#7CD8EC" opacity="0.35"/>
+<polygon points="59.39,105.01 64.03,109.33 57.4,110.65 54.08,106.34" fill="#7CD8EC" opacity="0.35"/>
+<polyline points="53.29,106.52 55.33,106.09 57.44,105.76 59.6,105.52 61.79,105.38 64,105.33 66.21,105.38 68.4,105.52 70.56,105.76 72.67,106.09 74.71,106.52 76.67,107.03 78.54,107.62 80.29,108.29 81.92,109.04 83.41,109.86 84.76,110.73 85.95,111.66 86.97,112.64 87.81,113.67 88.48,114.72 88.96,115.8 89.25,116.9 89.34,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="#FF6B3D" opacity="0.22"/>
+<polygon points="64,91.12 117.76,118 64,144.88 10.24,118" fill="none" stroke="#FF6B3D" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+<ellipse cx="64" cy="91.12" rx="2" ry="1.3" fill="#F6C445"/>
+<ellipse cx="117.76" cy="118" rx="2" ry="1.3" fill="#F6C445"/>
+<ellipse cx="64" cy="144.88" rx="2" ry="1.3" fill="#F6C445"/>
+<ellipse cx="10.24" cy="118" rx="2" ry="1.3" fill="#F6C445"/>
+<polygon points="55.04,122.48 75.52,119.92 60.16,112.24" fill="#FF6B3D" opacity="0.75"/>
+</svg>

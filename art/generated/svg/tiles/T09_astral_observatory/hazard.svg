@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T09_astral_observatory/hazard</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#413E5B"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#303048"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#403876"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<ellipse cx="84.1" cy="122.09" rx="1" ry="1" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="70.33" cy="102.23" rx="0.75" ry="0.75" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="56.77" cy="103.94" rx="0.52" ry="0.52" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="34.7" cy="128.43" rx="0.62" ry="0.62" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="38.05" cy="119.62" rx="0.59" ry="0.59" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="67.14" cy="96.91" rx="0.76" ry="0.76" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="69.62" cy="103.31" rx="0.62" ry="0.62" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="77.04" cy="105.79" rx="1.05" ry="1.05" fill="#D6DEE9" opacity="0.9"/>
+<polyline points="85.12,128.56 81.56,130.08 77.56,131.31 73.23,132.2 68.67,132.75 64,132.93 59.33,132.75 54.77,132.2 50.44,131.31 46.44,130.08 42.88,128.56 39.84,126.78 37.39,124.78 35.59,122.61 34.5,120.34 34.13,118 34.5,115.66 35.59,113.39 37.39,111.22 39.84,109.22 42.88,107.44 46.44,105.92 50.44,104.69 54.77,103.8 59.33,103.25 64,103.07 68.67,103.25 73.23,103.8 77.56,104.69 81.56,105.92 85.12,107.44 88.16,109.22 90.61,111.22 92.41,113.39 93.5,115.66 93.87,118 93.5,120.34 92.41,122.61 90.61,124.78 88.16,126.78" fill="none" stroke="#F6C445" stroke-width="0.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,89.84 120.32,118 64,146.16 7.68,118" fill="#FF6B3D" opacity="0.14"/>
+<polyline points="60.59,100.54 65.35,107.76 73.39,113.34 77.3,120.98" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="60.59,100.54 65.35,107.76 73.39,113.34 77.3,120.98" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="56.66,104.86 55.4,115.09 69.46,117.66 64.52,129.73" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="56.66,104.86 55.4,115.09 69.46,117.66 64.52,129.73" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<polyline points="75.32,106.68 72.97,117.45 88.12,119.48 93.23,126.52" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="75.32,106.68 72.97,117.45 88.12,119.48 93.23,126.52" fill="none" stroke="#FB9341" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" opacity="0.95"/>
+<ellipse cx="64" cy="118" rx="22" ry="11" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="16.5" ry="8.25" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="11" ry="5.5" fill="#FF6B3D" opacity="0.07"/>
+<ellipse cx="64" cy="118" rx="5.5" ry="2.75" fill="#FF6B3D" opacity="0.07"/>
+<polygon points="35.4,118 38.4,110 41.4,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="86.6,118 89.6,110 92.6,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+<polygon points="61,118 64,110 67,118" fill="#FB9341" stroke="#0B1220" stroke-width="0.7" stroke-linejoin="round"/>
+</svg>

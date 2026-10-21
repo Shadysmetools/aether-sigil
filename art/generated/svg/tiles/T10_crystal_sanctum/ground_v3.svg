@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T10_crystal_sanctum/ground_v3</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#452C6E"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#332456"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#7F60AC"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="64,118 64,89.2" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 121.6,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 64,146.8" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polyline points="64,118 6.4,118" fill="none" stroke="#D6DEE9" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.3"/>
+<polygon points="64,118 121.6,118 92.8,132.4" fill="#D6DEE9" opacity="0.08"/>
+<polygon points="64,118 6.4,118 35.2,132.4" fill="#0B1220" opacity="0.12"/>
+</svg>

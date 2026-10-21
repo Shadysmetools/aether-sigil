@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+<title>ui/buttons/btn_skill_disabled</title>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="#111826" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="none" stroke="#707884" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="22,9 74,9 87,22 87,74 74,87 22,87 9,74 9,22" fill="none" stroke="#707884" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polygon points="22,9 74,9 87,22 87,37 87,30 9,30" fill="#D6DEE9" opacity="0.05"/>
+<polygon points="48,0 52,4 48,8 44,4" fill="#707884" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="48,88 52,92 48,96 44,92" fill="#707884" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="46.3,31 49.31,46.69 65,49.7 49.31,52.71 46.3,68.4 43.29,52.71 27.6,49.7 43.29,46.69" fill="#58D6EC" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<polygon points="61.6,25.05 63.04,31.26 69.25,32.7 63.04,34.14 61.6,40.35 60.16,34.14 53.95,32.7 60.16,31.26" fill="#F6C445" stroke="#0B1220" stroke-width="1.7" stroke-linejoin="round"/>
+<ellipse cx="32.7" cy="65" rx="2.55" ry="2.55" fill="#D6DEE9" stroke="#0B1220" stroke-width="1.27"/>
+<polygon points="20,4 76,4 92,20 92,76 76,92 20,92 4,76 4,20" fill="#0B1220" opacity="0.55"/>
+</svg>

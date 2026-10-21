@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T04_frost_meridian/ground</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#5C6F7D"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#435260"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#B2D0DE"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64.09,95.03 64.65,96.61 67.29,96.95 64.65,97.29 64.09,98.87 63.52,97.29 60.89,96.95 63.52,96.61" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="58.98,115.29 59.54,116.88 62.18,117.21 59.54,117.55 58.98,119.13 58.41,117.55 55.78,117.21 58.41,116.88" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="35.45,120.57 36.02,122.15 38.65,122.49 36.02,122.83 35.45,124.41 34.89,122.83 32.25,122.49 34.89,122.15" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="39.17,119.56 39.74,121.14 42.37,121.48 39.74,121.82 39.17,123.4 38.61,121.82 35.97,121.48 38.61,121.14" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="62.21,114.27 62.78,115.85 65.41,116.19 62.78,116.53 62.21,118.11 61.65,116.53 59.01,116.19 61.65,115.85" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="32.23,112.57 32.79,114.15 35.43,114.49 32.79,114.82 32.23,116.41 31.66,114.82 29.03,114.49 31.66,114.15" fill="#D6DEE9" opacity="0.85"/>
+<polygon points="57.9,132.23 58.46,133.81 61.1,134.15 58.46,134.49 57.9,136.07 57.33,134.49 54.7,134.15 57.33,133.81" fill="#D6DEE9" opacity="0.85"/>
+<polyline points="70.4,102 66.56,111.6 53.12,115.76 54.4,126" fill="none" stroke="#145F72" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+</svg>

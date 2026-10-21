@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T09_astral_observatory/ground_v2</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#413E5B"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#303048"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#403876"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<ellipse cx="34.89" cy="114.6" rx="0.83" ry="0.83" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="29.39" cy="112.9" rx="0.6" ry="0.6" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="54.17" cy="98.13" rx="0.66" ry="0.66" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="51.21" cy="115.05" rx="1.16" ry="1.16" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="43.83" cy="111.87" rx="0.82" ry="0.82" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="107.98" cy="120.43" rx="0.7" ry="0.7" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="64.77" cy="108.9" rx="0.89" ry="0.89" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="57.91" cy="97.22" rx="1.07" ry="1.07" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="65.27" cy="108.7" rx="0.98" ry="0.98" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="72.2" cy="107.62" rx="0.68" ry="0.68" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="82.41" cy="113" rx="1.03" ry="1.03" fill="#F6C445" opacity="0.9"/>
+<polyline points="85.12,128.56 81.56,130.08 77.56,131.31 73.23,132.2 68.67,132.75 64,132.93 59.33,132.75 54.77,132.2 50.44,131.31 46.44,130.08 42.88,128.56 39.84,126.78 37.39,124.78 35.59,122.61 34.5,120.34 34.13,118 34.5,115.66 35.59,113.39 37.39,111.22 39.84,109.22 42.88,107.44 46.44,105.92 50.44,104.69 54.77,103.8 59.33,103.25 64,103.07 68.67,103.25 73.23,103.8 77.56,104.69 81.56,105.92 85.12,107.44 88.16,109.22 90.61,111.22 92.41,113.39 93.5,115.66 93.87,118 93.5,120.34 92.41,122.61 90.61,124.78 88.16,126.78" fill="none" stroke="#F6C445" stroke-width="0.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+</svg>

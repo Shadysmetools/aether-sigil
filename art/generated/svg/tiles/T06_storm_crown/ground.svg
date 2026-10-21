@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T06_storm_crown/ground</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#6C7380"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#4D5562"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#76A3B1"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="53.66,97.57 55.22,98.19 58.34,99.43 63.02,101.29 69.26,103.77 74.9,106.35 79.94,109.03 84.38,111.81 88.22,114.69 91.82,116.89 95.18,118.41 98.3,119.25 101.18,119.41 103.34,119.53 104.78,119.61 105.5,119.65" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="41.78,106.71 43.14,107.23 45.86,108.27 49.94,109.83 55.38,111.91 60.42,114.19 65.06,116.67 69.3,119.35 73.14,122.23 76.74,124.43 80.1,125.95 83.22,126.79 86.1,126.95 88.26,127.07 89.7,127.15 90.42,127.19" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="31.49,115.06 32.65,115.48 34.97,116.32 38.45,117.58 43.09,119.26 47.53,121.24 51.77,123.52 55.81,126.1 59.65,128.98 63.25,131.18 66.61,132.7 69.73,133.54 72.61,133.7 74.77,133.82 76.21,133.9 76.93,133.94" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+</svg>

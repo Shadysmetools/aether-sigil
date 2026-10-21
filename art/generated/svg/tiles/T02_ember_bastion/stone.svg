@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T02_ember_bastion/stone</title>
+<polygon points="0,101.6 64,133.6 64,156 0,124" fill="#332E36"/>
+<polygon points="64,133.6 128,101.6 128,124 64,156" fill="#26252F"/>
+<polyline points="0,115.6 64,147.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,147.6 128,115.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,69.22 128.77,101.6 64,133.98 -0.77,101.6" fill="#564E54"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,133.6 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="74.91,90.51 85.84,93.65 89.85,95.58 89.8,102.3" fill="none" stroke="#FF6B3D" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.25"/>
+<polyline points="74.91,90.51 85.84,93.65 89.85,95.58 89.8,102.3" fill="none" stroke="#FB8F40" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+<polyline points="48.64,93.14 63.48,96.31 62.18,100.58 64.17,110.09" fill="none" stroke="#FF6B3D" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.25"/>
+<polyline points="48.64,93.14 63.48,96.31 62.18,100.58 64.17,110.09" fill="none" stroke="#FB8F40" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+<polygon points="64,72.16 90.88,85.6 64,99.04 37.12,85.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="96,88.16 122.88,101.6 96,115.04 69.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="64,104.16 90.88,117.6 64,131.04 37.12,117.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="32,88.16 58.88,101.6 32,115.04 5.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+</svg>

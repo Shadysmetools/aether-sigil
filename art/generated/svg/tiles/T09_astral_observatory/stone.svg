@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T09_astral_observatory/stone</title>
+<polygon points="0,101.6 64,133.6 64,156 0,124" fill="#413E5B"/>
+<polygon points="64,133.6 128,101.6 128,124 64,156" fill="#303048"/>
+<polyline points="0,115.6 64,147.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,147.6 128,115.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,69.22 128.77,101.6 64,133.98 -0.77,101.6" fill="#676282"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,133.6 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<ellipse cx="64.03" cy="125.8" rx="1.01" ry="1.01" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="26.55" cy="106.92" rx="0.97" ry="0.97" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="62.05" cy="115.34" rx="1.01" ry="1.01" fill="#F6C445" opacity="0.9"/>
+<ellipse cx="83.12" cy="101.7" rx="0.78" ry="0.78" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="62.34" cy="81.4" rx="1.1" ry="1.1" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="70.54" cy="115.22" rx="0.66" ry="0.66" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="30.35" cy="106.48" rx="0.71" ry="0.71" fill="#D6DEE9" opacity="0.9"/>
+<ellipse cx="57.43" cy="80.17" rx="0.91" ry="0.91" fill="#D6DEE9" opacity="0.9"/>
+<polyline points="85.12,112.16 81.56,113.68 77.56,114.91 73.23,115.8 68.67,116.35 64,116.53 59.33,116.35 54.77,115.8 50.44,114.91 46.44,113.68 42.88,112.16 39.84,110.38 37.39,108.38 35.59,106.21 34.5,103.94 34.13,101.6 34.5,99.26 35.59,96.99 37.39,94.82 39.84,92.82 42.88,91.04 46.44,89.52 50.44,88.29 54.77,87.4 59.33,86.85 64,86.67 68.67,86.85 73.23,87.4 77.56,88.29 81.56,89.52 85.12,91.04 88.16,92.82 90.61,94.82 92.41,96.99 93.5,99.26 93.87,101.6 93.5,103.94 92.41,106.21 90.61,108.38 88.16,110.38" fill="none" stroke="#F6C445" stroke-width="0.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,72.16 90.88,85.6 64,99.04 37.12,85.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="96,88.16 122.88,101.6 96,115.04 69.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="64,104.16 90.88,117.6 64,131.04 37.12,117.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="32,88.16 58.88,101.6 32,115.04 5.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+</svg>

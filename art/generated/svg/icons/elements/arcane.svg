@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>icons/elements/arcane</title>
+<ellipse cx="32" cy="32" rx="31" ry="31" fill="#0B1220" stroke="#B15CFF" stroke-width="2.5"/>
+<ellipse cx="32" cy="32" rx="26.5" ry="26.5" fill="none" stroke="#F6C445" stroke-width="0.9"/>
+<ellipse cx="32" cy="32" rx="26" ry="26" fill="#B15CFF" opacity="0.1"/>
+<polygon points="32,15.44 47.84,32 32,48.56 16.16,32" fill="none" stroke="#0B1220" stroke-width="4.32" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="32,15.44 47.84,32 32,48.56 16.16,32" fill="none" stroke="#B15CFF" stroke-width="2.45" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="25.7,29.3 28.22,27.5 30.74,26.6 33.26,26.6 35.78,27.5 38.3,29.3 39.56,31.1 39.56,32.9 38.3,34.7 35.78,36.5 33.26,37.4 30.74,37.4 28.22,36.5 25.7,34.7 24.44,32.9 24.44,31.1" fill="#BC83F8" stroke="#0B1220" stroke-width="1.08" stroke-linejoin="round"/>
+<ellipse cx="32" cy="32" rx="3.24" ry="3.24" fill="#0B1220"/>
+<ellipse cx="32.72" cy="31.28" rx="1.01" ry="1.01" fill="#D6DEE9"/>
+<polygon points="32,0.3 34.2,2.5 32,4.7 29.8,2.5" fill="#F6C445"/>
+<polygon points="61.5,29.8 63.7,32 61.5,34.2 59.3,32" fill="#F6C445"/>
+<polygon points="32,59.3 34.2,61.5 32,63.7 29.8,61.5" fill="#F6C445"/>
+<polygon points="2.5,29.8 4.7,32 2.5,34.2 0.3,32" fill="#F6C445"/>
+</svg>

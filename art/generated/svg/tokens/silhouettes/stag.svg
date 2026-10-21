@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+<title>tokens/silhouettes/stag</title>
+<polyline points="78,24 74,14 70,6" fill="none" stroke="#0B1220" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="74,14 81,8" fill="none" stroke="#0B1220" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="72,10 65,9" fill="none" stroke="#0B1220" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="83,24 86,13 92,6" fill="none" stroke="#0B1220" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="85,15 93,15" fill="none" stroke="#0B1220" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="78,24 74,14 70,6" fill="none" stroke="#D6DEE9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="74,14 81,8" fill="none" stroke="#D6DEE9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="72,10 65,9" fill="none" stroke="#D6DEE9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="83,24 86,13 92,6" fill="none" stroke="#D6DEE9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="85,15 93,15" fill="none" stroke="#D6DEE9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="25.5,50.5 32.5,47.5 40.75,46 50.25,46 57.75,45.25 63.25,43.75 67.5,41 70.5,37 73.25,33 75.75,29 78.25,26 80.75,24 83.75,23.75 87.25,25.25 90,27.25 92,29.75 92,31.75 90,33.25 87.25,34 83.75,34 81,36 79,40 77.5,44.5 76.5,49.5 75,53.5 73,56.5 72,62 72,70 72.5,77.5 73.5,84.5 72.5,88 69.5,88 67.25,84.5 65.75,77.5 64.25,71 62.75,65 59,62.25 53,62.75 47.25,62.75 41.75,62.25 38.5,65 37.5,71 36.5,77.5 35.5,84.5 33.5,88 30.5,88 29,84 29,76 28,69.5 26,64.5 23.5,61 20.5,59 18.25,56 16.75,52 17.5,50.5 20.5,51.5" fill="#D6DEE9" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="77,28 69,22 75,31" fill="#D6DEE9" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="85,28 87,27 87,29" fill="#0B1220"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T05_iron_labyrinth/water</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#5E6572"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#444B58"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#606874"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64,92.4 115.2,118 64,143.6 12.8,118" fill="#3A74AA"/>
+<polygon points="64,92.4 115.2,118 104.96,118 64,97.52" fill="#0B1220" opacity="0.35"/>
+<polygon points="64,92.4 64,97.52 23.04,118 12.8,118" fill="#0B1220" opacity="0.25"/>
+<polyline points="60.98,112.22 68.02,113.82 71.22,117.34" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polyline points="80.22,112.82 87.26,114.42 90.46,117.94" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polyline points="79.63,110.69 86.67,112.29 89.87,115.81" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<polyline points="69.27,120.72 76.31,122.32 79.51,125.84" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+<ellipse cx="60.8" cy="129.2" rx="3" ry="1.2" fill="#D6DEE9" opacity="0.7"/>
+</svg>

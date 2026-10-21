@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
+<title>ui/turn_order/slot_enemy</title>
+<polygon points="14,4 58,4 68,14 68,58 58,68 14,68 4,58 4,14" fill="#1F1922" stroke="#0B1220" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="14,4 58,4 68,14 68,58 58,68 14,68 4,58 4,14" fill="none" stroke="#FF6B3D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="16,8 56,8 64,16 64,56 56,64 16,64 8,56 8,16" fill="none" stroke="#F6C445" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<polygon points="4,4 22,4 4,22" fill="#FF6B3D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="68,32 71,36 68,40 65,36" fill="#F6C445" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round"/>
+<polygon points="4,32 7,36 4,40 1,36" fill="#F6C445" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T06_storm_crown/stone</title>
+<polygon points="0,101.6 64,133.6 64,156 0,124" fill="#6C7380"/>
+<polygon points="64,133.6 128,101.6 128,124 64,156" fill="#4D5562"/>
+<polyline points="0,115.6 64,147.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polyline points="64,147.6 128,115.6" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.35"/>
+<polygon points="64,69.22 128.77,101.6 64,133.98 -0.77,101.6" fill="#9DA5B1"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,101.6 64,133.6 128,101.6" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,133.6 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="55.07,80.46 56.63,81.08 59.75,82.32 64.43,84.18 70.67,86.66 76.31,89.24 81.35,91.92 85.79,94.7 89.63,97.58 93.23,99.78 96.59,101.3 99.71,102.14 102.59,102.3 104.75,102.42 106.19,102.5 106.91,102.54" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="44.1,89.15 45.46,89.67 48.18,90.71 52.26,92.27 57.7,94.35 62.74,96.63 67.38,99.11 71.62,101.79 75.46,104.67 79.06,106.87 82.42,108.39 85.54,109.23 88.42,109.39 90.58,109.51 92.02,109.59 92.74,109.63" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polyline points="32.92,97.94 34.08,98.36 36.4,99.2 39.88,100.46 44.52,102.14 48.96,104.12 53.2,106.4 57.24,108.98 61.08,111.86 64.68,114.06 68.04,115.58 71.16,116.42 74.04,116.58 76.2,116.7 77.64,116.78 78.36,116.82" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+<polygon points="64,72.16 90.88,85.6 64,99.04 37.12,85.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="96,88.16 122.88,101.6 96,115.04 69.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="64,104.16 90.88,117.6 64,131.04 37.12,117.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+<polygon points="32,88.16 58.88,101.6 32,115.04 5.12,101.6" fill="none" stroke="#0B1220" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+</svg>

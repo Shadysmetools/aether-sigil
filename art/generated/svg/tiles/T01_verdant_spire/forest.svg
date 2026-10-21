@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160">
+<title>tiles/T01_verdant_spire/forest</title>
+<polygon points="0,118 64,150 64,156 0,124" fill="#495F62"/>
+<polygon points="64,150 128,118 128,124 64,156" fill="#36474D"/>
+<polygon points="64,85.62 128.77,118 64,150.38 -0.77,118" fill="#218552"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#D6DEE9" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.28"/>
+<polyline points="0,118 64,150 128,118" fill="none" stroke="#0B1220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.55"/>
+<polyline points="64,150 64,156" fill="none" stroke="#0B1220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polygon points="64,89.2 121.6,118 64,146.8 6.4,118" fill="#1C6F48" opacity="0.5"/>
+<ellipse cx="61.24" cy="105.61" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="59.64,105.61 62.84,105.61 62.84,100.61 59.64,100.61" fill="#69592F"/>
+<polygon points="53.24,101.61 61.24,82.97 62.24,103.61" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="62.24,103.61 61.24,82.97 69.24,101.61" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="59.24,92.03 61.24,84.97" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="84.83" cy="118.39" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="83.23,118.39 86.43,118.39 86.43,113.39 83.23,113.39" fill="#69592F"/>
+<polygon points="76.83,114.39 84.83,94.4 85.83,116.39" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="85.83,116.39 84.83,94.4 92.83,114.39" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="82.83,103.99 84.83,96.4" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="64.9" cy="116.59" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="63.3,116.59 66.5,116.59 66.5,111.59 63.3,111.59" fill="#69592F"/>
+<polygon points="56.9,112.59 64.9,94.81 65.9,114.59" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="65.9,114.59 64.9,94.81 72.9,112.59" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="62.9,103.52 64.9,96.81" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="40.85" cy="118.82" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="39.25,118.82 42.45,118.82 42.45,113.82 39.25,113.82" fill="#69592F"/>
+<polygon points="32.85,114.82 40.85,96.72 41.85,116.82" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="41.85,116.82 40.85,96.72 48.85,114.82" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="38.85,105.56 40.85,98.72" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+<ellipse cx="64.14" cy="132.42" rx="6" ry="3" fill="#0B1220" opacity="0.35"/>
+<polygon points="62.54,132.42 65.74,132.42 65.74,127.42 62.54,127.42" fill="#69592F"/>
+<polygon points="56.14,128.42 64.14,110.43 65.14,130.42" fill="#29B065" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="65.14,130.42 64.14,110.43 72.14,128.42" fill="#1E784D" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+<polyline points="62.14,119.23 64.14,112.43" fill="none" stroke="#71D3A1" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round" opacity="0.7"/>
+</svg>

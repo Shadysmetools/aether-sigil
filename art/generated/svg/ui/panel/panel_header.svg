@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="32" viewBox="0 0 192 32">
+<title>ui/panel/panel_header</title>
+<polygon points="0,16 14,4 178,4 192,16 178,28 14,28" fill="#171E2C" stroke="#0B1220" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="0,16 14,4 178,4 192,16 178,28 14,28 0,16" fill="none" stroke="#F6C445" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="96,2 103,9 96,16 89,9" fill="#22D3EE" stroke="#0B1220" stroke-width="1" stroke-linejoin="round"/>
+</svg>
