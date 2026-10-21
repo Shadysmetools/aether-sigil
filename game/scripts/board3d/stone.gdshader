@@ -13,6 +13,7 @@ uniform vec4 accent_color : source_color = vec4(0.13, 0.83, 0.93, 1.0);
 uniform vec4 player_color : source_color = vec4(0.13, 0.83, 0.93, 1.0);
 uniform vec4 enemy_color : source_color = vec4(1.0, 0.42, 0.24, 1.0);
 uniform vec4 haze_color : source_color = vec4(0.70, 0.80, 0.95, 1.0);
+uniform float cloud_shadow = 0.26;
 
 varying vec3 wp;
 varying vec3 wn;
@@ -145,6 +146,9 @@ void fragment() {
 	if (top) {
 		col = mix(col, vec3(0.92, 0.96, 1.0), snow_amount * smoothstep(0.38, 0.62, fbm3(wp.xz * 2.2 + 9.0)));
 	}
+	// cloud shadows drifting over the island (slow, soft)
+	float cs = smoothstep(0.45, 0.72, fbm3(wp.xz * 0.11 + TIME * vec2(0.032, 0.014)));
+	col *= 1.0 - cloud_shadow * cs * (top ? 1.0 : 0.6);
 	float haze = clamp((-wp.y - 0.8) / 7.5, 0.0, 1.0);
 	col = mix(col, haze_color.rgb, haze * 0.75);
 	ALBEDO = col;

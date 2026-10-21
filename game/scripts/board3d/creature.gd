@@ -48,22 +48,42 @@ static func plan_for(name: String, role: String) -> Array:
 
 
 ## {mesh, height, hover} for a plan/variant in an element family, eyes in the team colour.
-static func build(plan: String, variant: String, family: String, team: int) -> Dictionary:
-	var key := "%s|%s|%s|%d" % [plan, variant, family, team]
+## seed >= 0 (a monster's own id hash) adds that monster's personal features on top of the body
+## plan: horns / crest / back spikes / tail crystal / shoulder gems / crown, and accent hue.
+static func build(plan: String, variant: String, family: String, team: int, seed := -1) -> Dictionary:
+	var key := "%s|%s|%s|%d|%d" % [plan, variant, family, team, seed]
 	if not _cache.has(key):
 		var c = load("res://scripts/board3d/creature.gd").new()
-		_cache[key] = c._make(plan, variant, family, team)
+		_cache[key] = c._make(plan, variant, family, team, seed)
 	return _cache[key]
 
 
-func _make(plan: String, variant: String, family: String, team: int) -> Dictionary:
+## Personal features a seed gives (names, for tests and the report).
+const EXTRAS := ["horns", "crest", "spikes", "tail_gem", "shoulder_gems", "crown"]
+
+
+## Which EXTRAS a seed picks (first always, second when the seed says so).
+static func extras_for(seed: int) -> Array:
+	if seed < 0:
+		return []
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed
+	var a := rng.randi() % EXTRAS.size()
+	var out := [EXTRAS[a]]
+	if rng.randf() < 0.55:
+		out.append(EXTRAS[(a + 1 + rng.randi() % (EXTRAS.size() - 1)) % EXTRAS.size()])
+	return out
+
+
+func _make(plan: String, variant: String, family: String, team: int, seed := -1) -> Dictionary:
 	k = Kit.new()
 	var fc := Palette.family(family)
+	var hue_r := 0.0 if seed < 0 else float(seed % 1000) / 1000.0
 	main = fc
 	if main.get_luminance() < 0.25:
 		main = main.lightened(0.2)
-	sec = fc.lerp(Palette.SOFT_SILVER, 0.55)
-	acc = Palette.SIGIL_GOLD.lerp(fc, 0.15)
+	sec = fc.lerp(Palette.SOFT_SILVER, 0.4 + 0.3 * hue_r)
+	acc = Palette.SIGIL_GOLD.lerp(fc, 0.1 + 0.4 * hue_r)
 	dark = Palette.MIDNIGHT_NAVY.lerp(fc, 0.35)
 	eye = Palette.side(team).lerp(Color.WHITE, 0.25)
 	glow = fc.lerp(Color.WHITE, 0.3)
@@ -80,6 +100,8 @@ func _make(plan: String, variant: String, family: String, team: int) -> Dictiona
 			hover = 0.2
 		"hopper": height = _hopper()
 		_: height = _beast("mane")
+	if seed >= 0:
+		_extras(seed)
 	return {"mesh": k.commit(), "height": height, "hover": hover, "verts": k.vertex_count()}
 
 
@@ -416,3 +438,45 @@ func _hopper() -> float:
 	_ell(Vector3(-0.22, 0.3, 0), Vector3(0.06, 0.06, 0.06), sec)
 	_gem(head + Vector3(0.04, 0.12, 0), 0.025, glow)
 	return 0.75
+
+
+## Seeded personal features, anchored on the body's own extreme points (crown = highest vertex,
+## tail = rear-most), so they sit right on any body plan.
+func _extras(seed: int) -> void:
+	var top := Vector3(0, -9, 0)
+	var rear := Vector3(9, 0, 0)
+	var y_max := 0.0
+	for v in k.verts:
+		if v.y > top.y:
+			top = v
+		if v.x < rear.x and v.y > 0.15:
+			rear = v
+		y_max = maxf(y_max, v.y)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed * 31 + 7
+	var crown := top - Vector3(0.0, 0.03, 0.0)
+	for e in extras_for(seed):
+		match e:
+			"horns":
+				var ln := 0.1 + 0.09 * rng.randf()
+				for s in [-1, 1]:
+					_cone(crown + Vector3(-0.01, -0.02, s * 0.05), Vector3(-0.35 + rng.randf() * 0.2, 1, s * 0.55), ln, 0.026, acc, 0.25)
+			"crest":
+				for i in 3:
+					var a := crown + Vector3(-0.05 - i * 0.07, -0.02 - i * 0.025, 0)
+					_tri2(a, a + Vector3(-0.08, 0.0, 0), a + Vector3(-0.02, 0.1 - i * 0.02, 0), glow, 0.5)
+			"spikes":
+				for i in 4:
+					var f := (i + 1) / 5.0
+					var q := crown.lerp(rear + Vector3(0, 0.05, 0), f)
+					_cone(q, Vector3(-0.4, 1, 0), 0.07 - i * 0.008, 0.025, acc.lerp(dark, 0.3), 0.15)
+			"tail_gem":
+				_gem(rear + Vector3(-0.02, 0.02, 0), 0.035, glow, Vector3(-1, 0.6, 0))
+			"shoulder_gems":
+				var sh := Vector3(lerpf(rear.x, crown.x, 0.6), y_max * 0.62, 0)
+				for s in [-1, 1]:
+					_gem(sh + Vector3(0, 0, s * 0.13), 0.026, glow, Vector3(0, 1, s * 0.6))
+			"crown":
+				for i in 5:
+					var a := TAU * i / 5.0
+					_gem(crown + Vector3(cos(a) * 0.05, 0.05, sin(a) * 0.05), 0.016, Palette.SIGIL_GOLD.lerp(glow, 0.4), Vector3(cos(a) * 0.3, 1, sin(a) * 0.3))

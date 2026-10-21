@@ -121,6 +121,46 @@ static func shard() -> ShaderMaterial:
 	return _cache["shard"]
 
 
+## Statue plinth: vertex-coloured stone, the team rim band (UV2.y) glows softly.
+static func plinth() -> ShaderMaterial:
+	if not _cache.has("plinth"):
+		var sh := Shader.new()
+		sh.code = """shader_type spatial;
+render_mode diffuse_lambert_wrap;
+void fragment() {
+	ALBEDO = COLOR.rgb;
+	ROUGHNESS = 0.85;
+	EMISSION = COLOR.rgb * UV2.y * 0.9;
+}
+"""
+		_cache["plinth"] = _sm(sh)
+	return _cache["plinth"]
+
+
+## Lit stone debris / rubble (particle colour = albedo).
+static func debris() -> StandardMaterial3D:
+	if not _cache.has("debris"):
+		var m := StandardMaterial3D.new()
+		m.vertex_color_use_as_albedo = true
+		m.roughness = 0.95
+		_cache["debris"] = m
+	return _cache["debris"]
+
+
+## Unshaded additive glow in one colour (VFX geometry: bolts, beams, pillars). Not cached: callers
+## fade albedo_color.a per effect.
+static func glow(col: Color, energy := 1.6) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	m.cull_mode = BaseMaterial3D.CULL_DISABLED
+	m.albedo_color = Color(col.r * energy, col.g * energy, col.b * energy, 1.0)
+	m.disable_receive_shadows = true
+	m.render_priority = 3
+	return m
+
+
 # ---------------------------------------------------------------- procedural textures
 
 ## Soft round dot (particles).

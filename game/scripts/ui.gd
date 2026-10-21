@@ -19,6 +19,7 @@ const UIArt = preload("res://scripts/ui_art.gd")
 const Assets = preload("res://scripts/assets.gd")
 const SkyBackdrop = preload("res://scripts/sky_backdrop.gd")
 const Summon = preload("res://scripts/summon.gd")  # Vessels / SP / Bond (pre-match section at the end)
+const Cinematic = preload("res://scripts/cinematic.gd")
 
 signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
 signal fused(uid: String)
@@ -129,6 +130,7 @@ var fusion_buttons: Dictionary = {}
 var fusion_preview_label: Label
 var fusion_confirm: Button
 var last_xp_text := ""
+var last_levelups: Array = []    ## [{name, tex, level}] for the victory cinematic
 var squad_buttons: Dictionary = {}
 var squad_pick: Array = []
 var squad_label: Label
@@ -492,11 +494,16 @@ func show_evolution(msg: String = "") -> void:
 
 
 func _on_evolve(uid: String) -> void:
+	var before := progress.get_inst(uid).duplicate()
 	var line := progress.evolve(uid)
 	if line == "":
 		return
 	evolved.emit(uid, line)
 	show_evolution(line)
+	var after := progress.get_inst(uid)
+	Cinematic.play(self, "evolution", {"from_tex": Cinematic.art(str(before.get("form_id", ""))), "to_tex": Cinematic.art(str(after.get("form_id", ""))),
+		"from_name": str(before.get("name", "")), "to_name": str(after.get("name", "")),
+		"family": str(Data.monster(str(after.get("form_id", ""))).get("element_family", "Light"))})
 	var tw := create_tween()  # evolution animation hook: a gold flash on the screen
 	evo_screen.modulate = Palette.SIGIL_GOLD
 	tw.tween_property(evo_screen, "modulate", Color.WHITE, 0.6)
@@ -563,10 +570,16 @@ func _refresh_fusion() -> void:
 func _on_fusion_confirm() -> void:
 	if fusion_pick.size() != 2:
 		return
+	var pa := progress.get_inst(fusion_pick[0]).duplicate()
+	var pb := progress.get_inst(fusion_pick[1]).duplicate()
 	var res := progress.fuse(fusion_pick[0], fusion_pick[1])
 	if res.has("error"):
 		fusion_preview_label.text = "Can't fuse: %s" % res.error
 		return
+	var rid := str(res.get("form_id", ""))
+	Cinematic.play(self, "fusion", {"a_tex": Cinematic.art(str(pa.get("form_id", ""))), "b_tex": Cinematic.art(str(pb.get("form_id", ""))),
+		"to_tex": Cinematic.art(rid), "a_name": str(pa.get("name", "")), "b_name": str(pb.get("name", "")), "to_name": str(res.get("name", "")),
+		"family": str(Data.monster(rid).get("element_family", "Arcane")) if rid != "" else "Arcane"})
 	fused.emit(str(res.uid))
 	show_fusion()
 	fusion_preview_label.text = Story.template("new_monster").format({"name": res.name})
@@ -852,7 +865,11 @@ func _layout_board() -> void:
 	var band_top := top_h + 10.0 + maxf(turn_panel.get_combined_minimum_size().y, side_panel.get_combined_minimum_size().y) + 10.0
 	var band_bottom := vp.y - bottom_panel.get_combined_minimum_size().y - 16.0 - 10.0
 	if board.has_method("fit_band"):
-		board.fit_band(Rect2(16.0, band_top, vp.x - 32.0, band_bottom - band_top))
+		# the far corner of the island may rise into the gap between the two side columns
+		var gl := turn_panel.get_global_rect()
+		var gr := side_panel.get_global_rect()
+		var gap := Rect2(gl.end.x + 8.0, top_h + 10.0, gr.position.x - gl.end.x - 16.0, band_top - top_h - 10.0)
+		board.fit_band(Rect2(16.0, band_top, vp.x - 32.0, band_bottom - band_top), gap)
 		return
 	var bs: Vector2 = board.board_size()
 	var fit := minf((vp.x - 32.0) / bs.x, (band_bottom - band_top) / bs.y)
@@ -1028,6 +1045,7 @@ func _show_result() -> void:
 		result_title.text = "Victory"
 		result_sub.text = "%s. Stars %d/3. %s" % [how.get(state.win_reason, state.win_reason), last_stars, ("Next: " + nxt) if nxt != "" else "All 120 stages cleared!"]
 		next_button.visible = nxt != ""
+		Cinematic.play(self, "victory", {"stars": last_stars, "levelups": last_levelups.slice(0, 4)})
 	else:
 		result_title.text = "Defeat" if state.winner == E else "Stalemate"
 		var lost := {"symbol": "Your Sigil fell", "relics": "The enemy secured the relic nodes", "rout": "Routed: no monster or %s left" % Summon.term("vessel"), "time": "Round limit: the enemy Sigil held more HP"}
@@ -1207,6 +1225,9 @@ func _run_ai() -> void:
 			return
 		AI.take_activation(state, E, str(state.stage.opponent_style))
 		_refresh()
+		await _anim_wait()
+		if not ai_running or not board.visible:
+			return
 		_check_barks()
 		if _midbattle_due():
 			ai_running = false
@@ -1223,17 +1244,35 @@ func _midbattle_due() -> bool:
 
 func _show_midbattle() -> void:
 	midbattle_shown = true
+	await _anim_wait()
 	show_dialogue([str(state.stage.dialogue.get("midbattle", ""))], _continue)
+
+
+## Waits (up to `limit` s) for the 3D board's animation queue to drain. Returns at once on the 2D
+## board and headless (the queue is instant there), so it never blocks game logic in tests.
+func _anim_wait(limit := 8.0) -> void:
+	if not board.has_method("anim_busy"):
+		return
+	var t0 := Time.get_ticks_msec()
+	while board.visible and board.anim_busy() and Time.get_ticks_msec() - t0 < int(limit * 1000.0):
+		await get_tree().process_frame
 
 
 ## victory / defeat / rare_drop / post_boss / finale / epilogue.
 func _end_battle() -> void:
+	var was_on := board.visible
+	await _anim_wait()
+	if was_on and not board.visible:
+		return   # the player left the battle while the last blows played
 	_refresh()
 	var won := state.winner == P
 	var gains := progress.award_battle(state, won)
 	var parts := []
+	last_levelups = []
 	for uid in gains:
 		var inst := progress.get_inst(uid)
+		if gains[uid].levels > 0:
+			last_levelups.append({"name": str(inst.name), "level": int(inst.level), "tex": Cinematic.art(str(inst.get("form_id", "")))})
 		parts.append("%s +%d XP%s" % [inst.name, gains[uid].xp, (" (Lv%d)" % inst.level) if gains[uid].levels > 0 else ""])
 	last_xp_text = ", ".join(parts)
 	var rival := str(state.stage.opponent)
@@ -1345,6 +1384,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var picked: Variant = board.handle_input(event)
 		if picked != null and (_my_turn() or placing):
 			_on_tile(picked)
+		elif picked != null and board.has_method("skip_anim"):
+			board.skip_anim()   # tap while the rival acts: skip the animation playing now
 		return
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 		return

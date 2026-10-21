@@ -253,6 +253,7 @@ func build(p_state, p_theme_name: String, p_haze: Color) -> Node3D:
 			if K.vertex_count() + W.vertex_count() + G.vertex_count() > before:
 				stats.built[type] = true
 	_rim(K, W, F, grass, vines)
+	_dress(K, vines)
 	_underside(K, vines)
 	_distant(K)
 	_add_mesh(K, _stone_mat, "Stone", true)
@@ -459,6 +460,9 @@ func _obstacle(K: Kit, c: Vector2i, p: Vector3, t: float) -> void:
 			K.box(Vector3(-0.07, -0.08, -0.09), Vector3(0.07, 0.08, 0.09), sc.lightened(0.04), uv)
 			K.xf = Transform3D.IDENTITY
 		_count("arch")
+	elif roll < 0.88:
+		_guardian_statue(K, o, sc, c)
+		_count("statue")
 	else:
 		_column(K, o, 0.25 + 0.2 * _h(c, 18), false, sc, uv, _h(c, 19))
 		K.xf = Transform3D(Basis(Vector3(0, 1, 0), _h(c, 20) * TAU) * Basis(Vector3(0, 0, 1), PI / 2), o + Vector3(0.12, 0.13, 0.18))
@@ -466,6 +470,97 @@ func _obstacle(K: Kit, c: Vector2i, p: Vector3, t: float) -> void:
 		K.xf = Transform3D.IDENTITY
 		_rubble(K, o, 5, sc, c)
 		_count("rubble")
+
+
+## A weathered lion guardian on a plinth (set dressing on blocked tiles; never a unit).
+func _guardian_statue(K: Kit, o: Vector3, sc: Color, c: Vector2i) -> void:
+	var uv := Vector2(K_STONE, 0.9)
+	var face := _h(c, 21) * TAU
+	K.box(o + Vector3(-0.26, 0, -0.26), o + Vector3(0.26, 0.16, 0.26), sc.darkened(0.08), uv)
+	K.xf = Transform3D(Basis(Vector3.UP, face), o + Vector3(0, 0.16, 0))
+	K.ellipsoid(0.2, 0.14, 0.12, sc.lightened(0.05), uv, 5, 8)
+	K.xf = Transform3D(Basis(Vector3.UP, face), o + Vector3(0, 0.16, 0) + Basis(Vector3.UP, face) * Vector3(0.16, 0.16, 0))
+	K.ellipsoid(0.11, 0.12, 0.11, sc.lightened(0.1), uv, 5, 8)
+	K.cylinder(0.15, 0.08, -0.06, 0.06, 7, sc, uv)   # mane ruff
+	K.xf = Transform3D.IDENTITY
+	_count("guardian")
+
+
+## Braziers with live fire on a few blocked tiles, fallen columns on the near rim: set dressing in
+## the play area that never covers a walkable tile (picking is against tile boxes, unaffected).
+func _dress(K: Kit, vines: Array) -> void:
+	var blocked: Array = []
+	for y in GameState.SIZE:
+		for x in GameState.SIZE:
+			var c := Vector2i(x, y)
+			if BLOCKS.has(state.tile_type(c)):
+				blocked.append(c)
+	blocked.sort_custom(func(a, b): return _h(a, 700) < _h(b, 700))
+	for i in mini(3, blocked.size()):
+		var c: Vector2i = blocked[i]
+		var p := cell_pos(c) + Vector3(0, top_y(state.tile_type(c)), 0)
+		var corner := Vector3(0.3 if _h(c, 701) < 0.5 else -0.3, 0, 0.3 if _h(c, 702) < 0.5 else -0.3)
+		_brazier(K, p + corner)
+		# vines climbing the blocked tile's faces
+		for k in 4:
+			_vine_on_face(vines, cell_pos(c), k, top_y(state.tile_type(c)) + 0.4, 0.5)
+	var n := GameState.SIZE
+	for c in _rim_top:
+		if _rim_wet.has(c) or _h(c, 710) > 0.3:
+			continue
+		var near: bool = c.y >= n or c.x < 0     # the sides nearest the default camera stay low
+		var t: float = _rim_top[c]
+		var p := cell_pos(c) + Vector3(0, t, 0)
+		var col := _lit(Color(theme.stone).lerp(theme.cliff, 0.2), 0.95)
+		var r := 0.1 if near else 0.15
+		K.xf = Transform3D(Basis(Vector3.UP, _h(c, 711) * PI) * Basis(Vector3(0, 0, 1), PI / 2), p + Vector3(0, r, 0))
+		K.cylinder(r, r, -0.32, 0.32, 8, col, Vector2(K_STONE, 0.9))
+		K.xf = Transform3D.IDENTITY
+		_count("fallen_column")
+
+
+func _brazier(K: Kit, o: Vector3) -> void:
+	var iron := _lit(Palette.MIDNIGHT_NAVY.lerp(Palette.SIGIL_GOLD, 0.35), 0.9)
+	for i in 3:
+		var a := TAU * i / 3.0
+		K.xf = Transform3D(Basis(Vector3(cos(a + PI / 2), 0, sin(a + PI / 2)), 0.18), o + Vector3(cos(a) * 0.07, 0, sin(a) * 0.07))
+		K.cylinder(0.018, 0.014, 0.0, 0.34, 4, iron, Vector2(K_METAL, 0.0))
+	K.xf = Transform3D(Basis(), o + Vector3(0, 0.32, 0))
+	K.cylinder(0.08, 0.15, 0.0, 0.09, 8, _lit(Palette.SIGIL_GOLD, 0.75), Vector2(K_GOLD, 0.0))
+	K.xf = Transform3D.IDENTITY
+	var fire := CPUParticles3D.new()
+	fire.name = "BrazierFire"
+	var q := QuadMesh.new()
+	q.size = Vector2(0.13, 0.13)
+	fire.mesh = q
+	fire.material_override = Mats.particle()
+	fire.amount = 16
+	fire.lifetime = 0.7
+	fire.emission_shape = CPUParticles3D.EMISSION_SHAPE_SPHERE
+	fire.emission_sphere_radius = 0.06
+	fire.direction = Vector3.UP
+	fire.spread = 12.0
+	fire.initial_velocity_min = 0.25
+	fire.initial_velocity_max = 0.5
+	fire.gravity = Vector3(0, 0.8, 0)
+	fire.scale_amount_min = 0.7
+	fire.scale_amount_max = 1.3
+	var g := Gradient.new()
+	g.set_color(0, Color(Palette.SIGIL_GOLD.lerp(Color.WHITE, 0.4), 0.95))
+	g.set_color(1, Color(Palette.EMBER.darkened(0.3), 0.0))
+	g.add_point(0.45, Color(Palette.EMBER, 0.8))
+	fire.color_ramp = g
+	fire.position = o + Vector3(0, 0.43, 0)
+	fire.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(fire)
+	var glow := MeshInstance3D.new()
+	glow.mesh = QuadMesh.new()
+	glow.material_override = Mats.halo(Palette.EMBER.lerp(Palette.SIGIL_GOLD, 0.4), 0.7)
+	glow.position = o + Vector3(0, 0.5, 0)
+	glow.scale = Vector3.ONE * 0.9
+	glow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	root.add_child(glow)
+	_count("brazier")
 
 
 func _count(k: String) -> void:
