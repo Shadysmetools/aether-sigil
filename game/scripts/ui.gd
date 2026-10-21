@@ -20,6 +20,14 @@ const Assets = preload("res://scripts/assets.gd")
 const SkyBackdrop = preload("res://scripts/sky_backdrop.gd")
 const Summon = preload("res://scripts/summon.gd")  # Vessels / SP / Bond (pre-match section at the end)
 const Cinematic = preload("res://scripts/cinematic.gd")
+# Meta screens (title hub, compendium, cards): scripts/ui/. The section "meta screens" below wires them.
+const MonsterCard = preload("res://scripts/ui/monster_card.gd")
+const Kit = preload("res://scripts/ui/menu_kit.gd")
+const Widgets = preload("res://scripts/ui/squad_widgets.gd")
+const TitleHub = preload("res://scripts/ui/title_hub.gd")
+const CollectionScreen = preload("res://scripts/ui/collection_screen.gd")
+const SettingsScreen = preload("res://scripts/ui/settings_screen.gd")
+const CardDetail = preload("res://scripts/ui/card_detail.gd")
 
 signal evolved(uid: String, line: String)   ## hook for evolution dialogue/animation
 signal fused(uid: String)
@@ -119,12 +127,12 @@ var bark_label: Label
 var barks: Dictionary = {}
 var last_stars := 0
 var squad_screen: Control
-var squad_list: VBoxContainer
+var squad_list: Container
 var evo_screen: Control
 var evo_list: VBoxContainer
 var evo_label: Label
 var fusion_screen: Control
-var fusion_list: VBoxContainer
+var fusion_list: Container
 var fusion_pick: Array = []
 var fusion_buttons: Dictionary = {}
 var fusion_preview_label: Label
@@ -162,13 +170,23 @@ var _type_tween: Tween
 # Pre-match (Vessels): draft + placement. See the section at the end of this file.
 var placing := false
 var draft_screen: Control
-var draft_list: VBoxContainer
+var draft_list: Container
 var draft_label: Label
 var draft_confirm: Button
 var draft_buttons: Dictionary = {}
 var draft_pick: Array = []
 var draft_stage := ""
 var _break_seen: Dictionary = {}
+# Meta screens (scripts/ui/): hub + world map share select_screen.
+var hub: Control                         ## title_hub.gd (main menu)
+var map_view: Control                    ## the world map inside select_screen
+var collection_screen: Control           ## collection_screen.gd
+var settings_screen: Control             ## settings_screen.gd
+var card_detail: Control                 ## card_detail.gd overlay
+var squad_slots: HBoxContainer           ## squad_widgets.SlotStrip
+var draft_slots: HBoxContainer
+var draft_bond_bar: Control              ## squad_widgets.BondBar
+var fusion_stage: HBoxContainer          ## squad_widgets.FusionStage
 
 
 ## Studio ident + title on a CanvasLayer over the built UI; it swallows input until tapped through.
@@ -213,7 +231,7 @@ func _ready() -> void:
 	_build_ui()
 	get_viewport().size_changed.connect(_layout_board)
 	_play_intro()
-	show_stage_select()
+	show_title_hub()
 
 
 # ---------------------------------------------------------------- widgets
@@ -268,6 +286,7 @@ func _button(text: String, cb: Callable, min_h: float = 96) -> Button:
 	b.add_theme_color_override("icon_disabled_color", Color(0.45, 0.47, 0.55, 0.7))
 	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	b.pressed.connect(cb)
+	Kit.juice(b)  # press scale + ui_tap
 	return b
 
 
@@ -323,16 +342,26 @@ func _build_ui() -> void:
 	_build_hud()
 	_build_dialogue()
 	_build_result()
+	_build_meta_ui()
 
 
 func _build_select() -> void:
-	select_screen = _full(MarginContainer.new())
-	for side in ["left", "right", "top", "bottom"]:
-		select_screen.add_theme_constant_override("margin_" + side, 32)
+	select_screen = _full(Control.new())     # hub (title / main menu) and world map share it
+	select_screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_root.add_child(select_screen)
+	hub = TitleHub.new()
+	hub.progress = progress
+	hub.nav = {"story": show_stage_select, "squad": show_squad_builder, "collection": show_collection,
+		"evolution": show_evolution, "fusion": show_fusion, "settings": show_settings}
+	hub.build()
+	select_screen.add_child(hub)
+	map_view = _full(MarginContainer.new())
+	for side in ["left", "right", "top", "bottom"]:
+		map_view.add_theme_constant_override("margin_" + side, 32)
+	select_screen.add_child(map_view)
 	var vb := VBoxContainer.new()
 	vb.add_theme_constant_override("separation", 14)
-	select_screen.add_child(vb)
+	map_view.add_child(vb)
 	var logo := Assets.ui("logo")  # painted logo slot; else the Cinzel wordmark
 	if logo != null:
 		var lr := TextureRect.new()
@@ -358,9 +387,9 @@ func _build_select() -> void:
 	var meta_row := HBoxContainer.new()
 	meta_row.add_theme_constant_override("separation", 10)
 	vb.add_child(meta_row)
+	meta_row.add_child(_button("Home", show_title_hub, 90))
 	meta_row.add_child(_button("Squad", show_squad_builder, 90))
-	meta_row.add_child(_button("Evolution", show_evolution, 90))
-	meta_row.add_child(_button("Fusion", show_fusion, 90))
+	meta_row.add_child(_button("Collection", show_collection, 90))
 	var hdr := _header("WORLD MAP  -  THE TWELVE TOWERS", FONT - 6)
 	hdr.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	vb.add_child(hdr)
@@ -409,46 +438,46 @@ func _build_select() -> void:
 		tower_art[tid] = art
 		tower_cards[tid] = b
 		grid.add_child(b)
-	vb.add_child(_button("Reset progress", _on_reset_progress, 76))
 
 
 func _build_squad() -> void:
-	squad_screen = _full(MarginContainer.new())
-	for side in ["left", "right", "top", "bottom"]:
-		squad_screen.add_theme_constant_override("margin_" + side, 32)
-	ui_root.add_child(squad_screen)
-	var vb := VBoxContainer.new()
-	vb.add_theme_constant_override("separation", 14)
-	squad_screen.add_child(vb)
-	vb.add_child(_label("BUILD YOUR SQUAD", 56, Palette.SIGIL_GOLD))
-	squad_label = _label("", FONT - 6, Palette.AETHER_CYAN)
-	vb.add_child(squad_label)
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	vb.add_child(scroll)
-	squad_list = VBoxContainer.new()
-	squad_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	squad_list.add_theme_constant_override("separation", 10)
-	scroll.add_child(squad_list)
+	var parts := _meta_screen("BUILD YOUR SQUAD")
+	squad_screen = parts[0]
+	var vb: VBoxContainer = parts[1]
+	squad_label = parts[3]
+	_drop_list(parts)   # the meta list is replaced by the slot strip + card grid
+	squad_slots = Widgets.SlotStrip.new(Data.squad_size())
+	squad_slots.on_slot = _on_squad_toggle
+	vb.add_child(squad_slots)
+	squad_list = Widgets.card_grid(vb)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
 	vb.add_child(row)
-	row.add_child(_button("Back", show_stage_select))
-	squad_confirm = _button("Confirm squad", _on_squad_confirm)
+	row.add_child(Kit.button("Back", show_title_hub, 96, Palette.SOFT_SILVER, "ui_back"))
+	row.add_child(Kit.button("Auto form", _on_squad_auto, 96, Palette.AETHER_CYAN))
+	squad_confirm = Kit.button("Confirm squad", _on_squad_confirm, 96, Palette.SIGIL_GOLD, "ui_confirm")
 	row.add_child(squad_confirm)
-	squad_screen.visible = false
 
 
+## Meta screen shell: Cinzel title (first child, a Label) + gold rule, cyan note, scrolling list.
 func _meta_screen(title: String) -> Array:
-	var screen := _full(MarginContainer.new())
-	for side in ["left", "right", "top", "bottom"]:
-		screen.add_theme_constant_override("margin_" + side, 32)
+	var screen := _full(PanelContainer.new())   # a navy scrim keeps cards readable over the sky art
+	var scrim := StyleBoxFlat.new()
+	scrim.bg_color = Color(Palette.MIDNIGHT_NAVY, 0.86)
+	scrim.set_content_margin_all(32)
+	screen.add_theme_stylebox_override("panel", scrim)
 	ui_root.add_child(screen)
 	var vb := VBoxContainer.new()
-	vb.add_theme_constant_override("separation", 14)
+	vb.add_theme_constant_override("separation", 12)
 	screen.add_child(vb)
-	vb.add_child(_label(title, 56, Palette.SIGIL_GOLD))
+	var tb := Kit.title_block(title)
+	var t: Label = tb.get_child(0)
+	tb.remove_child(t)
+	vb.add_child(t)
+	var rule: Control = tb.get_child(0)
+	tb.remove_child(rule)
+	vb.add_child(rule)
+	tb.free()
 	var note := _label("", FONT - 8, Palette.AETHER_CYAN)
 	vb.add_child(note)
 	var scroll := ScrollContainer.new()
@@ -468,29 +497,27 @@ func _build_evolution() -> void:
 	evo_screen = parts[0]
 	evo_list = parts[2]
 	evo_label = parts[3]
-	parts[1].add_child(_button("Back", show_stage_select, 90))
+	parts[1].add_child(Kit.button("Back", show_title_hub, 96, Palette.SOFT_SILVER, "ui_back"))
 
 
+## Evolution: one row per owned monster (card, its 3-form line with Lv 1/16/36, requirement, Evolve).
 func show_evolution(msg: String = "") -> void:
 	_hide_all()
 	evo_screen.visible = true
-	evo_label.text = msg if msg != "" else "Monsters evolve at Lv%s into the next form of their family." % "/".join(Data.progression().evolution.thresholds.map(func(x): return str(int(x))))
+	Kit.enter(evo_screen)
+	evo_label.text = msg if msg != "" else "Monsters evolve at Lv%s into the next form of their line. Hold a card for details." % "/".join(Data.progression().evolution.thresholds.map(func(x): return str(int(x))))
 	for c in evo_list.get_children():
+		evo_list.remove_child(c)
 		c.queue_free()
-	for inst in progress.roster:
-		var row := _panel()
-		evo_list.add_child(row)
-		var v := VBoxContainer.new()
-		row.add_child(v)
-		v.add_child(_label(_inst_text(inst), SMALL + 2, Palette.TEXT, false))
+	var rows := progress.roster.duplicate()
+	rows.sort_custom(func(a, b): return int(Prog.can_evolve(a) == Prog.OK) > int(Prog.can_evolve(b) == Prog.OK))   # ready first
+	for inst in rows:
 		var why := Prog.can_evolve(inst)
 		var nxt := Prog.next_form(inst)
 		var need := Prog.evolve_level(inst)
 		var req := "Next: %s at Lv%d" % [Data.monster(nxt).name, need] if nxt != "" and need > 0 else ("Final form" if not Prog.is_fused(inst) else "Fused monsters do not evolve")
-		v.add_child(_label(req, SMALL, Palette.SIGIL_GOLD, false))
-		var b := _button("Evolve" if why == Prog.OK else "Evolve (%s)" % why.replace("_", " "), _on_evolve.bind(str(inst.uid)), 76)
-		b.disabled = why != Prog.OK
-		v.add_child(b)
+		var parts := Widgets.evolution_row(inst, why, req, _on_evolve.bind(str(inst.uid)), _open_card_detail)
+		evo_list.add_child(parts[0])
 
 
 func _on_evolve(uid: String) -> void:
@@ -512,32 +539,35 @@ func _on_evolve(uid: String) -> void:
 func _build_fusion() -> void:
 	var parts := _meta_screen("FUSION")
 	fusion_screen = parts[0]
-	fusion_list = parts[2]
 	var vb: VBoxContainer = parts[1]
-	parts[3].text = "Pick 2 monsters (both are consumed). Preview first, then confirm."
+	parts[3].text = "Pick 2 monsters (Lv%d+, both are consumed). Preview first, then confirm." % int(Data.progression().fusion.min_level)
+	_drop_list(parts)
+	fusion_stage = Widgets.FusionStage.new()
+	vb.add_child(fusion_stage)
 	var pnl := _panel(Palette.CRYSTAL_VIOLET)
 	vb.add_child(pnl)
-	fusion_preview_label = _label("", SMALL + 2, Palette.TEXT, false)
+	fusion_preview_label = _label("", SMALL + 4, Palette.TEXT, true)
 	pnl.add_child(fusion_preview_label)
+	fusion_list = Widgets.card_grid(vb)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
 	vb.add_child(row)
-	row.add_child(_button("Back", show_stage_select, 90))
-	fusion_confirm = _button("Confirm fusion", _on_fusion_confirm, 90)
+	row.add_child(Kit.button("Back", show_title_hub, 96, Palette.SOFT_SILVER, "ui_back"))
+	fusion_confirm = Kit.button("Confirm fusion", _on_fusion_confirm, 96, Palette.CRYSTAL_VIOLET, "fusion_merge")
 	row.add_child(fusion_confirm)
 
 
 func show_fusion() -> void:
 	_hide_all()
 	fusion_screen.visible = true
+	Kit.enter(fusion_screen)
 	fusion_pick = []
 	for c in fusion_list.get_children():
+		fusion_list.remove_child(c)
 		c.queue_free()
 	fusion_buttons = {}
 	for inst in progress.roster:
-		var b := _button(_inst_text(inst), _on_fusion_toggle.bind(str(inst.uid)), 100)
-		b.toggle_mode = true
-		b.add_theme_font_size_override("font_size", SMALL + 2)
+		var b := _roster_card(inst, _on_fusion_toggle.bind(str(inst.uid)), false)
 		fusion_buttons[str(inst.uid)] = b
 		fusion_list.add_child(b)
 	_refresh_fusion()
@@ -553,17 +583,26 @@ func _on_fusion_toggle(uid: String) -> void:
 
 ## Preview Fusion: the exact monster Confirm will create.
 func _refresh_fusion() -> void:
+	var F: Dictionary = Data.progression().fusion
 	for uid in fusion_buttons:
 		fusion_buttons[uid].set_pressed_no_signal(fusion_pick.has(uid))
+		var low := int(progress.get_inst(uid).get("level", 0)) < int(F.min_level)
+		fusion_buttons[uid].set_states(false, false, ("NEEDS LV%d" % int(F.min_level)) if low and not fusion_pick.has(uid) else "")
 	fusion_confirm.disabled = true
+	var a := progress.get_inst(fusion_pick[0]) if fusion_pick.size() > 0 else {}
+	var b := progress.get_inst(fusion_pick[1]) if fusion_pick.size() > 1 else {}
 	if fusion_pick.size() < 2:
+		fusion_stage.show_pick(a, b, {})
 		fusion_preview_label.text = "Preview: pick %d more." % (2 - fusion_pick.size())
 		return
 	var res := progress.fusion_preview(fusion_pick[0], fusion_pick[1])
+	fusion_stage.show_pick(a, b, res)
 	if res.has("error"):
 		fusion_preview_label.text = "Can't fuse: %s" % str(res.error).replace("_", " ")
 		return
-	fusion_preview_label.text = "Preview:  %s + %s  ->  %s\n%s" % [res.parent_names[0], res.parent_names[1], res.name, _inst_text(res)]
+	var r := Prog.battle_record(res)
+	fusion_preview_label.text = "Preview:  %s + %s  ->  %s\n%s %s %s  |  %s %d  |  %s + %s" % [res.parent_names[0], res.parent_names[1], res.name,
+		r.rarity, r.element, r.role, Summon.term("bond"), Summon.bond(r), r.ability, res.secondary_ability]
 	fusion_confirm.disabled = false
 
 
@@ -894,12 +933,18 @@ func _hide_all() -> void:
 	evo_screen.visible = false
 	fusion_screen.visible = false
 	tower_screen.visible = false
+	collection_screen.visible = false
+	settings_screen.visible = false
+	card_detail.visible = false
 
 
 ## World map (title screen): 12 towers with lock state, x/10 and stars. Plays the prologue once.
 func show_stage_select() -> void:
 	_hide_all()
 	select_screen.visible = true
+	hub.visible = false
+	map_view.visible = true
+	Kit.enter(map_view)
 	for t in Data.towers():
 		var tid := str(t.tower_id)
 		var b: Button = tower_cards[tid]
@@ -927,13 +972,13 @@ func _inst_text(inst: Dictionary) -> String:
 func show_squad_builder() -> void:
 	_hide_all()
 	squad_screen.visible = true
+	Kit.enter(squad_screen)
 	for c in squad_list.get_children():
+		squad_list.remove_child(c)
 		c.queue_free()
 	squad_buttons = {}
 	for inst in progress.roster:
-		var b := _button(_inst_text(inst), _on_squad_toggle.bind(str(inst.uid)), 110)
-		b.toggle_mode = true
-		b.add_theme_font_size_override("font_size", SMALL + 2)
+		var b := _roster_card(inst, _on_squad_toggle.bind(str(inst.uid)), false)
 		squad_buttons[str(inst.uid)] = b
 		squad_list.add_child(b)
 	squad_pick = progress.squad.duplicate()
@@ -943,8 +988,9 @@ func show_squad_builder() -> void:
 func _refresh_squad() -> void:
 	for id in squad_buttons:
 		squad_buttons[id].set_pressed_no_signal(squad_pick.has(id))
-	squad_label.text = "Choose %d monsters: %d selected" % [Data.squad_size(), squad_pick.size()]
+	squad_label.text = "Choose %d monsters: %d selected. Hold a card for details." % [Data.squad_size(), squad_pick.size()]
 	squad_confirm.disabled = squad_pick.size() != Data.squad_size()
+	squad_slots.set_items(squad_pick.map(func(u): return progress.get_inst(str(u))))
 
 
 func _on_squad_toggle(id: String) -> void:
@@ -958,7 +1004,13 @@ func _on_squad_toggle(id: String) -> void:
 func _on_squad_confirm() -> void:
 	if progress.set_squad(squad_pick):
 		progress.save()
-		show_stage_select()
+		show_title_hub()
+
+
+## Auto form: the strongest squad (progress.auto_squad), shown for confirmation.
+func _on_squad_auto() -> void:
+	squad_pick = progress.auto_squad()
+	_refresh_squad()
 
 
 func start_stage(id: String) -> void:
@@ -1455,14 +1507,29 @@ func _on_tile(c: Vector2i) -> void:
 func _build_draft() -> void:
 	var parts := _meta_screen("CHOOSE YOUR %s" % Summon.term("vessels").to_upper())
 	draft_screen = parts[0]
-	draft_list = parts[2]
 	draft_label = parts[3]
+	var vb: VBoxContainer = parts[1]
+	_drop_list(parts)
+	draft_bond_bar = Widgets.BondBar.new()
+	draft_bond_bar.custom_minimum_size = Vector2(0, 76)
+	vb.add_child(draft_bond_bar)
+	draft_slots = Widgets.SlotStrip.new(Data.squad_size())
+	draft_slots.on_slot = _on_draft_toggle
+	vb.add_child(draft_slots)
+	draft_list = Widgets.card_grid(vb)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 12)
-	parts[1].add_child(row)
-	row.add_child(_button("Back", show_stage_select))
-	draft_confirm = _button("Place %s" % Summon.term("vessels"), _on_draft_confirm)
+	vb.add_child(row)
+	row.add_child(Kit.button("Back", _on_draft_back, 96, Palette.SOFT_SILVER, "ui_back"))
+	draft_confirm = Kit.button("Place %s" % Summon.term("vessels"), _on_draft_confirm, 96, Palette.SIGIL_GOLD, "ui_confirm")
 	row.add_child(draft_confirm)
+
+
+func _on_draft_back() -> void:
+	if current_tower != "":
+		show_tower(current_tower)
+	else:
+		show_stage_select()
 
 
 ## Battle records for the whole owned roster (a draft may include monsters outside the saved squad).
@@ -1482,16 +1549,14 @@ func show_prematch(id: String) -> void:
 	_hide_all()
 	draft_stage = id
 	draft_screen.visible = true
+	Kit.enter(draft_screen)
 	for c in draft_list.get_children():
+		draft_list.remove_child(c)
 		c.queue_free()
 	draft_buttons = {}
-	var recs := _roster_records()
 	for inst in progress.roster:
 		var uid := str(inst.uid)
-		var r: Dictionary = recs[uid]
-		var b := _button("%s\n%s %d   %s %d   %s %d HP" % [_inst_text(inst), Summon.term("bond"), Summon.bond(r), Summon.term("sp"), Summon.crack_cost(r), Summon.term("vessel"), Summon.vessel_hp(r)], _on_draft_toggle.bind(uid), 140)
-		b.toggle_mode = true
-		b.add_theme_font_size_override("font_size", SMALL + 2)
+		var b := _roster_card(inst, _on_draft_toggle.bind(uid), true)
 		draft_buttons[uid] = b
 		draft_list.add_child(b)
 	draft_pick = _default_draft(id)
@@ -1501,19 +1566,34 @@ func show_prematch(id: String) -> void:
 func _refresh_draft() -> void:
 	var st := Data.stage(draft_stage)
 	var recs := _roster_records()
+	var total := Summon.total_bond(draft_pick, recs)
+	var cap := Summon.draft_cap(st)
 	for uid in draft_buttons:
 		draft_buttons[uid].set_pressed_no_signal(draft_pick.has(uid))
+		# unaffordable: adding it would break the cap (or no slot is left)
+		var over: bool = not draft_pick.has(uid) and (total + Summon.bond(recs[uid]) > cap or draft_pick.size() >= Data.squad_size())
+		draft_buttons[uid].set_states(false, over)
 	var why := Summon.draft_check(draft_pick, st, recs)
 	draft_label.text = "%s: %s   |   %s %d / %d   |   %s %d / %d%s" % [draft_stage, str(st.get("name", "")), Summon.term("vessels"), draft_pick.size(), Data.squad_size(),
-		Summon.term("bond"), Summon.total_bond(draft_pick, recs), Summon.draft_cap(st), "" if why == Summon.OK else "   (" + why.replace("_", " ") + ")"]
+		Summon.term("bond"), total, cap, "" if why == Summon.OK else "   (" + why.replace("_", " ") + ")"]
 	draft_confirm.disabled = why != Summon.OK
+	draft_bond_bar.set_values(total, cap, draft_pick.size(), Data.squad_size())
+	draft_slots.set_items(draft_pick.map(func(u): return progress.get_inst(str(u))))
 
 
+## Tap a Vessel card: add it if it fits the Bond cap and a slot is free, else refuse (shake +
+## ui_locked); tap a picked one (or its slot) to drop it. Summon.draft_check stays the gate.
 func _on_draft_toggle(uid: String) -> void:
 	if draft_pick.has(uid):
 		draft_pick.erase(uid)
-	elif draft_pick.size() < Data.squad_size():
-		draft_pick.append(uid)
+	else:
+		var recs := _roster_records()
+		var fits := Summon.total_bond(draft_pick, recs) + Summon.bond(recs[uid]) <= Summon.draft_cap(Data.stage(draft_stage))
+		if draft_pick.size() < Data.squad_size() and fits:
+			draft_pick.append(uid)
+		elif draft_buttons.has(uid):
+			Kit.sfx(draft_buttons[uid], "ui_locked")
+			Kit.shake(draft_buttons[uid])
 	_refresh_draft()
 
 
@@ -1631,3 +1711,73 @@ func _vessel_hooks() -> void:
 	_break_seen[state.last_break.hash()] = true
 	if board.has_method("play_vessel_break"):
 		board.play_vessel_break(state.last_break)
+
+
+# ---------------------------------------------------------------- meta screens (scripts/ui/)
+# Title hub, compendium, settings and the card detail overlay; the card helpers used by the
+# squad / draft / evolution / fusion screens above. Presentation only: picks and rules stay here.
+
+func _build_meta_ui() -> void:
+	collection_screen = CollectionScreen.new()
+	collection_screen.progress = progress
+	collection_screen.on_back = show_title_hub
+	collection_screen.on_open = func(id, owned): card_detail.open_bible(id, owned)
+	collection_screen.build()
+	ui_root.add_child(collection_screen)
+	settings_screen = SettingsScreen.new()
+	settings_screen.audio = get_node_or_null("/root/AudioManager")
+	settings_screen.on_back = show_title_hub
+	settings_screen.on_reset = _on_reset_progress
+	settings_screen.build()
+	ui_root.add_child(settings_screen)
+	card_detail = CardDetail.new()   # last child: over every meta screen
+	ui_root.add_child(card_detail)
+
+
+## Title hub (main menu). Plays the prologue once on a new game.
+func show_title_hub() -> void:
+	_hide_all()
+	select_screen.visible = true
+	map_view.visible = false
+	hub.visible = true
+	hub.refresh()
+	backdrop.set_tower("", "")
+	Kit.enter(hub, 0.0)
+	hub.play_enter()
+	_play_story("prologue", func(): pass)
+
+
+func show_collection() -> void:
+	_hide_all()
+	collection_screen.visible = true
+	collection_screen.open()
+	Kit.enter(collection_screen)
+
+
+func show_settings() -> void:
+	_hide_all()
+	settings_screen.visible = true
+	settings_screen.refresh()
+	Kit.enter(settings_screen)
+
+
+## Detail overlay for a held (long-pressed) card.
+func _open_card_detail(card: Button) -> void:
+	card_detail.open_card(card)
+
+
+## A roster monster as a compact card (toggle; tap -> cb, hold -> details).
+func _roster_card(inst: Dictionary, cb: Callable, costs: bool) -> Button:
+	var c := MonsterCard.new()
+	c.setup_inst(inst, MonsterCard.Variant.COMPACT)
+	c.show_costs = costs
+	c.on_tap(cb)
+	c.long_pressed.connect(_open_card_detail)
+	return c
+
+
+## Removes a _meta_screen's scrolling list (screens that use a card grid instead).
+func _drop_list(parts: Array) -> void:
+	var sc: Control = parts[2].get_parent()
+	sc.get_parent().remove_child(sc)
+	sc.free()

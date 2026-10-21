@@ -42,6 +42,7 @@ run rules  yes --script res://tests/test_rules.gd
 run prog   yes --script res://tests/test_progression.gd
 run story  yes --script res://tests/test_story.gd
 run ui     yes --script res://tests/test_ui_smoke.gd
+run cards  yes --script res://tests/test_ui_cards.gd
 run sim    yes --script res://tests/test_sim.gd
 run intro  yes --script res://tests/test_intro.gd
 run assets yes --script res://tests/test_assets.gd
