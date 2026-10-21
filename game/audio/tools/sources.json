@@ -1,0 +1,157 @@
+{
+ "amb_metal.ogg": [
+  "impact-sounds/Audio/impactMetal_light_000.ogg",
+  "impact-sounds/Audio/impactMetal_light_001.ogg",
+  "impact-sounds/Audio/impactMetal_light_002.ogg",
+  "impact-sounds/Audio/impactMetal_light_003.ogg",
+  "impact-sounds/Audio/impactMetal_light_004.ogg"
+ ],
+ "capsule_node.ogg": [
+  "digital-audio/Audio/powerUp3.ogg"
+ ],
+ "cast_earth.ogg": [
+  "impact-sounds/Audio/impactMining_002.ogg"
+ ],
+ "cast_ice.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_004.ogg"
+ ],
+ "cast_tech.ogg": [
+  "sci-fi-sounds/Audio/laserLarge_002.ogg"
+ ],
+ "cast_wood.ogg": [
+  "impact-sounds/Audio/impactWood_heavy_001.ogg"
+ ],
+ "defend_shield.ogg": [
+  "sci-fi-sounds/Audio/forceField_001.ogg"
+ ],
+ "evolve_burst.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_000.ogg"
+ ],
+ "hit_critical_01.ogg": [
+  "impact-sounds/Audio/impactBell_heavy_000.ogg",
+  "impact-sounds/Audio/impactGlass_heavy_003.ogg",
+  "impact-sounds/Audio/impactPunch_heavy_003.ogg"
+ ],
+ "hit_critical_02.ogg": [
+  "impact-sounds/Audio/impactBell_heavy_001.ogg",
+  "impact-sounds/Audio/impactGlass_heavy_004.ogg",
+  "impact-sounds/Audio/impactPunch_heavy_004.ogg"
+ ],
+ "hit_heavy_01.ogg": [
+  "impact-sounds/Audio/impactPunch_heavy_000.ogg"
+ ],
+ "hit_heavy_02.ogg": [
+  "impact-sounds/Audio/impactPunch_heavy_001.ogg"
+ ],
+ "hit_heavy_03.ogg": [
+  "impact-sounds/Audio/impactPunch_heavy_002.ogg"
+ ],
+ "hit_melee_01.ogg": [
+  "impact-sounds/Audio/impactPunch_medium_000.ogg"
+ ],
+ "hit_melee_02.ogg": [
+  "impact-sounds/Audio/impactPunch_medium_001.ogg"
+ ],
+ "hit_melee_03.ogg": [
+  "impact-sounds/Audio/impactPunch_medium_002.ogg"
+ ],
+ "hit_melee_04.ogg": [
+  "impact-sounds/Audio/impactPunch_medium_003.ogg"
+ ],
+ "hit_melee_05.ogg": [
+  "impact-sounds/Audio/impactPunch_medium_004.ogg"
+ ],
+ "petrify_shatter.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_001.ogg"
+ ],
+ "sigil_damage_01.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_002.ogg"
+ ],
+ "sigil_damage_02.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_003.ogg"
+ ],
+ "statue_crumble.ogg": [
+  "impact-sounds/Audio/impactMining_004.ogg"
+ ],
+ "statue_hop_01.ogg": [
+  "impact-sounds/Audio/impactMining_000.ogg"
+ ],
+ "statue_hop_02.ogg": [
+  "impact-sounds/Audio/impactMining_001.ogg"
+ ],
+ "statue_hop_03.ogg": [
+  "impact-sounds/Audio/impactMining_002.ogg"
+ ],
+ "step_grass_01.ogg": [
+  "impact-sounds/Audio/footstep_grass_000.ogg"
+ ],
+ "step_grass_02.ogg": [
+  "impact-sounds/Audio/footstep_grass_001.ogg"
+ ],
+ "step_grass_03.ogg": [
+  "impact-sounds/Audio/footstep_grass_002.ogg"
+ ],
+ "step_grass_04.ogg": [
+  "impact-sounds/Audio/footstep_grass_003.ogg"
+ ],
+ "step_snow_01.ogg": [
+  "impact-sounds/Audio/footstep_snow_000.ogg"
+ ],
+ "step_snow_02.ogg": [
+  "impact-sounds/Audio/footstep_snow_001.ogg"
+ ],
+ "step_snow_03.ogg": [
+  "impact-sounds/Audio/footstep_snow_002.ogg"
+ ],
+ "step_snow_04.ogg": [
+  "impact-sounds/Audio/footstep_snow_003.ogg"
+ ],
+ "step_stone_01.ogg": [
+  "impact-sounds/Audio/footstep_concrete_000.ogg"
+ ],
+ "step_stone_02.ogg": [
+  "impact-sounds/Audio/footstep_concrete_001.ogg"
+ ],
+ "step_stone_03.ogg": [
+  "impact-sounds/Audio/footstep_concrete_002.ogg"
+ ],
+ "step_stone_04.ogg": [
+  "impact-sounds/Audio/footstep_concrete_003.ogg"
+ ],
+ "stone_chip_hit_01.ogg": [
+  "impact-sounds/Audio/impactMining_001.ogg"
+ ],
+ "stone_chip_hit_02.ogg": [
+  "impact-sounds/Audio/impactMining_002.ogg"
+ ],
+ "stone_chip_hit_03.ogg": [
+  "impact-sounds/Audio/impactMining_003.ogg"
+ ],
+ "stone_chip_hit_04.ogg": [
+  "impact-sounds/Audio/impactMining_004.ogg"
+ ],
+ "summon_burst.ogg": [
+  "impact-sounds/Audio/impactGlass_heavy_002.ogg"
+ ],
+ "ui_back.ogg": [
+  "interface-sounds/Audio/back_002.ogg"
+ ],
+ "ui_confirm.ogg": [
+  "interface-sounds/Audio/confirmation_002.ogg"
+ ],
+ "ui_locked.ogg": [
+  "interface-sounds/Audio/error_004.ogg"
+ ],
+ "ui_page_01.ogg": [
+  "rpg-audio/Audio/bookFlip1.ogg"
+ ],
+ "ui_page_02.ogg": [
+  "rpg-audio/Audio/bookFlip2.ogg"
+ ],
+ "ui_tap_01.ogg": [
+  "interface-sounds/Audio/click_002.ogg"
+ ],
+ "ui_tap_02.ogg": [
+  "interface-sounds/Audio/click_003.ogg"
+ ]
+}

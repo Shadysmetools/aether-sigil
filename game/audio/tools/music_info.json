@@ -1,0 +1,42 @@
+{
+ "title": {
+  "seconds": 96.0,
+  "gain_db": -4.5,
+  "lufs": -16.0,
+  "seam_rms_end": -25.0,
+  "seam_rms_start": -18.8,
+  "seam_jump": 0.003
+ },
+ "battle": {
+  "seconds": 69.82,
+  "gain_db": -6.1,
+  "lufs": -16.0,
+  "seam_rms_end": -17.8,
+  "seam_rms_start": -17.4,
+  "seam_jump": 0.03
+ },
+ "boss": {
+  "seconds": 103.78,
+  "gain_db": -5.3,
+  "lufs": -16.0,
+  "seam_rms_end": -22.4,
+  "seam_rms_start": -13.1,
+  "seam_jump": 0.032
+ },
+ "victory": {
+  "seconds": 67.76,
+  "gain_db": -4.3,
+  "lufs": -16.0,
+  "seam_rms_end": -34.2,
+  "seam_rms_start": -15.7,
+  "seam_jump": 0.002
+ },
+ "defeat": {
+  "seconds": 60.0,
+  "gain_db": -4.7,
+  "lufs": -16.0,
+  "seam_rms_end": -29.4,
+  "seam_rms_start": -12.9,
+  "seam_jump": 0.001
+ }
+}

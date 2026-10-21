@@ -1,0 +1,5 @@
+# Re-fetchable / regenerable - never commit third-party archives or API caches
+_downloads/
+tools/_eleven_cache/
+tools/eleven_out/
+voices/_cache/
