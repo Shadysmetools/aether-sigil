@@ -1,0 +1,616 @@
+{
+ "note": "Original score rendered locally with ACE-Step v1-3.5B by tools/music_acestep.py (instrumental prompts describing original styles; no artist, composer, game or franchise names).",
+ "checked": "2026-10-21",
+ "tracks": {
+  "T01_explore": {
+   "origin": "ace-step",
+   "local": "gen/T01_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 883120813,
+   "prompt": "fantasy anime game soundtrack, pastoral fantasy orchestral, wooden flute, celtic harp, plucked strings, hand drums, warm forest strings, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T01_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T01_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1569469387,
+   "prompt": "fantasy anime game soundtrack, pastoral fantasy orchestral, wooden flute, celtic harp, plucked strings, hand drums, warm forest strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T01_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T01_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1297075825,
+   "prompt": "fantasy anime game soundtrack, pastoral fantasy orchestral, wooden flute, celtic harp, plucked strings, hand drums, warm forest strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T01_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T01_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1011662567,
+   "prompt": "fantasy anime game soundtrack, pastoral fantasy orchestral, wooden flute, celtic harp, plucked strings, hand drums, warm forest strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T01_boss": {
+   "origin": "ace-step",
+   "local": "gen/T01_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1995616819,
+   "prompt": "fantasy anime game soundtrack, pastoral fantasy orchestral, wooden flute, celtic harp, plucked strings, hand drums, warm forest strings, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T02_explore": {
+   "origin": "ace-step",
+   "local": "gen/T02_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 455097960,
+   "prompt": "fantasy anime game soundtrack, heroic fantasy orchestral, taiko drums, bold brass, driving low strings, fiery, anvil hits, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T02_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T02_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1065743560,
+   "prompt": "fantasy anime game soundtrack, heroic fantasy orchestral, taiko drums, bold brass, driving low strings, fiery, anvil hits, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T02_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T02_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 800250226,
+   "prompt": "fantasy anime game soundtrack, heroic fantasy orchestral, taiko drums, bold brass, driving low strings, fiery, anvil hits, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T02_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T02_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1488316900,
+   "prompt": "fantasy anime game soundtrack, heroic fantasy orchestral, taiko drums, bold brass, driving low strings, fiery, anvil hits, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T02_boss": {
+   "origin": "ace-step",
+   "local": "gen/T02_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 33265821,
+   "prompt": "fantasy anime game soundtrack, heroic fantasy orchestral, taiko drums, bold brass, driving low strings, fiery, anvil hits, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T03_explore": {
+   "origin": "ace-step",
+   "local": "gen/T03_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 234435115,
+   "prompt": "fantasy anime game soundtrack, flowing fantasy orchestral, harp arpeggios, marimba, glass bells, legato strings, gentle water percussion, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T03_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T03_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1501160438,
+   "prompt": "fantasy anime game soundtrack, flowing fantasy orchestral, harp arpeggios, marimba, glass bells, legato strings, gentle water percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T03_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T03_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1228611148,
+   "prompt": "fantasy anime game soundtrack, flowing fantasy orchestral, harp arpeggios, marimba, glass bells, legato strings, gentle water percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T03_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T03_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1078062810,
+   "prompt": "fantasy anime game soundtrack, flowing fantasy orchestral, harp arpeggios, marimba, glass bells, legato strings, gentle water percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T03_boss": {
+   "origin": "ace-step",
+   "local": "gen/T03_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 993661752,
+   "prompt": "fantasy anime game soundtrack, flowing fantasy orchestral, harp arpeggios, marimba, glass bells, legato strings, gentle water percussion, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T04_explore": {
+   "origin": "ace-step",
+   "local": "gen/T04_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1780094946,
+   "prompt": "fantasy anime game soundtrack, crystalline winter orchestral, celesta, glockenspiel, airy synth pad, sparse pizzicato strings, cold, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T04_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T04_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1148216463,
+   "prompt": "fantasy anime game soundtrack, crystalline winter orchestral, celesta, glockenspiel, airy synth pad, sparse pizzicato strings, cold, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T04_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T04_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 581740853,
+   "prompt": "fantasy anime game soundtrack, crystalline winter orchestral, celesta, glockenspiel, airy synth pad, sparse pizzicato strings, cold, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T04_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T04_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1437309347,
+   "prompt": "fantasy anime game soundtrack, crystalline winter orchestral, celesta, glockenspiel, airy synth pad, sparse pizzicato strings, cold, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T04_boss": {
+   "origin": "ace-step",
+   "local": "gen/T04_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 641672064,
+   "prompt": "fantasy anime game soundtrack, crystalline winter orchestral, celesta, glockenspiel, airy synth pad, sparse pizzicato strings, cold, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T05_explore": {
+   "origin": "ace-step",
+   "local": "gen/T05_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 130652065,
+   "prompt": "fantasy anime game soundtrack, industrial fantasy orchestral, clockwork percussion, metallic hits, staccato strings, low brass, steampunk, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T05_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T05_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1416074161,
+   "prompt": "fantasy anime game soundtrack, industrial fantasy orchestral, clockwork percussion, metallic hits, staccato strings, low brass, steampunk, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T05_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T05_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1446587915,
+   "prompt": "fantasy anime game soundtrack, industrial fantasy orchestral, clockwork percussion, metallic hits, staccato strings, low brass, steampunk, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T05_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T05_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1127505565,
+   "prompt": "fantasy anime game soundtrack, industrial fantasy orchestral, clockwork percussion, metallic hits, staccato strings, low brass, steampunk, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T05_boss": {
+   "origin": "ace-step",
+   "local": "gen/T05_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1982749733,
+   "prompt": "fantasy anime game soundtrack, industrial fantasy orchestral, clockwork percussion, metallic hits, staccato strings, low brass, steampunk, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T06_explore": {
+   "origin": "ace-step",
+   "local": "gen/T06_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1485041508,
+   "prompt": "fantasy anime game soundtrack, soaring fantasy orchestral, fast string ostinato, tin whistle, timpani rolls, wind, thunder drums, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T06_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T06_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1209701554,
+   "prompt": "fantasy anime game soundtrack, soaring fantasy orchestral, fast string ostinato, tin whistle, timpani rolls, wind, thunder drums, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T06_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T06_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 643397896,
+   "prompt": "fantasy anime game soundtrack, soaring fantasy orchestral, fast string ostinato, tin whistle, timpani rolls, wind, thunder drums, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T06_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T06_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1365133726,
+   "prompt": "fantasy anime game soundtrack, soaring fantasy orchestral, fast string ostinato, tin whistle, timpani rolls, wind, thunder drums, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T06_boss": {
+   "origin": "ace-step",
+   "local": "gen/T06_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1811382923,
+   "prompt": "fantasy anime game soundtrack, soaring fantasy orchestral, fast string ostinato, tin whistle, timpani rolls, wind, thunder drums, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T07_explore": {
+   "origin": "ace-step",
+   "local": "gen/T07_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1636631335,
+   "prompt": "fantasy anime game soundtrack, dark fantasy orchestral, minor key, pipe organ, tremolo strings, low drones, ominous percussion, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T07_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T07_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1351762828,
+   "prompt": "fantasy anime game soundtrack, dark fantasy orchestral, minor key, pipe organ, tremolo strings, low drones, ominous percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T07_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T07_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1382383158,
+   "prompt": "fantasy anime game soundtrack, dark fantasy orchestral, minor key, pipe organ, tremolo strings, low drones, ominous percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T07_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T07_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1197903520,
+   "prompt": "fantasy anime game soundtrack, dark fantasy orchestral, minor key, pipe organ, tremolo strings, low drones, ominous percussion, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T07_boss": {
+   "origin": "ace-step",
+   "local": "gen/T07_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 695581998,
+   "prompt": "fantasy anime game soundtrack, dark fantasy orchestral, minor key, pipe organ, tremolo strings, low drones, ominous percussion, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T08_explore": {
+   "origin": "ace-step",
+   "local": "gen/T08_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 125524214,
+   "prompt": "fantasy anime game soundtrack, ancient ruins fantasy, reed flute, oud, frame drums, mysterious strings, desert modal scale, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T08_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T08_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 711164929,
+   "prompt": "fantasy anime game soundtrack, ancient ruins fantasy, reed flute, oud, frame drums, mysterious strings, desert modal scale, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T08_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T08_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 948980155,
+   "prompt": "fantasy anime game soundtrack, ancient ruins fantasy, reed flute, oud, frame drums, mysterious strings, desert modal scale, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T08_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T08_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1335327021,
+   "prompt": "fantasy anime game soundtrack, ancient ruins fantasy, reed flute, oud, frame drums, mysterious strings, desert modal scale, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T08_boss": {
+   "origin": "ace-step",
+   "local": "gen/T08_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1375593467,
+   "prompt": "fantasy anime game soundtrack, ancient ruins fantasy, reed flute, oud, frame drums, mysterious strings, desert modal scale, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T09_explore": {
+   "origin": "ace-step",
+   "local": "gen/T09_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 268455093,
+   "prompt": "fantasy anime game soundtrack, cosmic fantasy orchestral, synth arpeggios, ethereal pads, shimmering strings, deep space, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T09_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T09_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1314616127,
+   "prompt": "fantasy anime game soundtrack, cosmic fantasy orchestral, synth arpeggios, ethereal pads, shimmering strings, deep space, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T09_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T09_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1612484229,
+   "prompt": "fantasy anime game soundtrack, cosmic fantasy orchestral, synth arpeggios, ethereal pads, shimmering strings, deep space, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T09_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T09_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 689929747,
+   "prompt": "fantasy anime game soundtrack, cosmic fantasy orchestral, synth arpeggios, ethereal pads, shimmering strings, deep space, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T09_boss": {
+   "origin": "ace-step",
+   "local": "gen/T09_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 594254942,
+   "prompt": "fantasy anime game soundtrack, cosmic fantasy orchestral, synth arpeggios, ethereal pads, shimmering strings, deep space, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T10_explore": {
+   "origin": "ace-step",
+   "local": "gen/T10_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1398903248,
+   "prompt": "fantasy anime game soundtrack, shimmering crystal fantasy, music box, bells, harp, glass harmonica, bright strings, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T10_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T10_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1941997365,
+   "prompt": "fantasy anime game soundtrack, shimmering crystal fantasy, music box, bells, harp, glass harmonica, bright strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T10_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T10_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1939096207,
+   "prompt": "fantasy anime game soundtrack, shimmering crystal fantasy, music box, bells, harp, glass harmonica, bright strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T10_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T10_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 647582233,
+   "prompt": "fantasy anime game soundtrack, shimmering crystal fantasy, music box, bells, harp, glass harmonica, bright strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T10_boss": {
+   "origin": "ace-step",
+   "local": "gen/T10_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 467233314,
+   "prompt": "fantasy anime game soundtrack, shimmering crystal fantasy, music box, bells, harp, glass harmonica, bright strings, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T11_explore": {
+   "origin": "ace-step",
+   "local": "gen/T11_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1142588819,
+   "prompt": "fantasy anime game soundtrack, hybrid electronic orchestral, glitch percussion, pulsing synth bass, unstable phasing strings, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T11_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T11_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 617437195,
+   "prompt": "fantasy anime game soundtrack, hybrid electronic orchestral, glitch percussion, pulsing synth bass, unstable phasing strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T11_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T11_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 84655537,
+   "prompt": "fantasy anime game soundtrack, hybrid electronic orchestral, glitch percussion, pulsing synth bass, unstable phasing strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T11_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T11_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1913425191,
+   "prompt": "fantasy anime game soundtrack, hybrid electronic orchestral, glitch percussion, pulsing synth bass, unstable phasing strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T11_boss": {
+   "origin": "ace-step",
+   "local": "gen/T11_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1498424711,
+   "prompt": "fantasy anime game soundtrack, hybrid electronic orchestral, glitch percussion, pulsing synth bass, unstable phasing strings, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T12_explore": {
+   "origin": "ace-step",
+   "local": "gen/T12_explore.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 107095382,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, calm exploration theme, gentle, medium-slow tempo, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T12_battle_a": {
+   "origin": "ace-step",
+   "local": "gen/T12_battle_a.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1999984392,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, steady marching rhythm, heroic, 120 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T12_battle_b": {
+   "origin": "ace-step",
+   "local": "gen/T12_battle_b.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1996911282,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, syncopated driving rhythm, brighter, 132 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T12_battle_c": {
+   "origin": "ace-step",
+   "local": "gen/T12_battle_c.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 570794532,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, battle theme, energetic, rhythmic, loopable, instrumental, no vocals, relentless fast rhythm, darker, high tension, 145 bpm",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "T12_boss": {
+   "origin": "ace-step",
+   "local": "gen/T12_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 1444006697,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, boss battle theme, intense, heavy, climactic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  },
+  "final_boss": {
+   "origin": "ace-step",
+   "local": "gen/final_boss.wav",
+   "model": "ACE-Step/ACE-Step-v1-3.5B",
+   "seed": 259115131,
+   "prompt": "fantasy anime game soundtrack, grand epic full orchestra, triumphant brass, timpani, massive drums, golden majestic strings, final boss battle, colossal, relentless, apocalyptic, loopable, instrumental, no vocals",
+   "lyrics": "[inst]",
+   "duration": 104.0,
+   "licence": "Apache-2.0 model; no third-party audio"
+  }
+ }
+}

@@ -9,12 +9,21 @@
 ## - Voice lines: play_voice(line_id) / play_voice_line(speaker, text) look the line up in
 ##   res://audio/voices/voice_index.json (written by audio/tools/eleven_voices.py); a line that has
 ##   not been rendered yet simply does not play. Music is ducked while a voice line plays.
+## - Per-level music: res://data/music_map.json (written by audio/tools/music_build.py) maps every
+##   bible stage id to a track + mix. play_stage_music(stage_id) plays it as two sample-locked
+##   stems (AudioStreamSynchronized: harmonic "base" + percussive "heat"); set_music_intensity()
+##   / set_battle_heat() fade the heat stem in as a battle heats up. Each of the two cross-fade
+##   players routes through its own sub-bus (MusicA / MusicB -> Music) carrying the stage's
+##   low-shelf + low-pass, so a cross-fade never snaps a filter on the track still fading out.
 extends Node
 
 signal voice_finished(line_id: String)
 
 const REGISTRY_PATH := "res://audio/audio_registry.json"
 const VOICE_INDEX_PATH := "res://audio/voices/voice_index.json"
+const MUSIC_MAP_PATH := "res://data/music_map.json"
+const MUSIC_SUB_BUSES: Array[String] = ["MusicA", "MusicB"]  ## one per cross-fade player
+const HEAT_FLOOR_DB := -40.0  ## heat stem volume at intensity 0
 const DEFAULT_PREFS_PATH := "user://audio_prefs.cfg"
 const BUSES: Array[String] = ["Music", "SFX", "Voice", "Ambience"]
 const DEFAULT_VOLUME := {"Master": 1.0, "Music": 0.7, "SFX": 1.0, "Voice": 1.0, "Ambience": 0.6}
@@ -30,6 +39,11 @@ var voice_index: Dictionary = {}
 var volumes: Dictionary = DEFAULT_VOLUME.duplicate()
 var current_music := ""
 var current_ambience := ""
+var music_map: Dictionary = {}
+var current_stage_music := ""   ## stage id (or "tower:<id>") whose music is playing
+var music_intensity := 0.0      ## heat-stem level of the current layered track, 0..1
+var _stage_base_intensity := 0.0
+var _heat_tween: Tween
 
 var _streams: Dictionary = {}       ## res path -> AudioStream
 var _pool: Array[AudioStreamPlayer] = []
@@ -66,6 +80,7 @@ func setup() -> void:
 	ensure_buses()
 	registry = _read_json(REGISTRY_PATH)
 	voice_index = _read_json(VOICE_INDEX_PATH)
+	music_map = _read_json(MUSIC_MAP_PATH)
 	for i in POOL_SIZE:
 		_pool.append(_add_player(AudioStreamPlayer.new(), "SFX") as AudioStreamPlayer)
 	for i in 2:
@@ -84,6 +99,20 @@ func ensure_buses() -> void:
 			var idx := AudioServer.bus_count - 1
 			AudioServer.set_bus_name(idx, b)
 			AudioServer.set_bus_send(idx, &"Master")
+	for b in MUSIC_SUB_BUSES:
+		if AudioServer.get_bus_index(b) == -1:
+			AudioServer.add_bus()
+			var idx := AudioServer.bus_count - 1
+			AudioServer.set_bus_name(idx, b)
+			AudioServer.set_bus_send(idx, &"Music")
+			var shelf := AudioEffectLowShelfFilter.new()
+			shelf.cutoff_hz = 180.0
+			shelf.gain = 1.0
+			AudioServer.add_bus_effect(idx, shelf, 0)
+			var lp := AudioEffectLowPassFilter.new()
+			lp.cutoff_hz = 20000.0
+			lp.resonance = 0.5
+			AudioServer.add_bus_effect(idx, lp, 1)
 
 
 # ------------------------------------------------------------------ volume + prefs
@@ -221,12 +250,172 @@ func play_music(id: String, crossfade: float = 1.5) -> void:
 	if stream == null and id != "":
 		_warn_once("music:" + id)
 	current_music = id if stream != null else ""
+	current_stage_music = ""
+	_prep_music_player(1 - _music_active, {}, &"Music")
 	_music_active = _crossfade(_music, _music_active, stream, crossfade)
 
 
 func stop_music(fade: float = 1.0) -> void:
 	current_music = ""
+	current_stage_music = ""
 	_music_active = _crossfade(_music, _music_active, null, fade)
+
+
+# ------------------------------------------------------------------ per-level music (music_map.json)
+
+## Resolved music entry for a bible stage id ("T03-L07"): {track, files, layered, pitch_scale,
+## lowpass_hz, low_shelf_db, intensity, tower, chamber}. Empty when the stage is unmapped.
+func stage_music_info(stage_id: String) -> Dictionary:
+	var st: Dictionary = music_map.get("stages", {}).get(stage_id, {})
+	if st.is_empty():
+		return {}
+	var tr: Dictionary = music_map.get("tracks", {}).get(str(st.get("track", "")), {})
+	if tr.is_empty():
+		return {}
+	var out := st.duplicate()
+	out["files"] = tr.get("files", [])
+	out["layered"] = bool(tr.get("layered", false))
+	return out
+
+
+## Battle music for a stage: its tower's battle take (chambers 1-9) or boss arrangement (10;
+## T12-L10 = final boss) with the stage's own tempo / filter / heat mix. Same stage = no-op.
+## Unknown stage -> the generic "battle" / "boss" track. Headless-safe.
+func play_stage_music(stage_id: String, crossfade: float = 1.5) -> void:
+	var info := stage_music_info(stage_id)
+	if info.is_empty():
+		_warn_once("stage_music:" + stage_id)
+		play_music("boss" if stage_id.ends_with("-L10") else "battle", crossfade)
+		return
+	_play_mapped(stage_id, info, float(info.get("intensity", 0.5)), crossfade)
+
+
+## Calm / explore version of a tower's theme (tower stage-select, dialogue). `tower_id` may be
+## "03", "T03" or 3. Unknown tower -> the title theme.
+func play_tower_ambient_music(tower_id: Variant, crossfade: float = 2.0) -> void:
+	var tw := _tower_key(tower_id)
+	var t: Dictionary = music_map.get("towers", {}).get(tw, {})
+	var tr: Dictionary = music_map.get("tracks", {}).get(str(t.get("explore", "")), {})
+	if tr.is_empty():
+		play_music("title", crossfade)
+		return
+	var info := {"track": t.explore, "files": tr.get("files", []), "layered": false, "pitch_scale": 1.0,
+		"lowpass_hz": 20000, "low_shelf_db": 0.0, "tower": tw}
+	_play_mapped("tower:" + tw, info, 0.0, crossfade)
+
+
+## World map: the title theme.
+func play_world_map_music(crossfade: float = 2.0) -> void:
+	play_music(str(music_map.get("world_map", "title")), crossfade)
+
+
+## Short victory / defeat sting in the stage's tower colour (non-looping; replaces the battle
+## music). Accepts a stage id ("T03-L07") or a tower id. Falls back to the generic tracks.
+func play_stage_result(stage_id: String, won: bool, crossfade: float = 0.25) -> void:
+	var tw := _tower_key(stage_id.substr(1, 2) if stage_id.begins_with("T") and stage_id.length() > 3 else stage_id)
+	var path := str(music_map.get("towers", {}).get(tw, {}).get("stings", {}).get("victory" if won else "defeat", ""))
+	var stream := _stream(path, false)
+	if stream == null:
+		play_music("victory" if won else "defeat", crossfade)
+		return
+	if "loop" in stream:
+		stream.set("loop", false)
+	current_music = ("victory:" if won else "defeat:") + tw
+	current_stage_music = ""
+	_prep_music_player(1 - _music_active, {}, &"Music")
+	_music_active = _crossfade(_music, _music_active, stream, crossfade)
+
+
+## Heat-stem level of the current layered track (0 = harmonic base only, 1 = full mix).
+func set_music_intensity(value: float, fade: float = 1.5) -> void:
+	value = clampf(value, 0.0, 1.0)
+	var from := music_intensity
+	music_intensity = value
+	if _heat_tween and _heat_tween.is_valid():
+		_heat_tween.kill()
+	if _music.is_empty():
+		return
+	var sync := _music[_music_active].stream as AudioStreamSynchronized
+	if sync == null or sync.stream_count < 2:
+		return
+	if fade <= 0.0 or not is_inside_tree():
+		sync.set_sync_stream_volume(1, _heat_db(value))
+		return
+	_heat_tween = create_tween()
+	_heat_tween.tween_method(func(v: float) -> void: sync.set_sync_stream_volume(1, _heat_db(v)), from, value, fade)
+
+
+## Battle hook: pass the lowest Sigil HP ratio on the board (0..1). At or above 50 % the stage's
+## own baseline plays; below 50 % the heat stem climbs to full as that Sigil approaches 0.
+func set_battle_heat(min_sigil_ratio: float) -> void:
+	var r := clampf(min_sigil_ratio, 0.0, 1.0)
+	var target := _stage_base_intensity
+	if r < 0.5:
+		target = maxf(_stage_base_intensity, lerpf(0.85, 1.0, 1.0 - r / 0.5))
+	if absf(target - music_intensity) > 0.01:
+		set_music_intensity(target, 2.0)
+
+
+func _play_mapped(key: String, info: Dictionary, intensity: float, crossfade: float) -> void:
+	if key == current_stage_music and (_music[_music_active].playing or silent):
+		return
+	var files: Array = info.get("files", [])
+	var stream: AudioStream = null
+	if bool(info.get("layered", false)) and files.size() >= 2:
+		var base := _stream(str(files[0]), true)
+		var heat := _stream(str(files[1]), true)
+		if base != null and heat != null:
+			var sync := AudioStreamSynchronized.new()
+			sync.stream_count = 2
+			sync.set_sync_stream(0, base)
+			sync.set_sync_stream(1, heat)
+			sync.set_sync_stream_volume(0, 0.0)
+			sync.set_sync_stream_volume(1, _heat_db(intensity))
+			stream = sync
+		else:
+			stream = base
+	elif not files.is_empty():
+		stream = _stream(str(files[0]), true)
+	if stream == null:
+		_warn_once("stage_music:" + key)
+		play_music("battle" if bool(info.get("layered", false)) else "title", crossfade)
+		return
+	if _heat_tween and _heat_tween.is_valid():
+		_heat_tween.kill()
+	current_music = str(info.get("track", key))
+	current_stage_music = key
+	music_intensity = intensity
+	_stage_base_intensity = intensity
+	var nxt := 1 - _music_active
+	_prep_music_player(nxt, info, StringName(MUSIC_SUB_BUSES[nxt]))
+	_music_active = _crossfade(_music, _music_active, stream, crossfade)
+
+
+## Routes cross-fade player `idx` to `bus` and applies a stage mix (pitch + its sub-bus filters).
+func _prep_music_player(idx: int, info: Dictionary, bus: StringName) -> void:
+	if _music.size() <= idx:
+		return
+	var p := _music[idx]
+	p.bus = bus
+	p.pitch_scale = clampf(float(info.get("pitch_scale", 1.0)), 0.5, 2.0)
+	var bi := AudioServer.get_bus_index(bus)
+	if bi == -1 or not MUSIC_SUB_BUSES.has(String(bus)) or AudioServer.get_bus_effect_count(bi) < 2:
+		return
+	var shelf := AudioServer.get_bus_effect(bi, 0) as AudioEffectFilter
+	var lp := AudioServer.get_bus_effect(bi, 1) as AudioEffectFilter
+	if shelf:
+		shelf.gain = db_to_linear(float(info.get("low_shelf_db", 0.0)))
+	if lp:
+		lp.cutoff_hz = clampf(float(info.get("lowpass_hz", 20000)), 200.0, 20000.0)
+
+
+func _heat_db(v: float) -> float:
+	return HEAT_FLOOR_DB if v <= 0.001 else maxf(linear_to_db(v), HEAT_FLOOR_DB)
+
+
+func _tower_key(tower_id: Variant) -> String:
+	var s := str(tower_id).strip_edges().trim_prefix("T").trim_prefix("t")
+	return "%02d" % int(s) if s.is_valid_int() else s
 
 
 ## Starts ambience loop `id` (e.g. "amb_wind"), cross-fading from the current one.
