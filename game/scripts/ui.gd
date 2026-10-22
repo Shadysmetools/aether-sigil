@@ -177,6 +177,8 @@ var retry_button: Button
 var backdrop: SkyBackdrop
 var tower_art: Dictionary = {}           ## tower id -> TowerArt behind its card
 var _type_tween: Tween
+var audio_override: Node                 ## tests inject a fake AudioManager; default is /root/AudioManager
+var _battle_ambience := false
 # Pre-match (Vessels): draft + placement. See the section at the end of this file.
 var placing := false
 var draft_screen: Control
@@ -670,6 +672,7 @@ func show_tower(tid: String) -> void:
 	_hide_all()
 	tower_screen.visible = true
 	current_tower = tid
+	_music("play_tower_ambient_music", [tid])
 	var t: Dictionary = {}
 	for tw in Data.towers():
 		if str(tw.tower_id) == tid:
@@ -992,7 +995,35 @@ func _layout_board() -> void:
 
 # ---------------------------------------------------------------- screens
 
+# ---------------------------------------------------------------- music / ambience hooks
+
+## The AudioManager autoload (or the injected test double); null in headless runs without it.
+func _am() -> Node:
+	if audio_override != null:
+		return audio_override
+	return get_node("/root/AudioManager") if has_node("/root/AudioManager") else null
+
+
+func _music(method: String, args: Array = []) -> void:
+	var am := _am()
+	if am != null and am.has_method(method):
+		am.callv(method, args)
+
+
+func _stop_battle_ambience() -> void:
+	if _battle_ambience:
+		_battle_ambience = false
+		_music("stop_ambience")
+
+
+func _min_sigil_ratio() -> float:
+	if state.symbol_max <= 0:
+		return 1.0
+	return clampf(float(mini(state.symbol_hp[0], state.symbol_hp[1])) / float(state.symbol_max), 0.0, 1.0)
+
+
 func _hide_all() -> void:
+	_stop_battle_ambience()
 	ai_running = false
 	board.visible = false
 	hud.visible = false
@@ -1027,6 +1058,7 @@ func show_stage_select() -> void:
 		tower_art[tid].open = open
 		tower_art[tid].queue_redraw()
 	backdrop.set_tower("", "")
+	_music("play_world_map_music")
 	_play_story("prologue", func(): pass)
 
 
@@ -1109,6 +1141,10 @@ func _open_battle() -> void:
 	board.visible = true
 	hud.visible = true
 	backdrop.set_tower(str(state.stage.tower_id), tower_family(_tower(str(state.stage.tower_id))))
+	_music("play_stage_music", [stage_id])
+	_music("play_ambience_for_theme", [str(_tower(str(state.stage.tower_id)).get("theme", ""))])
+	_battle_ambience = true
+	_music("set_battle_heat", [_min_sigil_ratio()])
 	_refresh("")
 	_layout_board.call_deferred()
 	var st := state.stage
@@ -1138,6 +1174,8 @@ func show_dialogue(lines: Array, done: Callable, scene_tower: String = "", scene
 		dialogue_box.visible = false
 		done.call()
 		return
+	if scene_tower != "":
+		_music("play_tower_ambient_music", [scene_tower])
 	dialogue_box.visible = true
 	scene.begin(_dialogue_queue, scene_tower, scene_backdrop)
 	_show_line()
@@ -1198,6 +1236,7 @@ func _on_dialogue_next() -> void:
 
 func _show_result() -> void:
 	var won := state.winner == P
+	_music("play_stage_result", [stage_id, won])
 	var how := {"symbol": "Symbol destroyed", "relics": "Relic nodes secured", "rout": "Enemy routed: no monster or %s left" % Summon.term("vessel"), "time": "Round limit: your Sigil held more HP"}
 	if won:
 		var nxt := progress.record_win(stage_id)
@@ -1235,6 +1274,8 @@ func _actor_side(id: int) -> int:
 func _refresh(msg: String = "") -> void:
 	if state.stage.is_empty():
 		return
+	if not placing:
+		_music("set_battle_heat", [_min_sigil_ratio()])
 	var st := state.stage
 	stage_label.text = "%s  |  %s" % [state.stage_id, st.name]
 	var extra := "   %s %d/%d (+%d next turn)" % [Summon.term("sp"), state.sp[P], state.sp_cap(), state.sp_income(P)]
@@ -1655,6 +1696,7 @@ func show_prematch(id: String) -> void:
 	_hide_all()
 	draft_stage = id
 	draft_screen.visible = true
+	_music("play_tower_ambient_music", [str(id).substr(1, 2)])
 	Kit.enter(draft_screen)
 	for c in draft_list.get_children():
 		draft_list.remove_child(c)
@@ -1852,6 +1894,7 @@ func show_title_hub() -> void:
 	backdrop.set_tower("", "")
 	Kit.enter(hub, 0.0)
 	hub.play_enter()
+	_music("play_world_map_music")
 	_play_story("prologue", func(): pass)
 
 
